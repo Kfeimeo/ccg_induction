@@ -1,0 +1,9 @@
+c1 d1 b1
+c1 d1 b2
+c1 d2 b1
+c1 d2 b2
+c2 d1 b1
+c2 d1 b2
+c2 d2 b1
+c2 d2 b2
+
