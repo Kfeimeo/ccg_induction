@@ -24,6 +24,25 @@ std::string render_tree(const Corpus& corpus,
            render_tree(corpus, sentence, static_cast<std::uint16_t>(split), end, result) + ")";
 }
 
+std::string render_first_split_tree(const Corpus& corpus,
+                                    const SentenceId sentence,
+                                    const std::uint16_t begin,
+                                    const std::uint16_t end,
+                                    const TreeSolveResult& result) {
+    const auto& tokens = corpus.sentences().at(sentence);
+    if (end == begin + 1) {
+        return std::string(corpus.token_interner().token_text(tokens.at(begin)));
+    }
+    const auto dimension = static_cast<std::size_t>(result.sentence_length) + 1;
+    const auto& splits = result.optimal_splits.at(static_cast<std::size_t>(begin) * dimension + end);
+    if (splits.empty()) {
+        throw std::logic_error("missing split in optimal forest sample");
+    }
+    const auto split = splits.front();
+    return "(" + render_first_split_tree(corpus, sentence, begin, split, result) + " " +
+           render_first_split_tree(corpus, sentence, split, end, result) + ")";
+}
+
 }  // namespace
 
 
@@ -62,6 +81,15 @@ std::string format_unique_tree(const Corpus& corpus,
         return {};
     }
     return render_tree(corpus, sentence, 0, result.sentence_length, result);
+}
+
+std::string format_one_optimal_tree(const Corpus& corpus,
+                                    const SentenceId sentence,
+                                    const TreeSolveResult& result) {
+    if (!result.hard_consistent || result.optimal_tree_count == 0) {
+        return {};
+    }
+    return render_first_split_tree(corpus, sentence, 0, result.sentence_length, result);
 }
 
 }  // namespace scf

@@ -2,3 +2,5 @@
 /out/
 /.vs/
 CMakeUserPresets.json
+/data/generated/
+/results/

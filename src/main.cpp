@@ -1,7 +1,10 @@
 #include "scf/corpus.hpp"
 #include "scf/equivalence_solver.hpp"
+#include "scf/evaluator.hpp"
 #include "scf/evidence_builder.hpp"
 #include "scf/formatter.hpp"
+#include "scf/gold.hpp"
+#include "scf/pipeline.hpp"
 #include "scf/tree_solver.hpp"
 
 #include <algorithm>
@@ -22,6 +25,7 @@ namespace {
 struct CliOptions {
     std::string input_path;
     std::optional<std::string> config_path;
+    std::optional<std::string> gold_path;
     std::optional<std::filesystem::path> output_directory;
     scf::CorpusConfig config;
     bool dump_classes{false};
@@ -30,6 +34,8 @@ struct CliOptions {
     bool dump_evidence{false};
     bool dump_optimal_forest{false};
     bool dump_trees{false};
+    bool dump_one_optimal_tree_for_debug{false};
+    bool eval{false};
     bool stats{false};
 };
 
@@ -56,6 +62,11 @@ void print_usage(std::ostream& output) {
               "  --dump-evidence        Print occurrence scores and witness provenance\n"
               "  --dump-optimal-forest  Print all optimal splits in each DP cell\n"
               "  --dump-trees           Print parse details (summary is always printed)\n"
+              "  --gold FILE            Gold constituent spans (sentence_id begin end label TSV)\n"
+              "  --eval                 Evaluate the optimal forest against --gold\n"
+              "  --dump-one-optimal-tree-for-debug\n"
+              "                         For ambiguous sentences, print one optimal tree\n"
+              "                         explicitly marked as a debug sample, never a prediction\n"
               "  --output-dir DIR       Export CSV and diagnostic text files\n";
 }
 
@@ -107,6 +118,12 @@ CliOptions parse_arguments(const int argc, char** argv) {
             options.dump_optimal_forest = true;
         } else if (argument == "--dump-trees") {
             options.dump_trees = true;
+        } else if (argument == "--dump-one-optimal-tree-for-debug") {
+            options.dump_one_optimal_tree_for_debug = true;
+        } else if (argument == "--gold") {
+            options.gold_path = require_value(argc, argv, index);
+        } else if (argument == "--eval") {
+            options.eval = true;
         } else if (argument == "--stats") {
             options.stats = true;
         } else if (argument == "--output-dir") {
@@ -117,6 +134,9 @@ CliOptions parse_arguments(const int argc, char** argv) {
     }
     if (options.input_path.empty()) {
         throw std::runtime_error("--input is required");
+    }
+    if (options.eval && !options.gold_path) {
+        throw std::runtime_error("--eval requires --gold FILE");
     }
     return options;
 }
@@ -204,32 +224,13 @@ void print_witnesses(std::ostream& output,
     }
 }
 
-std::vector<scf::TreeSolveResult> analyze_sentences(const scf::Corpus& corpus,
-                                                    const std::span<const scf::SpanEvidence> evidence) {
-    std::vector<scf::TreeSolveResult> analyses;
-    analyses.reserve(corpus.sentences().size());
-    for (std::size_t sentence = 0; sentence < corpus.sentences().size(); ++sentence) {
-        const auto sentence_id = static_cast<scf::SentenceId>(sentence);
-        std::vector<scf::SpanScore> scores;
-        for (const auto& item : evidence) {
-            if (item.span.sentence == sentence_id) {
-                scores.push_back(scf::SpanScore{item.span, item.score});
-            }
-        }
-        analyses.push_back(scf::solve_maximum_evidence_trees(
-            sentence_id,
-            static_cast<std::uint16_t>(corpus.sentences()[sentence].size()),
-            scores));
-    }
-    return analyses;
-}
-
 void print_sentence_analysis(std::ostream& output,
                              const scf::Corpus& corpus,
                              const std::span<const scf::SpanEvidence> evidence,
                              const std::span<const scf::TreeSolveResult> analyses,
                              const bool dump_evidence,
-                             const bool dump_optimal_forest) {
+                             const bool dump_optimal_forest,
+                             const bool dump_one_optimal_tree_for_debug) {
     for (std::size_t sentence = 0; sentence < analyses.size(); ++sentence) {
         const auto sentence_id = static_cast<scf::SentenceId>(sentence);
         const auto& analysis = analyses[sentence];
@@ -302,6 +303,10 @@ void print_sentence_analysis(std::ostream& output,
             output << "  tree=" << scf::format_unique_tree(corpus, sentence_id, analysis) << '\n';
         } else if (analysis.optimal_tree_count > 1) {
             output << "  tree=<ambiguous; no tie-break>\n";
+            if (dump_one_optimal_tree_for_debug) {
+                output << "  debug_tree=" << scf::format_one_optimal_tree(corpus, sentence_id, analysis)
+                       << "  (debug sample of the optimal forest; NOT a prediction)\n";
+            }
         }
         output << '\n';
     }
@@ -405,13 +410,11 @@ int main(int argc, char** argv) {
         scf::Corpus corpus(options.config);
         corpus.load_file(options.input_path);
 
-        scf::EquivalenceSolver solver(corpus.string_interner().size(),
-                                      corpus.context_records(),
-                                      corpus.concat_triples());
-        solver.saturate();
-        const scf::EvidenceBuilder evidence_builder(corpus);
+        auto bundle = scf::analyze_corpus(corpus);
+        const auto& solver = bundle.solver;
+        const auto& evidence_builder = bundle.builder;
         const auto& evidence = evidence_builder.span_evidence();
-        const auto analyses = analyze_sentences(corpus, evidence);
+        const auto& analyses = bundle.analyses;
 
         std::cout << "Corpus:\n"
                   << "  input_sentences = " << corpus.summary().input_sentences << '\n'
@@ -480,11 +483,51 @@ int main(int argc, char** argv) {
                                     evidence,
                                     analyses,
                                     options.dump_evidence,
-                                    options.dump_optimal_forest);
+                                    options.dump_optimal_forest,
+                                    options.dump_one_optimal_tree_for_debug);
+        }
+
+        std::optional<scf::CorpusEvaluation> evaluation;
+        std::vector<scf::GoldTree> gold_trees;
+        if (options.eval) {
+            const auto rows = scf::read_gold_span_file(*options.gold_path);
+            const auto lengths = scf::corpus_sentence_lengths(corpus);
+            gold_trees = scf::assemble_gold_trees(rows, lengths);
+            evaluation = scf::evaluate_corpus(analyses, gold_trees, evidence);
+            scf::print_evaluation_summary(std::cout, *evaluation);
+            std::cout << '\n';
         }
 
         if (options.output_directory) {
             export_diagnostics(*options.output_directory, corpus, solver, evidence_builder, analyses);
+            if (evaluation) {
+                const scf::EvalConfig eval_config;
+                const auto diagnostics = scf::collapse_diagnostics(corpus, solver, eval_config);
+                const auto open = [&](const char* name) {
+                    std::ofstream output(*options.output_directory / name);
+                    if (!output) {
+                        throw std::runtime_error(std::string("cannot write ") + name);
+                    }
+                    return output;
+                };
+                {
+                    auto output = open("metrics.json");
+                    scf::write_metrics_json(output, scf::RunInfo{}, corpus, diagnostics, *evaluation);
+                }
+                {
+                    auto output = open("sentence_metrics.tsv");
+                    scf::write_sentence_metrics_tsv(output, corpus, gold_trees, analyses, *evaluation);
+                }
+                {
+                    auto output = open("failure_examples.txt");
+                    scf::write_failure_examples(output, corpus, gold_trees, analyses, evidence,
+                                                *evaluation, eval_config);
+                }
+                {
+                    auto output = open("top_eclasses.txt");
+                    scf::write_top_eclasses(output, corpus, solver, eval_config);
+                }
+            }
             std::cout << "Exported diagnostics to " << options.output_directory->string() << '\n';
         }
         return 0;

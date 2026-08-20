@@ -1,10 +1,16 @@
 #include "scf/corpus.hpp"
 #include "scf/dsu.hpp"
+#include "scf/enumerator.hpp"
 #include "scf/equivalence_solver.hpp"
+#include "scf/evaluator.hpp"
 #include "scf/evidence.hpp"
 #include "scf/evidence_builder.hpp"
 #include "scf/formatter.hpp"
+#include "scf/gold.hpp"
+#include "scf/pipeline.hpp"
+#include "scf/prepare_text.hpp"
 #include "scf/string_interner.hpp"
+#include "scf/synthetic.hpp"
 #include "scf/tree_solver.hpp"
 
 #include <algorithm>
@@ -506,6 +512,464 @@ void test_deep_synthetic_end_to_end() {
     }
 }
 
+// --- v1.2: gold tree infrastructure ---------------------------------------
+
+std::set<scf::SpanPair> shape_of(const scf::GoldTree& tree) {
+    std::set<scf::SpanPair> shape;
+    for (const auto& span : tree.internal_spans) {
+        shape.emplace(span.begin, span.end);
+    }
+    return shape;
+}
+
+scf::GoldNode leaf(const std::string& token) { return scf::GoldNode{token, {}}; }
+
+scf::GoldNode branch(const std::string& label, scf::GoldNode left, scf::GoldNode right) {
+    scf::GoldNode node{label, {}};
+    node.children.push_back(std::move(left));
+    node.children.push_back(std::move(right));
+    return node;
+}
+
+void test_gold_tree_infrastructure() {
+    const auto tree_node = branch("S", branch("A", leaf("c1"), leaf("d1")),
+                                  branch("B", leaf("e1"), leaf("f1")));
+    const auto tree = scf::gold_tree_from_node(tree_node);
+    CHECK(tree.length == 4);
+    CHECK(shape_of(tree) == std::set<scf::SpanPair>({{0, 2}, {2, 4}, {0, 4}}));
+    CHECK(scf::gold_eval_spans(tree) == std::set<scf::SpanPair>({{0, 2}, {2, 4}}));
+    CHECK(scf::gold_eval_spans(tree, true, false) ==
+          std::set<scf::SpanPair>({{0, 2}, {2, 4}, {0, 4}}));
+    CHECK(scf::gold_eval_spans(tree, false, true) ==
+          std::set<scf::SpanPair>({{0, 2}, {2, 4}, {0, 1}, {1, 2}, {2, 3}, {3, 4}}));
+    CHECK(scf::gold_scoring_spans(tree) == std::set<scf::SpanPair>({{0, 2}, {2, 4}}));
+    CHECK(scf::format_gold_bracket(tree_node) == "((c1 d1) (e1 f1))");
+
+    const std::vector<std::string> tokens{"c1", "d1", "e1", "f1"};
+    CHECK(scf::bracket_from_gold_tree(tree, tokens) == "((c1 d1) (e1 f1))");
+    const auto reparsed = scf::gold_tree_from_node(scf::parse_bracket_tree("((c1 d1) (e1 f1))"));
+    CHECK(shape_of(reparsed) == shape_of(tree));
+
+    // Unary chains collapse to the lower node before span extraction.
+    scf::GoldNode unary{"B", {}};
+    unary.children.push_back(scf::GoldNode{"V", {leaf("runs")}});
+    const auto collapsed = scf::collapse_unary_chains(unary);
+    CHECK(collapsed.is_leaf());
+    CHECK(collapsed.label == "runs");
+
+    scf::GoldNode ternary{"S", {leaf("a"), leaf("b"), leaf("c")}};
+    bool threw = false;
+    try {
+        (void)scf::gold_tree_from_node(ternary);
+    } catch (const std::exception&) {
+        threw = true;
+    }
+    CHECK(threw);
+}
+
+void test_gold_spans_tsv_roundtrip() {
+    const auto dataset = scf::generate_dataset("nested_balanced", 1.0, 1);
+    const auto trees = scf::dataset_gold_trees(dataset);
+    std::ostringstream written;
+    scf::write_gold_spans_tsv(written, trees);
+
+    std::vector<std::uint16_t> lengths(trees.size(), 4);
+    {
+        std::istringstream input(written.str());
+        const auto rows = scf::read_gold_span_rows(input);
+        const auto reread = scf::assemble_gold_trees(rows, lengths);
+        CHECK(reread.size() == trees.size());
+        for (std::size_t index = 0; index < trees.size(); ++index) {
+            CHECK(shape_of(reread[index]) == shape_of(trees[index]));
+        }
+    }
+    {
+        // The root row may be omitted; assemble re-adds it.
+        std::istringstream input("0\t0\t2\tA\n0\t2\t4\tB\n");
+        const auto rows = scf::read_gold_span_rows(input);
+        const auto reread = scf::assemble_gold_trees(rows, std::vector<std::uint16_t>{4});
+        CHECK(shape_of(reread[0]) == std::set<scf::SpanPair>({{0, 2}, {2, 4}, {0, 4}}));
+    }
+    const auto expect_throw = [&](const std::string& text,
+                                  const std::vector<std::uint16_t>& sentence_lengths) {
+        bool threw = false;
+        try {
+            std::istringstream input(text);
+            const auto rows = scf::read_gold_span_rows(input);
+            (void)scf::assemble_gold_trees(rows, sentence_lengths);
+        } catch (const std::exception&) {
+            threw = true;
+        }
+        CHECK(threw);
+    };
+    expect_throw("0\t0\t2\tA\n", {4});               // too few internal spans
+    expect_throw("0\t0\t2\tA\n0\t1\t3\tB\n", {3});   // crossing spans, no valid decomposition
+    expect_throw("1\t0\t2\tA\n1\t2\t4\tB\n", {4});   // sentence 0 missing entirely
+    expect_throw("0\t0\t5\tA\n", {4});               // span exceeds sentence length
+    expect_throw("2\t0\t2\tA\n", {4});               // sentence id out of range
+}
+
+// --- v1.2: synthetic generator --------------------------------------------
+
+scf::Corpus corpus_from_dataset(const scf::SyntheticDataset& dataset) {
+    std::ostringstream text;
+    for (const auto& sentence : dataset.sentences) {
+        for (std::size_t index = 0; index < sentence.tokens.size(); ++index) {
+            text << (index == 0 ? "" : " ") << sentence.tokens[index];
+        }
+        text << '\n';
+    }
+    std::istringstream input(text.str());
+    scf::Corpus corpus;
+    corpus.load(input);
+    return corpus;
+}
+
+void test_generator_language_counts() {
+    const auto count_of = [](const std::string& name) {
+        return scf::generate_dataset(name, 1.0, 1).full_sentence_count;
+    };
+    CHECK(count_of("ab_cartesian") == 9);
+    CHECK(count_of("simple_np_vp") == 4);
+    CHECK(count_of("symmetric_abc") == 8);
+    CHECK(count_of("nested_balanced") == 16);
+    CHECK(count_of("right_branching") == 16);
+    CHECK(count_of("left_branching") == 16);
+    CHECK(count_of("ambiguous_lexicon") == 36);
+    CHECK(count_of("ccg_lite") == 84);
+
+    const auto simple = scf::generate_dataset("simple_np_vp", 1.0, 1);
+    std::set<std::string> sentences;
+    for (const auto& sentence : simple.sentences) {
+        std::string joined;
+        for (const auto& token : sentence.tokens) {
+            joined += token + " ";
+        }
+        sentences.insert(joined);
+    }
+    CHECK(sentences == std::set<std::string>({"the dog runs ", "the dog sleeps ", "a cat runs ",
+                                              "a cat sleeps "}));
+}
+
+void test_generator_gold_consistency() {
+    for (const auto& name : scf::known_grammar_names()) {
+        const auto dataset = scf::generate_dataset(name, 1.0, 1);
+        CHECK(!dataset.sentences.empty());
+        for (const auto& sentence : dataset.sentences) {
+            const auto tree = scf::gold_tree_from_node(sentence.tree);
+            CHECK(tree.length == sentence.tokens.size());
+            // Root span present; brackets and spans describe the same tree.
+            CHECK(shape_of(tree).contains({0, tree.length}) || tree.length == 1);
+            const auto bracket = scf::format_gold_bracket(sentence.tree);
+            const auto reparsed = scf::gold_tree_from_node(scf::parse_bracket_tree(bracket));
+            CHECK(shape_of(reparsed) == shape_of(tree));
+            CHECK(scf::leaf_tokens(scf::parse_bracket_tree(bracket)) == sentence.tokens);
+            // Internal span count of a full binary tree.
+            CHECK(tree.internal_spans.size() == static_cast<std::size_t>(tree.length) - 1);
+        }
+        const auto json = scf::grammar_json(dataset);
+        CHECK(json.find("\"grammar_name\": \"" + name + "\"") != std::string::npos);
+        CHECK(json.find("\"full_sentence_count\": ") != std::string::npos);
+    }
+}
+
+void test_coverage_sampling() {
+    // Determinism: identical seeds give byte-identical datasets.
+    const auto first = scf::generate_dataset("nested_balanced", 0.4, 7);
+    const auto second = scf::generate_dataset("nested_balanced", 0.4, 7);
+    CHECK(first.sentences.size() == second.sentences.size());
+    for (std::size_t index = 0; index < first.sentences.size(); ++index) {
+        CHECK(first.sentences[index].tokens == second.sentences[index].tokens);
+    }
+    CHECK(scf::grammar_json(first) == scf::grammar_json(second));
+
+    // ceil(coverage * N) sampling.
+    CHECK(scf::generate_dataset("nested_balanced", 1.0, 1).sentences.size() == 16);
+    CHECK(scf::generate_dataset("nested_balanced", 0.25, 1).sentences.size() == 4);
+    CHECK(scf::generate_dataset("nested_balanced", 0.05, 1).sentences.size() == 1);
+    CHECK(scf::generate_dataset("nested_balanced", 0.5, 3, 5).sentences.size() == 5);
+
+    // Sampled corpora contain no duplicate sentences.
+    const auto sampled = scf::generate_dataset("ccg_lite", 0.6, 3);
+    std::set<std::vector<std::string>> unique_sentences;
+    for (const auto& sentence : sampled.sentences) {
+        CHECK(unique_sentences.insert(sentence.tokens).second);
+    }
+
+    // Different seeds usually select different subsets; shuffling is real.
+    const auto other_seed = scf::generate_dataset("ccg_lite", 0.2, 4);
+    CHECK(other_seed.sentences.size() == sampled.sentences.size() ||
+          other_seed.sentences.size() == 17);
+}
+
+// --- v1.2: evaluator --------------------------------------------------------
+
+scf::GoldTree gold_from_bracket(const std::string& bracket) {
+    return scf::gold_tree_from_node(scf::parse_bracket_tree(bracket));
+}
+
+void test_evaluator_handcrafted_sentences() {
+    // Length 3, left evidence stronger: unique left optimum.
+    const std::vector<scf::SpanScore> left_scores{{{0, 0, 2}, 2}, {{0, 1, 3}, 1}};
+    const auto left = scf::solve_maximum_evidence_trees(0, 3, left_scores);
+
+    const auto correct =
+        scf::evaluate_sentence(0, left, gold_from_bracket("((a b) c)"), left_scores);
+    CHECK(correct.outcome == scf::SentenceOutcome::UniqueCorrect);
+    CHECK(correct.unique_optimal);
+    CHECK(correct.exact_unique_match);
+    CHECK(correct.gold_in_argmax);
+    CHECK(correct.best_score == 2 && correct.gold_score == 2);
+    CHECK(correct.second_best_score == std::optional<std::uint64_t>(1));
+    CHECK(correct.margin == std::optional<std::uint64_t>(1));
+    CHECK(correct.f1 == std::optional<double>(1.0));
+
+    const auto wrong = scf::evaluate_sentence(0, left, gold_from_bracket("(a (b c))"), left_scores);
+    CHECK(wrong.outcome == scf::SentenceOutcome::UniqueWrong);
+    CHECK(!wrong.gold_in_argmax);
+    CHECK(wrong.gold_score == 1);
+    CHECK(wrong.missing_gold_spans == std::vector<scf::SpanPair>({{1, 3}}));
+    CHECK(wrong.extra_predicted_spans == std::vector<scf::SpanPair>({{0, 2}}));
+    CHECK(wrong.precision == std::optional<double>(0.0));
+    CHECK(wrong.f1 == std::optional<double>(0.0));
+
+    // Tied evidence: ambiguity is preserved and classified, never tie-broken.
+    const std::vector<scf::SpanScore> tied_scores{{{0, 0, 2}, 2}, {{0, 1, 3}, 2}};
+    const auto tied = scf::solve_maximum_evidence_trees(0, 3, tied_scores);
+    const auto ambiguous =
+        scf::evaluate_sentence(0, tied, gold_from_bracket("((a b) c)"), tied_scores);
+    CHECK(ambiguous.outcome == scf::SentenceOutcome::AmbiguousGoldIncluded);
+    CHECK(!ambiguous.unique_optimal);
+    CHECK(ambiguous.gold_in_argmax);
+    CHECK(ambiguous.optimal_tree_count == 2);
+    CHECK(ambiguous.second_best_score == std::optional<std::uint64_t>(2));
+    CHECK(ambiguous.margin == std::optional<std::uint64_t>(0));
+    CHECK(!ambiguous.f1.has_value());
+
+    // Ambiguous with gold outside the argmax.
+    const std::vector<scf::SpanScore> excluded_scores{{{0, 0, 2}, 2}, {{0, 2, 4}, 2},
+                                                      {{0, 1, 3}, 1}};
+    const auto four = scf::solve_maximum_evidence_trees(0, 4, excluded_scores);
+    const auto excluded =
+        scf::evaluate_sentence(0, four, gold_from_bracket("(a ((b c) d))"), excluded_scores);
+    CHECK(excluded.optimal_tree_count == 1
+              ? excluded.outcome == scf::SentenceOutcome::UniqueWrong
+              : excluded.outcome == scf::SentenceOutcome::AmbiguousGoldExcluded);
+    CHECK(!excluded.gold_in_argmax);
+
+    // Length 2: no proper spans on either side; perfect by definition.
+    const auto two = scf::solve_maximum_evidence_trees(0, 2, {});
+    const auto trivial = scf::evaluate_sentence(0, two, gold_from_bracket("(a b)"), {});
+    CHECK(trivial.outcome == scf::SentenceOutcome::UniqueCorrect);
+    CHECK(trivial.exact_unique_match);
+    CHECK(trivial.f1 == std::optional<double>(1.0));
+    CHECK(!trivial.second_best_score.has_value());
+    CHECK(!trivial.margin.has_value());
+
+    // Length 1: no binary structure at all; evaluation must not crash.
+    const auto one = scf::solve_maximum_evidence_trees(0, 1, {});
+    const auto single = scf::evaluate_sentence(0, one, gold_from_bracket("a"), {});
+    CHECK(single.outcome == scf::SentenceOutcome::UniqueCorrect);
+
+    // All trees tied at score zero: Catalan-sized argmax, gold included.
+    const auto no_evidence = scf::solve_maximum_evidence_trees(0, 4, {});
+    const auto all_tied =
+        scf::evaluate_sentence(0, no_evidence, gold_from_bracket("((a b) (c d))"), {});
+    CHECK(all_tied.optimal_tree_count == 5);
+    CHECK(all_tied.all_trees_tied);
+    CHECK(all_tied.gold_in_argmax);
+    CHECK(all_tied.outcome == scf::SentenceOutcome::AmbiguousGoldIncluded);
+}
+
+void test_brute_force_enumerator() {
+    CHECK(scf::enumerate_binary_trees(1).size() == 1);
+    CHECK(scf::enumerate_binary_trees(2).size() == 1);
+    CHECK(scf::enumerate_binary_trees(3).size() == 2);
+    CHECK(scf::enumerate_binary_trees(4).size() == 5);
+    CHECK(scf::enumerate_binary_trees(5).size() == 14);
+    CHECK(scf::enumerate_binary_trees(6).size() == 42);
+
+    // DP and brute force agree on best score and argmax count.
+    const std::vector<std::vector<scf::SpanScore>> cases{
+        {{{0, 0, 2}, 2}, {{0, 1, 3}, 3}, {{0, 2, 4}, 1}},
+        {{{0, 0, 3}, 2}, {{0, 1, 4}, 2}},
+        {{{0, 0, 2}, 1}, {{0, 1, 4}, 4}, {{0, 3, 5}, 2}},
+        {{{0, 0, 3}, 5}, {{0, 2, 5}, 4}},
+        {},
+    };
+    const std::vector<std::uint16_t> lengths{4, 4, 5, 5, 6};
+    for (std::size_t index = 0; index < cases.size(); ++index) {
+        const auto solved = scf::solve_maximum_evidence_trees(0, lengths[index], cases[index]);
+        const auto brute = scf::brute_force_tree_scores(lengths[index], cases[index]);
+        CHECK(solved.best_score == brute.best_score);
+        CHECK(solved.optimal_tree_count == brute.argmax_count);
+    }
+}
+
+void test_no_hidden_tie_break() {
+    // Under tied evidence the parser must never silently pick one branch:
+    // this test fails if a unique tree is reported.
+    const std::vector<scf::SpanScore> tied{{{0, 0, 2}, 3}, {{0, 1, 3}, 3}};
+    const auto solved = scf::solve_maximum_evidence_trees(0, 3, tied);
+    CHECK(solved.optimal_tree_count == 2);
+    CHECK(solved.unique_tree_splits.empty());
+    const auto evaluated = scf::evaluate_sentence(0, solved, gold_from_bracket("((a b) c)"), tied);
+    CHECK(!evaluated.unique_optimal);
+    CHECK(evaluated.predicted_spans.empty());
+}
+
+// --- v1.2: parser/evaluator integration ------------------------------------
+
+scf::CorpusEvaluation evaluate_grammar(const std::string& name,
+                                       const double coverage,
+                                       const std::uint64_t seed,
+                                       scf::CollapseDiagnostics* diagnostics_out = nullptr) {
+    const auto dataset = scf::generate_dataset(name, coverage, seed);
+    const auto corpus = corpus_from_dataset(dataset);
+    const auto bundle = scf::analyze_corpus(corpus);
+    const auto gold = scf::dataset_gold_trees(dataset);
+    CHECK(gold.size() == corpus.sentences().size());
+    if (diagnostics_out != nullptr) {
+        *diagnostics_out = scf::collapse_diagnostics(corpus, bundle.solver);
+    }
+    return scf::evaluate_corpus(bundle.analyses, gold, bundle.builder.span_evidence());
+}
+
+void test_integration_simple_np_vp() {
+    const auto evaluation = evaluate_grammar("simple_np_vp", 1.0, 1);
+    CHECK(evaluation.sentence_count == 4);
+    CHECK(evaluation.unique_optimal_rate == 1.0);
+    CHECK(evaluation.exact_unique_match_rate == 1.0);
+    CHECK(evaluation.gold_in_argmax_rate == 1.0);
+    CHECK(evaluation.unique_correct == 4);
+    CHECK(evaluation.mean_unlabeled_f1_given_unique == std::optional<double>(1.0));
+}
+
+void test_integration_ab_cartesian() {
+    const auto evaluation = evaluate_grammar("ab_cartesian", 1.0, 1);
+    CHECK(evaluation.sentence_count == 9);
+    // Length-2 sentences have exactly one binary tree and empty proper spans.
+    CHECK(evaluation.unique_optimal_rate == 1.0);
+    CHECK(evaluation.exact_unique_match_rate == 1.0);
+    CHECK(evaluation.gold_in_argmax_rate == 1.0);
+}
+
+void test_integration_symmetric_abc() {
+    const auto evaluation = evaluate_grammar("symmetric_abc", 1.0, 1);
+    CHECK(evaluation.sentence_count == 8);
+    // Full symmetry is exactly preserved: structural non-identifiability.
+    CHECK(evaluation.gold_in_argmax_rate == 1.0);
+    CHECK(evaluation.ambiguous_optimal_rate == 1.0);
+    CHECK(evaluation.unique_optimal_rate == 0.0);
+    CHECK(evaluation.mean_argmax_size == 2.0);
+    CHECK(evaluation.zero_margin_rate == 1.0);
+    CHECK(evaluation.ambiguous_gold_included == 8);
+    CHECK(evaluation.ambiguous_gold_excluded == 0);
+}
+
+void test_integration_nested_balanced() {
+    // Documented empirical behavior at full coverage: the crossing spans
+    // [1,3), [0,3), [1,4) receive strictly less support (2) than the gold
+    // constituents [0,2) and [2,4) (4 each), so recovery is unique and exact.
+    const auto evaluation = evaluate_grammar("nested_balanced", 1.0, 1);
+    CHECK(evaluation.sentence_count == 16);
+    CHECK(evaluation.unique_optimal_rate == 1.0);
+    CHECK(evaluation.exact_unique_match_rate == 1.0);
+    CHECK(evaluation.gold_in_argmax_rate == 1.0);
+    CHECK(evaluation.mean_finite_margin == std::optional<double>(2.0));
+}
+
+void test_integration_branching_grammars_are_symmetric() {
+    // Documented empirical behavior: under full Cartesian lexical sampling the
+    // substitution-evidence table of right_branching and left_branching is
+    // identical to nested_balanced's, so SCF uniquely recovers the balanced
+    // tree in both cases. The point of the pair is direction neutrality: both
+    // orientations must behave exactly the same (no hidden branching bias),
+    // and the deeper gold trees are correctly reported as not identifiable
+    // from this evidence rather than being rescued by a directional prior.
+    const auto right = evaluate_grammar("right_branching", 1.0, 1);
+    const auto left = evaluate_grammar("left_branching", 1.0, 1);
+    CHECK(right.sentence_count == 16 && left.sentence_count == 16);
+    CHECK(right.unique_optimal_rate == left.unique_optimal_rate);
+    CHECK(right.gold_in_argmax_rate == left.gold_in_argmax_rate);
+    CHECK(right.exact_unique_match_rate == left.exact_unique_match_rate);
+    CHECK(right.mean_best_score == left.mean_best_score);
+    CHECK(right.mean_gold_score == left.mean_gold_score);
+    CHECK(right.unique_wrong == left.unique_wrong);
+    // Both fail toward the same balanced structure, not toward "their" side.
+    CHECK(right.gold_in_argmax_rate == 0.0);
+    CHECK(right.unique_optimal_rate == 1.0);
+}
+
+void test_integration_ambiguous_lexicon_diagnostics() {
+    scf::CollapseDiagnostics diagnostics;
+    const auto evaluation = evaluate_grammar("ambiguous_lexicon", 1.0, 1, &diagnostics);
+    CHECK(evaluation.sentence_count == 36);
+    // Acceptance is not accuracy: the diagnostic must expose the collapse
+    // caused by the shared token "x".
+    CHECK(diagnostics.suspicious_collapse);
+    CHECK(diagnostics.collapse_ratio > 0.8);
+    CHECK(diagnostics.largest_eclass_ratio > 0.25);
+    CHECK(evaluation.hard_inconsistent == 0);
+}
+
+void test_integration_ccg_lite_pipeline() {
+    const auto evaluation = evaluate_grammar("ccg_lite", 1.0, 1);
+    CHECK(evaluation.sentence_count == 84);
+    CHECK(evaluation.gold_in_argmax_rate == 1.0);
+    CHECK(evaluation.hard_inconsistent == 0);
+    CHECK(evaluation.unique_correct + evaluation.unique_wrong +
+              evaluation.ambiguous_gold_included + evaluation.ambiguous_gold_excluded ==
+          84);
+}
+
+void test_metrics_deterministic() {
+    const auto run_once = [](std::string* json_out) {
+        const auto dataset = scf::generate_dataset("nested_balanced", 0.4, 2);
+        const auto corpus = corpus_from_dataset(dataset);
+        const auto bundle = scf::analyze_corpus(corpus);
+        const auto gold = scf::dataset_gold_trees(dataset);
+        const auto evaluation =
+            scf::evaluate_corpus(bundle.analyses, gold, bundle.builder.span_evidence());
+        const auto diagnostics = scf::collapse_diagnostics(corpus, bundle.solver);
+        scf::RunInfo info;
+        info.grammar = dataset.grammar_name;
+        info.seed = dataset.seed;
+        info.coverage = dataset.coverage;
+        info.full_sentence_count = dataset.full_sentence_count;
+        info.sampled_sentence_count = dataset.sentences.size();
+        std::ostringstream json;
+        scf::write_metrics_json(json, info, corpus, diagnostics, evaluation);
+        *json_out = json.str() + "\n" +
+                    scf::summary_csv_row(info, corpus, diagnostics, evaluation);
+    };
+    std::string first;
+    std::string second;
+    run_once(&first);
+    run_once(&second);
+    CHECK(!first.empty());
+    CHECK(first == second);
+}
+
+void test_prepare_text() {
+    std::istringstream input(
+        "Hello World. This is a TEST, with punctuation! And a very very very very very very "
+        "very very very long sentence here now.\n"
+        "Hello World.\n"
+        "numbers 123 here.\n");
+    scf::PrepareTextConfig config;
+    config.drop_digits = true;
+    const auto result = scf::prepare_text(input, config);
+    CHECK(result.input_sentence_count == 5);
+    CHECK(result.kept_sentence_count == 2);
+    CHECK(result.filtered_long == 1);
+    CHECK(result.filtered_symbols == 1);
+    CHECK(result.duplicate_sentences == 1);
+    CHECK(result.sentences.front() == "hello world");
+    CHECK(result.sentences.back() == "this is a test with punctuation");
+    CHECK(result.distinct_tokens == 8);
+}
+
 }  // namespace
 
 int main() {
@@ -530,6 +994,25 @@ int main() {
          test_forced_optimal_spans_against_brute_force},
         {"synthetic_cartesian_grammar", test_synthetic_cartesian_grammar},
         {"deep_synthetic_end_to_end", test_deep_synthetic_end_to_end},
+        {"gold_tree_infrastructure", test_gold_tree_infrastructure},
+        {"gold_spans_tsv_roundtrip", test_gold_spans_tsv_roundtrip},
+        {"generator_language_counts", test_generator_language_counts},
+        {"generator_gold_consistency", test_generator_gold_consistency},
+        {"coverage_sampling", test_coverage_sampling},
+        {"evaluator_handcrafted_sentences", test_evaluator_handcrafted_sentences},
+        {"brute_force_enumerator", test_brute_force_enumerator},
+        {"no_hidden_tie_break", test_no_hidden_tie_break},
+        {"integration_simple_np_vp", test_integration_simple_np_vp},
+        {"integration_ab_cartesian", test_integration_ab_cartesian},
+        {"integration_symmetric_abc", test_integration_symmetric_abc},
+        {"integration_nested_balanced", test_integration_nested_balanced},
+        {"integration_branching_grammars_are_symmetric",
+         test_integration_branching_grammars_are_symmetric},
+        {"integration_ambiguous_lexicon_diagnostics",
+         test_integration_ambiguous_lexicon_diagnostics},
+        {"integration_ccg_lite_pipeline", test_integration_ccg_lite_pipeline},
+        {"metrics_deterministic", test_metrics_deterministic},
+        {"prepare_text", test_prepare_text},
     };
 
     std::size_t failures = 0;
