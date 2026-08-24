@@ -439,7 +439,7 @@ std::vector<GoldSentence> generate_ccg_lite_language() {
         if (item.category != "S") {
             continue;
         }
-        raw.push_back(GoldSentence{std::move(item.tokens), std::move(item.tree)});
+        raw.push_back(GoldSentence{std::move(item.tokens), std::move(item.tree), {}});
     }
     return finalize_language("ccg_lite", std::move(raw));
 }
@@ -476,6 +476,18 @@ std::vector<GoldSentence> generate_family_language(const std::string& grammar_na
     auto language = grammar_name == "ccg_lite"
                         ? generate_ccg_lite_language()
                         : generate_full_language(make_grammar(grammar_name, k));
+    // Observable gold: the correlated chains' inner blocks are frozen (their
+    // internal bracket has no observable evidence), so only the block-level
+    // split is demanded of the parser.
+    if (grammar_name == "hierarchical_correlated_right") {
+        for (auto& sentence : language) {
+            sentence.observable_spans = {{1, 4}};
+        }
+    } else if (grammar_name == "hierarchical_correlated_left") {
+        for (auto& sentence : language) {
+            sentence.observable_spans = {{0, 3}};
+        }
+    }
     if (symmetry_breaking_rate > 0.0) {
         // Marker sentences "a_i b_j p" give the AB block an additional shared
         // block-level context (epsilon, p). Taken in canonical (i, j) order,
@@ -492,7 +504,7 @@ std::vector<GoldSentence> generate_family_language(const std::string& grammar_na
                 const auto b = "b" + std::to_string(j);
                 GoldNode block{"X", {GoldNode{a, {}}, GoldNode{b, {}}}};
                 GoldNode root{"S", {std::move(block), GoldNode{"p", {}}}};
-                language.push_back(GoldSentence{{a, b, "p"}, std::move(root)});
+                language.push_back(GoldSentence{{a, b, "p"}, std::move(root), {}});
                 ++emitted;
             }
         }
@@ -553,6 +565,20 @@ std::vector<GoldTree> dataset_gold_trees(const SyntheticDataset& dataset) {
         trees.push_back(gold_tree_from_node(sentence.tree));
     }
     return trees;
+}
+
+std::vector<std::set<SpanPair>> dataset_observable_gold(const SyntheticDataset& dataset) {
+    std::vector<std::set<SpanPair>> observable;
+    observable.reserve(dataset.sentences.size());
+    for (const auto& sentence : dataset.sentences) {
+        if (sentence.observable_spans.empty()) {
+            observable.push_back(gold_scoring_spans(gold_tree_from_node(sentence.tree)));
+        } else {
+            observable.emplace_back(sentence.observable_spans.begin(),
+                                    sentence.observable_spans.end());
+        }
+    }
+    return observable;
 }
 
 namespace {
@@ -670,6 +696,19 @@ void write_dataset(const SyntheticDataset& dataset, const std::filesystem::path&
     {
         auto output = open("grammar.json");
         output << grammar_json(dataset);
+    }
+    {
+        auto output = open("gold_observable_spans.tsv");
+        const auto observable = dataset_observable_gold(dataset);
+        for (std::size_t sentence = 0; sentence < observable.size(); ++sentence) {
+            if (observable[sentence].empty()) {
+                output << sentence << "\t0\t0\t-\n";  // no observable proper span demanded
+                continue;
+            }
+            for (const auto& span : observable[sentence]) {
+                output << sentence << '\t' << span.first << '\t' << span.second << "\t-\n";
+            }
+        }
     }
 }
 

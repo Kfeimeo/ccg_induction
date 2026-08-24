@@ -44,7 +44,8 @@ RunOutput run_pipeline(const std::string& grammar,
                        const double coverage,
                        const std::uint64_t seed,
                        const std::size_t k = 0,
-                       const double rho = 0.0) {
+                       const double rho = 0.0,
+                       const scf::EvidenceObjective objective = scf::EvidenceObjective::RawCount) {
     auto dataset = scf::generate_dataset(grammar, coverage, seed, 0, k, rho);
     std::ostringstream text;
     for (const auto& sentence : dataset.sentences) {
@@ -56,10 +57,12 @@ RunOutput run_pipeline(const std::string& grammar,
     scf::Corpus corpus;
     std::istringstream input(text.str());
     corpus.load(input);
-    scf::EvidenceBuilder builder(corpus);
+    scf::EvidenceBuilder builder(corpus, objective);
     auto analyses = scf::analyze_sentences(corpus, builder.span_evidence());
     auto gold = scf::dataset_gold_trees(dataset);
-    auto evaluation = scf::evaluate_corpus(analyses, gold, builder.span_evidence());
+    const auto observable_gold = scf::dataset_observable_gold(dataset);
+    auto evaluation =
+        scf::evaluate_corpus(analyses, gold, builder.span_evidence(), {}, observable_gold);
     return RunOutput{std::move(dataset), std::move(corpus), std::move(builder),
                      std::move(analyses), std::move(gold), std::move(evaluation)};
 }
@@ -537,28 +540,193 @@ void run_rho_sweep(const std::filesystem::path& directory) {
     std::cout << "wrote identifiability_vs_rho.csv\n";
 }
 
+// --- v1.3: objective laboratory sections ----------------------------------
+
+double strength_units(const scf::EvidenceObjective objective, const std::uint64_t fixed) {
+    return objective == scf::EvidenceObjective::RawCount
+               ? static_cast<double>(fixed)
+               : static_cast<double>(fixed) / scf::kStrengthScale;
+}
+
+// Full-Cartesian neutrality test: explicit balanced/left/right tree scores
+// under each objective, n = 4, K in the requested set (spec v1.3 §11).
+void run_objective_bias(const std::filesystem::path& directory,
+                        const std::vector<std::size_t>& cardinalities,
+                        const std::vector<scf::EvidenceObjective>& objectives) {
+    auto output = open_file(directory / "objective_bias.csv");
+    output << "grammar,K,objective,balanced_score,left_score,right_score,best_shape,"
+              "optimal_tree_count,all_sentences_agree\n";
+    for (const auto k : cardinalities) {
+        for (const auto objective : objectives) {
+            const auto run = run_pipeline("nested_balanced", 1.0, 1, k, 0.0, objective);
+            const auto lengths = scf::corpus_sentence_lengths(run.corpus);
+            const auto rows = scf::tree_shape_scores(lengths, run.builder.span_evidence());
+            bool agree = true;
+            for (const auto& row : rows) {
+                agree &= row.balanced_score == rows.front().balanced_score &&
+                         row.left_score == rows.front().left_score &&
+                         row.right_score == rows.front().right_score;
+            }
+            const auto& first = rows.front();
+            output << "nested_balanced," << k << ','
+                   << scf::evidence_objective_name(objective) << ','
+                   << fmt6(strength_units(objective, first.balanced_score)) << ','
+                   << fmt6(strength_units(objective, first.left_score)) << ','
+                   << fmt6(strength_units(objective, first.right_score)) << ','
+                   << first.best_shape << ',' << run.analyses.front().optimal_tree_count << ','
+                   << bool_text(agree) << '\n';
+        }
+    }
+    std::cout << "wrote objective_bias.csv\n";
+}
+
+// Primary objective-comparison grid (spec v1.3 §17): K = 4, the correlated
+// families plus simple_np_vp and symmetric_abc, all four objectives.
+void run_objective_grid(const std::filesystem::path& directory,
+                        const std::uint64_t seed_count,
+                        const std::vector<scf::EvidenceObjective>& objectives) {
+    const std::vector<std::string> grammars{
+        "simple_np_vp", "symmetric_abc", "hierarchical_correlated_balanced",
+        "hierarchical_correlated_right", "hierarchical_correlated_left"};
+    const std::vector<double> coverages{0.05, 0.10, 0.20, 0.40, 0.60, 0.80, 1.00};
+    constexpr std::size_t kCardinality = 4;
+
+    auto runs = open_file(directory / "objective_grid_runs.csv");
+    runs << "grammar,objective,K,requested_coverage,effective_coverage,seed,"
+            "sampled_sentence_count,gold_in_argmax_rate,unique_optimal_rate,"
+            "exact_unique_match_rate,mean_argmax_size,forced_precision_full,"
+            "forced_recall_full,forced_precision_observable,forced_recall_observable,"
+            "mean_pair_strength,mean_pair_confidence\n";
+    std::map<std::tuple<std::string, std::string, double>,
+             std::map<std::string, std::vector<double>>>
+        series;
+    for (const auto& grammar : grammars) {
+        for (const auto objective : objectives) {
+            const auto objective_name = scf::evidence_objective_name(objective);
+            for (const auto coverage : coverages) {
+                for (std::uint64_t seed = 1; seed <= seed_count; ++seed) {
+                    const auto run =
+                        run_pipeline(grammar, coverage, seed, kCardinality, 0.0, objective);
+                    const auto& evaluation = run.evaluation;
+                    const auto effective =
+                        static_cast<double>(run.dataset.sentences.size()) /
+                        static_cast<double>(run.dataset.full_sentence_count);
+                    runs << grammar << ',' << objective_name << ','
+                         << run.dataset.lexical_cardinality << ',' << fmt6(coverage) << ','
+                         << fmt6(effective) << ',' << seed << ','
+                         << run.dataset.sentences.size() << ','
+                         << fmt6(evaluation.gold_in_argmax_rate) << ','
+                         << fmt6(evaluation.unique_optimal_rate) << ','
+                         << fmt6(evaluation.exact_unique_match_rate) << ','
+                         << fmt6(evaluation.mean_argmax_size) << ','
+                         << fmt6(evaluation.forced_precision_full_gold) << ','
+                         << fmt6(evaluation.forced_recall_full_gold) << ','
+                         << fmt6(evaluation.forced_precision_observable_gold) << ','
+                         << fmt6(evaluation.forced_recall_observable_gold) << ','
+                         << fmt6(run.builder.summary().mean_pair_strength) << ','
+                         << fmt6(run.builder.summary().mean_pair_confidence) << '\n';
+                    auto& bucket = series[{grammar, objective_name, coverage}];
+                    bucket["gold_in_argmax_rate"].push_back(evaluation.gold_in_argmax_rate);
+                    bucket["unique_optimal_rate"].push_back(evaluation.unique_optimal_rate);
+                    bucket["exact_unique_match_rate"].push_back(
+                        evaluation.exact_unique_match_rate);
+                    bucket["mean_argmax_size"].push_back(evaluation.mean_argmax_size);
+                    bucket["forced_precision_observable"].push_back(
+                        evaluation.forced_precision_observable_gold);
+                    bucket["forced_recall_observable"].push_back(
+                        evaluation.forced_recall_observable_gold);
+                }
+            }
+            std::cout << "objective grid: " << grammar << " / " << objective_name << " done\n";
+        }
+    }
+    auto agg = open_file(directory / "objective_grid_aggregate.csv");
+    agg << "grammar,objective,coverage,metric,n,mean,std,min,max,ci95_low,ci95_high\n";
+    for (const auto& [key, metrics] : series) {
+        for (const auto& [metric, values] : metrics) {
+            const auto stats = aggregate(values);
+            agg << std::get<0>(key) << ',' << std::get<1>(key) << ',' << fmt6(std::get<2>(key))
+                << ',' << metric << ',' << stats.n << ',' << fmt6(stats.mean) << ','
+                << fmt6(stats.stddev) << ',' << fmt6(stats.min) << ',' << fmt6(stats.max) << ','
+                << fmt6(stats.ci95_low) << ',' << fmt6(stats.ci95_high) << '\n';
+        }
+    }
+    std::cout << "wrote objective_grid_runs.csv / objective_grid_aggregate.csv\n";
+}
+
+// rho sweep per objective (spec v1.3 §19).
+void run_rho_by_objective(const std::filesystem::path& directory,
+                          const std::vector<scf::EvidenceObjective>& objectives) {
+    const std::vector<double> rhos{0.0, 0.05, 0.10, 0.20, 0.40, 0.60, 0.80, 1.00};
+    auto output = open_file(directory / "rho_by_objective.csv");
+    output << "rho,objective,K,gold_in_argmax_rate,unique_optimal_rate,"
+              "exact_unique_match_rate,forced_precision_observable,forced_recall_observable,"
+              "mean_argmax_size\n";
+    for (const auto objective : objectives) {
+        for (const auto rho : rhos) {
+            const auto run = run_pipeline("symmetric_abc", 1.0, 1, 3, rho, objective);
+            output << fmt6(rho) << ',' << scf::evidence_objective_name(objective) << ",3,"
+                   << fmt6(run.evaluation.gold_in_argmax_rate) << ','
+                   << fmt6(run.evaluation.unique_optimal_rate) << ','
+                   << fmt6(run.evaluation.exact_unique_match_rate) << ','
+                   << fmt6(run.evaluation.forced_precision_observable_gold) << ','
+                   << fmt6(run.evaluation.forced_recall_observable_gold) << ','
+                   << fmt6(run.evaluation.mean_argmax_size) << '\n';
+        }
+    }
+    std::cout << "wrote rho_by_objective.csv\n";
+}
+
 }  // namespace
 
 int main(int argc, char** argv) {
     try {
         std::optional<std::filesystem::path> output_directory;
         std::uint64_t seeds = 20;
-        for (int index = 1; index < argc; ++index) {
+        std::string subcommand = "v121";
+        std::vector<std::size_t> cardinalities{2, 3, 4, 5};
+        std::vector<scf::EvidenceObjective> objectives = scf::all_evidence_objectives();
+        int index = 1;
+        if (index < argc && argv[index][0] != '-') {
+            subcommand = argv[index];
+            ++index;
+        }
+        for (; index < argc; ++index) {
             const std::string_view argument(argv[index]);
+            const auto value = [&]() -> std::string {
+                if (index + 1 >= argc) {
+                    throw std::runtime_error("missing value after " + std::string(argument));
+                }
+                return argv[++index];
+            };
             if (argument == "--help" || argument == "-h") {
-                std::cout << "Usage: scf_audit --output-dir DIR [--seeds N]\n";
+                std::cout << "Usage: scf_audit [v121|objective-bias|objective-grid|"
+                             "rho-objectives|v13] --output-dir DIR\n"
+                             "       [--seeds N] [--K csv] [--evidence-objectives csv] [--n 4]\n";
                 return 0;
             }
             if (argument == "--output-dir") {
-                if (index + 1 >= argc) {
-                    throw std::runtime_error("missing value after --output-dir");
-                }
-                output_directory = argv[++index];
+                output_directory = value();
             } else if (argument == "--seeds") {
-                if (index + 1 >= argc) {
-                    throw std::runtime_error("missing value after --seeds");
+                seeds = std::stoull(value());
+            } else if (argument == "--K") {
+                cardinalities.clear();
+                std::istringstream stream(value());
+                std::string part;
+                while (std::getline(stream, part, ',')) {
+                    cardinalities.push_back(std::stoull(part));
                 }
-                seeds = std::stoull(argv[++index]);
+            } else if (argument == "--n") {
+                if (std::stoull(value()) != 4) {
+                    throw std::runtime_error("objective-bias supports n = 4 only");
+                }
+            } else if (argument == "--evidence-objectives") {
+                objectives.clear();
+                std::istringstream stream(value());
+                std::string part;
+                while (std::getline(stream, part, ',')) {
+                    objectives.push_back(scf::parse_evidence_objective(part));
+                }
             } else {
                 throw std::runtime_error("unknown argument: " + std::string(argument));
             }
@@ -567,12 +735,26 @@ int main(int argc, char** argv) {
             throw std::runtime_error("--output-dir is required");
         }
         std::filesystem::create_directories(*output_directory);
-        write_observational_equivalence_report(*output_directory);
-        run_saturation_ablation(*output_directory);
-        run_span_length_bias(*output_directory);
-        run_tree_shape_scores(*output_directory);
-        run_audit_grid(*output_directory, seeds);
-        run_rho_sweep(*output_directory);
+        if (subcommand == "v121") {
+            write_observational_equivalence_report(*output_directory);
+            run_saturation_ablation(*output_directory);
+            run_span_length_bias(*output_directory);
+            run_tree_shape_scores(*output_directory);
+            run_audit_grid(*output_directory, seeds);
+            run_rho_sweep(*output_directory);
+        } else if (subcommand == "objective-bias") {
+            run_objective_bias(*output_directory, cardinalities, objectives);
+        } else if (subcommand == "objective-grid") {
+            run_objective_grid(*output_directory, seeds, objectives);
+        } else if (subcommand == "rho-objectives") {
+            run_rho_by_objective(*output_directory, objectives);
+        } else if (subcommand == "v13") {
+            run_objective_bias(*output_directory, cardinalities, objectives);
+            run_objective_grid(*output_directory, seeds, objectives);
+            run_rho_by_objective(*output_directory, objectives);
+        } else {
+            throw std::runtime_error("unknown subcommand '" + subcommand + "'");
+        }
         std::cout << "audit complete: " << output_directory->string() << '\n';
         return 0;
     } catch (const std::exception& error) {

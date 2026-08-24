@@ -24,6 +24,12 @@ struct Grammar {
 struct GoldSentence {
     std::vector<std::string> tokens;
     GoldNode tree;
+    // v1.3: proper gold spans that are actually observable given the
+    // generator's correlations. Empty means "identical to the full latent
+    // gold". Only the hierarchical_correlated_right/left chains restrict it:
+    // their internally frozen blocks carry no observable internal evidence,
+    // so the evaluator must not demand a unique internal bracket there.
+    std::vector<SpanPair> observable_spans;
 };
 
 struct SyntheticDataset {
@@ -91,5 +97,9 @@ std::string grammar_json(const SyntheticDataset& dataset);
 void write_dataset(const SyntheticDataset& dataset, const std::filesystem::path& directory);
 
 std::vector<GoldTree> dataset_gold_trees(const SyntheticDataset& dataset);
+
+// Observable gold span sets per sentence (full latent proper gold when the
+// sentence's observable_spans is empty).
+std::vector<std::set<SpanPair>> dataset_observable_gold(const SyntheticDataset& dataset);
 
 }  // namespace scf

@@ -20,12 +20,12 @@ std::vector<TreeSolveResult> analyze_sentences(const Corpus& corpus,
     return analyses;
 }
 
-AnalysisBundle analyze_corpus(const Corpus& corpus) {
+AnalysisBundle analyze_corpus(const Corpus& corpus, const EvidenceObjective objective) {
     EquivalenceSolver solver(corpus.string_interner().size(),
                              corpus.context_records(),
                              corpus.concat_triples());
     solver.saturate();
-    EvidenceBuilder builder(corpus);
+    EvidenceBuilder builder(corpus, objective);
     auto analyses = analyze_sentences(corpus, builder.span_evidence());
     return AnalysisBundle{std::move(solver), std::move(builder), std::move(analyses)};
 }

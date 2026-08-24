@@ -33,7 +33,14 @@ void print_usage(std::ostream& output) {
               "  --run-saturation BOOL Run equivalence saturation (default: true). Parsing uses\n"
               "                        raw witnesses either way; false skips the diagnostic\n"
               "                        saturation engine entirely (v1.2.1 ablation aid)\n"
-              "  --output-dir DIR      Per-run directories cov_X_seed_Y plus summary.csv\n";
+              "  --evidence-objectives CSV\n"
+              "                        Any of raw_count,opportunity,conditional,jaccard\n"
+              "                        (default: raw_count). With several, runs are grouped in\n"
+              "                        per-objective subdirectories; summary.csv gets one row\n"
+              "                        per (objective, coverage, seed)\n"
+              "  --output-dir DIR      Per-run directories cov_X_seed_Y plus summary.csv\n"
+              "\n"
+              "  --seeds accepts ranges: 1:20 expands to 1,2,...,20.\n";
 }
 
 std::string require_value(const int argc, char** argv, int& index) {
@@ -95,6 +102,7 @@ int main(int argc, char** argv) {
         std::size_t lexical_cardinality = 0;
         double symmetry_breaking_rate = 0.0;
         bool run_saturation = true;
+        std::string objectives_csv = "raw_count";
         for (int index = 1; index < argc; ++index) {
             const std::string_view argument(argv[index]);
             if (argument == "--help" || argument == "-h") {
@@ -115,6 +123,9 @@ int main(int argc, char** argv) {
                 symmetry_breaking_rate = std::stod(require_value(argc, argv, index));
             } else if (argument == "--run-saturation") {
                 run_saturation = parse_bool(require_value(argc, argv, index));
+            } else if (argument == "--evidence-objectives" ||
+                       argument == "--evidence-objective") {
+                objectives_csv = require_value(argc, argv, index);
             } else if (argument == "--output-dir") {
                 output_directory = require_value(argc, argv, index);
             } else {
@@ -133,7 +144,20 @@ int main(int argc, char** argv) {
         }
         std::vector<std::uint64_t> seeds;
         for (const auto& part : split_csv(seeds_csv)) {
-            seeds.push_back(std::stoull(part));
+            const auto colon = part.find(':');
+            if (colon == std::string::npos) {
+                seeds.push_back(std::stoull(part));
+            } else {
+                const auto low = std::stoull(part.substr(0, colon));
+                const auto high = std::stoull(part.substr(colon + 1));
+                for (auto seed = low; seed <= high; ++seed) {
+                    seeds.push_back(seed);
+                }
+            }
+        }
+        std::vector<scf::EvidenceObjective> objectives;
+        for (const auto& part : split_csv(objectives_csv)) {
+            objectives.push_back(scf::parse_evidence_objective(part));
         }
 
         std::filesystem::create_directories(*output_directory);
@@ -144,21 +168,25 @@ int main(int argc, char** argv) {
         summary << scf::summary_csv_header() << '\n';
 
         const scf::EvalConfig eval_config;
+        for (const auto objective : objectives) {
         for (const auto coverage : coverages) {
             for (const auto seed : seeds) {
                 const auto dataset = scf::generate_dataset(*grammar, coverage, seed, max_sentences,
                                                            lexical_cardinality,
                                                            symmetry_breaking_rate);
-                const auto run_directory =
-                    *output_directory /
-                    ("cov_" + coverage_tag(coverage) + "_seed_" + std::to_string(seed));
+                auto run_directory = *output_directory;
+                if (objectives.size() > 1) {
+                    run_directory /= scf::evidence_objective_name(objective);
+                }
+                run_directory /=
+                    "cov_" + coverage_tag(coverage) + "_seed_" + std::to_string(seed);
                 scf::write_dataset(dataset, run_directory);
 
                 scf::Corpus corpus;
                 corpus.load_file((run_directory / "corpus.txt").string());
                 // Tree evidence always comes from exact raw surface contexts;
                 // the saturation engine is a structural diagnostic on top.
-                const scf::EvidenceBuilder builder(corpus);
+                const scf::EvidenceBuilder builder(corpus, objective);
                 const auto analyses = scf::analyze_sentences(corpus, builder.span_evidence());
                 std::optional<scf::EquivalenceSolver> solver;
                 if (run_saturation) {
@@ -167,8 +195,9 @@ int main(int argc, char** argv) {
                     solver->saturate();
                 }
                 const auto gold = scf::dataset_gold_trees(dataset);
-                const auto evaluation =
-                    scf::evaluate_corpus(analyses, gold, builder.span_evidence(), eval_config);
+                const auto observable_gold = scf::dataset_observable_gold(dataset);
+                const auto evaluation = scf::evaluate_corpus(
+                    analyses, gold, builder.span_evidence(), eval_config, observable_gold);
                 scf::CollapseDiagnostics diagnostics;
                 if (solver) {
                     diagnostics = scf::collapse_diagnostics(corpus, *solver, eval_config);
@@ -190,6 +219,10 @@ int main(int argc, char** argv) {
                 info.sampled_sentence_count = dataset.sentences.size();
                 info.lexical_cardinality = dataset.lexical_cardinality;
                 info.symmetry_breaking_rate = dataset.symmetry_breaking_rate;
+                info.evidence_objective = scf::evidence_objective_name(objective);
+                info.mean_pair_strength = builder.summary().mean_pair_strength;
+                info.mean_pair_confidence = builder.summary().mean_pair_confidence;
+                info.mean_candidate_span_score = builder.summary().mean_candidate_span_score;
                 info.surface_language_hash = scf::hash_hex(hashes.surface_language);
                 info.sampled_corpus_hash = scf::hash_hex(hashes.sampled_corpus);
                 info.raw_context_relation_hash = scf::hash_hex(hashes.raw_context_relation);
@@ -209,6 +242,14 @@ int main(int argc, char** argv) {
                         scf::score_by_span_length(lengths, builder.span_evidence(), gold);
                     std::ofstream output(run_directory / "score_by_span_length.csv");
                     scf::write_score_by_span_length_csv(output, stats);
+                }
+                {
+                    std::ofstream output(run_directory / "pair_evidence.tsv");
+                    scf::write_pair_evidence_tsv(output, corpus, builder);
+                }
+                {
+                    std::ofstream output(run_directory / "forced_span_metrics.csv");
+                    scf::write_forced_span_metrics_csv(output, evaluation);
                 }
                 if (solver) {
                     {
@@ -252,11 +293,13 @@ int main(int argc, char** argv) {
                 }
 
                 summary << scf::summary_csv_row(info, corpus, diagnostics, evaluation) << '\n';
-                std::cout << "run cov=" << coverage_tag(coverage) << " seed=" << seed
+                std::cout << "run objective=" << scf::evidence_objective_name(objective)
+                          << " cov=" << coverage_tag(coverage) << " seed=" << seed
                           << " sentences=" << dataset.sentences.size()
                           << " unique_optimal_rate=" << evaluation.unique_optimal_rate
                           << " gold_in_argmax_rate=" << evaluation.gold_in_argmax_rate << '\n';
             }
+        }
         }
         std::cout << "Wrote " << (*output_directory / "summary.csv").string() << '\n';
         return 0;

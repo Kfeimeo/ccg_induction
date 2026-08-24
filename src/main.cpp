@@ -28,6 +28,7 @@ struct CliOptions {
     std::optional<std::string> gold_path;
     std::optional<std::filesystem::path> output_directory;
     scf::CorpusConfig config;
+    scf::EvidenceObjective evidence_objective{scf::EvidenceObjective::RawCount};
     bool dump_classes{false};
     bool dump_proofs{false};
     bool dump_witnesses{false};
@@ -62,6 +63,8 @@ void print_usage(std::ostream& output) {
               "  --dump-evidence        Print occurrence scores and witness provenance\n"
               "  --dump-optimal-forest  Print all optimal splits in each DP cell\n"
               "  --dump-trees           Print parse details (summary is always printed)\n"
+              "  --evidence-objective NAME\n"
+              "                         raw_count (default) | opportunity | conditional | jaccard\n"
               "  --gold FILE            Gold constituent spans (sentence_id begin end label TSV)\n"
               "  --eval                 Evaluate the optimal forest against --gold\n"
               "  --dump-one-optimal-tree-for-debug\n"
@@ -120,6 +123,9 @@ CliOptions parse_arguments(const int argc, char** argv) {
             options.dump_trees = true;
         } else if (argument == "--dump-one-optimal-tree-for-debug") {
             options.dump_one_optimal_tree_for_debug = true;
+        } else if (argument == "--evidence-objective") {
+            options.evidence_objective =
+                scf::parse_evidence_objective(require_value(argc, argv, index));
         } else if (argument == "--gold") {
             options.gold_path = require_value(argc, argv, index);
         } else if (argument == "--eval") {
@@ -410,7 +416,7 @@ int main(int argc, char** argv) {
         scf::Corpus corpus(options.config);
         corpus.load_file(options.input_path);
 
-        auto bundle = scf::analyze_corpus(corpus);
+        auto bundle = scf::analyze_corpus(corpus, options.evidence_objective);
         const auto& solver = bundle.solver;
         const auto& evidence_builder = bundle.builder;
         const auto& evidence = evidence_builder.span_evidence();

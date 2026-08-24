@@ -58,6 +58,10 @@ add_executable(scf_audit tools/scf_audit.cpp)
 target_link_libraries(scf_audit PRIVATE scf_core)
 scf_enable_warnings(scf_audit)
 
+add_executable(scf_real_audit tools/scf_real_audit.cpp)
+target_link_libraries(scf_real_audit PRIVATE scf_core)
+scf_enable_warnings(scf_real_audit)
+
 if(SCF_BUILD_TESTS)
     enable_testing()
     set_property(

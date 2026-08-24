@@ -1,4 +1,4 @@
-# SCF v1.1/v1.2/v1.2.1 implementation notes
+# SCF v1.1/v1.2/v1.2.1/v1.3 implementation notes
 
 ## 1. Incremental boundary
 
@@ -172,3 +172,29 @@ For the full Cartesian language `X1 x ... x Xn`, span `[i, j)` recurs under `pro
 ## 30. Audit grid, population vs sample, and aggregation
 
 `scf_audit --seeds N` (default 20) runs 9 configurations (the five mainline CFG families, `nested_balanced` K=4 with 256 sentences, and the hierarchical trio) over the 7-point coverage grid, recording per-run metrics plus `effective_coverage = sampled/full` and the population reference computed once per configuration at coverage 1.0 (`population_identifiable`, gold-in-argmax rate, mean argmax). `finite_sample_symmetry_breaking.csv` classifies `symmetric_abc` sentences per run into `spurious_unique` (population-ambiguous, sample-unique) and `spurious_wrong_unique` (population gold-in-argmax, sample-unique, prediction != gold). Aggregates report mean/std/min/max and a normal-approximation 95% CI over seeds. All of this is diagnostics-side; the parser and its defaults are untouched (Acceptance G).
+
+# v1.3 additions
+
+## 31. Evidence objective laboratory
+
+`EvidenceBuilder` now takes an `EvidenceObjective` (default `RawCount`). The shared witness structure (raw buckets, pair witness lists, |C(u)| per yield, geometry table) is built once; the objective only changes the pair strength. `opportunity` is occurrence-local: every context in one raw bucket shares the geometry `g = (|L|, |R|)`, so `U_g` (distinct observed contexts at that geometry) and `W_g(u,v)` (the pair's witnesses filtered to `g`) are exact; the denominator is never zero because the occurrence's own context belongs to `U_g`. `conditional` and `jaccard` are geometry-free ratios over deduplicated exact context sets; both are symmetric and bounded in [0, 1] (test-guarded). The pair table (`pair_evidence.tsv`) reports strength, shared/`|C|` counts, and for `opportunity` the best geometry's universe size.
+
+## 32. Fixed-point scores and the tie epsilon
+
+Normalized strengths are doubles in [0, 1]; the tree DP stays exact-integer by quantizing `score = round(strength * 1e12)` (`kStrengthScale`). Sums over spans then compare exactly, so "ties within 1e-12 of strength" are exact integer ties — the documented epsilon semantics — and the ambiguity-preserving forest machinery is untouched. `raw_count` keeps its unscaled integer semantics, so all v1.1/v1.2 score assertions hold verbatim. `SpanScore.score`/`SpanEvidence.score` widened to `uint64_t`; `strength` (double) and `confidence` (`|W(u,v*)|` at the argmax alternative, max over ties) ride along for diagnostics. Ranking never uses confidence.
+
+## 33. Observable gold and forced-span metrics
+
+`GoldSentence.observable_spans` (empty = same as full latent gold) restricts what the evaluator may demand; only the correlated chains set it (right: `{[1,4)}`, left: `{[0,3)}`), because their frozen blocks never vary internally. `write_dataset` emits `gold_observable_spans.tsv` alongside the latent `gold_spans.tsv`. Per sentence, `F_s` = proper spans forced across the whole optimal forest (from `forced_spans`, leaves/root stripped); `forced_precision = |F∩G|/|F|`, `forced_recall = |F∩G|/|G|`, computed against both golds, with `|F|=0 ⇒ precision 1` and `|G|=0 ⇒ recall 1`. Corpus means are exported in `metrics.json`, `summary.csv`, `forced_span_metrics.csv`, and the printed evaluation block.
+
+## 34. Objective benchmark results (engineering summary)
+
+Cartesian neutrality: all normalized objectives yield exact `balanced = left = right` ties (argmax 5) on `nested_balanced` for K = 2..5, while `raw_count` reproduces `2K² > K²+K`. `conditional`/`jaccard` fail Properties 2–3: normalizing by a yield's own context count awards 1.0 to single-witness coincidences, producing UNIQUE_WRONG parses on the correlated chains (gold-in-argmax 0 at full coverage) and anti-learning curves on `simple_np_vp`. `opportunity` matches `raw_count` wherever `raw_count` is right and fixes it where it is biased; its one measured regression is the rho sweep, where symmetry-breaking markers act purely through witness counts that the normalization divides away. Default unchanged (`raw_count`); the recommendation is recorded, not enacted.
+
+## 35. Real-corpus constraint audit
+
+`scf_real_audit` performs transparent whitespace-only preprocessing (no external tokenizer), a deterministic seeded scale sweep (`deterministic_shuffle`, same-input/same-seed byte-identical outputs — verified by diffing two runs), and computes: raw-context degree distributions (`deg(c)` = distinct yields per exact `(L,R)`), yield context/substitution degrees with percentiles and length buckets, proper-span occurrence witness coverage (with per-objective mean strengths), exact-context sparsity (singleton/repeat ratios), the two density proxies `R_proxy = witness_pairs / nontrivial_yields` and `R_occ` (labeled proxies, not rank arguments), full saturation diagnostics, and polysemy-pressure rankings (`contexts_total ≥ 5`, sorted by low `partner_overlap_ratio` — candidates only; no split). The regime classifier is rule-based and stated in the generated `REAL_CONSTRAINT_AUDIT.md`. Measured on the local documentation corpus: density rises with N while exact contexts stay 94% singleton and saturation collapses (86% single e-class at N=10,000) — regime `collapse-dominated`. Runtime: ~2.5 min for the full sweep, dominated by saturation at N ≥ 5,000.
+
+## 36. What v1.3 deliberately did not do
+
+No polysemy or lexical splitting (diagnostics only), no saturation semantics change (still parse-inert; v1.2.1 ablation and its regression test remain valid), no default-objective switch, no length penalty / branching prior / span bonus / gold-aware normalization / probability model / neural scorer, and no real-data parsing-accuracy claims.

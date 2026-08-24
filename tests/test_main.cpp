@@ -1155,6 +1155,142 @@ void test_summary_row_new_columns() {
     CHECK(!scf::RunInfo{}.effective_coverage().has_value());
 }
 
+// --- v1.3: evidence objective laboratory -----------------------------------
+
+const scf::SpanEvidence* find_span_evidence(const scf::EvidenceBuilder& builder,
+                                            const scf::Span span) {
+    for (const auto& item : builder.span_evidence()) {
+        if (item.span == span) {
+            return &item;
+        }
+    }
+    return nullptr;
+}
+
+void test_evidence_score_formulas() {
+    // C(x) = {(a,b), (c,d)}, C(y) = {(a,b)}, W(x,y) = {(a,b)}.
+    // raw = 1; conditional = (1/2 + 1/1)/2 = 0.75; jaccard = 1/(2+1-1) = 0.5;
+    // opportunity at geometry (1,1): U_g = {(a,b), (c,d)} => 1/2.
+    const auto corpus = load_corpus("a x b\na y b\nc x d\n");
+    const scf::Span span{0, 1, 2};  // "x" in "a x b"
+    const auto check = [&](const scf::EvidenceObjective objective, const double strength,
+                           const std::uint64_t score) {
+        const scf::EvidenceBuilder builder(corpus, objective);
+        const auto* item = find_span_evidence(builder, span);
+        CHECK(item != nullptr);
+        CHECK(std::abs(item->strength - strength) < 1e-9);
+        CHECK(item->score == score);
+        CHECK(item->confidence == 1);  // |W(x, y)| = 1 under every objective
+    };
+    check(scf::EvidenceObjective::RawCount, 1.0, 1);
+    check(scf::EvidenceObjective::SymmetricConditional, 0.75, 750000000000ULL);
+    check(scf::EvidenceObjective::Jaccard, 0.5, 500000000000ULL);
+    check(scf::EvidenceObjective::OpportunityNormalized, 0.5, 500000000000ULL);
+}
+
+void test_evidence_symmetry_and_ranges() {
+    // C(u) = C(v) => conditional = jaccard = 1.
+    const auto twin = load_corpus("a x b\na y b\n");
+    for (const auto objective : {scf::EvidenceObjective::SymmetricConditional,
+                                 scf::EvidenceObjective::Jaccard}) {
+        const scf::EvidenceBuilder builder(twin, objective);
+        const auto* item = find_span_evidence(builder, {0, 1, 2});
+        CHECK(item != nullptr);
+        CHECK(item->strength == 1.0);
+    }
+    // All normalized strengths live in [0, 1] on a nontrivial corpus.
+    const auto dataset = scf::generate_dataset("hierarchical_correlated_right", 1.0, 1);
+    const auto corpus = corpus_from_dataset(dataset);
+    for (const auto objective :
+         {scf::EvidenceObjective::OpportunityNormalized,
+          scf::EvidenceObjective::SymmetricConditional, scf::EvidenceObjective::Jaccard}) {
+        const scf::EvidenceBuilder builder(corpus, objective);
+        CHECK(!builder.pair_scores().empty());
+        for (const auto& row : builder.pair_scores()) {
+            CHECK(row.strength >= 0.0 && row.strength <= 1.0);
+        }
+        for (const auto& item : builder.span_evidence()) {
+            CHECK(item.strength >= 0.0 && item.strength <= 1.0);
+        }
+    }
+}
+
+void test_cartesian_bias_regression_per_objective() {
+    const auto dataset = scf::generate_dataset("nested_balanced", 1.0, 1);
+    const auto corpus = corpus_from_dataset(dataset);
+    const auto lengths = scf::corpus_sentence_lengths(corpus);
+    {
+        // raw_count must keep reproducing the opportunity-induced preference.
+        const scf::EvidenceBuilder builder(corpus, scf::EvidenceObjective::RawCount);
+        for (const auto& row : scf::tree_shape_scores(lengths, builder.span_evidence())) {
+            CHECK(row.balanced_score > row.left_score);
+            CHECK(row.left_score == row.right_score);
+        }
+    }
+    for (const auto objective :
+         {scf::EvidenceObjective::OpportunityNormalized,
+          scf::EvidenceObjective::SymmetricConditional, scf::EvidenceObjective::Jaccard}) {
+        // Every normalized objective removes the purely opportunity-induced
+        // balance preference on the full Cartesian corpus...
+        const scf::EvidenceBuilder builder(corpus, objective);
+        for (const auto& row : scf::tree_shape_scores(lengths, builder.span_evidence())) {
+            CHECK(row.balanced_score == row.left_score);
+            CHECK(row.left_score == row.right_score);
+        }
+        // ...and the resulting exact integer tie keeps the full Catalan
+        // argmax: no hidden floating-point tie-break.
+        const auto analyses = scf::analyze_sentences(corpus, builder.span_evidence());
+        for (const auto& analysis : analyses) {
+            CHECK(analysis.optimal_tree_count == 5);
+        }
+    }
+}
+
+void test_forced_span_metrics() {
+    // Correlated right chain, full coverage: the observable block-level split
+    // [1,4) is forced in every optimal tree; the frozen block's internal
+    // bracket is not demanded by the observable gold.
+    const auto dataset = scf::generate_dataset("hierarchical_correlated_right", 1.0, 1);
+    const auto corpus = corpus_from_dataset(dataset);
+    const scf::EvidenceBuilder builder(corpus);
+    const auto analyses = scf::analyze_sentences(corpus, builder.span_evidence());
+    const auto gold = scf::dataset_gold_trees(dataset);
+    const auto observable = scf::dataset_observable_gold(dataset);
+    CHECK(observable.front() == std::set<scf::SpanPair>({{1, 4}}));
+    const auto evaluation =
+        scf::evaluate_corpus(analyses, gold, builder.span_evidence(), {}, observable);
+    CHECK(evaluation.forced_precision_observable_gold == 1.0);
+    CHECK(evaluation.forced_recall_observable_gold == 1.0);
+    CHECK(evaluation.forced_precision_full_gold == 1.0);   // forced spans are gold spans
+    CHECK(evaluation.forced_recall_full_gold == 0.5);      // inner bracket not forced
+    for (const auto& sentence : evaluation.sentences) {
+        CHECK(sentence.forced_spans == std::set<scf::SpanPair>({{1, 4}}));
+    }
+    // Balanced correlated: everything forced and recovered.
+    const auto balanced = evaluate_grammar("hierarchical_correlated_balanced", 1.0, 1);
+    CHECK(balanced.forced_precision_full_gold == 1.0);
+    CHECK(balanced.forced_recall_full_gold == 1.0);
+}
+
+void test_strength_confidence_separation() {
+    // simple_np_vp full coverage: the [0,2) evidence has confidence 2 under
+    // every objective, while strength depends on the objective; ranking uses
+    // strength (via the fixed-point score) and never confidence.
+    const auto dataset = scf::generate_dataset("simple_np_vp", 1.0, 1);
+    const auto corpus = corpus_from_dataset(dataset);
+    const scf::EvidenceBuilder raw(corpus, scf::EvidenceObjective::RawCount);
+    const scf::EvidenceBuilder opportunity(corpus,
+                                           scf::EvidenceObjective::OpportunityNormalized);
+    const auto* raw_item = find_span_evidence(raw, {0, 0, 2});
+    const auto* opp_item = find_span_evidence(opportunity, {0, 0, 2});
+    CHECK(raw_item != nullptr && opp_item != nullptr);
+    CHECK(raw_item->confidence == 2 && opp_item->confidence == 2);
+    CHECK(raw_item->strength == 2.0);
+    CHECK(opp_item->strength == 1.0);  // 2 shared / 2 opportunity contexts
+    CHECK(opp_item->score == 1000000000000ULL);
+    CHECK(raw.summary().mean_pair_confidence == opportunity.summary().mean_pair_confidence);
+}
+
 void test_prepare_text() {
     std::istringstream input(
         "Hello World. This is a TEST, with punctuation! And a very very very very very very "
@@ -1227,6 +1363,12 @@ int main() {
         {"span_length_support_theory", test_span_length_support_theory},
         {"tree_shape_scores_balance_preference", test_tree_shape_scores_balance_preference},
         {"summary_row_new_columns", test_summary_row_new_columns},
+        {"evidence_score_formulas", test_evidence_score_formulas},
+        {"evidence_symmetry_and_ranges", test_evidence_symmetry_and_ranges},
+        {"cartesian_bias_regression_per_objective",
+         test_cartesian_bias_regression_per_objective},
+        {"forced_span_metrics", test_forced_span_metrics},
+        {"strength_confidence_separation", test_strength_confidence_separation},
     };
 
     std::size_t failures = 0;

@@ -276,6 +276,89 @@ applies simple sentence splitting, optional lowercasing/punctuation stripping (d
 
 Brute-force margins and gold-in-argmax validation require length <= 10. Coverage sampling operates on full finite languages, so grammars must be non-recursive. `symmetric_abc` gold is fixed to `((A B) C)`. `ccg_lite` covers application only. `strict_global` equivalence still collapses under lexical ambiguity by design — v1.2 measures and reports this rather than repairing it. There is no probabilistic model, no CCG category induction, no Treebank reader, and no parallelism.
 
+## v1.3: debiased evidence objectives, correlated primary benchmark, real-corpus audit
+
+Full results in `SCF_v1_3_REPORT.md`; everything below is switchable, and the
+**default parser objective remains `raw_count`** — no default changed without
+benchmark evidence.
+
+### Evidence objectives
+
+Four pair-strength definitions over the same raw witness structure
+(`--evidence-objective` on `scf_cli`, `--evidence-objectives csv` on
+`scf_experiment`):
+
+- `raw_count` (baseline): `S = |W(u,v)|`.
+- `opportunity`: `S = |W_g(u,v)| / |U_g|` at the occurrence's geometry
+  `g = (i, n-j)`, where `U_g` is every observed raw context with that
+  geometry — the direct antidote to the `support = q^(n-len)` opportunity
+  bias.
+- `conditional`: `S = (|W|/|C(u)| + |W|/|C(v)|) / 2`.
+- `jaccard`: `S = |W| / |C(u) ∪ C(v)|`.
+
+Occurrence scoring keeps the v1.1 max-over-alternatives rule; only the pair
+score changes. **Strength vs confidence:** tree ranking uses *strength*
+(the objective's value) only; *confidence* `= |W(u,v)|` is a diagnostic and
+is never multiplied into the ranking by default (`pair_evidence.tsv` reports
+both). Normalized strengths are quantized to `round(S * 1e12)` for the exact
+integer DP, so score ties within `1e-12` are exact ties and the complete
+optimal forest is preserved — there is no floating-point tie-break.
+
+Benchmark verdict (see report Q1–Q5): all three normalized objectives
+achieve `balanced = left = right` on the full Cartesian corpus;
+`opportunity` additionally preserves every genuine recovery
+(`simple_np_vp`, correlated families) and symmetric honesty, and is the
+recommended candidate. `conditional`/`jaccard` are refuted — ratio
+normalization amplifies 1-witness coincidences into confidently wrong
+parses. Documented trade-off: opportunity normalization is blind to
+count-based symmetry-breaking evidence (the rho marker mechanism), because
+it divides away exactly the count advantage those markers add.
+
+### Correlated families as the primary benchmark
+
+The full-factorial `nested_balanced` / `right_branching` / `left_branching`
+families are observationally equivalent (v1.2.1) and are retained **only**
+for non-identifiability, objective-bias, symmetry, and regression tests. The
+primary gold-recovery benchmark is now `hierarchical_correlated_balanced` /
+`_right` / `_left` plus `simple_np_vp`, `symmetric_abc`,
+`ambiguous_lexicon`, and the auxiliary `ccg_lite`
+(`scf_audit objective-grid`: K=4, 20 seeds, 7 coverages, 4 objectives).
+
+Correlated chains ship two gold layers: the full latent tree
+(`gold_spans.tsv`) and the observable gold (`gold_observable_spans.tsv`),
+which drops the frozen blocks' internal brackets (no observable internal
+evidence exists for them). Structural-invariant metrics compare the spans
+forced across the whole optimal forest against both:
+`forced_precision_* = |F ∩ G| / |F|`, `forced_recall_* = |F ∩ G| / |G|`,
+with the empty-denominator convention `|F| = 0 ⇒ precision = 1`,
+`|G| = 0 ⇒ recall = 1` (consistent with the length-2 F1 convention).
+
+### Real-corpus constraint-density audit
+
+```bash
+build/scf_real_audit --input data/real/tokenized.txt \
+  --sample-sizes 100,500,1000,5000,10000 --seed 42 --output-dir results/v1_3/real_audit
+```
+
+Transparent whitespace-only preprocessing (`lowercase`, `strip_punctuation`,
+`deduplicate`, `min_len=2`, `max_len=10`, optional `drop_digit_tokens`), a
+deterministic seeded scale sweep, and a constraint geometry audit: raw
+context degree, yield/substitution degrees, proper-span witness coverage,
+exact-context sparsity, density proxies (explicitly *empirical proxies, not
+a proof of algebraic overdetermination or matrix rank*), saturation
+diagnostics, and polysemy-pressure candidates (diagnostic only — no lexical
+split is performed). It **never reports parsing accuracy** — there is no
+gold treebank; the deliverable is `REAL_CONSTRAINT_AUDIT.md` with a
+rule-based regime classification (`constraint-rich` /
+`exact-context-sparse` / `collapse-dominated` / `mixed`).
+
+Headline measurements (local 278k-sentence documentation corpus): witness
+density grows steadily with N (30.6% of proper spans carry evidence at
+N=10,000), but exact contexts stay 94% singleton, and strict-global
+saturation collapses pathologically from N≈5,000 (largest e-class 86% of
+the universe at N=10,000) — regime `collapse-dominated`, v1.4 direction
+"both context abstraction and collapse-resistant equivalence" (report Q10).
+
 ## Layout
 
-Public interfaces live under `include/scf`, implementations under `src`, controlled data under `data/synthetic`, the generators and experiment tools under `tools` (`scf_generate`, `scf_experiment`, `scf_prepare_text`, plus the v1.1 `scf_synthetic_generator`), and the assert-based regression suite under `tests`. `IMPLEMENTATION_NOTES.md` documents data structures, complexity, correctness caveats, and specification inconsistencies found during implementation.
+Public interfaces live under `include/scf`, implementations under `src`, controlled data under `data/synthetic`, the generators and experiment tools under `tools` (`scf_generate`, `scf_experiment`, `scf_audit`, `scf_real_audit`, `scf_prepare_text`, plus the v1.1 `scf_synthetic_generator`), and the assert-based regression suite under `tests`. `IMPLEMENTATION_NOTES.md` documents data structures, complexity, correctness caveats, and specification inconsistencies found during implementation.

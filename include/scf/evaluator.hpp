@@ -63,6 +63,14 @@ struct SentenceEvaluation {
     std::set<SpanPair> predicted_spans;  // populated only for unique optima
     std::vector<SpanPair> missing_gold_spans;
     std::vector<SpanPair> extra_predicted_spans;
+    // v1.3 structural-invariant metrics: F_s = proper spans forced across the
+    // whole optimal forest. Empty-denominator convention (documented in
+    // README): |F| = 0 => precision 1; |G| = 0 => recall 1.
+    std::set<SpanPair> forced_spans;
+    double forced_precision{1.0};             // |F ∩ G_full| / |F|
+    double forced_recall{1.0};                // |F ∩ G_full| / |G_full|
+    double forced_precision_observable{1.0};  // against observable gold
+    double forced_recall_observable{1.0};
     SentenceOutcome outcome{SentenceOutcome::HardInconsistent};
 };
 
@@ -90,6 +98,11 @@ struct CorpusEvaluation {
     std::optional<double> mean_unlabeled_precision_given_unique;
     std::optional<double> mean_unlabeled_recall_given_unique;
     std::optional<double> mean_unlabeled_f1_given_unique;
+    // v1.3 forced-span means over all sentences.
+    double forced_precision_full_gold{1.0};
+    double forced_recall_full_gold{1.0};
+    double forced_precision_observable_gold{1.0};
+    double forced_recall_observable_gold{1.0};
 };
 
 // Proper spans of the unique optimal tree; valid only when
@@ -104,12 +117,14 @@ SentenceEvaluation evaluate_sentence(SentenceId sentence,
                                      const TreeSolveResult& analysis,
                                      const GoldTree& gold,
                                      std::span<const SpanScore> evidence,
-                                     const EvalConfig& config = {});
+                                     const EvalConfig& config = {},
+                                     const std::set<SpanPair>* observable_gold = nullptr);
 
 CorpusEvaluation evaluate_corpus(std::span<const TreeSolveResult> analyses,
                                  std::span<const GoldTree> gold,
                                  std::span<const SpanEvidence> evidence,
-                                 const EvalConfig& config = {});
+                                 const EvalConfig& config = {},
+                                 std::span<const std::set<SpanPair>> observable_gold = {});
 
 std::vector<SpanScore> span_scores_for_sentence(std::span<const SpanEvidence> evidence,
                                                 SentenceId sentence);
@@ -122,6 +137,11 @@ struct RunInfo {
     std::optional<std::size_t> sampled_sentence_count;
     std::optional<std::size_t> lexical_cardinality;
     std::optional<double> symmetry_breaking_rate;
+    // v1.3: evidence objective and evidence-level diagnostics.
+    std::optional<std::string> evidence_objective;
+    std::optional<double> mean_pair_strength;
+    std::optional<double> mean_pair_confidence;
+    std::optional<double> mean_candidate_span_score;
     // v1.2.1 observational-equivalence hashes (hex strings).
     std::optional<std::string> surface_language_hash;
     std::optional<std::string> sampled_corpus_hash;
@@ -177,6 +197,12 @@ void write_top_eclasses(std::ostream& output,
                         const EvalConfig& config = {});
 
 void write_saturation_csv(std::ostream& output, const EquivalenceSolver& solver);
+
+void write_pair_evidence_tsv(std::ostream& output,
+                             const Corpus& corpus,
+                             const EvidenceBuilder& builder);
+
+void write_forced_span_metrics_csv(std::ostream& output, const CorpusEvaluation& evaluation);
 
 std::string summary_csv_header();
 std::string summary_csv_row(const RunInfo& info,

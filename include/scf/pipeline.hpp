@@ -21,6 +21,7 @@ struct AnalysisBundle {
 std::vector<TreeSolveResult> analyze_sentences(const Corpus& corpus,
                                                std::span<const SpanEvidence> evidence);
 
-AnalysisBundle analyze_corpus(const Corpus& corpus);
+AnalysisBundle analyze_corpus(const Corpus& corpus,
+                              EvidenceObjective objective = EvidenceObjective::RawCount);
 
 }  // namespace scf

@@ -144,11 +144,34 @@ std::vector<SpanScore> span_scores_for_sentence(const std::span<const SpanEviden
     return scores;
 }
 
+namespace {
+
+// Empty-denominator convention: no forced claim => precision 1; no gold
+// demand => recall 1.
+void forced_metrics(const std::set<SpanPair>& forced,
+                    const std::set<SpanPair>& gold,
+                    double* precision,
+                    double* recall) {
+    std::size_t intersection = 0;
+    for (const auto& span : forced) {
+        intersection += gold.contains(span) ? 1 : 0;
+    }
+    *precision = forced.empty()
+                     ? 1.0
+                     : static_cast<double>(intersection) / static_cast<double>(forced.size());
+    *recall = gold.empty()
+                  ? 1.0
+                  : static_cast<double>(intersection) / static_cast<double>(gold.size());
+}
+
+}  // namespace
+
 SentenceEvaluation evaluate_sentence(const SentenceId sentence,
                                      const TreeSolveResult& analysis,
                                      const GoldTree& gold,
                                      const std::span<const SpanScore> evidence,
-                                     const EvalConfig& config) {
+                                     const EvalConfig& config,
+                                     const std::set<SpanPair>* observable_gold) {
     if (gold.length != analysis.sentence_length) {
         throw std::runtime_error("gold tree length does not match sentence " +
                                  std::to_string(sentence));
@@ -168,6 +191,21 @@ SentenceEvaluation evaluate_sentence(const SentenceId sentence,
         result.outcome = SentenceOutcome::HardInconsistent;
         return result;
     }
+
+    // v1.3: structural invariants — spans forced across the optimal forest,
+    // scored against the full latent gold and the observable gold.
+    for (const auto& span : analysis.forced_spans) {
+        if (span.end > span.begin + 1 &&
+            !(span.begin == 0 && span.end == analysis.sentence_length)) {
+            result.forced_spans.emplace(span.begin, span.end);
+        }
+    }
+    const auto full_gold_spans = gold_scoring_spans(gold);
+    forced_metrics(result.forced_spans, full_gold_spans, &result.forced_precision,
+                   &result.forced_recall);
+    forced_metrics(result.forced_spans,
+                   observable_gold != nullptr ? *observable_gold : full_gold_spans,
+                   &result.forced_precision_observable, &result.forced_recall_observable);
 
     result.gold_in_argmax = result.gold_score == result.best_score;
 
@@ -223,19 +261,24 @@ SentenceEvaluation evaluate_sentence(const SentenceId sentence,
 CorpusEvaluation evaluate_corpus(const std::span<const TreeSolveResult> analyses,
                                  const std::span<const GoldTree> gold,
                                  const std::span<const SpanEvidence> evidence,
-                                 const EvalConfig& config) {
+                                 const EvalConfig& config,
+                                 const std::span<const std::set<SpanPair>> observable_gold) {
     if (analyses.size() != gold.size()) {
         throw std::runtime_error("corpus has " + std::to_string(analyses.size()) +
                                  " sentences but the gold file describes " +
                                  std::to_string(gold.size()));
+    }
+    if (!observable_gold.empty() && observable_gold.size() != gold.size()) {
+        throw std::runtime_error("observable gold size mismatch");
     }
     CorpusEvaluation evaluation;
     evaluation.sentence_count = analyses.size();
     for (std::size_t sentence = 0; sentence < analyses.size(); ++sentence) {
         const auto sentence_id = static_cast<SentenceId>(sentence);
         const auto scores = span_scores_for_sentence(evidence, sentence_id);
-        evaluation.sentences.push_back(
-            evaluate_sentence(sentence_id, analyses[sentence], gold[sentence], scores, config));
+        evaluation.sentences.push_back(evaluate_sentence(
+            sentence_id, analyses[sentence], gold[sentence], scores, config,
+            observable_gold.empty() ? nullptr : &observable_gold[sentence]));
     }
 
     const auto total = static_cast<double>(evaluation.sentence_count);
@@ -308,6 +351,20 @@ CorpusEvaluation evaluate_corpus(const std::span<const TreeSolveResult> analyses
     if (margin_count > 0) {
         evaluation.mean_finite_margin = margin_sum / static_cast<double>(margin_count);
     }
+    double forced_p_full = 0.0;
+    double forced_r_full = 0.0;
+    double forced_p_obs = 0.0;
+    double forced_r_obs = 0.0;
+    for (const auto& sentence : evaluation.sentences) {
+        forced_p_full += sentence.forced_precision;
+        forced_r_full += sentence.forced_recall;
+        forced_p_obs += sentence.forced_precision_observable;
+        forced_r_obs += sentence.forced_recall_observable;
+    }
+    evaluation.forced_precision_full_gold = forced_p_full / total;
+    evaluation.forced_recall_full_gold = forced_r_full / total;
+    evaluation.forced_precision_observable_gold = forced_p_obs / total;
+    evaluation.forced_recall_observable_gold = forced_r_obs / total;
     return evaluation;
 }
 
@@ -352,6 +409,18 @@ void write_metrics_json(std::ostream& output,
            << (info.symmetry_breaking_rate ? fmt_double(*info.symmetry_breaking_rate)
                                            : std::string("null"))
            << ",\n";
+    output << "  \"evidence_objective\": "
+           << (info.evidence_objective ? "\"" + *info.evidence_objective + "\""
+                                       : std::string("null"))
+           << ",\n";
+    output << "  \"evidence\": {\n";
+    output << "    \"mean_pair_strength\": " << json_number_or_null(info.mean_pair_strength)
+           << ",\n";
+    output << "    \"mean_pair_confidence\": " << json_number_or_null(info.mean_pair_confidence)
+           << ",\n";
+    output << "    \"mean_candidate_span_score\": "
+           << json_number_or_null(info.mean_candidate_span_score) << "\n";
+    output << "  },\n";
     output << "  \"hashes\": {\n";
     const auto hash_or_null = [](const std::optional<std::string>& value) {
         return value ? "\"" + *value + "\"" : std::string("null");
@@ -413,6 +482,14 @@ void write_metrics_json(std::ostream& output,
            << json_number_or_null(evaluation.mean_unlabeled_recall_given_unique) << ",\n";
     output << "    \"mean_unlabeled_f1_given_unique\": "
            << json_number_or_null(evaluation.mean_unlabeled_f1_given_unique) << ",\n";
+    output << "    \"forced_precision_full_gold\": "
+           << fmt_double(evaluation.forced_precision_full_gold) << ",\n";
+    output << "    \"forced_recall_full_gold\": "
+           << fmt_double(evaluation.forced_recall_full_gold) << ",\n";
+    output << "    \"forced_precision_observable_gold\": "
+           << fmt_double(evaluation.forced_precision_observable_gold) << ",\n";
+    output << "    \"forced_recall_observable_gold\": "
+           << fmt_double(evaluation.forced_recall_observable_gold) << ",\n";
     output << "    \"unique_correct\": " << evaluation.unique_correct << ",\n";
     output << "    \"unique_wrong\": " << evaluation.unique_wrong << ",\n";
     output << "    \"ambiguous_gold_included\": " << evaluation.ambiguous_gold_included << ",\n";
@@ -550,6 +627,36 @@ void write_top_eclasses(std::ostream& output,
     }
 }
 
+void write_pair_evidence_tsv(std::ostream& output,
+                             const Corpus& corpus,
+                             const EvidenceBuilder& builder) {
+    output << "u\tv\tobjective\tstrength\tshared_contexts\tcontexts_u\tcontexts_v\t"
+              "opportunity_contexts\n";
+    const auto text = [&](const StringId id) {
+        return corpus.string_interner().to_string(id, corpus.token_interner());
+    };
+    for (const auto& row : builder.pair_scores()) {
+        output << text(row.u) << '\t' << text(row.v) << '\t'
+               << evidence_objective_name(builder.objective()) << '\t' << fmt_double(row.strength)
+               << '\t' << row.shared_contexts << '\t' << row.contexts_u << '\t' << row.contexts_v
+               << '\t' << row.opportunity_contexts << '\n';
+    }
+}
+
+void write_forced_span_metrics_csv(std::ostream& output, const CorpusEvaluation& evaluation) {
+    output << "sentence_id,forced_span_count,forced_precision_full,forced_recall_full,"
+              "forced_precision_observable,forced_recall_observable,forced_spans\n";
+    for (const auto& sentence : evaluation.sentences) {
+        std::vector<SpanPair> spans(sentence.forced_spans.begin(), sentence.forced_spans.end());
+        output << sentence.sentence << ',' << spans.size() << ','
+               << fmt_double(sentence.forced_precision) << ','
+               << fmt_double(sentence.forced_recall) << ','
+               << fmt_double(sentence.forced_precision_observable) << ','
+               << fmt_double(sentence.forced_recall_observable) << ','
+               << format_span_pairs(spans) << '\n';
+    }
+}
+
 void write_saturation_csv(std::ostream& output, const EquivalenceSolver& solver) {
     output << "round,classes,context_unions,concat_unions,largest_class,collapse_ratio\n";
     for (const auto& stats : solver.statistics()) {
@@ -570,7 +677,10 @@ std::string summary_csv_header() {
            "mean_unlabeled_f1_given_unique,unique_correct,unique_wrong,ambiguous_gold_included,"
            "ambiguous_gold_excluded,hard_inconsistent,requested_coverage,effective_coverage,"
            "lexical_cardinality,symmetry_breaking_rate,surface_language_hash,"
-           "sampled_corpus_hash,raw_context_relation_hash,raw_witness_relation_hash";
+           "sampled_corpus_hash,raw_context_relation_hash,raw_witness_relation_hash,"
+           "evidence_objective,forced_precision_full_gold,forced_recall_full_gold,"
+           "forced_precision_observable_gold,forced_recall_observable_gold,"
+           "mean_pair_strength,mean_pair_confidence,mean_candidate_span_score";
 }
 
 std::string summary_csv_row(const RunInfo& info,
@@ -612,7 +722,15 @@ std::string summary_csv_row(const RunInfo& info,
         << info.surface_language_hash.value_or("NA") << ','
         << info.sampled_corpus_hash.value_or("NA") << ','
         << info.raw_context_relation_hash.value_or("NA") << ','
-        << info.raw_witness_relation_hash.value_or("NA");
+        << info.raw_witness_relation_hash.value_or("NA") << ','
+        << info.evidence_objective.value_or("raw_count") << ','
+        << fmt_double(evaluation.forced_precision_full_gold) << ','
+        << fmt_double(evaluation.forced_recall_full_gold) << ','
+        << fmt_double(evaluation.forced_precision_observable_gold) << ','
+        << fmt_double(evaluation.forced_recall_observable_gold) << ','
+        << fmt_optional_double(info.mean_pair_strength) << ','
+        << fmt_optional_double(info.mean_pair_confidence) << ','
+        << fmt_optional_double(info.mean_candidate_span_score);
     return row.str();
 }
 
@@ -639,6 +757,14 @@ void print_evaluation_summary(std::ostream& output, const CorpusEvaluation& eval
            << fmt_optional_double(evaluation.mean_unlabeled_recall_given_unique) << '\n'
            << "  mean_unlabeled_f1_given_unique = "
            << fmt_optional_double(evaluation.mean_unlabeled_f1_given_unique) << '\n'
+           << "  forced_precision_full_gold = "
+           << fmt_double(evaluation.forced_precision_full_gold) << '\n'
+           << "  forced_recall_full_gold = " << fmt_double(evaluation.forced_recall_full_gold)
+           << '\n'
+           << "  forced_precision_observable_gold = "
+           << fmt_double(evaluation.forced_precision_observable_gold) << '\n'
+           << "  forced_recall_observable_gold = "
+           << fmt_double(evaluation.forced_recall_observable_gold) << '\n'
            << "  unique_correct = " << evaluation.unique_correct << '\n'
            << "  unique_wrong = " << evaluation.unique_wrong << '\n'
            << "  ambiguous_gold_included = " << evaluation.ambiguous_gold_included << '\n'
