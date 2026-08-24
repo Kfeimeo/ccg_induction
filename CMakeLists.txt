@@ -27,6 +27,7 @@ add_library(scf_core
     src/evaluator.cpp
     src/pipeline.cpp
     src/prepare_text.cpp
+    src/audit.cpp
 )
 
 target_include_directories(scf_core PUBLIC include)
@@ -52,6 +53,10 @@ scf_enable_warnings(scf_experiment)
 add_executable(scf_prepare_text tools/scf_prepare_text.cpp)
 target_link_libraries(scf_prepare_text PRIVATE scf_core)
 scf_enable_warnings(scf_prepare_text)
+
+add_executable(scf_audit tools/scf_audit.cpp)
+target_link_libraries(scf_audit PRIVATE scf_core)
+scf_enable_warnings(scf_audit)
 
 if(SCF_BUILD_TESTS)
     enable_testing()

@@ -1,4 +1,4 @@
-# SCF v1.1/v1.2 implementation notes
+# SCF v1.1/v1.2/v1.2.1 implementation notes
 
 ## 1. Incremental boundary
 
@@ -142,3 +142,33 @@ CCG-lite is a bracketing sanity check for an application-only fragment: no type 
 ## 23. Current performance limits
 
 Everything remains single-threaded and n <= 10 by default. The evaluator's per-sentence brute force enumerates at most Catalan(9) = 4862 trees; batch experiments over the default 7x5 grid on the largest built-in family (`ccg_lite`, 84 sentences) complete in seconds. Larger sentence lengths require disabling the brute-force pass (margins become `NA`) and are out of scope for v1.2.
+
+# v1.2.1 audit additions
+
+## 24. Audit hashes
+
+`audit.hpp/cpp` serializes each relation canonically and hashes with FNV-1a 64 (standard-specified arithmetic, so hashes are platform-stable). `surface_language_hash`: sentences as token sequences, lexicographically sorted, deduplicated — independent of grammar labels, gold trees, and generation order. `sampled_corpus_hash`: the same over the sampled corpus. `raw_context_relation_hash`: the deduplicated `(L, R) -> yield` triples serialized as token text. `raw_witness_relation_hash`: for every yield pair with positive support, the pair plus its sorted raw-context set — precisely the object the tree objective consumes. All four appear per run in `summary.csv` and `metrics.json`.
+
+## 25. Canonical token renaming
+
+`build_canonical_renaming` renames tokens `t0, t1, ...` in first-occurrence order over the lexicographically sorted sentence set; relation hashes accept the mapping and serialize with renamed tokens. This greedy scheme is a heuristic canonical form: it provably canonicalizes the factorized families audited here (sorted full Cartesian products with per-position alphabets), which is what the audit needs to certify that `nested_balanced` is isomorphic to `right_branching`/`left_branching`; it is not a general graph canonization and may fail to align token orders for arbitrary languages (a false "different" is possible, a false "same" is not, since equal renamed serializations are an explicit isomorphism witness).
+
+## 26. Saturation ablation result and data path
+
+The 280-run A/B rerun (`scf_audit`, also reachable via `scf_experiment --run-saturation false`) found `parse_outputs_changed_runs = 0`. The causal explanation is structural: `EvidenceBuilder` takes only `const Corpus&` and buckets context records by exact raw `StringId` pairs without consulting the DSU; `solve_maximum_evidence_trees` consumes only that evidence. The solver's outputs feed diagnostics exclusively. The decoupling statement is now normative in the README, and `saturation_is_decoupled_from_parsing` pins it as a regression test so any future coupling must be introduced deliberately.
+
+## 27. Span-length support law and balance preference
+
+For the full Cartesian language `X1 x ... x Xn`, span `[i, j)` recurs under `prod_{k<i}|Xk| * prod_{k>=j}|Xk|` distinct raw external contexts, i.e. `q^(n-(j-i))` under uniform class size `q`; every same-length yield pair shares that full context set, so measured `max_pair_support` equals the theoretical count exactly (verified for n=4, K=2,3,4 in `span_length_bias.csv`). Consequence for length-4 trees: `balanced = 2q^2`, `left = right = q^2 + q` — an objective-induced balance preference with provably zero directional component. `score_by_span_length` reports per-length totals over *all* proper spans (zero-score spans included; `candidate_span_count` counts positive ones).
+
+## 28. Hierarchical correlated families
+
+`hierarchical_correlated_balanced` (`S = {a_i b_i} x {c_j d_j}`, K^2 sentences), `_right` (`S = A x {b_j (c_j d_j)}`), and `_left` (`S = {(a_j b_j) c_j} x D`) express bracketing in the surface distribution itself; all pairwise surface hashes differ, including after renaming, and also differ from the Cartesian counterpart (Acceptance F, guarded by tests). Empirically the balanced variant is fully identifiable (block spans substitute with K shared contexts), while the chain variants recover the top-level split as a forced span but keep the internally frozen block's bracket population-ambiguous (argmax 2, gold included) — identifiability tracks exactly where the surface varies.
+
+## 29. Symmetry-breaking rate
+
+`--symmetry-breaking-rate rho` (symmetric_abc only) appends `ceil(rho * K^2)` marker sentences `a_i b_j p` in canonical (i, j) order, each with gold `((a_i b_j) p)`. Two or more markers put two distinct yields in the `(epsilon, p)` context, raising `[0,2)` support to K+1 against the `[1,3)` tie at K, and unique recovery grows monotonically with rho. The single-marker regime is a documented anomaly: `(epsilon, p)` then has no substitution pair, while `b_i p ~ b_i c_k` in the shared `(a_i, epsilon)` context makes the marker sentence itself UNIQUE_WRONG — weak symmetry-breaking evidence can briefly mislead the objective. Markers live outside the CFG rule list; `grammar.json` records `symmetry_breaking_rate` and counts instead.
+
+## 30. Audit grid, population vs sample, and aggregation
+
+`scf_audit --seeds N` (default 20) runs 9 configurations (the five mainline CFG families, `nested_balanced` K=4 with 256 sentences, and the hierarchical trio) over the 7-point coverage grid, recording per-run metrics plus `effective_coverage = sampled/full` and the population reference computed once per configuration at coverage 1.0 (`population_identifiable`, gold-in-argmax rate, mean argmax). `finite_sample_symmetry_breaking.csv` classifies `symmetric_abc` sentences per run into `spurious_unique` (population-ambiguous, sample-unique) and `spurious_wrong_unique` (population gold-in-argmax, sample-unique, prediction != gold). Aggregates report mean/std/min/max and a normal-approximation 95% CI over seeds. All of this is diagnostics-side; the parser and its defaults are untouched (Acceptance G).

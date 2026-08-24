@@ -173,8 +173,96 @@ One row per (grammar, seed, coverage) with corpus statistics (`distinct_strings`
 - `simple_np_vp`: at full coverage every sentence is `UNIQUE_CORRECT` (all rates 1.0); at low coverage single sampled sentences have no substitution evidence and stay ambiguous.
 - `symmetric_abc`: even at coverage 1.0, `gold_in_argmax_rate = 1.0`, `unique_optimal_rate = 0`, `mean_argmax_size = 2` — exact structural non-identifiability, the `deep.txt` phenomenon reproduced under the benchmark.
 - `nested_balanced`: at full coverage the gold constituents `[0,2)` and `[2,4)` each collect support 4 while the crossing spans `[1,3)`, `[0,3)`, `[1,4)` collect at most 2, so recovery is unique and exact with margin 2; lowering coverage degrades this smoothly.
-- `right_branching` / `left_branching`: under full Cartesian lexical sampling their substitution-evidence tables are identical to `nested_balanced`'s, so SCF uniquely selects the balanced tree in both cases (`gold_in_argmax_rate = 0`). The pair demonstrates direction neutrality — both orientations behave exactly symmetrically, so there is no hidden left/right-branching bias — and shows that deep one-sided nesting is not identifiable from this evidence design; a regression test enforces the symmetry.
+- `right_branching` / `left_branching`: the correct reading of these curves has two separate layers (established by the v1.2.1 audit, see `SCF_v1_2_1_AUDIT.md`). **Layer 1:** the balanced / left / right latent grammars are observationally equivalent under the full-factorial surface generator — `right_branching` and `left_branching` generate the byte-identical corpus, and `nested_balanced` the same language up to token renaming, so no algorithm consuming these observations could distinguish the three latent grammars. **Layer 2:** given that shared observable corpus, the current raw-witness objective prefers the balanced tree because shorter spans receive more external-context witnesses (`support(i,j) = q^{n-(j-i)}`), an objective-induced balance preference with no left/right directional component (`left_score == right_score` on every sentence). These are two different findings; neither is a directional bias, and the first is not an SCF failure at all.
 - `ambiguous_lexicon`: the shared token `x` triggers a congruence cascade (`collapse_ratio ≈ 0.88`, `suspicious_collapse = true`). That is the diagnostic target of this family, not a failure of v1.2.
+
+## v1.2.1: observational equivalence and the identifiability audit
+
+### Formal definitions
+
+Two latent grammars are **observationally equivalent** when they induce the
+same observations:
+
+```text
+G1 ~obs G2  <=>  Obs(G1) = Obs(G2)
+```
+
+Under the current set-based generator the observation of a grammar is its
+surface language, so the implemented notion is support-level equivalence:
+
+```text
+Obs(G) = L(G)          =>          G1 ~support G2  <=>  L(G1) = L(G2)
+```
+
+If a future generator emits frequencies, the finer distribution-level notion
+becomes available (`G1 ~distribution G2 <=> P_G1(s) = P_G2(s) for all s`);
+v1.2.1 implements support-level diagnostics only. Every synthetic run records
+four audit hashes in `summary.csv` and `metrics.json` — `surface_language_hash`
+(sorted full language, independent of labels, gold trees, and generation
+order), `sampled_corpus_hash`, `raw_context_relation_hash` (deduplicated
+`(L,R) -> yield` triples), and `raw_witness_relation_hash` (the
+`yield_pair -> set(raw_context)` relation exactly as the tree objective
+consumes it). `scf_audit` compares families pairwise, both exactly and up to a
+greedy canonical token renaming, and emits
+`observational_equivalence_report.txt`. A case where surface languages agree
+but gold trees differ is reported as *latent grammars observationally
+indistinguishable under current observations*, never as "SCF failed to recover
+the grammar".
+
+### Audit findings (v1.2.1)
+
+The full audit lives in `SCF_v1_2_1_AUDIT.md`; headline results:
+
+- **Saturation is computationally decoupled from parsing.** In v1.2, the
+  equivalence-saturation engine and the raw-witness tree-induction engine are
+  computationally decoupled: rerunning the entire 280-run grid with saturation
+  disabled (`scf_experiment --run-saturation false`, or the in-process
+  ablation in `scf_audit`) changes zero parse outputs
+  (`parse_outputs_changed_runs = 0`). Saturation remains a structural
+  diagnostic but does not causally affect the tree objective.
+- **Span-length support law.** In a full Cartesian language with class size
+  `q`, a span of length `l` in a length-`n` sentence receives exactly
+  `q^(n-l)` raw external contexts; verified exactly for `n = 4`,
+  `K = 2, 3, 4`. Shorter spans therefore always out-score longer ones, which
+  yields the objective-induced balance preference
+  (`balanced = 2K^2 > left = right = K^2 + K`).
+- **Population vs sample identifiability.** Full-coverage analysis fixes each
+  family's population status; sampled runs are then classified as
+  `SAMPLE_IDENTIFIED_CORRECTLY / SAMPLE_IDENTIFIED_WRONGLY / SAMPLE_AMBIGUOUS`
+  against it. For `symmetric_abc`, 62/140 sampled runs contain spurious-unique
+  sentences and 42/140 contain spurious-wrong-unique ones, while symmetry is
+  restored in 20/20 full-coverage runs — the non-monotone curves are pure
+  finite-sample symmetry breaking.
+- **Correlated families break observational equivalence.** The new
+  `hierarchical_correlated_balanced/right/left` families correlate tokens
+  inside latent blocks, so all pairwise surface hashes differ (even after
+  renaming). The balanced variant is fully identifiable; in the chain variants
+  the top-level split is recovered (forced span) while the internally frozen
+  block stays population-ambiguous with gold in the argmax — structure is
+  recovered exactly where the surface distribution actually varies.
+- **Graded symmetry breaking.** `--symmetry-breaking-rate rho` adds
+  `ceil(rho*K^2)` marker sentences `a_i b_j p` to `symmetric_abc`; unique
+  recovery rises monotonically with rho (0 at rho=0 to 1.0 at rho=1), giving
+  an identifiability-vs-evidence curve rather than accuracy-vs-corpus-size. A
+  single marker (rho=0.05) is a documented edge case that briefly misleads
+  the objective before two or more markers make the block observable.
+
+### v1.2.1 CLI additions
+
+`scf_generate` / `scf_experiment` accept `--lexical-cardinality K` (2..5,
+0 = family default; `nested_balanced --lexical-cardinality 4` yields the
+256-sentence language used for the 20-seed audit grid) and
+`--symmetry-breaking-rate RHO` (symmetric_abc only). `scf_experiment` also
+accepts `--run-saturation false` and writes per-run
+`score_by_span_length.csv`; `summary.csv` gained `requested_coverage`,
+`effective_coverage` (= sampled/full — plot against it or absolute N, not
+only nominal coverage; tiny languages make nominal coverage a step function),
+`lexical_cardinality`, `symmetry_breaking_rate`, and the four audit hashes.
+The audit itself is one deterministic command:
+
+```bash
+build/scf_audit --output-dir results/audit_v1_2_1 --seeds 20
+```
 
 ### Real-data smoke test
 

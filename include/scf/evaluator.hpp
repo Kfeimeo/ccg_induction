@@ -117,9 +117,25 @@ std::vector<SpanScore> span_scores_for_sentence(std::span<const SpanEvidence> ev
 struct RunInfo {
     std::optional<std::string> grammar;
     std::optional<std::uint64_t> seed;
-    std::optional<double> coverage;
+    std::optional<double> coverage;  // requested coverage
     std::optional<std::size_t> full_sentence_count;
     std::optional<std::size_t> sampled_sentence_count;
+    std::optional<std::size_t> lexical_cardinality;
+    std::optional<double> symmetry_breaking_rate;
+    // v1.2.1 observational-equivalence hashes (hex strings).
+    std::optional<std::string> surface_language_hash;
+    std::optional<std::string> sampled_corpus_hash;
+    std::optional<std::string> raw_context_relation_hash;
+    std::optional<std::string> raw_witness_relation_hash;
+
+    // effective_coverage = sampled_sentence_count / full_sentence_count.
+    [[nodiscard]] std::optional<double> effective_coverage() const {
+        if (full_sentence_count && sampled_sentence_count && *full_sentence_count > 0) {
+            return static_cast<double>(*sampled_sentence_count) /
+                   static_cast<double>(*full_sentence_count);
+        }
+        return std::nullopt;
+    }
 };
 
 struct CollapseDiagnostics {

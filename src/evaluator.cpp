@@ -341,6 +341,29 @@ void write_metrics_json(std::ostream& output,
     output << "  \"seed\": " << (info.seed ? std::to_string(*info.seed) : "null") << ",\n";
     output << "  \"coverage\": "
            << (info.coverage ? fmt_double(*info.coverage) : std::string("null")) << ",\n";
+    output << "  \"requested_coverage\": "
+           << (info.coverage ? fmt_double(*info.coverage) : std::string("null")) << ",\n";
+    output << "  \"effective_coverage\": " << json_number_or_null(info.effective_coverage())
+           << ",\n";
+    output << "  \"lexical_cardinality\": "
+           << (info.lexical_cardinality ? std::to_string(*info.lexical_cardinality) : "null")
+           << ",\n";
+    output << "  \"symmetry_breaking_rate\": "
+           << (info.symmetry_breaking_rate ? fmt_double(*info.symmetry_breaking_rate)
+                                           : std::string("null"))
+           << ",\n";
+    output << "  \"hashes\": {\n";
+    const auto hash_or_null = [](const std::optional<std::string>& value) {
+        return value ? "\"" + *value + "\"" : std::string("null");
+    };
+    output << "    \"surface_language_hash\": " << hash_or_null(info.surface_language_hash)
+           << ",\n";
+    output << "    \"sampled_corpus_hash\": " << hash_or_null(info.sampled_corpus_hash) << ",\n";
+    output << "    \"raw_context_relation_hash\": "
+           << hash_or_null(info.raw_context_relation_hash) << ",\n";
+    output << "    \"raw_witness_relation_hash\": "
+           << hash_or_null(info.raw_witness_relation_hash) << "\n";
+    output << "  },\n";
     output << "  \"corpus\": {\n";
     output << "    \"full_sentence_count\": "
            << (info.full_sentence_count ? std::to_string(*info.full_sentence_count) : "null")
@@ -545,7 +568,9 @@ std::string summary_csv_header() {
            "mean_gold_score,zero_margin_rate,mean_finite_margin,"
            "mean_unlabeled_precision_given_unique,mean_unlabeled_recall_given_unique,"
            "mean_unlabeled_f1_given_unique,unique_correct,unique_wrong,ambiguous_gold_included,"
-           "ambiguous_gold_excluded,hard_inconsistent";
+           "ambiguous_gold_excluded,hard_inconsistent,requested_coverage,effective_coverage,"
+           "lexical_cardinality,symmetry_breaking_rate,surface_language_hash,"
+           "sampled_corpus_hash,raw_context_relation_hash,raw_witness_relation_hash";
 }
 
 std::string summary_csv_row(const RunInfo& info,
@@ -579,7 +604,15 @@ std::string summary_csv_row(const RunInfo& info,
         << fmt_optional_double(evaluation.mean_unlabeled_f1_given_unique) << ','
         << evaluation.unique_correct << ',' << evaluation.unique_wrong << ','
         << evaluation.ambiguous_gold_included << ',' << evaluation.ambiguous_gold_excluded << ','
-        << evaluation.hard_inconsistent;
+        << evaluation.hard_inconsistent << ','
+        << (info.coverage ? fmt_double(*info.coverage) : "NA") << ','
+        << fmt_optional_double(info.effective_coverage()) << ','
+        << (info.lexical_cardinality ? std::to_string(*info.lexical_cardinality) : "NA") << ','
+        << (info.symmetry_breaking_rate ? fmt_double(*info.symmetry_breaking_rate) : "NA") << ','
+        << info.surface_language_hash.value_or("NA") << ','
+        << info.sampled_corpus_hash.value_or("NA") << ','
+        << info.raw_context_relation_hash.value_or("NA") << ','
+        << info.raw_witness_relation_hash.value_or("NA");
     return row.str();
 }
 

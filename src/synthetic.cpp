@@ -229,63 +229,96 @@ std::optional<CcgItem> apply_pair(const CcgItem& left, const CcgItem& right) {
 }  // namespace
 
 std::vector<std::string> known_grammar_names() {
-    return {"ab_cartesian",   "simple_np_vp",  "symmetric_abc",     "nested_balanced",
-            "right_branching", "left_branching", "ambiguous_lexicon", "ccg_lite"};
+    return {"ab_cartesian",
+            "simple_np_vp",
+            "symmetric_abc",
+            "nested_balanced",
+            "right_branching",
+            "left_branching",
+            "ambiguous_lexicon",
+            "hierarchical_correlated_balanced",
+            "hierarchical_correlated_right",
+            "hierarchical_correlated_left",
+            "ccg_lite"};
 }
 
-Grammar make_grammar(const std::string& name) {
+std::size_t resolve_lexical_cardinality(const std::string& name, const std::size_t k) {
+    const bool hierarchical = name.rfind("hierarchical_correlated_", 0) == 0;
+    const std::size_t family_default = name == "ab_cartesian" ? 3 : hierarchical ? 3 : 2;
+    const auto resolved = k == 0 ? family_default : k;
+    if (resolved < 2 || resolved > 5) {
+        throw std::runtime_error("lexical cardinality must be in [2, 5]");
+    }
+    if (name == "ccg_lite" && resolved != 2) {
+        throw std::runtime_error("ccg_lite has a fixed lexicon; --lexical-cardinality is unsupported");
+    }
+    if (name == "simple_np_vp" && resolved > 5) {
+        throw std::runtime_error("simple_np_vp supports lexical cardinality up to 5");
+    }
+    return resolved;
+}
+
+Grammar make_grammar(const std::string& name, const std::size_t lexical_cardinality) {
+    const auto k = resolve_lexical_cardinality(name, lexical_cardinality);
     Grammar grammar;
     grammar.name = name;
     grammar.start_symbol = "S";
     if (name == "ab_cartesian") {
         grammar.rules.push_back(Rule{"S", {"A", "B"}});
-        add_lexical_rules(grammar, "A", terminal_alternatives("a", 3));
-        add_lexical_rules(grammar, "B", terminal_alternatives("b", 3));
+        add_lexical_rules(grammar, "A", terminal_alternatives("a", k));
+        add_lexical_rules(grammar, "B", terminal_alternatives("b", k));
     } else if (name == "simple_np_vp") {
-        // A is deliberately paired (the dog | a cat) so full coverage matches
-        // the v1.1 simple.txt regression corpus exactly.
+        // The subject pairs are deliberately bound (the dog | a cat | ...) so
+        // that K=2 full coverage matches the v1.1 simple.txt corpus exactly.
+        static const std::vector<std::pair<std::string, std::string>> subjects{
+            {"the", "dog"}, {"a", "cat"}, {"every", "fox"}, {"some", "bird"}, {"each", "fish"}};
+        static const std::vector<std::string> verbs{"runs", "sleeps", "eats", "jumps", "swims"};
         grammar.rules.push_back(Rule{"S", {"A", "B"}});
-        grammar.rules.push_back(Rule{"A", {"Det1", "N1"}});
-        grammar.rules.push_back(Rule{"A", {"Det2", "N2"}});
+        for (std::size_t index = 0; index < k; ++index) {
+            const auto tag = std::to_string(index + 1);
+            grammar.rules.push_back(Rule{"A", {"Det" + tag, "N" + tag}});
+        }
         grammar.rules.push_back(Rule{"B", {"V"}});
-        grammar.rules.push_back(Rule{"Det1", {"the"}});
-        grammar.rules.push_back(Rule{"N1", {"dog"}});
-        grammar.rules.push_back(Rule{"Det2", {"a"}});
-        grammar.rules.push_back(Rule{"N2", {"cat"}});
-        grammar.rules.push_back(Rule{"V", {"runs"}});
-        grammar.rules.push_back(Rule{"V", {"sleeps"}});
+        for (std::size_t index = 0; index < k; ++index) {
+            const auto tag = std::to_string(index + 1);
+            grammar.rules.push_back(Rule{"Det" + tag, {subjects[index].first}});
+            grammar.rules.push_back(Rule{"N" + tag, {subjects[index].second}});
+        }
+        for (std::size_t index = 0; index < k; ++index) {
+            grammar.rules.push_back(Rule{"V", {verbs[index]}});
+        }
     } else if (name == "symmetric_abc") {
         // Fully symmetric A x B x C with gold fixed to ((A B) C). The corpus
         // itself never breaks the symmetry, so both binary trees stay optimal.
         grammar.rules.push_back(Rule{"S", {"X", "C"}});
         grammar.rules.push_back(Rule{"X", {"A", "B"}});
-        add_lexical_rules(grammar, "A", terminal_alternatives("a", 2));
-        add_lexical_rules(grammar, "B", terminal_alternatives("b", 2));
-        add_lexical_rules(grammar, "C", terminal_alternatives("c", 2));
+        add_lexical_rules(grammar, "A", terminal_alternatives("a", k));
+        add_lexical_rules(grammar, "B", terminal_alternatives("b", k));
+        add_lexical_rules(grammar, "C", terminal_alternatives("c", k));
     } else if (name == "nested_balanced") {
         grammar.rules.push_back(Rule{"S", {"A", "B"}});
         grammar.rules.push_back(Rule{"A", {"C", "D"}});
         grammar.rules.push_back(Rule{"B", {"E", "F"}});
-        add_lexical_rules(grammar, "C", terminal_alternatives("c", 2));
-        add_lexical_rules(grammar, "D", terminal_alternatives("d", 2));
-        add_lexical_rules(grammar, "E", terminal_alternatives("e", 2));
-        add_lexical_rules(grammar, "F", terminal_alternatives("f", 2));
+        add_lexical_rules(grammar, "C", terminal_alternatives("c", k));
+        add_lexical_rules(grammar, "D", terminal_alternatives("d", k));
+        add_lexical_rules(grammar, "E", terminal_alternatives("e", k));
+        add_lexical_rules(grammar, "F", terminal_alternatives("f", k));
     } else if (name == "right_branching") {
         grammar.rules.push_back(Rule{"S", {"A", "X"}});
         grammar.rules.push_back(Rule{"X", {"B", "Y"}});
         grammar.rules.push_back(Rule{"Y", {"C", "D"}});
-        add_lexical_rules(grammar, "A", terminal_alternatives("a", 2));
-        add_lexical_rules(grammar, "B", terminal_alternatives("b", 2));
-        add_lexical_rules(grammar, "C", terminal_alternatives("c", 2));
-        add_lexical_rules(grammar, "D", terminal_alternatives("d", 2));
+        add_lexical_rules(grammar, "A", terminal_alternatives("a", k));
+        add_lexical_rules(grammar, "B", terminal_alternatives("b", k));
+        add_lexical_rules(grammar, "C", terminal_alternatives("c", k));
+        add_lexical_rules(grammar, "D", terminal_alternatives("d", k));
     } else if (name == "left_branching") {
         grammar.rules.push_back(Rule{"S", {"X", "D"}});
         grammar.rules.push_back(Rule{"X", {"Y", "C"}});
         grammar.rules.push_back(Rule{"Y", {"A", "B"}});
-        add_lexical_rules(grammar, "A", terminal_alternatives("a", 2));
-        add_lexical_rules(grammar, "B", terminal_alternatives("b", 2));
-        add_lexical_rules(grammar, "C", terminal_alternatives("c", 2));
-        add_lexical_rules(grammar, "D", terminal_alternatives("d", 2));
+        add_lexical_rules(grammar, "A", terminal_alternatives("a", k));
+        add_lexical_rules(grammar, "B", terminal_alternatives("b", k));
+        add_lexical_rules(grammar, "C", terminal_alternatives("c", k));
+        add_lexical_rules(grammar, "D", terminal_alternatives("d", k));
     } else if (name == "ambiguous_lexicon") {
         // Surface token "x" belongs to both latent classes A (position 0) and
         // B (position 3). Strict global equivalence is expected to over-merge
@@ -294,11 +327,49 @@ Grammar make_grammar(const std::string& name) {
         grammar.rules.push_back(Rule{"X", {"A", "M"}});
         grammar.rules.push_back(Rule{"Y", {"N", "B"}});
         grammar.rules.push_back(Rule{"A", {"x"}});
-        add_lexical_rules(grammar, "A", terminal_alternatives("a", 2));
-        add_lexical_rules(grammar, "M", terminal_alternatives("m", 2));
-        add_lexical_rules(grammar, "N", terminal_alternatives("n", 2));
+        add_lexical_rules(grammar, "A", terminal_alternatives("a", k));
+        add_lexical_rules(grammar, "M", terminal_alternatives("m", k));
+        add_lexical_rules(grammar, "N", terminal_alternatives("n", k));
         grammar.rules.push_back(Rule{"B", {"x"}});
-        add_lexical_rules(grammar, "B", terminal_alternatives("b", 2));
+        add_lexical_rules(grammar, "B", terminal_alternatives("b", k));
+    } else if (name == "hierarchical_correlated_balanced") {
+        // Correlated blocks: A = {a_i b_i}, B = {c_j d_j}, S = A x B. The
+        // block-internal correlation makes the surface language K^2 sentences
+        // (not K^4), so the balanced bracket is genuinely observable.
+        grammar.rules.push_back(Rule{"S", {"A", "B"}});
+        for (std::size_t index = 1; index <= k; ++index) {
+            const auto tag = std::to_string(index);
+            grammar.rules.push_back(Rule{"A", {"P" + tag}});
+            grammar.rules.push_back(Rule{"P" + tag, {"a" + tag, "b" + tag}});
+        }
+        for (std::size_t index = 1; index <= k; ++index) {
+            const auto tag = std::to_string(index);
+            grammar.rules.push_back(Rule{"B", {"Q" + tag}});
+            grammar.rules.push_back(Rule{"Q" + tag, {"c" + tag, "d" + tag}});
+        }
+    } else if (name == "hierarchical_correlated_right") {
+        // Correlated right nest: S = A x {b_j (c_j d_j)}. Positions 1-3 are
+        // correlated while position 0 varies freely, so the surface language
+        // differs from both the balanced and the left variant.
+        grammar.rules.push_back(Rule{"S", {"A", "X"}});
+        add_lexical_rules(grammar, "A", terminal_alternatives("a", k));
+        for (std::size_t index = 1; index <= k; ++index) {
+            const auto tag = std::to_string(index);
+            grammar.rules.push_back(Rule{"X", {"X" + tag}});
+            grammar.rules.push_back(Rule{"X" + tag, {"b" + tag, "Y" + tag}});
+            grammar.rules.push_back(Rule{"Y" + tag, {"c" + tag, "d" + tag}});
+        }
+    } else if (name == "hierarchical_correlated_left") {
+        // Correlated left nest: S = {((a_j b_j) c_j)} x D. Positions 0-2 are
+        // correlated while position 3 varies freely.
+        grammar.rules.push_back(Rule{"S", {"X", "D"}});
+        for (std::size_t index = 1; index <= k; ++index) {
+            const auto tag = std::to_string(index);
+            grammar.rules.push_back(Rule{"X", {"X" + tag}});
+            grammar.rules.push_back(Rule{"X" + tag, {"Y" + tag, "c" + tag}});
+            grammar.rules.push_back(Rule{"Y" + tag, {"a" + tag, "b" + tag}});
+        }
+        add_lexical_rules(grammar, "D", terminal_alternatives("d", k));
     } else if (name == "ccg_lite") {
         return ccg_lite_lexicon_grammar();
     } else {
@@ -392,22 +463,63 @@ void deterministic_shuffle(std::vector<std::size_t>& values, const std::uint64_t
     }
 }
 
+std::vector<GoldSentence> generate_family_language(const std::string& grammar_name,
+                                                   const std::size_t lexical_cardinality,
+                                                   const double symmetry_breaking_rate) {
+    if (symmetry_breaking_rate < 0.0 || symmetry_breaking_rate > 1.0) {
+        throw std::runtime_error("symmetry-breaking rate must be in [0, 1]");
+    }
+    if (symmetry_breaking_rate > 0.0 && grammar_name != "symmetric_abc") {
+        throw std::runtime_error("--symmetry-breaking-rate applies only to symmetric_abc");
+    }
+    const auto k = resolve_lexical_cardinality(grammar_name, lexical_cardinality);
+    auto language = grammar_name == "ccg_lite"
+                        ? generate_ccg_lite_language()
+                        : generate_full_language(make_grammar(grammar_name, k));
+    if (symmetry_breaking_rate > 0.0) {
+        // Marker sentences "a_i b_j p" give the AB block an additional shared
+        // block-level context (epsilon, p). Taken in canonical (i, j) order,
+        // ceil(rho * K^2) of them are appended, gradually making the gold
+        // ((A B) C) bracket observable.
+        const auto marker_total = k * k;
+        auto marker_count = static_cast<std::size_t>(
+            std::ceil(symmetry_breaking_rate * static_cast<double>(marker_total) - 1e-9));
+        marker_count = std::min(marker_count, marker_total);
+        std::size_t emitted = 0;
+        for (std::size_t i = 1; i <= k && emitted < marker_count; ++i) {
+            for (std::size_t j = 1; j <= k && emitted < marker_count; ++j) {
+                const auto a = "a" + std::to_string(i);
+                const auto b = "b" + std::to_string(j);
+                GoldNode block{"X", {GoldNode{a, {}}, GoldNode{b, {}}}};
+                GoldNode root{"S", {std::move(block), GoldNode{"p", {}}}};
+                language.push_back(GoldSentence{{a, b, "p"}, std::move(root)});
+                ++emitted;
+            }
+        }
+    }
+    return language;
+}
+
 SyntheticDataset generate_dataset(const std::string& grammar_name,
                                   const double coverage,
                                   const std::uint64_t seed,
-                                  const std::size_t max_sentences) {
+                                  const std::size_t max_sentences,
+                                  const std::size_t lexical_cardinality,
+                                  const double symmetry_breaking_rate) {
     if (!(coverage > 0.0) || coverage > 1.0) {
         throw std::runtime_error("coverage must be in (0, 1]");
     }
     SyntheticDataset dataset;
     dataset.grammar_name = grammar_name;
-    dataset.grammar = make_grammar(grammar_name);
+    dataset.lexical_cardinality = resolve_lexical_cardinality(grammar_name, lexical_cardinality);
+    dataset.symmetry_breaking_rate = symmetry_breaking_rate;
+    dataset.grammar = make_grammar(grammar_name, dataset.lexical_cardinality);
     dataset.seed = seed;
     dataset.coverage = coverage;
     dataset.max_sentences = max_sentences;
 
-    auto language = grammar_name == "ccg_lite" ? generate_ccg_lite_language()
-                                               : generate_full_language(dataset.grammar);
+    auto language = generate_family_language(grammar_name, dataset.lexical_cardinality,
+                                             symmetry_breaking_rate);
     dataset.full_sentence_count = language.size();
 
     std::vector<std::size_t> order(language.size());
@@ -493,6 +605,9 @@ std::string grammar_json(const SyntheticDataset& dataset) {
     json << "  \"seed\": " << dataset.seed << ",\n";
     json << "  \"coverage\": " << format_coverage(dataset.coverage) << ",\n";
     json << "  \"max_sentences\": " << dataset.max_sentences << ",\n";
+    json << "  \"lexical_cardinality\": " << dataset.lexical_cardinality << ",\n";
+    json << "  \"symmetry_breaking_rate\": " << format_coverage(dataset.symmetry_breaking_rate)
+         << ",\n";
     json << "  \"full_sentence_count\": " << dataset.full_sentence_count << ",\n";
     json << "  \"sampled_sentence_count\": " << dataset.sentences.size() << ",\n";
     json << "  \"deduplicated\": true,\n";

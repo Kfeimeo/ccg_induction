@@ -32,15 +32,25 @@ struct SyntheticDataset {
     std::uint64_t seed{1};
     double coverage{1.0};
     std::size_t max_sentences{};  // 0 disables the cap
+    std::size_t lexical_cardinality{};   // resolved per-family K
+    double symmetry_breaking_rate{0.0};  // rho; only symmetric_abc supports > 0
     std::size_t full_sentence_count{};
     std::vector<GoldSentence> sentences;  // sampled subset, in canonical generation order
 };
 
 // Grammar families available to scf_generate / scf_experiment. "ccg_lite" is
 // an auxiliary application-only fragment, not part of the CFG-style mainline.
+// The hierarchical_correlated_* families (v1.2.1) correlate tokens inside
+// latent blocks so that different bracketings produce genuinely different
+// surface languages, unlike the full-factorial Cartesian families.
 std::vector<std::string> known_grammar_names();
 
-Grammar make_grammar(const std::string& name);
+// K = 0 selects the family default (ab_cartesian: 3, hierarchical_*: 3,
+// everything else: 2). ccg_lite has a fixed lexicon and accepts only the
+// default.
+std::size_t resolve_lexical_cardinality(const std::string& name, std::size_t k);
+
+Grammar make_grammar(const std::string& name, std::size_t lexical_cardinality = 0);
 
 // Expands the full finite language of a CFG-style grammar. Unary chains are
 // collapsed before emitting gold trees; non-binary structure is rejected.
@@ -58,12 +68,22 @@ Grammar ccg_lite_lexicon_grammar();
 // standard-library std::shuffle/std::uniform_int_distribution implementations.
 void deterministic_shuffle(std::vector<std::size_t>& values, std::uint64_t seed);
 
+// Full language of a family under the resolved K and rho. For symmetric_abc
+// with rho > 0, ceil(rho * K^2) marker sentences "a_i b_j p" (gold
+// ((a_i b_j) p)) are appended in canonical (i, j) order, giving the AB block
+// observable block-level contexts.
+std::vector<GoldSentence> generate_family_language(const std::string& grammar_name,
+                                                   std::size_t lexical_cardinality = 0,
+                                                   double symmetry_breaking_rate = 0.0);
+
 // Full language -> seeded shuffle -> first ceil(coverage * N) sentences ->
 // optional max_sentences truncation -> canonical order restored.
 SyntheticDataset generate_dataset(const std::string& grammar_name,
                                   double coverage,
                                   std::uint64_t seed,
-                                  std::size_t max_sentences = 0);
+                                  std::size_t max_sentences = 0,
+                                  std::size_t lexical_cardinality = 0,
+                                  double symmetry_breaking_rate = 0.0);
 
 std::string grammar_json(const SyntheticDataset& dataset);
 

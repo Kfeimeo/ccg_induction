@@ -1,3 +1,4 @@
+#include "scf/audit.hpp"
 #include "scf/corpus.hpp"
 #include "scf/dsu.hpp"
 #include "scf/enumerator.hpp"
@@ -951,6 +952,209 @@ void test_metrics_deterministic() {
     CHECK(first == second);
 }
 
+// --- v1.2.1: audit infrastructure -----------------------------------------
+
+struct FamilyHashes {
+    std::uint64_t surface{};
+    std::uint64_t surface_renamed{};
+    std::uint64_t context{};
+    std::uint64_t context_renamed{};
+    std::uint64_t witness{};
+    std::uint64_t witness_renamed{};
+    std::uint64_t gold_renamed{};
+};
+
+FamilyHashes family_hashes(const std::string& name, const std::size_t k) {
+    const auto dataset = scf::generate_dataset(name, 1.0, 1, 0, k);
+    const auto corpus = corpus_from_dataset(dataset);
+    const scf::EvidenceBuilder builder(corpus);
+    const auto tokens = scf::sentence_tokens(dataset.sentences);
+    const auto renaming = scf::build_canonical_renaming(tokens);
+    FamilyHashes hashes;
+    hashes.surface = scf::sentence_set_hash(tokens);
+    hashes.surface_renamed = scf::sentence_set_hash(scf::apply_renaming(tokens, renaming));
+    hashes.context = scf::raw_context_relation_hash(corpus);
+    hashes.context_renamed = scf::raw_context_relation_hash(corpus, &renaming);
+    hashes.witness = scf::raw_witness_relation_hash(corpus, builder);
+    hashes.witness_renamed = scf::raw_witness_relation_hash(corpus, builder, &renaming);
+    hashes.gold_renamed = scf::gold_shape_hash(dataset.sentences, &renaming);
+    return hashes;
+}
+
+void test_observational_equivalence_hashes() {
+    // Hashes are order-independent.
+    scf::TokenSentences forward{{"a", "b"}, {"c", "d"}};
+    scf::TokenSentences backward{{"c", "d"}, {"a", "b"}};
+    CHECK(scf::sentence_set_hash(forward) == scf::sentence_set_hash(backward));
+    CHECK(scf::sentence_set_hash(forward) != scf::sentence_set_hash({{"a", "b"}}));
+
+    const auto nested = family_hashes("nested_balanced", 2);
+    const auto right = family_hashes("right_branching", 2);
+    const auto left = family_hashes("left_branching", 2);
+    // right and left generate the exact same corpus, contexts, and witnesses,
+    // while their gold trees differ: strict observational equivalence.
+    CHECK(right.surface == left.surface);
+    CHECK(right.context == left.context);
+    CHECK(right.witness == left.witness);
+    CHECK(right.gold_renamed != left.gold_renamed);
+    // nested_balanced differs only by token names: equal after canonical
+    // renaming, unequal exactly.
+    CHECK(nested.surface != right.surface);
+    CHECK(nested.surface_renamed == right.surface_renamed);
+    CHECK(nested.context_renamed == right.context_renamed);
+    CHECK(nested.witness_renamed == right.witness_renamed);
+}
+
+void test_hierarchical_families_break_observational_equivalence() {
+    const auto balanced = family_hashes("hierarchical_correlated_balanced", 3);
+    const auto right = family_hashes("hierarchical_correlated_right", 3);
+    const auto left = family_hashes("hierarchical_correlated_left", 3);
+    // Acceptance F: the correlated families have genuinely different surface
+    // languages, even up to token renaming.
+    CHECK(balanced.surface != right.surface);
+    CHECK(balanced.surface != left.surface);
+    CHECK(right.surface != left.surface);
+    CHECK(balanced.surface_renamed != right.surface_renamed);
+    CHECK(balanced.surface_renamed != left.surface_renamed);
+    CHECK(right.surface_renamed != left.surface_renamed);
+    // And they differ from their Cartesian counterpart.
+    const auto cartesian = family_hashes("nested_balanced", 3);
+    CHECK(balanced.surface_renamed != cartesian.surface_renamed);
+}
+
+void test_lexical_cardinality() {
+    CHECK(scf::generate_dataset("nested_balanced", 1.0, 1, 0, 3).full_sentence_count == 81);
+    CHECK(scf::generate_dataset("nested_balanced", 1.0, 1, 0, 4).full_sentence_count == 256);
+    CHECK(scf::generate_dataset("symmetric_abc", 1.0, 1, 0, 4).full_sentence_count == 64);
+    CHECK(scf::generate_dataset("hierarchical_correlated_balanced", 1.0, 1, 0, 4)
+              .full_sentence_count == 16);
+    CHECK(scf::generate_dataset("simple_np_vp", 1.0, 1, 0, 3).full_sentence_count == 9);
+    // The default cardinality reproduces the v1.2 languages exactly.
+    CHECK(scf::generate_dataset("simple_np_vp", 1.0, 1).full_sentence_count == 4);
+    CHECK(scf::generate_dataset("ab_cartesian", 1.0, 1).full_sentence_count == 9);
+    bool threw = false;
+    try {
+        (void)scf::generate_dataset("nested_balanced", 1.0, 1, 0, 7);
+    } catch (const std::exception&) {
+        threw = true;
+    }
+    CHECK(threw);
+}
+
+void test_symmetry_breaking_rate() {
+    CHECK(scf::generate_dataset("symmetric_abc", 1.0, 1, 0, 2, 0.0).full_sentence_count == 8);
+    CHECK(scf::generate_dataset("symmetric_abc", 1.0, 1, 0, 2, 1.0).full_sentence_count == 12);
+    const auto half = scf::generate_dataset("symmetric_abc", 1.0, 1, 0, 3, 0.5);
+    CHECK(half.full_sentence_count == 32);  // 27 base + ceil(0.5 * 9) markers
+    const auto& marker = half.sentences.back();
+    CHECK(marker.tokens.size() == 3 && marker.tokens.back() == "p");
+    const auto shape = scf::gold_tree_from_node(marker.tree);
+    CHECK(scf::gold_eval_spans(shape, true) ==
+          std::set<scf::SpanPair>({{0, 2}, {0, 3}}));  // ((a b) p)
+    bool threw = false;
+    try {
+        (void)scf::generate_dataset("nested_balanced", 1.0, 1, 0, 0, 0.5);
+    } catch (const std::exception&) {
+        threw = true;
+    }
+    CHECK(threw);
+}
+
+void test_hierarchical_identifiability() {
+    // Documented v1.2.1 result: correlated blocks make the top-level bracket
+    // observable in all three variants. The balanced variant is fully
+    // identifiable; in the right/left variants the *inside* of a correlated
+    // block never varies, so the inner bracket stays population-ambiguous
+    // (gold in argmax, argmax size 2). That residual ambiguity is a property
+    // of the observations, not of the objective.
+    const auto balanced = evaluate_grammar("hierarchical_correlated_balanced", 1.0, 1);
+    CHECK(balanced.sentence_count == 9);
+    CHECK(balanced.unique_correct == 9);
+    CHECK(balanced.gold_in_argmax_rate == 1.0);
+
+    const auto right = evaluate_grammar("hierarchical_correlated_right", 1.0, 1);
+    const auto left = evaluate_grammar("hierarchical_correlated_left", 1.0, 1);
+    for (const auto* evaluation : {&right, &left}) {
+        CHECK(evaluation->sentence_count == 9);
+        CHECK(evaluation->gold_in_argmax_rate == 1.0);
+        CHECK(evaluation->unique_optimal_rate == 0.0);
+        CHECK(evaluation->mean_argmax_size == 2.0);
+        CHECK(evaluation->ambiguous_gold_included == 9);
+    }
+}
+
+void test_saturation_is_decoupled_from_parsing() {
+    // Engineering check of the v1.2.1 ablation: with and without running the
+    // saturation engine, evidence, DP scores, forests, and forced spans are
+    // identical, because tree evidence is built from exact raw surface
+    // contexts only.
+    const auto dataset = scf::generate_dataset("nested_balanced", 0.4, 1);
+    const auto corpus = corpus_from_dataset(dataset);
+    const auto with_saturation = scf::analyze_corpus(corpus);  // runs saturate()
+    const scf::EvidenceBuilder without_solver(corpus);
+    const auto analyses = scf::analyze_sentences(corpus, without_solver.span_evidence());
+    CHECK(scf::raw_witness_relation_hash(corpus, with_saturation.builder) ==
+          scf::raw_witness_relation_hash(corpus, without_solver));
+    CHECK(with_saturation.analyses.size() == analyses.size());
+    for (std::size_t sentence = 0; sentence < analyses.size(); ++sentence) {
+        const auto& a = with_saturation.analyses[sentence];
+        const auto& b = analyses[sentence];
+        CHECK(a.best_score == b.best_score);
+        CHECK(a.optimal_tree_count == b.optimal_tree_count);
+        CHECK(a.forced_spans == b.forced_spans);
+        CHECK(a.optimal_splits == b.optimal_splits);
+    }
+}
+
+void test_span_length_support_theory() {
+    // Full Cartesian with |X_k| = q: support(i,j) = q^(n - (j - i)).
+    for (const std::size_t q : {std::size_t{2}, std::size_t{3}}) {
+        const auto dataset = scf::generate_dataset("nested_balanced", 1.0, 1, 0, q);
+        const auto corpus = corpus_from_dataset(dataset);
+        const scf::EvidenceBuilder builder(corpus);
+        const auto lengths = scf::corpus_sentence_lengths(corpus);
+        const auto gold = scf::dataset_gold_trees(dataset);
+        const auto stats = scf::score_by_span_length(lengths, builder.span_evidence(), gold);
+        CHECK(stats.size() == 2);
+        CHECK(stats[0].span_length == 2);
+        CHECK(stats[0].max_score == static_cast<std::uint64_t>(q * q));
+        CHECK(stats[1].span_length == 3);
+        CHECK(stats[1].max_score == static_cast<std::uint64_t>(q));
+        CHECK(stats[0].mean_score > stats[1].mean_score);
+    }
+}
+
+void test_tree_shape_scores_balance_preference() {
+    const auto dataset = scf::generate_dataset("nested_balanced", 1.0, 1);
+    const auto corpus = corpus_from_dataset(dataset);
+    const scf::EvidenceBuilder builder(corpus);
+    const auto lengths = scf::corpus_sentence_lengths(corpus);
+    const auto rows = scf::tree_shape_scores(lengths, builder.span_evidence());
+    CHECK(rows.size() == 16);
+    for (const auto& row : rows) {
+        CHECK(row.balanced_score == 8);
+        CHECK(row.left_score == 6);
+        CHECK(row.right_score == 6);
+        CHECK(row.left_score == row.right_score);  // no directional bias
+        CHECK(row.best_shape == "balanced");       // objective-induced balance preference
+    }
+}
+
+void test_summary_row_new_columns() {
+    const auto header = scf::summary_csv_header();
+    for (const char* column :
+         {"requested_coverage", "effective_coverage", "lexical_cardinality",
+          "symmetry_breaking_rate", "surface_language_hash", "sampled_corpus_hash",
+          "raw_context_relation_hash", "raw_witness_relation_hash"}) {
+        CHECK(header.find(column) != std::string::npos);
+    }
+    scf::RunInfo info;
+    info.full_sentence_count = 16;
+    info.sampled_sentence_count = 4;
+    CHECK(info.effective_coverage() == std::optional<double>(0.25));
+    CHECK(!scf::RunInfo{}.effective_coverage().has_value());
+}
+
 void test_prepare_text() {
     std::istringstream input(
         "Hello World. This is a TEST, with punctuation! And a very very very very very very "
@@ -1013,6 +1217,16 @@ int main() {
         {"integration_ccg_lite_pipeline", test_integration_ccg_lite_pipeline},
         {"metrics_deterministic", test_metrics_deterministic},
         {"prepare_text", test_prepare_text},
+        {"observational_equivalence_hashes", test_observational_equivalence_hashes},
+        {"hierarchical_families_break_observational_equivalence",
+         test_hierarchical_families_break_observational_equivalence},
+        {"lexical_cardinality", test_lexical_cardinality},
+        {"symmetry_breaking_rate", test_symmetry_breaking_rate},
+        {"hierarchical_identifiability", test_hierarchical_identifiability},
+        {"saturation_is_decoupled_from_parsing", test_saturation_is_decoupled_from_parsing},
+        {"span_length_support_theory", test_span_length_support_theory},
+        {"tree_shape_scores_balance_preference", test_tree_shape_scores_balance_preference},
+        {"summary_row_new_columns", test_summary_row_new_columns},
     };
 
     std::size_t failures = 0;
