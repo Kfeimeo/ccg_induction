@@ -1,4 +1,4 @@
-# SCF v1.1/v1.2/v1.2.1/v1.3 implementation notes
+# SCF v1.1/v1.2/v1.2.1/v1.3/v1.4 implementation notes
 
 ## 1. Incremental boundary
 
@@ -198,3 +198,33 @@ Cartesian neutrality: all normalized objectives yield exact `balanced = left = r
 ## 36. What v1.3 deliberately did not do
 
 No polysemy or lexical splitting (diagnostics only), no saturation semantics change (still parse-inert; v1.2.1 ablation and its regression test remain valid), no default-objective switch, no length penalty / branching prior / span bonus / gold-aware normalization / probability model / neural scorer, and no real-data parsing-accuracy claims.
+
+# v1.4 additions
+
+## 37. Context-indexed solver
+
+`ContextIndexedSolver` (context_indexed.hpp/cpp) iterates `A_0(x)=x -> P_t -> A_{t+1}` over the logical context triples (set semantics makes occurrence multiplicity irrelevant; the whole-sentence hole is already excluded at corpus build time). Each round sorts the `(ContextKey, yield)` pairs once (`O(T log T)`), groups blocks, and re-partitions by exact signature equality using canonical first-occurrence class numbering, so identical partitions are identical vectors and the fixed point is a plain vector comparison. Epsilon carries a reserved sentinel signature and stays a singleton forever. Coarsening is invariant by induction (A_1 refines nothing, and images of equal profiles stay equal), hence `#classes` is non-increasing; a violation sets `monotonicity_violated()` instead of being repaired. No DSU union ever crosses a ContextKey.
+
+## 38. Two theorems
+
+**One-round idempotence (context_only).** Every context coordinate is a full sentence prefix (or suffix), so it has its own observed occurrence whose context is the complementary hole: if `P0(L1)=P0(L2)` then `(eps, x·R) in P0(L1) <=> sentence L1·x·R exists <=> (L1,R) in P0(x)`, and the same sentence-existence chase transfers every element — so profiles equal after round-1 renaming are already equal exactly, and `A* = A_1`. Verified empirically by the 100-seed naive-reference property test.
+
+**Relation invariance (both signatures).** By induction, every pair that merges in any round (context_plus_concat merely delays merges, it never adds any) has exactly equal round-0 profiles; the same element chase then shows the exact blocks of the two merged coordinates contain identical yield sets, so fusing keys never creates a new locally related yield pair and never adds evidence coverage. `distinct_pairs_round0 == distinct_pairs_final` and `indexed_evidence_coverage == raw_evidence_coverage` hold on all synthetic families and on the real corpus at every N; both are pinned by tests/CSV columns. Genuinely new relations require a coarser context notion than exact prefix/suffix strings — deliberately out of scope (v1.5 candidate).
+
+The `recursive_context_cascade` corpus ("w a m"/"w b m") shows the cascade that *is* possible: under context_plus_concat the decomposition signature delays merges into three genuine rounds (a~b; then "a m"~"b m" and "w a"~"w b"; then the sentences), traced in `recursive_cascade_trace.txt`. Under context_only the same corpus saturates in one round, as the theorem requires.
+
+## 39. Diagnostics, attribution, and naming
+
+Per-round stats (classes, keys, `(key, pair)` relation counts, merges, largest ratios) feed `context_indexed_rounds.csv`. Final diagnostics separate `ContextAbstractionClass` collapse from `LocalRoleBlock` sizes and from the diagnostic-only unindexed projection graph; the three-stage real-data attribution (`collapse_attribution.csv`) compares the raw direct substitution graph (Stage A), the indexed projection graph (Stage B), and the legacy global DSU (Stage C, whose largest class is its giant component). `global_vs_indexed.csv` sets legacy collapse against the indexed model's true collapse indicators (`indexed_largest_context_class_ratio`, `indexed_max_local_block_ratio`) — the projection giant is explicitly not one of them. Multi-role membership (`keys_of_yield`, blocks >= 2) quantifies surface ambiguity without any lexical split.
+
+## 40. Latent-role soundness and purity
+
+For single-token yields the latent role is the lexical-rule lhs with trailing digits stripped (fallback: the token spelling with digits stripped; CCG-lite uses its categories). Local relation pairs among role-known yields are classified true/false by role-set intersection; multi-token pairs are counted `unknown` and excluded. Context-key purity is the majority-role fraction among role-known yields per block, reported as mean/weighted/min. Measured precision is 1.0 on every family — including `ambiguous_lexicon`, whose legacy-DSU collapse (0.88) came entirely from projecting away the context index.
+
+## 41. Experimental indexed-shadow evidence
+
+`indexed_shadow_evidence` scores an occurrence by `max_v min(|R_c(u)|,|R_c(v)|)/|U_c|` over its final ContextKey's block, quantized like every other strength. It is opt-in (`--tree-evidence-source indexed-shadow`), synthetic-only, and measurably worse than raw/opportunity on the correlated chains (UNIQUE_WRONG at full coverage) while preserving Cartesian neutrality and symmetric honesty — recorded without repair in `indexed_shadow_parse_metrics.csv`; the default parser is untouched.
+
+## 42. Real-data cost
+
+On the documentation corpus at N=10,000 the context-indexed fixed point completes in a handful of rounds over ~4e5 logical triples (seconds; `runtime_ms` column), versus ~2.5 minutes for the legacy saturation baseline it is audited against.

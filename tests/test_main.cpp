@@ -1,4 +1,5 @@
 #include "scf/audit.hpp"
+#include "scf/context_indexed.hpp"
 #include "scf/corpus.hpp"
 #include "scf/dsu.hpp"
 #include "scf/enumerator.hpp"
@@ -20,6 +21,7 @@
 #include <filesystem>
 #include <iostream>
 #include <map>
+#include <random>
 #include <set>
 #include <sstream>
 #include <stdexcept>
@@ -1291,6 +1293,291 @@ void test_strength_confidence_separation() {
     CHECK(raw.summary().mean_pair_confidence == opportunity.summary().mean_pair_confidence);
 }
 
+// --- v1.4: context-indexed equivalence -------------------------------------
+
+scf::ContextIndexedSolver solve_indexed(
+    const scf::Corpus& corpus,
+    const scf::AbstractionSignature signature = scf::AbstractionSignature::ContextOnly) {
+    scf::ContextIndexedSolver solver(corpus, signature);
+    solver.run();
+    return solver;
+}
+
+void test_cross_context_bridge() {
+    // u ~_{c1} v (context a_b) and v ~_{c2} w (context c_d) with c1 != c2:
+    // the bridge must NOT merge u and w, locally or via abstraction classes.
+    const auto corpus = load_corpus("a u b\na v b\nc v d\nc w d\n");
+    const auto solver = solve_indexed(corpus);
+    const auto u = string_id(corpus, "u");
+    const auto v = string_id(corpus, "v");
+    const auto w = string_id(corpus, "w");
+    const auto c1 = *solver.final_key_for(string_id(corpus, "a"), string_id(corpus, "b"));
+    const auto c2 = *solver.final_key_for(string_id(corpus, "c"), string_id(corpus, "d"));
+    CHECK(!(c1 == c2));
+    CHECK(solver.locally_related(u, v, c1));
+    CHECK(solver.locally_related(v, w, c2));
+    CHECK(!solver.locally_related(u, w, c1));
+    CHECK(!solver.locally_related(u, w, c2));
+    CHECK(!solver.locally_related_any(u, w));
+    CHECK(solver.abstraction_class(u) != solver.abstraction_class(w));
+    // v sits in both blocks; u and v have different profiles, hence
+    // different ContextAbstractionClasses even though locally related.
+    CHECK(solver.abstraction_class(u) != solver.abstraction_class(v));
+    // The diagnostic projection graph DOES connect u-v-w; that is exactly the
+    // object that must never be mistaken for a v1.4 equivalence class.
+    const auto diagnostics = solver.diagnostics();
+    CHECK(diagnostics.projected_giant_component_size >= 3);
+    // Legacy global DSU (baseline) merges u, v, w through the bridge.
+    const auto legacy = solve(corpus);
+    CHECK(legacy.equivalent(u, w));
+}
+
+void test_ambiguous_surface_roles_multirole() {
+    // Token x fills the N role and the V role. It must belong to several
+    // LocalRoleBlocks without any split and without bridging n* and v* into
+    // one class.
+    const auto dataset = scf::generate_dataset("ambiguous_surface_roles", 1.0, 1);
+    CHECK(dataset.full_sentence_count == 2 * 3 * 3);
+    const auto corpus = corpus_from_dataset(dataset);
+    const auto solver = solve_indexed(corpus);
+    const auto x = string_id(corpus, "x");
+    const auto n1 = string_id(corpus, "n1");
+    const auto v1 = string_id(corpus, "v1");
+    CHECK(solver.keys_of_yield(x).size() >= 2);
+    bool with_n = false;
+    bool with_v = false;
+    for (const auto& key : solver.keys_of_yield(x)) {
+        with_n |= solver.locally_related(x, n1, key);
+        with_v |= solver.locally_related(x, v1, key);
+        CHECK(!solver.locally_related(n1, v1, key));
+    }
+    CHECK(with_n && with_v);
+    CHECK(!solver.locally_related_any(n1, v1));
+    CHECK(solver.abstraction_class(n1) != solver.abstraction_class(v1));
+}
+
+void test_recursive_cascade_rounds() {
+    const auto dataset = scf::generate_dataset("recursive_context_cascade", 1.0, 1);
+    CHECK(dataset.full_sentence_count == 2);  // "w a m" / "w b m"
+    const auto corpus = corpus_from_dataset(dataset);
+    const auto a = string_id(corpus, "a");
+    const auto b = string_id(corpus, "b");
+    const auto am = string_id(corpus, "a m");
+    const auto bm = string_id(corpus, "b m");
+    {
+        // context_only: the exact complete-profile operator saturates in ONE
+        // productive round (idempotence — see the one-round theorem note).
+        const auto solver = solve_indexed(corpus, scf::AbstractionSignature::ContextOnly);
+        CHECK(solver.round_count() == 1);
+        CHECK(solver.abstraction_class(a) == solver.abstraction_class(b));
+        CHECK(solver.abstraction_class(am) == solver.abstraction_class(bm));
+        CHECK(!solver.monotonicity_violated());
+    }
+    {
+        // context_plus_concat: decomposition signatures delay the merges into
+        // a genuine multi-round cascade: round 1 merges a~b, round 2 merges
+        // "a m"~"b m" (their D-signature only matches after a~b), round 3
+        // merges the full sentences.
+        const auto solver =
+            solve_indexed(corpus, scf::AbstractionSignature::ContextPlusConcat);
+        CHECK(solver.round_count() >= 2);
+        CHECK(solver.abstraction_class(a) == solver.abstraction_class(b));
+        CHECK(solver.abstraction_class(am) == solver.abstraction_class(bm));
+        CHECK(!solver.monotonicity_violated());
+        // Genuine new merges strictly after round 1:
+        std::size_t late_merges = 0;
+        for (const auto& stats : solver.round_stats()) {
+            if (stats.round >= 2) {
+                late_merges += stats.new_context_class_merges;
+            }
+        }
+        CHECK(late_merges > 0);
+    }
+}
+
+void test_epsilon_stays_singleton() {
+    const auto corpus = load_corpus("a\nb\na b\n");
+    const auto solver = solve_indexed(corpus);
+    const auto epsilon = corpus.string_interner().epsilon_id();
+    for (scf::StringId s = 0; s < corpus.string_interner().size(); ++s) {
+        if (s != epsilon) {
+            CHECK(solver.abstraction_class(s) != solver.abstraction_class(epsilon));
+        }
+    }
+}
+
+// Naive reference implementation (spec §37): sets and maps all the way down.
+struct NaiveIndexedResult {
+    std::vector<std::set<scf::StringId>> classes;      // canonical partition
+    std::set<std::pair<std::set<scf::StringId>, std::set<scf::StringId>>> blocks_by_content;
+    std::size_t rounds{};
+};
+
+NaiveIndexedResult naive_context_indexed(const scf::Corpus& corpus,
+                                         const scf::AbstractionSignature signature) {
+    const auto epsilon = corpus.string_interner().epsilon_id();
+    const auto count = corpus.string_interner().size();
+    std::vector<std::size_t> label(count);
+    for (scf::StringId s = 0; s < count; ++s) {
+        label[s] = s;
+    }
+    std::size_t rounds = 0;
+    while (true) {
+        using Key = std::pair<std::size_t, std::size_t>;
+        std::map<scf::StringId, std::set<Key>> profile;
+        std::map<scf::StringId, std::set<Key>> decomposition;
+        for (const auto& record : corpus.context_records()) {
+            profile[record.triple.yield].insert(
+                {label[record.triple.left], label[record.triple.right]});
+        }
+        if (signature == scf::AbstractionSignature::ContextPlusConcat) {
+            for (const auto& triple : corpus.concat_triples()) {
+                decomposition[triple.result].insert({label[triple.left], label[triple.right]});
+            }
+        }
+        std::map<std::pair<std::set<Key>, std::set<Key>>, std::size_t> groups;
+        std::vector<std::size_t> next(count);
+        for (scf::StringId s = 0; s < count; ++s) {
+            if (s == epsilon) {
+                next[s] = count + 1;  // reserved singleton label
+                continue;
+            }
+            const auto signature_value = std::pair(profile[s], decomposition[s]);
+            const auto entry = groups.emplace(signature_value, groups.size());
+            next[s] = entry.first->second;
+        }
+        // partition-content comparison
+        std::map<std::size_t, std::set<scf::StringId>> old_parts, new_parts;
+        for (scf::StringId s = 0; s < count; ++s) {
+            old_parts[label[s]].insert(s);
+            new_parts[next[s]].insert(s);
+        }
+        std::set<std::set<scf::StringId>> old_set, new_set;
+        for (const auto& [key, members] : old_parts) old_set.insert(members);
+        for (const auto& [key, members] : new_parts) new_set.insert(members);
+        if (old_set == new_set) {
+            NaiveIndexedResult result;
+            result.rounds = rounds;
+            for (const auto& members : new_set) result.classes.push_back(members);
+            std::map<Key, std::set<scf::StringId>> blocks;
+            for (const auto& record : corpus.context_records()) {
+                blocks[{label[record.triple.left], label[record.triple.right]}].insert(
+                    record.triple.yield);
+            }
+            // canonicalize block identity by the *content* of the context
+            // classes, immune to label numbering
+            for (const auto& [key, yields] : blocks) {
+                std::set<scf::StringId> content_key;
+                for (scf::StringId s = 0; s < count; ++s) {
+                    if (label[s] == key.first) content_key.insert(s);
+                    if (label[s] == key.second) content_key.insert(s + count);  // offset right side
+                }
+                result.blocks_by_content.insert({content_key, yields});
+            }
+            return result;
+        }
+        label = next;
+        ++rounds;
+    }
+}
+
+void test_naive_reference_agreement() {
+    // 100 random small corpora: optimized fixed point == naive fixed point
+    // (partition, blocks, round count) modulo canonical ID renaming.
+    std::mt19937_64 engine(12345);
+    const std::vector<std::string> alphabet{"a", "b", "c", "d", "e", "f"};
+    for (int trial = 0; trial < 100; ++trial) {
+        std::ostringstream text;
+        const auto sentences = 2 + engine() % 6;
+        for (std::size_t sentence = 0; sentence < sentences; ++sentence) {
+            const auto length = 1 + engine() % 4;
+            for (std::size_t token = 0; token < length; ++token) {
+                text << (token == 0 ? "" : " ") << alphabet[engine() % alphabet.size()];
+            }
+            text << '\n';
+        }
+        std::istringstream input(text.str());
+        scf::Corpus corpus;
+        corpus.load(input);
+        for (const auto signature : {scf::AbstractionSignature::ContextOnly,
+                                     scf::AbstractionSignature::ContextPlusConcat}) {
+            const auto solver = solve_indexed(corpus, signature);
+            const auto naive = naive_context_indexed(corpus, signature);
+            CHECK(solver.round_count() == naive.rounds);
+            CHECK(!solver.monotonicity_violated());
+            // partitions agree as content
+            std::map<scf::ContextClassId, std::set<scf::StringId>> optimized_parts;
+            for (scf::StringId s = 0; s < corpus.string_interner().size(); ++s) {
+                optimized_parts[solver.abstraction_class(s)].insert(s);
+            }
+            std::set<std::set<scf::StringId>> optimized_set;
+            for (const auto& [key, members] : optimized_parts) optimized_set.insert(members);
+            std::set<std::set<scf::StringId>> naive_set(naive.classes.begin(),
+                                                        naive.classes.end());
+            CHECK(optimized_set == naive_set);
+            // context_only: the one-round idempotence theorem, empirically —
+            // the exact complete-profile operator never needs a second
+            // productive round.
+            if (signature == scf::AbstractionSignature::ContextOnly) {
+                CHECK(solver.round_count() <= 1);
+            }
+            // Relation-invariance theorem: abstraction merges context classes
+            // but never creates a new locally-related yield pair — the
+            // distinct-pair set equals the exact round-0 one in every
+            // signature.
+            std::set<std::pair<scf::StringId, scf::StringId>> round0_pairs, final_pairs;
+            {
+                std::map<std::pair<scf::StringId, scf::StringId>, std::set<scf::StringId>>
+                    exact_blocks;
+                for (const auto& record : corpus.context_records()) {
+                    exact_blocks[{record.triple.left, record.triple.right}].insert(
+                        record.triple.yield);
+                }
+                for (const auto& [key, yields] : exact_blocks) {
+                    for (auto a = yields.begin(); a != yields.end(); ++a) {
+                        for (auto b = std::next(a); b != yields.end(); ++b) {
+                            round0_pairs.emplace(*a, *b);
+                        }
+                    }
+                }
+            }
+            for (const auto& block : solver.blocks()) {
+                for (std::size_t a = 0; a < block.yields.size(); ++a) {
+                    for (std::size_t b = a + 1; b < block.yields.size(); ++b) {
+                        final_pairs.emplace(block.yields[a], block.yields[b]);
+                    }
+                }
+            }
+            CHECK(round0_pairs == final_pairs);
+        }
+    }
+}
+
+void test_indexed_determinism_hashes() {
+    const auto dataset = scf::generate_dataset("hierarchical_correlated_right", 1.0, 1);
+    const auto corpus_a = corpus_from_dataset(dataset);
+    const auto corpus_b = corpus_from_dataset(dataset);
+    const auto first = solve_indexed(corpus_a);
+    const auto second = solve_indexed(corpus_b);
+    CHECK(first.context_partition_hash() == second.context_partition_hash());
+    CHECK(first.local_relation_hash() == second.local_relation_hash());
+    CHECK(first.round_trace_hash() == second.round_trace_hash());
+}
+
+void test_indexed_shadow_symmetric_honesty() {
+    // Shadow parser must keep symmetric_abc fully ambiguous at full coverage.
+    const auto dataset = scf::generate_dataset("symmetric_abc", 1.0, 1);
+    const auto corpus = corpus_from_dataset(dataset);
+    const auto solver = solve_indexed(corpus);
+    const auto evidence = scf::indexed_shadow_evidence(corpus, solver);
+    const auto analyses = scf::analyze_sentences(corpus, evidence);
+    const auto gold = scf::dataset_gold_trees(dataset);
+    const auto evaluation = scf::evaluate_corpus(analyses, gold, evidence);
+    CHECK(evaluation.gold_in_argmax_rate == 1.0);
+    CHECK(evaluation.unique_optimal_rate == 0.0);
+    CHECK(evaluation.mean_argmax_size == 2.0);
+}
+
 void test_prepare_text() {
     std::istringstream input(
         "Hello World. This is a TEST, with punctuation! And a very very very very very very "
@@ -1369,6 +1656,13 @@ int main() {
          test_cartesian_bias_regression_per_objective},
         {"forced_span_metrics", test_forced_span_metrics},
         {"strength_confidence_separation", test_strength_confidence_separation},
+        {"cross_context_bridge", test_cross_context_bridge},
+        {"ambiguous_surface_roles_multirole", test_ambiguous_surface_roles_multirole},
+        {"recursive_cascade_rounds", test_recursive_cascade_rounds},
+        {"epsilon_stays_singleton", test_epsilon_stays_singleton},
+        {"naive_reference_agreement", test_naive_reference_agreement},
+        {"indexed_determinism_hashes", test_indexed_determinism_hashes},
+        {"indexed_shadow_symmetric_honesty", test_indexed_shadow_symmetric_honesty},
     };
 
     std::size_t failures = 0;

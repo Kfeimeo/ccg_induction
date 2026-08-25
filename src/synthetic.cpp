@@ -239,6 +239,8 @@ std::vector<std::string> known_grammar_names() {
             "hierarchical_correlated_balanced",
             "hierarchical_correlated_right",
             "hierarchical_correlated_left",
+            "ambiguous_surface_roles",
+            "recursive_context_cascade",
             "ccg_lite"};
 }
 
@@ -251,6 +253,11 @@ std::size_t resolve_lexical_cardinality(const std::string& name, const std::size
     }
     if (name == "ccg_lite" && resolved != 2) {
         throw std::runtime_error("ccg_lite has a fixed lexicon; --lexical-cardinality is unsupported");
+    }
+    if (name == "recursive_context_cascade" && resolved != 2) {
+        throw std::runtime_error(
+            "recursive_context_cascade is a fixed minimal corpus; --lexical-cardinality is "
+            "unsupported");
     }
     if (name == "simple_np_vp" && resolved > 5) {
         throw std::runtime_error("simple_np_vp supports lexical cardinality up to 5");
@@ -370,6 +377,30 @@ Grammar make_grammar(const std::string& name, const std::size_t lexical_cardinal
             grammar.rules.push_back(Rule{"Y" + tag, {"a" + tag, "b" + tag}});
         }
         add_lexical_rules(grammar, "D", terminal_alternatives("d", k));
+    } else if (name == "ambiguous_surface_roles") {
+        // v1.4: surface token "x" fills both the N and the V role. Under
+        // context-indexed equivalence it must join both local role blocks
+        // without any lexical split and without bridging N-class and V-class
+        // tokens into one global class.
+        grammar.rules.push_back(Rule{"S", {"D", "X"}});
+        grammar.rules.push_back(Rule{"X", {"N", "V"}});
+        add_lexical_rules(grammar, "D", terminal_alternatives("d", k));
+        add_lexical_rules(grammar, "N", terminal_alternatives("n", k));
+        grammar.rules.push_back(Rule{"N", {"x"}});
+        add_lexical_rules(grammar, "V", terminal_alternatives("v", k));
+        grammar.rules.push_back(Rule{"V", {"x"}});
+    } else if (name == "recursive_context_cascade") {
+        // v1.4: fixed two-sentence corpus "w a m" / "w b m". Under the
+        // context_plus_concat signature the contraction cascades over three
+        // genuine rounds (a~b, then "a m"~"b m" and "w a"~"w b", then the
+        // full sentences); under context_only the exact-profile operator
+        // saturates in one round (see IMPLEMENTATION_NOTES on idempotence).
+        grammar.rules.push_back(Rule{"S", {"W", "X"}});
+        grammar.rules.push_back(Rule{"X", {"A", "M"}});
+        grammar.rules.push_back(Rule{"W", {"w"}});
+        grammar.rules.push_back(Rule{"A", {"a"}});
+        grammar.rules.push_back(Rule{"A", {"b"}});
+        grammar.rules.push_back(Rule{"M", {"m"}});
     } else if (name == "ccg_lite") {
         return ccg_lite_lexicon_grammar();
     } else {

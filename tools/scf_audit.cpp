@@ -7,6 +7,7 @@
 // No parser, objective, or evidence change is made here (Acceptance G).
 
 #include "scf/audit.hpp"
+#include "scf/context_indexed.hpp"
 #include "scf/corpus.hpp"
 #include "scf/enumerator.hpp"
 #include "scf/equivalence_solver.hpp"
@@ -677,6 +678,604 @@ void run_rho_by_objective(const std::filesystem::path& directory,
     std::cout << "wrote rho_by_objective.csv\n";
 }
 
+// --- v1.4: context-indexed synthetic audit ---------------------------------
+
+// Latent role of a single-token yield: the lexical-rule lhs with trailing
+// digits stripped when one exists (Det1 -> Det); otherwise the token with
+// trailing digits stripped (a1 -> a). Multi-token yields carry no role and
+// are excluded from precision/purity (reported separately).
+std::map<std::string, std::set<std::string>> latent_roles(const scf::Grammar& grammar) {
+    const auto strip_digits = [](std::string text) {
+        while (!text.empty() && std::isdigit(static_cast<unsigned char>(text.back()))) {
+            text.pop_back();
+        }
+        return text.empty() ? std::string("#") : text;
+    };
+    std::set<std::string> lhs_set;
+    for (const auto& rule : grammar.rules) {
+        lhs_set.insert(rule.lhs);
+    }
+    std::map<std::string, std::set<std::string>> roles;
+    for (const auto& rule : grammar.rules) {
+        if (rule.rhs.size() == 1 && !lhs_set.contains(rule.rhs.front())) {
+            roles[rule.rhs.front()].insert(strip_digits(rule.lhs));
+        }
+    }
+    // terminals appearing only inside multi-symbol rules fall back to their
+    // own stripped spelling
+    for (const auto& rule : grammar.rules) {
+        for (const auto& symbol : rule.rhs) {
+            if (!lhs_set.contains(symbol) && !roles.contains(symbol)) {
+                roles[symbol].insert(strip_digits(symbol));
+            }
+        }
+    }
+    return roles;
+}
+
+struct IndexedSyntheticResult {
+    scf::ContextIndexedDiagnostics diagnostics;
+    double recursive_relation_gain{};
+    std::uint64_t relations_round0{};
+    std::uint64_t relations_final{};
+    double raw_evidence_coverage{};
+    double indexed_evidence_coverage{};
+    std::size_t local_relation_pairs{};
+    std::size_t true_pairs{};
+    std::size_t false_pairs{};
+    std::size_t unknown_pairs{};  // pairs involving multi-token yields
+    double precision{};           // over role-known pairs
+    std::optional<double> recall;
+    double mean_key_purity{};
+    double weighted_key_purity{};
+    double min_key_purity{1.0};
+    std::size_t multi_role_surfaces{};
+    double mean_roles_per_surface{};
+    std::size_t max_roles_per_surface{};
+    // Distinct unordered yield pairs related under ANY key: round 0 (exact
+    // contexts) vs the final abstraction. The relation-invariance theorem
+    // predicts equality in every signature.
+    std::size_t distinct_pairs_round0{};
+    std::size_t distinct_pairs_final{};
+};
+
+IndexedSyntheticResult analyze_indexed(const scf::SyntheticDataset& dataset,
+                                       const scf::Corpus& corpus,
+                                       const scf::ContextIndexedSolver& solver) {
+    IndexedSyntheticResult result;
+    result.diagnostics = solver.diagnostics();
+    result.recursive_relation_gain = solver.recursive_relation_gain();
+    result.relations_round0 = solver.relation_count_round0();
+    result.relations_final = solver.relation_count_final();
+
+    // Evidence coverage (spec §29): raw partner vs final-context partner.
+    {
+        const scf::EvidenceBuilder raw(corpus);
+        std::set<scf::Span> raw_spans;
+        for (const auto& item : raw.span_evidence()) {
+            raw_spans.insert(item.span);
+        }
+        std::size_t proper = 0;
+        std::size_t raw_hits = 0;
+        std::size_t indexed_hits = 0;
+        std::map<scf::RawContextKey, bool> indexed_context;
+        for (const auto& record : corpus.context_records()) {
+            const auto key =
+                *solver.final_key_for(record.triple.left, record.triple.right);
+            indexed_context[{record.triple.left, record.triple.right}] =
+                solver.locally_related(record.triple.yield, record.triple.yield, key) &&
+                [&] {
+                    const auto& blocks = solver.blocks();
+                    const auto found = std::lower_bound(
+                        blocks.begin(), blocks.end(), key,
+                        [](const scf::LocalRoleBlock& block, const scf::ContextKey& target) {
+                            return block.context < target;
+                        });
+                    return found != blocks.end() && found->context == key &&
+                           found->yields.size() >= 2;
+                }();
+        }
+        std::map<scf::Span, bool> indexed_span;
+        for (const auto& record : corpus.context_records()) {
+            const bool hit =
+                indexed_context[{record.triple.left, record.triple.right}];
+            for (const auto occurrence_id : record.occurrences) {
+                const auto& occurrence =
+                    corpus.occurrences().at(static_cast<std::size_t>(occurrence_id));
+                indexed_span[scf::Span{occurrence.sentence, occurrence.begin,
+                                       occurrence.end}] = hit;
+            }
+        }
+        for (std::size_t sentence = 0; sentence < corpus.sentences().size(); ++sentence) {
+            const auto length = static_cast<std::uint16_t>(corpus.sentences()[sentence].size());
+            for (std::uint16_t span_length = 2; span_length < length; ++span_length) {
+                for (std::uint16_t begin = 0; begin + span_length <= length; ++begin) {
+                    const auto end = static_cast<std::uint16_t>(begin + span_length);
+                    if (begin == 0 && end == length) continue;
+                    const scf::Span span{static_cast<scf::SentenceId>(sentence), begin, end};
+                    ++proper;
+                    raw_hits += raw_spans.contains(span) ? 1 : 0;
+                    const auto found = indexed_span.find(span);
+                    indexed_hits += found != indexed_span.end() && found->second ? 1 : 0;
+                }
+            }
+        }
+        result.raw_evidence_coverage =
+            proper > 0 ? static_cast<double>(raw_hits) / proper : 0.0;
+        result.indexed_evidence_coverage =
+            proper > 0 ? static_cast<double>(indexed_hits) / proper : 0.0;
+    }
+
+    // Local-relation soundness and context-key purity vs latent roles.
+    const auto roles = latent_roles(dataset.grammar);
+    const auto role_of = [&](const scf::StringId yield)
+        -> std::optional<std::set<std::string>> {
+        const auto tokens = corpus.string_interner().tokens(yield);
+        if (tokens.size() != 1) {
+            return std::nullopt;
+        }
+        const auto text = corpus.string_interner().to_string(yield, corpus.token_interner());
+        const auto found = roles.find(text);
+        if (found == roles.end()) {
+            return std::nullopt;
+        }
+        return found->second;
+    };
+    double purity_sum = 0.0;
+    double purity_weight_sum = 0.0;
+    double purity_weighted = 0.0;
+    std::size_t purity_keys = 0;
+    for (const auto& block : solver.blocks()) {
+        std::vector<std::set<std::string>> block_roles;
+        for (const auto yield : block.yields) {
+            if (const auto role = role_of(yield)) {
+                block_roles.push_back(*role);
+            }
+        }
+        // pair-level soundness
+        for (std::size_t a = 0; a < block.yields.size(); ++a) {
+            for (std::size_t b = a + 1; b < block.yields.size(); ++b) {
+                ++result.local_relation_pairs;
+                const auto role_a = role_of(block.yields[a]);
+                const auto role_b = role_of(block.yields[b]);
+                if (!role_a || !role_b) {
+                    ++result.unknown_pairs;
+                    continue;
+                }
+                std::vector<std::string> shared;
+                std::set_intersection(role_a->begin(), role_a->end(), role_b->begin(),
+                                      role_b->end(), std::back_inserter(shared));
+                if (shared.empty()) {
+                    ++result.false_pairs;
+                } else {
+                    ++result.true_pairs;
+                }
+            }
+        }
+        if (block_roles.size() < 2) {
+            continue;
+        }
+        std::map<std::string, std::size_t> role_counts;
+        for (const auto& role_set : block_roles) {
+            for (const auto& role : role_set) {
+                ++role_counts[role];
+            }
+        }
+        std::size_t majority = 0;
+        for (const auto& [role, count] : role_counts) {
+            majority = std::max(majority, count);
+        }
+        const auto purity = static_cast<double>(majority) /
+                            static_cast<double>(block_roles.size());
+        purity_sum += purity;
+        purity_weighted += purity * static_cast<double>(block_roles.size());
+        purity_weight_sum += static_cast<double>(block_roles.size());
+        result.min_key_purity = std::min(result.min_key_purity, purity);
+        ++purity_keys;
+    }
+    result.precision =
+        result.true_pairs + result.false_pairs > 0
+            ? static_cast<double>(result.true_pairs) /
+                  static_cast<double>(result.true_pairs + result.false_pairs)
+            : 1.0;
+    result.mean_key_purity = purity_keys > 0 ? purity_sum / purity_keys : 1.0;
+    result.weighted_key_purity =
+        purity_weight_sum > 0 ? purity_weighted / purity_weight_sum : 1.0;
+    // recall over enumerable gold substitutable token pairs (same-role
+    // single tokens observed in the corpus)
+    {
+        std::vector<std::pair<std::string, scf::StringId>> tokens;
+        for (scf::StringId s = 1; s < corpus.string_interner().size(); ++s) {
+            if (corpus.string_interner().tokens(s).size() == 1) {
+                tokens.emplace_back(
+                    corpus.string_interner().to_string(s, corpus.token_interner()), s);
+            }
+        }
+        std::size_t gold_pairs = 0;
+        std::size_t recovered = 0;
+        for (std::size_t a = 0; a < tokens.size(); ++a) {
+            for (std::size_t b = a + 1; b < tokens.size(); ++b) {
+                const auto role_a = roles.find(tokens[a].first);
+                const auto role_b = roles.find(tokens[b].first);
+                if (role_a == roles.end() || role_b == roles.end()) {
+                    continue;
+                }
+                std::vector<std::string> shared;
+                std::set_intersection(role_a->second.begin(), role_a->second.end(),
+                                      role_b->second.begin(), role_b->second.end(),
+                                      std::back_inserter(shared));
+                if (shared.empty()) {
+                    continue;
+                }
+                ++gold_pairs;
+                recovered += solver.locally_related_any(tokens[a].second, tokens[b].second)
+                                 ? 1
+                                 : 0;
+            }
+        }
+        if (gold_pairs > 0) {
+            result.recall = static_cast<double>(recovered) / gold_pairs;
+        }
+    }
+    // distinct yield pairs: exact round-0 blocks vs final abstract blocks
+    {
+        std::map<scf::RawContextKey, std::set<scf::StringId>> exact_blocks;
+        for (const auto& record : corpus.context_records()) {
+            exact_blocks[{record.triple.left, record.triple.right}].insert(
+                record.triple.yield);
+        }
+        std::set<std::pair<scf::StringId, scf::StringId>> round0_pairs, final_pairs;
+        for (const auto& [key, yields] : exact_blocks) {
+            for (auto a = yields.begin(); a != yields.end(); ++a) {
+                for (auto b = std::next(a); b != yields.end(); ++b) {
+                    round0_pairs.emplace(*a, *b);
+                }
+            }
+        }
+        for (const auto& block : solver.blocks()) {
+            for (std::size_t a = 0; a < block.yields.size(); ++a) {
+                for (std::size_t b = a + 1; b < block.yields.size(); ++b) {
+                    final_pairs.emplace(block.yields[a], block.yields[b]);
+                }
+            }
+        }
+        result.distinct_pairs_round0 = round0_pairs.size();
+        result.distinct_pairs_final = final_pairs.size();
+    }
+
+    // multi-role surfaces: distinct final keys with block >= 2 per yield
+    {
+        std::map<scf::StringId, std::size_t> role_keys;
+        for (const auto& block : solver.blocks()) {
+            if (block.yields.size() < 2) {
+                continue;
+            }
+            for (const auto yield : block.yields) {
+                ++role_keys[yield];
+            }
+        }
+        double total = 0.0;
+        for (const auto& [yield, count] : role_keys) {
+            total += static_cast<double>(count);
+            result.multi_role_surfaces += count >= 2 ? 1 : 0;
+            result.max_roles_per_surface = std::max(result.max_roles_per_surface, count);
+        }
+        result.mean_roles_per_surface =
+            role_keys.empty() ? 0.0 : total / static_cast<double>(role_keys.size());
+    }
+    return result;
+}
+
+void run_v14_synthetic(const std::filesystem::path& directory) {
+    const std::vector<std::string> grammars{
+        "ab_cartesian",          "simple_np_vp",
+        "symmetric_abc",         "hierarchical_correlated_balanced",
+        "hierarchical_correlated_right", "hierarchical_correlated_left",
+        "ambiguous_surface_roles", "recursive_context_cascade",
+        "ambiguous_lexicon",     "ccg_lite"};
+    auto metrics = open_file(directory / "synthetic_indexed_metrics.csv");
+    metrics << "grammar,signature,initial_context_classes,final_context_classes,"
+               "context_abstraction_collapse_ratio,largest_context_abstraction_class,"
+               "largest_context_abstraction_class_ratio,round_count,context_key_count,"
+               "mean_local_role_block_size,median_local_role_block_size,"
+               "p90_local_role_block_size,p99_local_role_block_size,"
+               "max_local_role_block_size,max_local_role_block_ratio,"
+               "projected_graph_components,projected_giant_component_ratio,"
+               "relations_round0,relations_final,recursive_relation_gain,"
+               "distinct_pairs_round0,distinct_pairs_final,"
+               "raw_evidence_coverage,indexed_evidence_coverage,coverage_gain,"
+               "multi_role_surfaces,mean_roles_per_surface,max_roles_per_surface\n";
+    auto role_metrics = open_file(directory / "local_role_metrics.csv");
+    role_metrics << "grammar,signature,local_relation_pairs,local_relation_true_pairs,"
+                    "local_relation_false_pairs,unknown_pairs,local_relation_precision,"
+                    "local_relation_recall,mean_context_key_purity,"
+                    "weighted_context_key_purity,min_context_key_purity\n";
+    for (const auto& grammar : grammars) {
+        const auto dataset = scf::generate_dataset(grammar, 1.0, 1);
+        std::ostringstream text;
+        for (const auto& sentence : dataset.sentences) {
+            for (std::size_t index = 0; index < sentence.tokens.size(); ++index) {
+                text << (index == 0 ? "" : " ") << sentence.tokens[index];
+            }
+            text << '\n';
+        }
+        scf::Corpus corpus;
+        std::istringstream input(text.str());
+        corpus.load(input);
+        for (const auto signature : {scf::AbstractionSignature::ContextOnly,
+                                     scf::AbstractionSignature::ContextPlusConcat}) {
+            scf::ContextIndexedSolver solver(corpus, signature);
+            solver.run();
+            const auto result = analyze_indexed(dataset, corpus, solver);
+            const auto& d = result.diagnostics;
+            metrics << grammar << ',' << scf::abstraction_signature_name(signature) << ','
+                    << d.initial_context_classes << ',' << d.final_context_classes << ','
+                    << fmt6(d.context_abstraction_collapse_ratio) << ','
+                    << d.largest_context_abstraction_class << ','
+                    << fmt6(d.largest_context_abstraction_class_ratio) << ','
+                    << d.round_count << ',' << d.context_key_count << ','
+                    << fmt6(d.mean_local_role_block_size) << ','
+                    << fmt6(d.median_local_role_block_size) << ','
+                    << fmt6(d.p90_local_role_block_size) << ','
+                    << fmt6(d.p99_local_role_block_size) << ','
+                    << d.max_local_role_block_size << ','
+                    << fmt6(d.max_local_role_block_ratio) << ','
+                    << d.projected_graph_components << ','
+                    << fmt6(d.projected_giant_component_ratio) << ','
+                    << result.relations_round0 << ',' << result.relations_final << ','
+                    << fmt6(result.recursive_relation_gain) << ','
+                    << result.distinct_pairs_round0 << ',' << result.distinct_pairs_final << ','
+                    << fmt6(result.raw_evidence_coverage) << ','
+                    << fmt6(result.indexed_evidence_coverage) << ','
+                    << fmt6(result.indexed_evidence_coverage - result.raw_evidence_coverage)
+                    << ',' << result.multi_role_surfaces << ','
+                    << fmt6(result.mean_roles_per_surface) << ','
+                    << result.max_roles_per_surface << '\n';
+            role_metrics << grammar << ',' << scf::abstraction_signature_name(signature) << ','
+                         << result.local_relation_pairs << ',' << result.true_pairs << ','
+                         << result.false_pairs << ',' << result.unknown_pairs << ','
+                         << fmt6(result.precision) << ','
+                         << (result.recall ? fmt6(*result.recall) : "N/A") << ','
+                         << fmt6(result.mean_key_purity) << ','
+                         << fmt6(result.weighted_key_purity) << ','
+                         << fmt6(result.min_key_purity) << '\n';
+        }
+        std::cout << "v14 synthetic: " << grammar << " done\n";
+    }
+}
+
+std::string yields_text(const scf::Corpus& corpus, const std::vector<scf::StringId>& yields,
+                        const std::size_t cap = 12) {
+    std::string text;
+    for (std::size_t index = 0; index < std::min(cap, yields.size()); ++index) {
+        text += (index == 0 ? "" : ", ");
+        text += '"' +
+                corpus.string_interner().to_string(yields[index], corpus.token_interner()) + '"';
+    }
+    if (yields.size() > cap) {
+        text += ", ...";
+    }
+    return text;
+}
+
+// Multi-round replay with textual trace for recursive_context_cascade
+// (context_plus_concat), plus the multi-role dump for
+// ambiguous_surface_roles.
+void run_v14_traces(const std::filesystem::path& directory) {
+    {
+        const auto dataset = scf::generate_dataset("recursive_context_cascade", 1.0, 1);
+        std::ostringstream text;
+        for (const auto& sentence : dataset.sentences) {
+            for (std::size_t index = 0; index < sentence.tokens.size(); ++index) {
+                text << (index == 0 ? "" : " ") << sentence.tokens[index];
+            }
+            text << '\n';
+        }
+        scf::Corpus corpus;
+        std::istringstream input(text.str());
+        corpus.load(input);
+        auto trace = open_file(directory / "recursive_cascade_trace.txt");
+        trace << "recursive_context_cascade (corpus: \"w a m\", \"w b m\")\n"
+              << "signature = context_plus_concat (context_only saturates in one round;\n"
+              << "see the one-round idempotence theorem in IMPLEMENTATION_NOTES)\n\n";
+        // naive replay with class-content tracking
+        const auto count = corpus.string_interner().size();
+        const auto epsilon = corpus.string_interner().epsilon_id();
+        std::vector<std::size_t> label(count);
+        for (scf::StringId s = 0; s < count; ++s) label[s] = s;
+        const auto text_of = [&](const scf::StringId s) {
+            return corpus.string_interner().to_string(s, corpus.token_interner());
+        };
+        std::set<std::set<scf::StringId>> previous_classes;
+        std::set<std::tuple<std::size_t, std::size_t, scf::StringId, scf::StringId>>
+            previous_relations;
+        for (std::size_t round = 0;; ++round) {
+            using Key = std::pair<std::size_t, std::size_t>;
+            std::map<scf::StringId, std::set<Key>> profile, decomposition;
+            std::map<Key, std::set<scf::StringId>> blocks;
+            for (const auto& record : corpus.context_records()) {
+                const Key key{label[record.triple.left], label[record.triple.right]};
+                profile[record.triple.yield].insert(key);
+                blocks[key].insert(record.triple.yield);
+            }
+            for (const auto& triple : corpus.concat_triples()) {
+                decomposition[triple.result].insert({label[triple.left], label[triple.right]});
+            }
+            trace << "ROUND " << round << "\n";
+            // newly merged abstraction classes vs previous round
+            std::map<std::size_t, std::set<scf::StringId>> parts;
+            for (scf::StringId s = 0; s < count; ++s) parts[label[s]].insert(s);
+            std::set<std::set<scf::StringId>> classes;
+            for (const auto& [key, members] : parts) classes.insert(members);
+            if (round > 0) {
+                trace << "  newly merged context abstraction classes:\n";
+                bool any = false;
+                for (const auto& members : classes) {
+                    if (members.size() >= 2 && !previous_classes.contains(members)) {
+                        trace << "    { ";
+                        for (const auto member : members) trace << '"' << text_of(member) << "\" ";
+                        trace << "}\n";
+                        any = true;
+                    }
+                }
+                if (!any) trace << "    (none)\n";
+            }
+            // newly induced local relations
+            std::set<std::tuple<std::size_t, std::size_t, scf::StringId, scf::StringId>>
+                relations;
+            for (const auto& [key, yields] : blocks) {
+                for (auto a = yields.begin(); a != yields.end(); ++a) {
+                    for (auto b = std::next(a); b != yields.end(); ++b) {
+                        relations.insert({key.first, key.second, *a, *b});
+                    }
+                }
+            }
+            trace << "  context keys = " << blocks.size()
+                  << ", local relations = " << relations.size() << "\n";
+            if (round > 0) {
+                trace << "  newly induced local relations:\n";
+                bool any = false;
+                for (const auto& [kl, kr, a, b] : relations) {
+                    bool is_new = true;
+                    for (const auto& [pl, pr, pa, pb] : previous_relations) {
+                        if (pa == a && pb == b) {
+                            is_new = false;  // same yield pair already related somewhere
+                            break;
+                        }
+                    }
+                    if (is_new) {
+                        trace << "    \"" << text_of(a) << "\" ~ \"" << text_of(b) << "\"\n";
+                        any = true;
+                    }
+                }
+                if (!any) trace << "    (none)\n";
+            }
+            trace << "\n";
+            previous_classes = classes;
+            previous_relations = relations;
+            // next partition (context_plus_concat)
+            std::map<std::pair<std::set<Key>, std::set<Key>>, std::size_t> groups;
+            std::vector<std::size_t> next(count);
+            for (scf::StringId s = 0; s < count; ++s) {
+                if (s == epsilon) {
+                    next[s] = count + 1;
+                    continue;
+                }
+                const auto entry =
+                    groups.emplace(std::pair(profile[s], decomposition[s]), groups.size());
+                next[s] = entry.first->second;
+            }
+            std::map<std::size_t, std::set<scf::StringId>> next_parts;
+            for (scf::StringId s = 0; s < count; ++s) next_parts[next[s]].insert(s);
+            std::set<std::set<scf::StringId>> next_classes;
+            for (const auto& [key, members] : next_parts) next_classes.insert(members);
+            if (next_classes == classes) {
+                trace << "FIXED POINT after " << round << " productive rounds\n";
+                break;
+            }
+            label = next;
+        }
+        std::cout << "wrote recursive_cascade_trace.txt\n";
+    }
+    {
+        const auto dataset = scf::generate_dataset("ambiguous_surface_roles", 1.0, 1);
+        std::ostringstream text;
+        for (const auto& sentence : dataset.sentences) {
+            for (std::size_t index = 0; index < sentence.tokens.size(); ++index) {
+                text << (index == 0 ? "" : " ") << sentence.tokens[index];
+            }
+            text << '\n';
+        }
+        scf::Corpus corpus;
+        std::istringstream input(text.str());
+        corpus.load(input);
+        scf::ContextIndexedSolver solver(corpus);
+        solver.run();
+        auto output = open_file(directory / "ambiguous_surface_roles.txt");
+        output << "ambiguous_surface_roles: one surface form, several local roles, no split,\n"
+                  "no global collapse (context_only signature, full coverage)\n\n";
+        for (scf::StringId s = 1; s < corpus.string_interner().size(); ++s) {
+            if (corpus.string_interner().tokens(s).size() != 1) {
+                continue;
+            }
+            const auto keys = solver.keys_of_yield(s);
+            std::size_t role_keys = 0;
+            std::string detail;
+            for (const auto& key : keys) {
+                const auto found = std::lower_bound(
+                    solver.blocks().begin(), solver.blocks().end(), key,
+                    [](const scf::LocalRoleBlock& block, const scf::ContextKey& target) {
+                        return block.context < target;
+                    });
+                if (found == solver.blocks().end() || !(found->context == key) ||
+                    found->yields.size() < 2) {
+                    continue;
+                }
+                ++role_keys;
+                detail += "  key(" + std::to_string(key.left) + "," +
+                          std::to_string(key.right) + ") block_size=" +
+                          std::to_string(found->yields.size()) + ": " +
+                          yields_text(corpus, found->yields) + "\n";
+            }
+            output << "surface_form = \""
+                   << corpus.string_interner().to_string(s, corpus.token_interner())
+                   << "\"\nlocal_role_count = " << role_keys << "\n"
+                   << detail << "\n";
+        }
+        std::cout << "wrote ambiguous_surface_roles.txt\n";
+    }
+}
+
+// Experimental shadow parser vs raw/opportunity on the v1.4 benchmark
+// (spec §30-31). Never the default parser.
+void run_v14_shadow(const std::filesystem::path& directory) {
+    const std::vector<std::string> grammars{
+        "nested_balanced", "simple_np_vp", "symmetric_abc",
+        "hierarchical_correlated_balanced", "hierarchical_correlated_right",
+        "hierarchical_correlated_left"};
+    auto output = open_file(directory / "indexed_shadow_parse_metrics.csv");
+    output << "grammar,evidence_source,gold_in_argmax_rate,unique_optimal_rate,"
+              "exact_unique_match_rate,mean_argmax_size,forced_precision_observable,"
+              "forced_recall_observable\n";
+    for (const auto& grammar : grammars) {
+        const auto dataset = scf::generate_dataset(grammar, 1.0, 1);
+        std::ostringstream text;
+        for (const auto& sentence : dataset.sentences) {
+            for (std::size_t index = 0; index < sentence.tokens.size(); ++index) {
+                text << (index == 0 ? "" : " ") << sentence.tokens[index];
+            }
+            text << '\n';
+        }
+        scf::Corpus corpus;
+        std::istringstream input(text.str());
+        corpus.load(input);
+        const auto gold = scf::dataset_gold_trees(dataset);
+        const auto observable = scf::dataset_observable_gold(dataset);
+        const auto evaluate_with = [&](const std::vector<scf::SpanEvidence>& evidence,
+                                       const std::string& source) {
+            const auto analyses = scf::analyze_sentences(corpus, evidence);
+            const auto evaluation =
+                scf::evaluate_corpus(analyses, gold, evidence, {}, observable);
+            output << grammar << ',' << source << ','
+                   << fmt6(evaluation.gold_in_argmax_rate) << ','
+                   << fmt6(evaluation.unique_optimal_rate) << ','
+                   << fmt6(evaluation.exact_unique_match_rate) << ','
+                   << fmt6(evaluation.mean_argmax_size) << ','
+                   << fmt6(evaluation.forced_precision_observable_gold) << ','
+                   << fmt6(evaluation.forced_recall_observable_gold) << '\n';
+        };
+        evaluate_with(scf::EvidenceBuilder(corpus).span_evidence(), "raw");
+        evaluate_with(
+            scf::EvidenceBuilder(corpus, scf::EvidenceObjective::OpportunityNormalized)
+                .span_evidence(),
+            "opportunity");
+        scf::ContextIndexedSolver solver(corpus);
+        solver.run();
+        evaluate_with(scf::indexed_shadow_evidence(corpus, solver), "indexed-shadow");
+    }
+    std::cout << "wrote indexed_shadow_parse_metrics.csv\n";
+}
+
 }  // namespace
 
 int main(int argc, char** argv) {
@@ -752,6 +1351,10 @@ int main(int argc, char** argv) {
             run_objective_bias(*output_directory, cardinalities, objectives);
             run_objective_grid(*output_directory, seeds, objectives);
             run_rho_by_objective(*output_directory, objectives);
+        } else if (subcommand == "v14-synthetic") {
+            run_v14_synthetic(*output_directory);
+            run_v14_traces(*output_directory);
+            run_v14_shadow(*output_directory);
         } else {
             throw std::runtime_error("unknown subcommand '" + subcommand + "'");
         }

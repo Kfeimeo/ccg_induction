@@ -28,6 +28,7 @@ add_library(scf_core
     src/pipeline.cpp
     src/prepare_text.cpp
     src/audit.cpp
+    src/context_indexed.cpp
 )
 
 target_include_directories(scf_core PUBLIC include)

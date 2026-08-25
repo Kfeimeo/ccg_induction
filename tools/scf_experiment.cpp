@@ -1,4 +1,5 @@
 #include "scf/audit.hpp"
+#include "scf/context_indexed.hpp"
 #include "scf/corpus.hpp"
 #include "scf/equivalence_solver.hpp"
 #include "scf/evaluator.hpp"
@@ -38,6 +39,10 @@ void print_usage(std::ostream& output) {
               "                        (default: raw_count). With several, runs are grouped in\n"
               "                        per-objective subdirectories; summary.csv gets one row\n"
               "                        per (objective, coverage, seed)\n"
+              "  --tree-evidence-source raw|indexed-shadow\n"
+              "                        indexed-shadow: EXPERIMENTAL v1.4 evidence from final\n"
+              "                        context-indexed keys (synthetic only; ignores\n"
+              "                        --evidence-objectives; never the default)\n"
               "  --output-dir DIR      Per-run directories cov_X_seed_Y plus summary.csv\n"
               "\n"
               "  --seeds accepts ranges: 1:20 expands to 1,2,...,20.\n";
@@ -103,6 +108,7 @@ int main(int argc, char** argv) {
         double symmetry_breaking_rate = 0.0;
         bool run_saturation = true;
         std::string objectives_csv = "raw_count";
+        std::string tree_evidence_source = "raw";
         for (int index = 1; index < argc; ++index) {
             const std::string_view argument(argv[index]);
             if (argument == "--help" || argument == "-h") {
@@ -126,6 +132,12 @@ int main(int argc, char** argv) {
             } else if (argument == "--evidence-objectives" ||
                        argument == "--evidence-objective") {
                 objectives_csv = require_value(argc, argv, index);
+            } else if (argument == "--tree-evidence-source") {
+                tree_evidence_source = require_value(argc, argv, index);
+                if (tree_evidence_source != "raw" && tree_evidence_source != "indexed-shadow") {
+                    throw std::runtime_error(
+                        "--tree-evidence-source must be raw or indexed-shadow");
+                }
             } else if (argument == "--output-dir") {
                 output_directory = require_value(argc, argv, index);
             } else {
@@ -184,10 +196,20 @@ int main(int argc, char** argv) {
 
                 scf::Corpus corpus;
                 corpus.load_file((run_directory / "corpus.txt").string());
-                // Tree evidence always comes from exact raw surface contexts;
-                // the saturation engine is a structural diagnostic on top.
+                // Tree evidence defaults to exact raw surface contexts; the
+                // saturation engine is a structural diagnostic on top. The
+                // experimental indexed-shadow source (v1.4) is opt-in only.
                 const scf::EvidenceBuilder builder(corpus, objective);
-                const auto analyses = scf::analyze_sentences(corpus, builder.span_evidence());
+                std::vector<scf::SpanEvidence> shadow;
+                if (tree_evidence_source == "indexed-shadow") {
+                    scf::ContextIndexedSolver indexed(corpus);
+                    indexed.run();
+                    shadow = scf::indexed_shadow_evidence(corpus, indexed);
+                }
+                const auto& active_evidence =
+                    tree_evidence_source == "indexed-shadow" ? shadow
+                                                             : builder.span_evidence();
+                const auto analyses = scf::analyze_sentences(corpus, active_evidence);
                 std::optional<scf::EquivalenceSolver> solver;
                 if (run_saturation) {
                     solver.emplace(corpus.string_interner().size(), corpus.context_records(),
@@ -197,7 +219,7 @@ int main(int argc, char** argv) {
                 const auto gold = scf::dataset_gold_trees(dataset);
                 const auto observable_gold = scf::dataset_observable_gold(dataset);
                 const auto evaluation = scf::evaluate_corpus(
-                    analyses, gold, builder.span_evidence(), eval_config, observable_gold);
+                    analyses, gold, active_evidence, eval_config, observable_gold);
                 scf::CollapseDiagnostics diagnostics;
                 if (solver) {
                     diagnostics = scf::collapse_diagnostics(corpus, *solver, eval_config);
@@ -219,7 +241,9 @@ int main(int argc, char** argv) {
                 info.sampled_sentence_count = dataset.sentences.size();
                 info.lexical_cardinality = dataset.lexical_cardinality;
                 info.symmetry_breaking_rate = dataset.symmetry_breaking_rate;
-                info.evidence_objective = scf::evidence_objective_name(objective);
+                info.evidence_objective = tree_evidence_source == "indexed-shadow"
+                                              ? "indexed_shadow"
+                                              : scf::evidence_objective_name(objective);
                 info.mean_pair_strength = builder.summary().mean_pair_strength;
                 info.mean_pair_confidence = builder.summary().mean_pair_confidence;
                 info.mean_candidate_span_score = builder.summary().mean_candidate_span_score;
@@ -239,7 +263,7 @@ int main(int argc, char** argv) {
                 {
                     const auto lengths = scf::corpus_sentence_lengths(corpus);
                     const auto stats =
-                        scf::score_by_span_length(lengths, builder.span_evidence(), gold);
+                        scf::score_by_span_length(lengths, active_evidence, gold);
                     std::ofstream output(run_directory / "score_by_span_length.csv");
                     scf::write_score_by_span_length_csv(output, stats);
                 }
@@ -262,7 +286,7 @@ int main(int argc, char** argv) {
                 {
                     std::ofstream output(run_directory / "failure_examples.txt");
                     scf::write_failure_examples(output, corpus, gold, analyses,
-                                                builder.span_evidence(), evaluation, eval_config);
+                                                active_evidence, evaluation, eval_config);
                 }
                 {
                     std::ostringstream text;

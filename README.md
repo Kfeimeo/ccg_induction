@@ -359,6 +359,89 @@ saturation collapses pathologically from N≈5,000 (largest e-class 86% of
 the universe at N=10,000) — regime `collapse-dominated`, v1.4 direction
 "both context abstraction and collapse-resistant equivalence" (report Q10).
 
+## v1.4: context-indexed equivalence
+
+Full results in `SCF_v1_4_REPORT.md`. v1.4 replaces the global yield
+equivalence by a family of **context-indexed local equivalence relations**;
+the legacy global DSU is retained strictly as baseline/audit, and the default
+parser is unchanged.
+
+### Three relations, formally distinct
+
+- **Direct raw substitution** `u ~_(L,R) v`: both yields observed in the
+  exact raw context `(L, R)`.
+- **Context-indexed substitution** `u ~_(eL,eR) v`: both yields observed
+  under one abstract `ContextKey` `c = (A(L), A(R))`; `u, v ∈ Y(c)` — one
+  `LocalRoleBlock`. Reflexive/symmetric/transitive **inside one key only**:
+  `u ~_c1 v` and `v ~_c2 w` with `c1 ≠ c2` never imply `u ~ w`, and the
+  implementation performs no cross-key union (regression-guarded).
+- **Context abstraction equivalence** `A(u) = A(v) ⟺ P(u) = P(v)`: equal
+  *complete* abstract-context profiles (set semantics, whole-sentence hole
+  excluded, `ε` a permanent singleton). A `ContextAbstractionClass` is an
+  internal indexing label — not a grammatical category and not an
+  unconditional linguistic equivalence. The optional
+  `context_plus_concat` signature additionally requires equal read-only
+  decomposition profiles `D(u)`; it is a conservative refinement, never a
+  positive congruence closure, and not the default.
+
+Iteration `A_0(x) = x → P_0 → A_1 → …` reaches a fixed point compared by
+partition content; `#classes` is provably non-increasing (audited per round;
+a split would be flagged `MONOTONICITY_VIOLATION`, never silently repaired).
+
+Naming discipline: `LegacyGlobalEClass`, `ContextAbstractionClass`,
+`LocalRoleBlock`, and `ContextKey` are four different objects and are never
+collectively called "e-class".
+
+### Two theorems the audit surfaced (and the tests now pin)
+
+1. **One-round idempotence** (`context_only`): because every context string
+   is itself a full prefix/suffix with its own observed occurrences,
+   `P0(L1) = P0(L2)` forces `(L1,R) ∈ P0(x) ⟺ (L2,R) ∈ P0(x)` for every x —
+   so the exact complete-profile operator saturates after a single
+   productive round (`A* = A_1`). Verified over 100 random small corpora
+   against a naive reference. Genuine multi-round cascades require the
+   `context_plus_concat` signature, whose decomposition components only
+   become equal after earlier merges: `recursive_context_cascade`
+   ("w a m" / "w b m") contracts over three genuine rounds
+   (a~b, then "a m"~"b m" and "w a"~"w b", then the sentences) — see
+   `recursive_cascade_trace.txt`.
+2. **Relation invariance**: every pair of context strings that *ever* merges
+   has exactly equal round-0 profiles, hence merging keys never fuses blocks
+   with different yield sets — the set of locally related yield pairs is
+   fixed at round 0 under **both** signatures. Recursive contraction is real
+   at the abstraction-class level but creates **no new local substitution
+   relations and no evidence-coverage gain** over exact raw contexts
+   (`indexed_evidence_coverage == raw_evidence_coverage` everywhere,
+   synthetic and real). H4 of the v1.4 spec is refuted for prefix/suffix
+   exact contexts; new relations require a genuinely coarser context notion
+   (a v1.5 question, not implemented).
+
+### What context indexing does fix
+
+On every synthetic family (including `ambiguous_lexicon`, which collapses
+catastrophically under the legacy DSU) local-relation precision against
+latent roles is 1.0, one surface form joins several `LocalRoleBlock`s
+without any lexical split (`ambiguous_surface_roles`), cross-context bridges
+never merge (`u ~_c1 v`, `v ~_c2 w`, `u ≁ w` — the core regression), and on
+real data the giant class disappears from the model itself: what remains
+giant is only the *diagnostic* unindexed projection graph, which must never
+be called a v1.4 equivalence class (`collapse_attribution.csv`,
+`global_vs_indexed.csv`).
+
+The experimental `--tree-evidence-source indexed-shadow` parser
+(min-coverage strength over final abstract context universes) is opt-in,
+synthetic-only, and currently *worse* than raw/opportunity on the correlated
+chains (UNIQUE_WRONG) — recorded as-is in
+`indexed_shadow_parse_metrics.csv`; no heuristic repair, default untouched.
+
+Run everything with:
+
+```bash
+build/scf_audit v14-synthetic --output-dir results/v1_4/synthetic
+build/scf_real_audit --input data/real/tokenized.txt \
+  --sample-sizes 100,500,1000,5000,10000 --seed 42 --output-dir results/v1_4/real_audit
+```
+
 ## Layout
 
 Public interfaces live under `include/scf`, implementations under `src`, controlled data under `data/synthetic`, the generators and experiment tools under `tools` (`scf_generate`, `scf_experiment`, `scf_audit`, `scf_real_audit`, `scf_prepare_text`, plus the v1.1 `scf_synthetic_generator`), and the assert-based regression suite under `tests`. `IMPLEMENTATION_NOTES.md` documents data structures, complexity, correctness caveats, and specification inconsistencies found during implementation.

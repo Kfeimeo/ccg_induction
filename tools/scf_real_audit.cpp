@@ -6,6 +6,7 @@
 // density numbers are empirical proxies, not proofs of algebraic
 // overdetermination or matrix rank.
 
+#include "scf/context_indexed.hpp"
 #include "scf/corpus.hpp"
 #include "scf/equivalence_solver.hpp"
 #include "scf/evaluator.hpp"
@@ -13,8 +14,11 @@
 #include "scf/pipeline.hpp"
 #include "scf/synthetic.hpp"  // deterministic_shuffle
 
+#include "scf/audit.hpp"  // hash_hex
+
 #include <algorithm>
 #include <cctype>
+#include <chrono>
 #include <cmath>
 #include <cstdio>
 #include <filesystem>
@@ -134,6 +138,33 @@ struct RegimeSignals {
     double largest_eclass_ratio{};
 };
 
+// Giant connected-component ratio of the raw direct substitution graph
+// (edges = yield pairs sharing an exact raw context), Stage A of the v1.4
+// collapse attribution.
+double raw_direct_giant_ratio(const scf::Corpus& corpus, const scf::EvidenceBuilder& builder) {
+    const auto count = corpus.string_interner().size();
+    std::vector<scf::StringId> parent(count);
+    for (scf::StringId s = 0; s < count; ++s) parent[s] = s;
+    const auto find = [&](scf::StringId s) {
+        while (parent[s] != s) {
+            parent[s] = parent[parent[s]];
+            s = parent[s];
+        }
+        return s;
+    };
+    for (const auto& pair : builder.pairs()) {
+        const auto a = find(pair.first);
+        const auto b = find(pair.second);
+        if (a != b) parent[b] = a;
+    }
+    std::vector<std::size_t> sizes(count, 0);
+    std::size_t giant = 0;
+    for (scf::StringId s = 1; s < count; ++s) {
+        giant = std::max(giant, ++sizes[find(s)]);
+    }
+    return count > 1 ? static_cast<double>(giant) / static_cast<double>(count - 1) : 0.0;
+}
+
 }  // namespace
 
 int main(int argc, char** argv) {
@@ -239,6 +270,31 @@ int main(int argc, char** argv) {
         auto saturation_csv = open_file(options.output_directory / "saturation_real.csv");
         saturation_csv << "N,initial_eclasses,final_eclasses,collapse_ratio,largest_eclass,"
                           "largest_eclass_ratio,round_count,successful_unions\n";
+        // --- v1.4 context-indexed outputs ---
+        auto indexed_rounds = open_file(options.output_directory / "context_indexed_rounds.csv");
+        indexed_rounds << "N,round,context_class_count,context_key_count,"
+                          "local_relation_pair_count,new_context_class_merges,"
+                          "new_local_relation_pairs,largest_context_class_ratio,"
+                          "max_local_block_ratio\n";
+        auto attribution = open_file(options.output_directory / "collapse_attribution.csv");
+        attribution << "N,raw_direct_giant_ratio,indexed_projection_giant_ratio,"
+                       "legacy_global_dsu_giant_ratio,indexed_max_local_block_ratio,"
+                       "indexed_context_class_largest_ratio\n";
+        auto versus = open_file(options.output_directory / "global_vs_indexed.csv");
+        versus << "N,legacy_global_final_classes,legacy_global_largest_ratio,"
+                  "indexed_final_context_classes,indexed_largest_context_class_ratio,"
+                  "indexed_max_local_block_ratio,indexed_projection_giant_ratio\n";
+        auto indexed_metrics = open_file(options.output_directory / "real_indexed_metrics.csv");
+        indexed_metrics
+            << "N,context_partition_rounds,initial_context_classes,final_context_classes,"
+               "context_abstraction_collapse_ratio,largest_context_abstraction_class_ratio,"
+               "local_context_key_count,mean_local_role_block_size,max_local_role_block_size,"
+               "max_local_role_block_ratio,raw_direct_giant_ratio,"
+               "indexed_projection_giant_ratio,legacy_global_dsu_giant_ratio,"
+               "raw_evidence_coverage,indexed_evidence_coverage,coverage_gain,"
+               "surface_forms_with_multiple_local_roles,mean_local_roles_per_surface,"
+               "p95_local_roles_per_surface,max_local_roles_per_surface,"
+               "context_partition_hash,local_relation_hash,round_trace_hash,runtime_ms\n";
 
         std::vector<RegimeSignals> signals;
         const auto largest_n = sizes.empty() ? 0 : *std::max_element(sizes.begin(), sizes.end());
@@ -526,6 +582,120 @@ int main(int argc, char** argv) {
                               << ',' << fmt6(mean_of(left_d)) << ',' << fmt6(mean_of(right_d))
                               << '\n';
                 }
+            }
+
+            // --- v1.4: context-indexed equivalence on real data ---
+            {
+                const auto start = std::chrono::steady_clock::now();
+                scf::ContextIndexedSolver indexed(corpus);
+                indexed.run();
+                const auto runtime_ms = std::chrono::duration_cast<std::chrono::milliseconds>(
+                                            std::chrono::steady_clock::now() - start)
+                                            .count();
+                const auto diagnostics = indexed.diagnostics();
+                for (const auto& stats : indexed.round_stats()) {
+                    indexed_rounds << n << ',' << stats.round << ','
+                                   << stats.context_class_count << ','
+                                   << stats.context_key_count << ','
+                                   << stats.local_relation_pair_count << ','
+                                   << stats.new_context_class_merges << ','
+                                   << stats.new_local_relation_pairs << ','
+                                   << fmt6(stats.largest_context_class_ratio) << ','
+                                   << fmt6(stats.max_local_block_ratio) << '\n';
+                }
+                const auto raw_giant = raw_direct_giant_ratio(corpus, builder);
+                attribution << n << ',' << fmt6(raw_giant) << ','
+                            << fmt6(diagnostics.projected_giant_component_ratio) << ','
+                            << fmt6(largest_ratio) << ','
+                            << fmt6(diagnostics.max_local_role_block_ratio) << ','
+                            << fmt6(diagnostics.largest_context_abstraction_class_ratio)
+                            << '\n';
+                versus << n << ',' << final_classes << ',' << fmt6(largest_ratio) << ','
+                       << diagnostics.final_context_classes << ','
+                       << fmt6(diagnostics.largest_context_abstraction_class_ratio) << ','
+                       << fmt6(diagnostics.max_local_role_block_ratio) << ','
+                       << fmt6(diagnostics.projected_giant_component_ratio) << '\n';
+
+                // indexed evidence coverage over proper span occurrences
+                std::map<scf::Span, bool> indexed_span;
+                for (const auto& record : corpus.context_records()) {
+                    const auto key =
+                        *indexed.final_key_for(record.triple.left, record.triple.right);
+                    const auto& blocks = indexed.blocks();
+                    const auto found = std::lower_bound(
+                        blocks.begin(), blocks.end(), key,
+                        [](const scf::LocalRoleBlock& block, const scf::ContextKey& target) {
+                            return block.context < target;
+                        });
+                    const bool hit = found != blocks.end() && found->context == key &&
+                                     found->yields.size() >= 2;
+                    for (const auto occurrence_id : record.occurrences) {
+                        const auto& occurrence = corpus.occurrences().at(
+                            static_cast<std::size_t>(occurrence_id));
+                        indexed_span[scf::Span{occurrence.sentence, occurrence.begin,
+                                               occurrence.end}] = hit;
+                    }
+                }
+                std::size_t indexed_hits = 0;
+                for (std::size_t sentence = 0; sentence < corpus.sentences().size();
+                     ++sentence) {
+                    const auto length =
+                        static_cast<std::uint16_t>(corpus.sentences()[sentence].size());
+                    for (std::uint16_t span_length = 2; span_length < length; ++span_length) {
+                        for (std::uint16_t begin = 0; begin + span_length <= length; ++begin) {
+                            const auto end = static_cast<std::uint16_t>(begin + span_length);
+                            if (begin == 0 && end == length) continue;
+                            const auto found = indexed_span.find(scf::Span{
+                                static_cast<scf::SentenceId>(sentence), begin, end});
+                            indexed_hits +=
+                                found != indexed_span.end() && found->second ? 1 : 0;
+                        }
+                    }
+                }
+                const auto indexed_coverage =
+                    proper_occurrences > 0
+                        ? static_cast<double>(indexed_hits) / proper_occurrences
+                        : 0.0;
+
+                // multi-role surfaces (final keys with block >= 2 per yield)
+                std::map<scf::StringId, std::size_t> role_keys;
+                for (const auto& block : indexed.blocks()) {
+                    if (block.yields.size() < 2) continue;
+                    for (const auto yield : block.yields) ++role_keys[yield];
+                }
+                std::vector<double> role_counts;
+                std::size_t multi_role = 0;
+                std::size_t max_roles = 0;
+                for (const auto& [yield, count] : role_keys) {
+                    role_counts.push_back(static_cast<double>(count));
+                    multi_role += count >= 2 ? 1 : 0;
+                    max_roles = std::max(max_roles, count);
+                }
+                indexed_metrics
+                    << n << ',' << diagnostics.round_count << ','
+                    << diagnostics.initial_context_classes << ','
+                    << diagnostics.final_context_classes << ','
+                    << fmt6(diagnostics.context_abstraction_collapse_ratio) << ','
+                    << fmt6(diagnostics.largest_context_abstraction_class_ratio) << ','
+                    << diagnostics.context_key_count << ','
+                    << fmt6(diagnostics.mean_local_role_block_size) << ','
+                    << diagnostics.max_local_role_block_size << ','
+                    << fmt6(diagnostics.max_local_role_block_ratio) << ','
+                    << fmt6(raw_giant) << ','
+                    << fmt6(diagnostics.projected_giant_component_ratio) << ','
+                    << fmt6(largest_ratio) << ',' << fmt6(occurrence_proxy) << ','
+                    << fmt6(indexed_coverage) << ','
+                    << fmt6(indexed_coverage - occurrence_proxy) << ',' << multi_role << ','
+                    << fmt6(mean_of(role_counts)) << ','
+                    << fmt6(percentile_of(role_counts, 0.95)) << ',' << max_roles << ','
+                    << scf::hash_hex(indexed.context_partition_hash()) << ','
+                    << scf::hash_hex(indexed.local_relation_hash()) << ','
+                    << scf::hash_hex(indexed.round_trace_hash()) << ',' << runtime_ms << '\n';
+                std::cout << "  v1.4 indexed: rounds=" << diagnostics.round_count
+                          << " classes=" << diagnostics.final_context_classes
+                          << " max_block_ratio=" << fmt6(diagnostics.max_local_role_block_ratio)
+                          << " proj_giant=" << fmt6(diagnostics.projected_giant_component_ratio)
+                          << " cov_gain=" << fmt6(indexed_coverage - occurrence_proxy) << '\n';
             }
 
             std::size_t total_tokens = 0;
