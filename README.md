@@ -442,6 +442,49 @@ build/scf_real_audit --input data/real/tokenized.txt \
   --sample-sizes 100,500,1000,5000,10000 --seed 42 --output-dir results/v1_4/real_audit
 ```
 
+## v2.0: oracle category recovery
+
+Full results in `SCF_V2_ORACLE_REPORT.md`. v2.0 is an **independent
+experimental module** (`scf::v2`; new library `scf_oracle_v2`, tool
+`scf_oracle_v2`, test binary `scf_oracle_v2_tests`) that leaves the v1.x core
+untouched and asks a different question than the tree-induction mainline:
+
+> Do externally indistinguishable string equivalence classes recover the true
+> categories `E`, lexicon `Lex`, and composition relation `Comp` of a small
+> synthetic CCG-like grammar, given only the membership oracle `Accept(s)`?
+
+A gold grammar `G = (E, Lex, Comp, F)` defines `Accept` exactly (a bottom-up
+category table over every string of length `<= L + K`, cross-validated
+against an independent CKY recognizer). The learner partitions all strings of
+length `<= L` by exact equality of the bounded contextual signature
+`Sig_k(u) = {(L, R, Accept(LuR)) : |L|+|R| <= k}` — no thresholds, no
+heuristics, gold labels never participate. Four families
+(`simple_np_vp`, `transitive`, `recursive_modifier`,
+`observationally_equivalent_categories`) are swept over `L = 2..6`,
+`k = 0..4`, with category-recovery metrics (ARI, NMI, pairwise
+precision/recall, merge/split pairs, partition hashes), `Comp` recovery with
+a congruence audit, an observational-equivalence flag for gold categories the
+language never distinguishes, and a positive-only coverage ablation
+(5%..100% of accepted strings, where absence is never negative evidence and
+100% provably equals the oracle).
+
+Headline results: on constituents, recovery is exact (`ARI = 1.0`) for every
+family once `k` reaches the deepest category embedding (2 for
+`simple_np_vp`, 3 for `recursive_modifier`, 4 for `transitive`); the designed
+`{Nm} ~ {Nf}` pair is merged and flagged `observationally_equivalent_gold_categories`
+rather than counted as error; the recovered `Comp` is functional and a true
+concatenation congruence at stable `k`, and on recursive modifiers it
+correctly extends the gold rule list with derived facts (`A·A ≡ A`,
+`D·A ≡ D`). Run everything with:
+
+```bash
+build/scf_oracle_v2 --output-dir results_v2_oracle
+```
+
+which writes `category_recovery.csv`, `composition_recovery.csv`,
+`positive_only_recovery.csv`, and `oracle_summary.txt` (committed under
+`results_v2_oracle/`).
+
 ## Layout
 
-Public interfaces live under `include/scf`, implementations under `src`, controlled data under `data/synthetic`, the generators and experiment tools under `tools` (`scf_generate`, `scf_experiment`, `scf_audit`, `scf_real_audit`, `scf_prepare_text`, plus the v1.1 `scf_synthetic_generator`), and the assert-based regression suite under `tests`. `IMPLEMENTATION_NOTES.md` documents data structures, complexity, correctness caveats, and specification inconsistencies found during implementation.
+Public interfaces live under `include/scf`, implementations under `src`, controlled data under `data/synthetic`, the generators and experiment tools under `tools` (`scf_generate`, `scf_experiment`, `scf_audit`, `scf_real_audit`, `scf_prepare_text`, the v2.0 `scf_oracle_v2`, plus the v1.1 `scf_synthetic_generator`), and the assert-based regression suites under `tests` (`test_main.cpp` for the v1.x core, `test_oracle_v2.cpp` for the v2.0 module). `IMPLEMENTATION_NOTES.md` documents data structures, complexity, correctness caveats, and specification inconsistencies found during implementation.

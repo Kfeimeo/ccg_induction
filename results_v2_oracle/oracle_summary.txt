@@ -1,0 +1,147 @@
+== grammar simple_np_vp ==
+categories: D N NP IV S
+vocabulary: the dog cat sleeps runs
+lexicon:
+  the -> D
+  dog -> N
+  cat -> N
+  sleeps -> IV
+  runs -> IV
+composition: (D,N->NP) (NP,IV->S)
+accepting: S
+accepted strings with length <= 10: 4
+L=2: universe=30 first_stable_k=2 final_classes=6
+L=3: universe=155 first_stable_k=2 final_classes=7
+L=4: universe=780 first_stable_k=2 final_classes=7
+L=5: universe=3905 first_stable_k=2 final_classes=7
+L=6: universe=19530 first_stable_k=2 final_classes=7
+congruence violation example (L=6, k=0): u="the" v="the" -> class 0 ; u'="the" v'="dog sleeps" -> class 1 (u ≡ u', v ≡ v', but uv ≢ u'v')
+classes mixing constituents and non-constituents (L=6, k=4): 0
+learned class inventory (L=6, k=4, 7 classes):
+  class 0 size=1 gold={{D}} e.g. "the"
+  class 1 size=2 gold={{N}} e.g. "dog" "cat"
+  class 2 size=2 gold={{IV}} e.g. "sleeps" "runs"
+  class 3 size=19515 gold={{NONE}} e.g. "the the" "the sleeps" "the runs" "dog the" "dog dog"
+  class 4 size=2 gold={{NP}} e.g. "the dog" "the cat"
+  class 5 size=4 gold={{NONE}} e.g. "dog sleeps" "dog runs" "cat sleeps" "cat runs"
+  class 6 size=4 gold={{S}} e.g. "the dog sleeps" "the dog runs" "the cat sleeps" "the cat runs"
+lexicon recovery (L=6, k=4):
+  the -> class 0 gold={D}
+  dog -> class 1 gold={N}
+  cat -> class 1 gold={N}
+  sleeps -> class 2 gold={IV}
+  runs -> class 2 gold={IV}
+
+== grammar transitive ==
+categories: D N NP TV VP S
+vocabulary: the dog cat sees likes sleeps
+lexicon:
+  the -> D
+  dog -> N
+  cat -> N
+  sees -> TV
+  likes -> TV
+  sleeps -> VP
+composition: (D,N->NP) (TV,NP->VP) (NP,VP->S)
+accepting: S
+accepted strings with length <= 10: 10
+L=2: universe=42 first_stable_k=4 final_classes=9
+L=3: universe=258 first_stable_k=4 final_classes=12
+L=4: universe=1554 first_stable_k=4 final_classes=13
+L=5: universe=9330 first_stable_k=4 final_classes=13
+L=6: universe=55986 first_stable_k=4 final_classes=13
+congruence violation example (L=6, k=0): u="the" v="the" -> class 0 ; u'="the" v'="dog sleeps" -> class 1 (u ≡ u', v ≡ v', but uv ≢ u'v')
+classes mixing constituents and non-constituents (L=6, k=4): 0
+learned class inventory (L=6, k=4, 13 classes):
+  class 0 size=1 gold={{D}} e.g. "the"
+  class 1 size=2 gold={{N}} e.g. "dog" "cat"
+  class 2 size=2 gold={{TV}} e.g. "sees" "likes"
+  class 3 size=5 gold={{VP}} e.g. "sleeps" "sees the dog" "sees the cat" "likes the dog" "likes the cat"
+  class 4 size=55936 gold={{NONE}} e.g. "the the" "the sees" "the likes" "the sleeps" "dog the"
+  class 5 size=2 gold={{NP}} e.g. "the dog" "the cat"
+  class 6 size=4 gold={{NONE}} e.g. "dog sees" "dog likes" "cat sees" "cat likes"
+  class 7 size=10 gold={{NONE}} e.g. "dog sleeps" "cat sleeps" "dog sees the dog" "dog sees the cat" "dog likes the dog"
+  class 8 size=2 gold={{NONE}} e.g. "sees the" "likes the"
+  class 9 size=4 gold={{NONE}} e.g. "the dog sees" "the dog likes" "the cat sees" "the cat likes"
+  class 10 size=10 gold={{S}} e.g. "the dog sleeps" "the cat sleeps" "the dog sees the dog" "the dog sees the cat" "the dog likes the dog"
+  class 11 size=4 gold={{NONE}} e.g. "dog sees the" "dog likes the" "cat sees the" "cat likes the"
+  class 12 size=4 gold={{NONE}} e.g. "the dog sees the" "the dog likes the" "the cat sees the" "the cat likes the"
+lexicon recovery (L=6, k=4):
+  the -> class 0 gold={D}
+  dog -> class 1 gold={N}
+  cat -> class 1 gold={N}
+  sees -> class 2 gold={TV}
+  likes -> class 2 gold={TV}
+  sleeps -> class 3 gold={VP}
+
+== grammar recursive_modifier ==
+categories: D A N NP IV S
+vocabulary: the big red dog sleeps
+lexicon:
+  the -> D
+  big -> A
+  red -> A
+  dog -> N
+  sleeps -> IV
+composition: (A,N->N) (D,N->NP) (NP,IV->S)
+accepting: S
+accepted strings with length <= 10: 255
+L=2: universe=30 first_stable_k=3 final_classes=7
+L=3: universe=155 first_stable_k=3 final_classes=8
+L=4: universe=780 first_stable_k=3 final_classes=8
+L=5: universe=3905 first_stable_k=3 final_classes=8
+L=6: universe=19530 first_stable_k=3 final_classes=8
+congruence violation example (L=6, k=0): u="the" v="the" -> class 0 ; u'="the" v'="dog sleeps" -> class 1 (u ≡ u', v ≡ v', but uv ≢ u'v')
+labeled triple outside gold Comp (L=6, k=4): ({D}, {A}, {D}) e.g. "the" + "big"
+labeled triple outside gold Comp (L=6, k=4): ({A}, {A}, {A}) e.g. "big" + "big"
+classes mixing constituents and non-constituents (L=6, k=4): 2
+learned class inventory (L=6, k=4, 8 classes):
+  class 0 size=63 gold={{D} {NONE}} e.g. "the" "the big" "the red" "the big big" "the big red"
+  class 1 size=126 gold={{A} {NONE}} e.g. "big" "red" "big big" "big red" "red big"
+  class 2 size=63 gold={{N}} e.g. "dog" "big dog" "red dog" "big big dog" "big red dog"
+  class 3 size=1 gold={{IV}} e.g. "sleeps"
+  class 4 size=19200 gold={{NONE}} e.g. "the the" "the sleeps" "big the" "big sleeps" "red the"
+  class 5 size=31 gold={{NP}} e.g. "the dog" "the big dog" "the red dog" "the big big dog" "the big red dog"
+  class 6 size=31 gold={{NONE}} e.g. "dog sleeps" "big dog sleeps" "red dog sleeps" "big big dog sleeps" "big red dog sleeps"
+  class 7 size=15 gold={{S}} e.g. "the dog sleeps" "the big dog sleeps" "the red dog sleeps" "the big big dog sleeps" "the big red dog sleeps"
+lexicon recovery (L=6, k=4):
+  the -> class 0 gold={D}
+  big -> class 1 gold={A}
+  red -> class 1 gold={A}
+  dog -> class 2 gold={N}
+  sleeps -> class 3 gold={IV}
+
+== grammar observationally_equivalent_categories ==
+categories: D Nm Nf NP IV S
+vocabulary: the dog cat sleeps
+lexicon:
+  the -> D
+  dog -> Nm
+  cat -> Nf
+  sleeps -> IV
+composition: (D,Nm->NP) (D,Nf->NP) (NP,IV->S)
+accepting: S
+accepted strings with length <= 10: 2
+L=2: universe=20 first_stable_k=2 final_classes=6
+L=3: universe=84 first_stable_k=2 final_classes=7
+L=4: universe=340 first_stable_k=2 final_classes=7
+L=5: universe=1364 first_stable_k=2 final_classes=7
+L=6: universe=5460 first_stable_k=2 final_classes=7
+observationally_equivalent_gold_categories (L=6, k=4, scope=full): [{Nm} ~ {Nf}]
+observationally_equivalent_gold_categories (L=6, k=4, scope=constituents): [{Nm} ~ {Nf}]
+congruence violation example (L=6, k=0): u="the" v="the" -> class 0 ; u'="the" v'="dog sleeps" -> class 1 (u ≡ u', v ≡ v', but uv ≢ u'v')
+classes mixing constituents and non-constituents (L=6, k=4): 0
+learned class inventory (L=6, k=4, 7 classes):
+  class 0 size=1 gold={{D}} e.g. "the"
+  class 1 size=2 gold={{Nm} {Nf}} e.g. "dog" "cat"
+  class 2 size=1 gold={{IV}} e.g. "sleeps"
+  class 3 size=5450 gold={{NONE}} e.g. "the the" "the sleeps" "dog the" "dog dog" "dog cat"
+  class 4 size=2 gold={{NP}} e.g. "the dog" "the cat"
+  class 5 size=2 gold={{NONE}} e.g. "dog sleeps" "cat sleeps"
+  class 6 size=2 gold={{S}} e.g. "the dog sleeps" "the cat sleeps"
+lexicon recovery (L=6, k=4):
+  the -> class 0 gold={D}
+  dog -> class 1 gold={Nm}
+  cat -> class 1 gold={Nf}
+  sleeps -> class 2 gold={IV}
+

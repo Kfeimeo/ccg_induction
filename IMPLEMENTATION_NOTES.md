@@ -228,3 +228,25 @@ For single-token yields the latent role is the lexical-rule lhs with trailing di
 ## 42. Real-data cost
 
 On the documentation corpus at N=10,000 the context-indexed fixed point completes in a handful of rounds over ~4e5 logical triples (seconds; `runtime_ms` column), versus ~2.5 minutes for the legacy saturation baseline it is audited against.
+
+# v2.0 additions (oracle category recovery module)
+
+## 43. Module isolation
+
+`scf::v2` (include/scf/oracle_v2.hpp, src/oracle_v2.cpp) is a separate static library with its own tool (`scf_oracle_v2`) and test binary (`scf_oracle_v2_tests`); it neither links nor includes the v1.x core, so the v1.x semantics and regression surface are untouched. The deterministic Fisher-Yates sampler is deliberately duplicated from synthetic.cpp (same rejection-sampling algorithm over mt19937_64) to keep the module dependency-free.
+
+## 44. Exact oracle via a total category table
+
+All strings of length 1..L+K over the family vocabulary live in one canonical index space (length-major, then lexicographic; index arithmetic only, nothing hashed). `CategoryTable` fills `Cats(s)` bottom-up over all binary splits, odometer-enumerated so prefix/suffix values are O(n) per string; `OracleParser` is an independent CKY recognizer, and `test_parser_and_table_agree` checks the two are pointwise equal. Every `Accept(LuR)` in the experiment is then an O(1) table lookup, which is what makes the full sweep (4 families x L<=6 x k<=4, ~4e8 context queries for the largest family) run in seconds. The one-byte cell caps grammars at 8 categories; `kMaxTableEntries` guards the index-space size.
+
+## 45. Signatures as sparse accepting-context sets
+
+`Sig_k(u)` is a total function on a context universe shared by every u, so signature equality is equality of the accepted-context subset, and only accepting `(u, context)` pairs need storing (`SignatureHits`, packed weight/ordinal/corpus-index per entry). Partition refinement then runs per context weight w = 0..K with canonical first-occurrence class numbering — equal partitions are equal vectors. Because contexts are evaluated against the true oracle, signatures are independent of the universe bound L; per-L results are prefix restrictions of the L=6 partition (`restrict_partition`, pinned by `restriction_consistency`). The positive-only ablation reuses the identical machinery with a retained-set bitmask over the corpus space: a hit counts only if the whole string was retained, which encodes "absence is not negative evidence" and makes 100% coverage provably identical to the oracle run (pinned by test).
+
+## 46. Definitional flags, no heuristics
+
+Observational equivalence of gold categories = full containment of >= 2 gold classes in one learned class at maximal k; the excluded merge-pair count is computed from class sizes and subtracted into `merge_errors_excl_obs_equiv` (the unadjusted count stays in the CSV). Composition labeling: a learned class is labelable iff no member has >= 2 gold categories and some member is a constituent; its label is the *set* of member categories, so an observationally merged class scores both gold rules (exists-semantics). A congruence violation is definitionally the same event as a nonfunctional input pair; both columns are emitted and must agree. Known consequence of exists-semantics: at very coarse k, recall stays 1.0 while precision collapses — precision is the informative low-k signal (report section 5).
+
+## 47. Determinism pins
+
+FNV-1a partition hashes over the canonical class vector (explicit little-endian bytes, no std::hash) are pinned for all four families at (L=3, K=2) in `test_pinned_partition_hashes`; `test_experiment_writes_files` additionally reruns the driver and compares CSV bytes.
