@@ -11,7 +11,9 @@ namespace scf {
 
 struct SpanScore {
     Span span{};
-    std::uint32_t score{};
+    // Integer objective units: |W| for raw_count, round(strength * 1e12) for
+    // normalized objectives (see kStrengthScale in evidence_builder.hpp).
+    std::uint64_t score{};
 };
 
 struct TreeSolveResult {

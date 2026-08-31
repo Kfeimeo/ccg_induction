@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.24)
 
-project(scf VERSION 1.1.0 LANGUAGES CXX)
+project(scf VERSION 1.2.0 LANGUAGES CXX)
 
 option(SCF_BUILD_TESTS "Build the SCF test suite" ON)
 
@@ -21,6 +21,14 @@ add_library(scf_core
     src/evidence.cpp
     src/tree_solver.cpp
     src/formatter.cpp
+    src/gold.cpp
+    src/synthetic.cpp
+    src/enumerator.cpp
+    src/evaluator.cpp
+    src/pipeline.cpp
+    src/prepare_text.cpp
+    src/audit.cpp
+    src/context_indexed.cpp
 )
 
 target_include_directories(scf_core PUBLIC include)
@@ -34,6 +42,26 @@ scf_enable_warnings(scf_cli)
 add_executable(scf_synthetic_generator tools/generate_synthetic.cpp)
 target_compile_features(scf_synthetic_generator PRIVATE cxx_std_20)
 scf_enable_warnings(scf_synthetic_generator)
+
+add_executable(scf_generate tools/scf_generate.cpp)
+target_link_libraries(scf_generate PRIVATE scf_core)
+scf_enable_warnings(scf_generate)
+
+add_executable(scf_experiment tools/scf_experiment.cpp)
+target_link_libraries(scf_experiment PRIVATE scf_core)
+scf_enable_warnings(scf_experiment)
+
+add_executable(scf_prepare_text tools/scf_prepare_text.cpp)
+target_link_libraries(scf_prepare_text PRIVATE scf_core)
+scf_enable_warnings(scf_prepare_text)
+
+add_executable(scf_audit tools/scf_audit.cpp)
+target_link_libraries(scf_audit PRIVATE scf_core)
+scf_enable_warnings(scf_audit)
+
+add_executable(scf_real_audit tools/scf_real_audit.cpp)
+target_link_libraries(scf_real_audit PRIVATE scf_core)
+scf_enable_warnings(scf_real_audit)
 
 if(SCF_BUILD_TESTS)
     enable_testing()
