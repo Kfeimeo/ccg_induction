@@ -276,3 +276,17 @@ The held-out shard starts at the first document boundary after the largest train
 ## 53. Verification
 
 `tests/test_real_scaling.cpp` re-derives the whole per-scale model (frequent substrings, exact context sets, hub exclusion, pair counts, threshold curves, component structure, transition counts, held-out bucket stats) from a string-based naive implementation that shares only the tokenizer with production code, on a deterministic synthetic corpus, and requires exact equality — including the full pair dump. Determinism is tested by byte-comparing two runs modulo the runtime/RSS fields.
+
+# v2.2 additions (terminal x punctuation ablation)
+
+## 54. Ladder engine extraction
+
+The v2.1 per-scale pipeline moved verbatim into an internal parameterized engine (`run_ladder` over a `LadderSpec`: token stream, per-id sentinel set, per-scale prefix positions, held-out span, optional terminal-context ids, output sink, per-run pair file). `run_real_scaling` is now a thin wrapper and its outputs were verified bit-identical (modulo runtime/RSS fields) against the pre-refactor binary on real data, in addition to the naive-reference suite. Sentinels are generalized from "token id 0" to a per-id flag; since sentinels can never enter the frequent inventory, the dense-id check subsumes the old explicit sentinel checks in the bigram/trigram/record scans.
+
+## 55. Conditions as pure stream transforms
+
+Sentence segmentation is computed once on the base id stream (every . ? ! ends a sentence; document boundaries close sentences without a final mark; empty spans are skipped) and shared by all conditions, as is the sentence-level train/held-out split (prefixes rounded up to whole sentences, measured in condition-A tokens; the held-out shard starts at the first new document after the largest train prefix). Each condition is a deterministic transform of the same sentences: A drops the final .?!, B additionally drops internal punctuation (single visible ASCII punctuation tokens), C/D insert the `<s>` sentinel around every sentence (`<doc> <s> tokens <s> ...`), E keeps the final .?! as ordinary tokens (E's stream is byte-identical to the base stream when no wiki markup is stripped). `<s>` carries the terminal anchor entirely through the existing exact-context machinery: no new evidence definition, no abstraction — a sentence-final token simply *observes* right context `<s>`, and a complete sentence span observes `(<s>, <s>)`.
+
+## 56. Terminal observables
+
+With terminal-context ids set (C/D: `<s>`; E: the .?! token ids as a proxy), the record scan marks per substring `final_capable` (some occurrence with terminal right context) and `complete_span` (terminal on both sides); the pair scan counts, per evidence threshold, agreement on `final_capable` between pair members (terminal_behavior_purity, against the random-pair baseline p^2+(1-p)^2), and probe neighborhoods report the share of top-k partners that are final-capable (terminal_completion_rate). All binary and exact — no frequency thresholds. Conditions without terminal observation report -1, and the delta rows in `terminal_punctuation_ablation.csv` leave undefined cells empty. A hand-checked corpus pins the C-condition values exactly (capable share 0.5, purity 1.0, the two pairs (a,c),(b,d) with |I|=2).

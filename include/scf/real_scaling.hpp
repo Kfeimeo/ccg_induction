@@ -106,6 +106,11 @@ struct ThresholdStats {
     double same_pos_rate{-1.0};          // POS diagnostic; -1 when skipped
     std::uint64_t same_pos_pairs{};
     std::uint64_t labeled_pairs{};
+    // v2.2 terminal-behavior purity (agreement on "can end a sentence"
+    // between the two members of an evidence pair); -1 when the condition
+    // has no terminal observation.
+    double terminal_purity{-1.0};
+    std::uint64_t terminal_agree_pairs{};
 };
 
 struct ScaleMetrics {
@@ -145,6 +150,15 @@ struct ScaleMetrics {
     double common_evidence_curr_mean{};
     double probe_neighborhood_jaccard_mean{-1.0};
     double same_pos_baseline{-1.0};
+    // v2.2 terminal diagnostics (-1 when the condition has no terminal
+    // observation): share of substrings observed sentence-final at least
+    // once, share observed as a complete sentence span, the random-pair
+    // agreement baseline p^2 + (1-p)^2, and the mean share of probe top-k
+    // neighbors that are sentence-final-capable.
+    double terminal_capable_share{-1.0};
+    double terminal_complete_span_share{-1.0};
+    double terminal_agreement_baseline{-1.0};
+    double neighborhood_terminal_completion_rate{-1.0};
     double runtime_seconds{};
     double peak_rss_mb{};
 };
@@ -176,5 +190,88 @@ RealScalingResult run_real_scaling(const RealScalingConfig& config);
 // Deterministic 64-bit mix (splitmix64 finalizer); used for the hash-order
 // held-out pair sampling.
 std::uint64_t mix64(std::uint64_t value);
+
+// ---------------------------------------------------------------------------
+// v2.2 — Terminal x Punctuation ablation
+// ---------------------------------------------------------------------------
+// A minimal 2x2 (+ one diagnostic) over the SAME corpus and the SAME
+// sentence-level train/held-out split, reusing the v2.1 evidence machinery
+// verbatim (exact contexts, shared-context counting, thresholds, hub cap):
+//
+//   A: no-terminal    + punctuation-aware
+//   B: no-terminal    + punctuation-free
+//   C: terminal-anchor + punctuation-aware
+//   D: terminal-anchor + punctuation-free
+//   E: no-terminal    + punctuation-aware + sentence-final .?! kept as
+//      ordinary tokens (does final punctuation leak the terminal signal?)
+//
+// Sentence segmentation is fixed across conditions: every . ? ! token ends a
+// sentence (so does a document boundary), and that final token is consumed
+// by segmentation in A-D. terminal-anchor inserts a sentence sentinel <s>
+// which behaves exactly like <doc>: it can appear in contexts (the terminal
+// anchor: a sentence-final token sees right context <s>, a complete sentence
+// span sees (<s>, <s>)) but never inside a substring and never in the
+// lexical inventory. punctuation-free removes internal punctuation tokens
+// (single visible ASCII punctuation characters).
+
+bool is_punctuation_token(std::string_view text);
+bool is_final_punctuation_token(std::string_view text);
+
+struct SentenceSpan {
+    std::size_t begin{};        // token positions in the base stream
+    std::size_t end{};          // exclusive; the final . ? ! is NOT included
+    std::uint32_t final_punct{};
+    bool has_final_punct{};
+    std::size_t document{};
+};
+
+std::vector<SentenceSpan> segment_sentences(const TokenCorpus& corpus);
+
+struct ConditionStream {
+    char condition{};
+    std::vector<std::uint32_t> stream;
+    std::vector<std::string> token_text;         // base vocab (+ "<s>" for C/D)
+    std::vector<std::uint8_t> sentinel;          // per token id
+    std::vector<std::uint32_t> terminal_context_ids;  // <s> for C/D, .?! for E
+    std::vector<std::size_t> sentence_end_pos;   // per sentence: stream position
+                                                 // just after it (incl. <s>)
+    std::vector<std::uint64_t> real_tokens_after;  // cumulative real tokens
+};
+
+ConditionStream build_condition_stream(const TokenCorpus& corpus,
+                                       const std::vector<SentenceSpan>& sentences,
+                                       char condition);
+
+struct AblationConfig {
+    std::filesystem::path input_text;
+    std::filesystem::path output_dir;
+    std::string conditions{"ABCDE"};
+    std::vector<std::uint64_t> scales{100'000, 1'000'000, 10'000'000, 100'000'000};
+    std::uint64_t heldout_tokens = 20'000'000;
+    // Evidence parameters reused verbatim from v2.1 (min-count floor, hub
+    // cap, thresholds, sampling, probes, optional UD file).
+    RealScalingConfig base;
+};
+
+struct AblationConditionResult {
+    char condition{};
+    bool terminal_anchor{};
+    bool punctuation_aware{};
+    std::vector<ScaleMetrics> scales;             // scale_tokens = nominal N
+    std::vector<std::uint64_t> actual_tokens;     // per scale, this condition
+    std::vector<HeldoutBucketStats> heldout;
+};
+
+struct AblationResult {
+    std::vector<AblationConditionResult> conditions;
+    std::uint64_t sentences{};
+    std::uint64_t heldout_sentences{};
+};
+
+// Runs the ablation and writes terminal_punctuation_ablation.csv (per-
+// condition rows plus delta_terminal = mean(C,D) - mean(A,B) and
+// delta_punct = mean(A,C) - mean(B,D) rows) and
+// ablation_neighborhood_samples.txt into output_dir.
+AblationResult run_terminal_punct_ablation(const AblationConfig& config);
 
 }  // namespace scf::v21

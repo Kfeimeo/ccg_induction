@@ -600,6 +600,212 @@ void test_mix64_pinned() {
     CHECK(mix64(0xdeadbeefULL) != mix64(0xdeadbeeeULL));
 }
 
+// ---------------------------------------------------------------------------
+// v2.2 — Terminal x Punctuation ablation
+// ---------------------------------------------------------------------------
+
+void test_segmentation_and_condition_streams() {
+    std::filesystem::create_directories(kTmp);
+    const auto path = kTmp / "seg.txt";
+    write_file(path, {"a b . c , d !", "e f"});
+    const auto corpus = build_token_corpus(path, 0);
+    // ids: <doc>=0 a=1 b=2 .=3 c=4 ,=5 d=6 !=7 e=8 f=9
+    CHECK(corpus.token_text.size() == 10);
+    const auto sentences = segment_sentences(corpus);
+    CHECK(sentences.size() == 3);
+    CHECK(sentences[0].begin == 1 && sentences[0].end == 3);  // "a b"
+    CHECK(sentences[0].has_final_punct && sentences[0].final_punct == 3);
+    CHECK(sentences[0].document == 0);
+    CHECK(sentences[1].begin == 4 && sentences[1].end == 7);  // "c , d"
+    CHECK(sentences[1].has_final_punct && sentences[1].final_punct == 7);
+    CHECK(sentences[2].begin == 9 && sentences[2].end == 11);  // "e f"
+    CHECK(!sentences[2].has_final_punct);
+    CHECK(sentences[2].document == 1);
+
+    const auto a = build_condition_stream(corpus, sentences, 'A');
+    CHECK((a.stream == std::vector<std::uint32_t>{0, 1, 2, 4, 5, 6, 0, 8, 9, 0}));
+    CHECK(a.terminal_context_ids.empty());
+    CHECK((a.real_tokens_after == std::vector<std::uint64_t>{2, 5, 7}));
+
+    const auto b = build_condition_stream(corpus, sentences, 'B');
+    CHECK((b.stream == std::vector<std::uint32_t>{0, 1, 2, 4, 6, 0, 8, 9, 0}));
+
+    const auto c = build_condition_stream(corpus, sentences, 'C');
+    const std::uint32_t s = 10;  // appended sentinel id
+    CHECK(c.token_text.size() == 11 && c.token_text[s] == "<s>");
+    CHECK(c.sentinel[s] == 1 && c.sentinel[0] == 1);
+    CHECK((c.stream ==
+           std::vector<std::uint32_t>{0, s, 1, 2, s, 4, 5, 6, s, 0, s, 8, 9, s, 0}));
+    CHECK((c.terminal_context_ids == std::vector<std::uint32_t>{s}));
+
+    const auto d = build_condition_stream(corpus, sentences, 'D');
+    CHECK((d.stream == std::vector<std::uint32_t>{0, s, 1, 2, s, 4, 6, s, 0, s, 8, 9, s, 0}));
+
+    const auto e = build_condition_stream(corpus, sentences, 'E');
+    CHECK(e.stream == corpus.stream);  // E keeps .?! : identical to the base
+    CHECK((e.terminal_context_ids == std::vector<std::uint32_t>{3, 7}));
+
+    CHECK(is_punctuation_token(","));
+    CHECK(is_punctuation_token("-"));
+    CHECK(!is_punctuation_token("<num>"));
+    CHECK(!is_punctuation_token("ab"));
+    CHECK(is_final_punctuation_token("."));
+    CHECK(is_final_punctuation_token("?"));
+    CHECK(!is_final_punctuation_token(","));
+}
+
+// Hand-checked terminal metrics for condition C on a tiny corpus:
+// doc0 = "a b . c b . a d . c d ."  doc1 = "a b . c d ."
+// Train = doc0 (scale 8 in condition-A tokens); held-out = doc1.
+// In C the four frequent unigrams a b c d yield exactly the pairs
+// (a, c) |I|=2 via contexts (<s>, b), (<s>, d) and (b, d) |I|=2 via
+// (a, <s>), (c, <s>); b and d are sentence-final capable, a and c are not,
+// so terminal purity is 1.0 and the capable share is 0.5.
+void test_ablation_terminal_metrics_hand_checked() {
+    std::filesystem::create_directories(kTmp);
+    const auto path = kTmp / "terminal.txt";
+    write_file(path, {"a b . c b . a d . c d .", "a b . c d ."});
+    AblationConfig config;
+    config.input_text = path;
+    config.output_dir = kTmp / "terminal_out";
+    std::filesystem::remove_all(config.output_dir);
+    config.scales = {8};
+    config.heldout_tokens = 4;
+    config.conditions = "ACE";
+    config.base.min_count_rel = 0.0;
+    config.base.min_count_floor = 2;
+    config.base.hub_cap = 100;
+    config.base.pairs_per_bucket = 100000;
+    const auto result = run_terminal_punct_ablation(config);
+    CHECK(result.conditions.size() == 3);
+
+    const auto& a = result.conditions[0];
+    CHECK(a.condition == 'A');
+    CHECK(a.scales[0].terminal_capable_share < 0.0);  // no terminal observation
+    CHECK(a.actual_tokens[0] == 8);
+
+    const auto& c = result.conditions[1];
+    CHECK(c.condition == 'C');
+    CHECK(c.scales[0].substrings_total == 4);  // a b c d; no frequent bigrams
+    CHECK(c.scales[0].distinct_pairs == 2);
+    CHECK(std::abs(c.scales[0].terminal_capable_share - 0.5) < 1e-9);
+    CHECK(std::abs(c.scales[0].terminal_agreement_baseline - 0.5) < 1e-9);
+    CHECK(c.scales[0].terminal_complete_span_share == 0.0);
+    for (const auto& threshold : c.scales[0].thresholds) {
+        if (threshold.m <= 2) {
+            CHECK(threshold.pairs == 2);
+            CHECK(std::abs(threshold.terminal_purity - 1.0) < 1e-9);
+        } else {
+            CHECK(threshold.pairs == 0);
+        }
+    }
+    // Held-out doc1 shares no exact context with the train pairs.
+    for (const auto& row : c.heldout) {
+        CHECK(row.bucket == "2-3");
+        CHECK(row.sampled_pairs == 2);
+        CHECK(row.replicated_pairs == 0);
+    }
+
+    const auto& e = result.conditions[2];
+    CHECK(e.condition == 'E');
+    CHECK(e.scales[0].terminal_capable_share > 0.0);  // .?! proxy enabled
+    CHECK(e.actual_tokens[0] > a.actual_tokens[0]);   // E keeps the periods
+
+    CHECK(std::filesystem::exists(config.output_dir / "terminal_punctuation_ablation.csv"));
+    CHECK(std::filesystem::exists(config.output_dir / "ablation_neighborhood_samples.txt"));
+}
+
+// A complete sentence span must be observable as a (<s>, <s>) context.
+void test_ablation_complete_span() {
+    std::filesystem::create_directories(kTmp);
+    const auto path = kTmp / "complete.txt";
+    write_file(path, {"he ran . he ran . she ran", "he ran . she ran ."});
+    AblationConfig config;
+    config.input_text = path;
+    config.output_dir = kTmp / "complete_out";
+    std::filesystem::remove_all(config.output_dir);
+    config.scales = {6};
+    config.heldout_tokens = 2;
+    config.conditions = "C";
+    config.base.min_count_rel = 0.0;
+    config.base.min_count_floor = 2;
+    const auto result = run_terminal_punct_ablation(config);
+    const auto& metrics = result.conditions[0].scales[0];
+    // "he ran" occurs twice as a full sentence: complete-span share > 0.
+    CHECK(metrics.terminal_complete_span_share > 0.0);
+    CHECK(metrics.terminal_capable_share > 0.0);
+}
+
+void test_ablation_csv_and_determinism() {
+    std::filesystem::create_directories(kTmp);
+    const auto input = kTmp / "synthetic.txt";
+    write_file(input, synthetic_corpus(60));
+    AblationConfig config;
+    config.input_text = input;
+    config.output_dir = kTmp / "ablation1";
+    std::filesystem::remove_all(config.output_dir);
+    config.scales = {200, 400};
+    config.heldout_tokens = 100;
+    config.base.min_count_rel = 0.0;
+    config.base.min_count_floor = 2;
+    config.base.hub_cap = 100;
+    config.base.pairs_per_bucket = 50;
+    const auto first = run_terminal_punct_ablation(config);
+    CHECK(first.conditions.size() == 5);
+
+    // CSV structure: per scale, 5 condition rows + 2 delta rows.
+    std::ifstream csv(config.output_dir / "terminal_punctuation_ablation.csv");
+    std::string line;
+    std::getline(csv, line);
+    CHECK(line.rfind("condition,terminal_anchor,punctuation_aware,nominal_scale", 0) == 0);
+    std::size_t condition_rows = 0;
+    std::size_t delta_rows = 0;
+    std::vector<std::string> delta_terminal_rows;
+    while (std::getline(csv, line)) {
+        if (line.rfind("delta_", 0) == 0) {
+            ++delta_rows;
+            if (line.rfind("delta_terminal", 0) == 0) {
+                delta_terminal_rows.push_back(line);
+            }
+        } else {
+            ++condition_rows;
+        }
+    }
+    CHECK(condition_rows == 2 * 5);
+    CHECK(delta_rows == 2 * 2);
+
+    // Spot-check delta_terminal on singleton_context_share (column 5 after
+    // the 4 leading fields) = mean(C,D) - mean(A,B).
+    const auto value_of = [&](const char condition, const std::size_t scale_index) {
+        for (const auto& entry : first.conditions) {
+            if (entry.condition == condition) {
+                return entry.scales[scale_index].singleton_context_share;
+            }
+        }
+        throw TestFailure("missing condition");
+    };
+    {
+        std::istringstream row(delta_terminal_rows[0]);
+        std::string field;
+        for (int skip = 0; skip < 6; ++skip) {  // condition,anchor,punct,scale,actual,subs
+            std::getline(row, field, ',');
+        }
+        std::getline(row, field, ',');
+        const double expected = (value_of('C', 0) + value_of('D', 0)) / 2.0 -
+                                (value_of('A', 0) + value_of('B', 0)) / 2.0;
+        CHECK(std::abs(std::stod(field) - expected) < 1e-6);
+    }
+
+    // Determinism: byte-identical rerun (the ablation CSV has no timing).
+    config.output_dir = kTmp / "ablation2";
+    std::filesystem::remove_all(config.output_dir);
+    run_terminal_punct_ablation(config);
+    CHECK(read_file(kTmp / "ablation1" / "terminal_punctuation_ablation.csv") ==
+          read_file(kTmp / "ablation2" / "terminal_punctuation_ablation.csv"));
+    CHECK(read_file(kTmp / "ablation1" / "ablation_neighborhood_samples.txt") ==
+          read_file(kTmp / "ablation2" / "ablation_neighborhood_samples.txt"));
+}
+
 }  // namespace
 
 int main() {
@@ -612,6 +818,11 @@ int main() {
         {"pos_diagnostic", test_pos_diagnostic},
         {"determinism", test_determinism},
         {"mix64_pinned", test_mix64_pinned},
+        {"segmentation_and_condition_streams", test_segmentation_and_condition_streams},
+        {"ablation_terminal_metrics_hand_checked",
+         test_ablation_terminal_metrics_hand_checked},
+        {"ablation_complete_span", test_ablation_complete_span},
+        {"ablation_csv_and_determinism", test_ablation_csv_and_determinism},
     };
 
     std::size_t failures = 0;

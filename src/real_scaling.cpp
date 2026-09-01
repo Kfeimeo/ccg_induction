@@ -378,7 +378,7 @@ std::vector<std::string> default_probe_bigrams() {
 }
 
 // ---------------------------------------------------------------------------
-// Runner
+// Ladder engine (shared by the v2.1 runner and the v2.2 ablation)
 // ---------------------------------------------------------------------------
 
 namespace {
@@ -404,113 +404,101 @@ struct SampledPair {
 
 std::uint64_t pack_pair(std::uint64_t a, std::uint64_t b) { return (a << 32U) | b; }
 
-}  // namespace
-
-RealScalingResult run_real_scaling(const RealScalingConfig& config) {
-    const auto ladder_start = std::chrono::steady_clock::now();
-    std::filesystem::create_directories(config.output_dir);
-
-    // ---- corpus ----------------------------------------------------------
-    auto scales = config.scales;
-    std::sort(scales.begin(), scales.end());
-    const std::uint64_t want_tokens =
-        scales.empty() ? 0 : scales.back() + config.heldout_tokens + 1'000'000;
-    TokenCorpus corpus = build_token_corpus(config.input_text, want_tokens);
-
-    RealScalingResult result;
-    result.corpus_real_tokens = corpus.real_tokens;
-    result.corpus_documents = corpus.documents;
-    result.vocab_size = corpus.token_text.size();
-
-    // Clamp scales the corpus cannot fill.
-    while (!scales.empty() && scales.back() > corpus.real_tokens) {
-        scales.pop_back();
-    }
-    if (scales.empty()) {
-        throw std::runtime_error("corpus smaller than the smallest requested scale");
-    }
-
-    // Scale boundaries in stream positions, and the held-out span (starts at
-    // the first document boundary after the largest train prefix).
-    std::vector<std::size_t> scale_end(scales.size(), 0);
-    std::size_t heldout_begin = corpus.stream.size();
-    {
-        std::uint64_t real = 0;
-        std::size_t next = 0;
-        for (std::size_t pos = 0; pos < corpus.stream.size() && next < scales.size(); ++pos) {
-            if (corpus.stream[pos] != kDocSentinel) {
-                ++real;
-                if (real == scales[next]) {
-                    scale_end[next] = pos + 1;
-                    ++next;
-                }
-            }
-        }
-        for (std::size_t pos = scale_end.back(); pos < corpus.stream.size(); ++pos) {
-            if (corpus.stream[pos] == kDocSentinel) {
-                heldout_begin = pos;
-                break;
-            }
-        }
-    }
-    std::size_t heldout_end = heldout_begin;
-    {
-        std::uint64_t real = 0;
-        while (heldout_end < corpus.stream.size() && real < config.heldout_tokens) {
-            if (corpus.stream[heldout_end] != kDocSentinel) {
-                ++real;
-            }
-            ++heldout_end;
-        }
-        result.heldout_tokens_used = real;
-    }
-
-    // ---- optional POS labels (evaluation only) ---------------------------
+struct PosData {
     std::unordered_map<std::string, std::uint8_t> pos_of_token;
     std::vector<std::string> pos_names;
-    if (!config.ud_conllu.empty()) {
-        std::ifstream ud(config.ud_conllu);
-        if (!ud) {
-            throw std::runtime_error("cannot open UD file: " + config.ud_conllu.string());
+
+    bool empty() const { return pos_of_token.empty(); }
+};
+
+PosData load_pos_data(const std::filesystem::path& ud_conllu) {
+    PosData data;
+    if (ud_conllu.empty()) {
+        return data;
+    }
+    std::ifstream ud(ud_conllu);
+    if (!ud) {
+        throw std::runtime_error("cannot open UD file: " + ud_conllu.string());
+    }
+    std::unordered_map<std::string, std::map<std::string, std::uint32_t>> votes;
+    std::string line;
+    while (std::getline(ud, line)) {
+        if (line.empty() || line[0] == '#') {
+            continue;
         }
-        std::unordered_map<std::string, std::map<std::string, std::uint32_t>> votes;
-        std::string line;
-        while (std::getline(ud, line)) {
-            if (line.empty() || line[0] == '#') {
-                continue;
-            }
-            std::istringstream fields(line);
-            std::string id, form, lemma, upos;
-            std::getline(fields, id, '\t');
-            std::getline(fields, form, '\t');
-            std::getline(fields, lemma, '\t');
-            std::getline(fields, upos, '\t');
-            if (id.find('-') != std::string::npos || id.find('.') != std::string::npos ||
-                upos.empty() || upos == "_") {
-                continue;
-            }
-            std::string lower;
-            for (const char c : form) {
-                lower.push_back(static_cast<char>(std::tolower(static_cast<unsigned char>(c))));
-            }
-            ++votes[lower][upos];
+        std::istringstream fields(line);
+        std::string id, form, lemma, upos;
+        std::getline(fields, id, '\t');
+        std::getline(fields, form, '\t');
+        std::getline(fields, lemma, '\t');
+        std::getline(fields, upos, '\t');
+        if (id.find('-') != std::string::npos || id.find('.') != std::string::npos ||
+            upos.empty() || upos == "_") {
+            continue;
         }
-        std::map<std::string, std::uint8_t> name_ids;
-        for (const auto& [token, dist] : votes) {
-            const auto best = std::max_element(
-                dist.begin(), dist.end(),
-                [](const auto& a, const auto& b) { return a.second < b.second; });
-            const auto inserted =
-                name_ids.try_emplace(best->first, static_cast<std::uint8_t>(name_ids.size()));
-            pos_of_token[token] = inserted.first->second;
+        std::string lower;
+        for (const char c : form) {
+            lower.push_back(static_cast<char>(std::tolower(static_cast<unsigned char>(c))));
         }
-        pos_names.resize(name_ids.size());
-        for (const auto& [name, id] : name_ids) {
-            pos_names[id] = name;
-        }
+        ++votes[lower][upos];
+    }
+    std::map<std::string, std::uint8_t> name_ids;
+    for (const auto& [token, dist] : votes) {
+        const auto best =
+            std::max_element(dist.begin(), dist.end(),
+                             [](const auto& a, const auto& b) { return a.second < b.second; });
+        const auto inserted =
+            name_ids.try_emplace(best->first, static_cast<std::uint8_t>(name_ids.size()));
+        data.pos_of_token[token] = inserted.first->second;
+    }
+    data.pos_names.resize(name_ids.size());
+    for (const auto& [name, id] : name_ids) {
+        data.pos_names[id] = name;
+    }
+    return data;
+}
+
+struct LadderSpec {
+    const std::vector<std::uint32_t>* stream{};
+    const std::vector<std::string>* token_text{};
+    const std::vector<std::uint8_t>* sentinel{};  // per token id; never in substrings
+    std::vector<std::size_t> scale_end;           // prefix positions per scale
+    std::vector<std::uint64_t> scale_tokens;      // nominal N per scale
+    std::size_t heldout_begin{};
+    std::size_t heldout_end{};
+    std::vector<std::uint32_t> terminal_context_ids;  // empty = terminal metrics off
+    const RealScalingConfig* config{};
+    const PosData* pos{};
+    std::ostream* samples{};
+    std::string label;  // "" for v2.1; "condition X " for the ablation
+    std::filesystem::path pair_file;
+};
+
+struct LadderOutputs {
+    std::vector<ScaleMetrics> scales;
+    std::vector<HeldoutBucketStats> heldout;
+};
+
+LadderOutputs run_ladder(const LadderSpec& spec) {
+    const RealScalingConfig& config = *spec.config;
+    const std::vector<std::uint32_t>& full_stream = *spec.stream;
+    const std::vector<std::string>& token_text = *spec.token_text;
+    const std::vector<std::uint8_t>& sentinel = *spec.sentinel;
+    const PosData& pos = *spec.pos;
+    std::ostream& neighborhoods = *spec.samples;
+
+    std::vector<std::uint8_t> terminal_set(token_text.size(), 0);
+    for (const auto id : spec.terminal_context_ids) {
+        terminal_set[id] = 1;
+    }
+    const bool terminal_enabled = !spec.terminal_context_ids.empty();
+
+    std::unordered_map<std::string, std::uint32_t> token_id_of;
+    token_id_of.reserve(token_text.size() * 2);
+    for (std::uint32_t id = 0; id < token_text.size(); ++id) {
+        token_id_of.emplace(token_text[id], id);
     }
 
-    // ---- probes ----------------------------------------------------------
     const auto probe_words =
         config.probe_words.empty() ? default_probe_words() : config.probe_words;
     const auto probe_bigrams =
@@ -522,23 +510,15 @@ RealScalingResult run_real_scaling(const RealScalingConfig& config) {
     for (const auto& bigram : probe_bigrams) {
         probes.push_back({bigram, {}});
     }
-    std::unordered_map<std::string, std::uint32_t> token_id_of;
-    for (std::uint32_t id = 0; id < corpus.token_text.size(); ++id) {
-        token_id_of.emplace(corpus.token_text[id], id);
-    }
 
-    std::ofstream neighborhoods(config.output_dir / "neighborhood_samples.txt");
-    neighborhoods << "# SCF v2.1 substitution neighborhoods (top " << config.top_neighbors
-                  << " partners by |I_N(u,v)|, ties by inventory order)\n";
-
+    LadderOutputs result;
     PrevScaleState previous;
 
-    // ---- ladder ----------------------------------------------------------
-    for (std::size_t scale_index = 0; scale_index < scales.size(); ++scale_index) {
+    for (std::size_t scale_index = 0; scale_index < spec.scale_end.size(); ++scale_index) {
         const auto t_start = std::chrono::steady_clock::now();
-        const std::uint64_t N = scales[scale_index];
-        const std::size_t positions = scale_end[scale_index];
-        const std::uint32_t* stream = corpus.stream.data();
+        const std::uint64_t N = spec.scale_tokens[scale_index];
+        const std::size_t positions = spec.scale_end[scale_index];
+        const std::uint32_t* stream = full_stream.data();
 
         ScaleMetrics metrics;
         metrics.scale_tokens = N;
@@ -549,13 +529,16 @@ RealScalingResult run_real_scaling(const RealScalingConfig& config) {
         const std::uint64_t min_count = metrics.min_count;
 
         // Pass 1: unigram counts.
-        std::vector<std::uint64_t> unigram(corpus.token_text.size(), 0);
+        std::vector<std::uint64_t> unigram(token_text.size(), 0);
         for (std::size_t i = 0; i < positions; ++i) {
             ++unigram[stream[i]];
         }
         Registry registry;
-        registry.dense.assign(corpus.token_text.size(), kNoDense);
-        for (std::uint32_t token = 1; token < corpus.token_text.size(); ++token) {
+        registry.dense.assign(token_text.size(), kNoDense);
+        for (std::uint32_t token = 0; token < token_text.size(); ++token) {
+            if (sentinel[token] != 0) {
+                continue;
+            }
             if (unigram[token] >= min_count) {
                 registry.dense[token] =
                     static_cast<std::uint32_t>(registry.dense_to_token.size());
@@ -571,13 +554,13 @@ RealScalingResult run_real_scaling(const RealScalingConfig& config) {
         metrics.frequent_tokens = registry.dense_to_token.size();
         registry.n1 = registry.dense_to_token.size();
 
-        // Pass 2: bigram counts (both parts frequent; no sentinel).
+        // Pass 2: bigram counts (both parts frequent; sentinels are never
+        // frequent, so the dense check subsumes the sentinel check).
         HashCounter bigram_counts(1 << 20);
         for (std::size_t i = 0; i + 1 < positions; ++i) {
             const std::uint32_t a = registry.dense[stream[i]];
             const std::uint32_t b = registry.dense[stream[i + 1]];
-            if (a != kNoDense && b != kNoDense && stream[i] != kDocSentinel &&
-                stream[i + 1] != kDocSentinel) {
+            if (a != kNoDense && b != kNoDense) {
                 bigram_counts.add((static_cast<std::uint64_t>(a) << kDenseBits) | b, 1);
             }
         }
@@ -599,8 +582,7 @@ RealScalingResult run_real_scaling(const RealScalingConfig& config) {
             const std::uint32_t a = registry.dense[stream[i]];
             const std::uint32_t b = registry.dense[stream[i + 1]];
             const std::uint32_t c = registry.dense[stream[i + 2]];
-            if (a == kNoDense || b == kNoDense || c == kNoDense || stream[i] == kDocSentinel ||
-                stream[i + 1] == kDocSentinel || stream[i + 2] == kDocSentinel) {
+            if (a == kNoDense || b == kNoDense || c == kNoDense) {
                 continue;
             }
             const std::uint64_t left = (static_cast<std::uint64_t>(a) << kDenseBits) | b;
@@ -632,7 +614,7 @@ RealScalingResult run_real_scaling(const RealScalingConfig& config) {
         // Pass 4: context records (l, r, u) with global context token ids.
         std::vector<CtxRec> records;
         for (std::size_t i = 0; i < positions; ++i) {
-            if (stream[i] == kDocSentinel || registry.dense[stream[i]] == kNoDense) {
+            if (registry.dense[stream[i]] == kNoDense) {
                 continue;
             }
             const std::uint32_t left = i > 0 ? stream[i - 1] : kDocSentinel;
@@ -644,8 +626,7 @@ RealScalingResult run_real_scaling(const RealScalingConfig& config) {
                 ++metrics.occurrence_mentions;
             }
             // length 2
-            if (i + 1 < positions && stream[i + 1] != kDocSentinel &&
-                registry.dense[stream[i + 1]] != kNoDense) {
+            if (i + 1 < positions && registry.dense[stream[i + 1]] != kNoDense) {
                 const std::uint64_t key =
                     (static_cast<std::uint64_t>(f0) << kDenseBits) | registry.dense[stream[i + 1]];
                 if (registry.bigram_id.contains(key)) {
@@ -655,8 +636,7 @@ RealScalingResult run_real_scaling(const RealScalingConfig& config) {
                     ++metrics.occurrence_mentions;
                 }
                 // length 3
-                if (i + 2 < positions && stream[i + 2] != kDocSentinel &&
-                    registry.dense[stream[i + 2]] != kNoDense) {
+                if (i + 2 < positions && registry.dense[stream[i + 2]] != kNoDense) {
                     const std::uint64_t tri =
                         (key << kDenseBits) | registry.dense[stream[i + 2]];
                     if (registry.trigram_id.contains(tri)) {
@@ -672,9 +652,16 @@ RealScalingResult run_real_scaling(const RealScalingConfig& config) {
         records.erase(std::unique(records.begin(), records.end()), records.end());
         metrics.context_records = records.size();
 
-        // Pass 5: run scan over exact contexts; degree stats and pair budget.
+        // Pass 5: run scan over exact contexts; degree stats, pair budget,
+        // and (v2.2) terminal-behavior observations.
         std::vector<std::uint32_t> context_count(total_subs, 0);
         std::vector<std::uint32_t> shared_context_count(total_subs, 0);
+        std::vector<std::uint8_t> final_capable;
+        std::vector<std::uint8_t> complete_span;
+        if (terminal_enabled) {
+            final_capable.assign(total_subs, 0);
+            complete_span.assign(total_subs, 0);
+        }
         std::uint64_t records_in_shared = 0;
         std::uint64_t hub_records = 0;
         std::uint64_t pair_emissions = 0;
@@ -701,8 +688,18 @@ RealScalingResult run_real_scaling(const RealScalingConfig& config) {
             } else if (degree >= 2) {
                 pair_emissions += degree * (degree - 1) / 2;
             }
+            const bool right_terminal =
+                terminal_enabled && terminal_set[records[i].right] != 0;
+            const bool left_terminal =
+                terminal_enabled && terminal_set[records[i].left] != 0;
             for (std::size_t k = i; k < j; ++k) {
                 ++context_count[records[k].sub];
+                if (right_terminal) {
+                    final_capable[records[k].sub] = 1;
+                    if (left_terminal) {
+                        complete_span[records[k].sub] = 1;
+                    }
+                }
             }
             i = j;
         }
@@ -733,6 +730,19 @@ RealScalingResult run_real_scaling(const RealScalingConfig& config) {
                             : static_cast<double>(metrics.substrings_with_shared_context) /
                                   static_cast<double>(total_subs);
         metrics.pair_emissions = pair_emissions;
+        if (terminal_enabled && total_subs > 0) {
+            std::uint64_t capable = 0;
+            std::uint64_t complete = 0;
+            for (std::uint64_t u = 0; u < total_subs; ++u) {
+                capable += final_capable[u];
+                complete += complete_span[u];
+            }
+            const double p = static_cast<double>(capable) / static_cast<double>(total_subs);
+            metrics.terminal_capable_share = p;
+            metrics.terminal_complete_span_share =
+                static_cast<double>(complete) / static_cast<double>(total_subs);
+            metrics.terminal_agreement_baseline = p * p + (1.0 - p) * (1.0 - p);
+        }
 
         // Pass 6: pair emission from non-hub shared contexts.
         std::vector<std::uint64_t> pairs;
@@ -773,12 +783,13 @@ RealScalingResult run_real_scaling(const RealScalingConfig& config) {
 
         // POS labels for length-1 substrings (evaluation only).
         std::vector<std::int16_t> pos_label;
-        if (!pos_of_token.empty()) {
+        if (!pos.empty()) {
             pos_label.assign(total_subs, -1);
             std::vector<std::uint64_t> label_counts;
             for (std::uint64_t u = 0; u < registry.n1; ++u) {
-                const auto found = pos_of_token.find(corpus.token_text[registry.dense_to_token[u]]);
-                if (found != pos_of_token.end()) {
+                const auto found =
+                    pos.pos_of_token.find(token_text[registry.dense_to_token[u]]);
+                if (found != pos.pos_of_token.end()) {
                     pos_label[u] = found->second;
                     if (label_counts.size() <= found->second) {
                         label_counts.resize(found->second + 1, 0);
@@ -811,6 +822,7 @@ RealScalingResult run_real_scaling(const RealScalingConfig& config) {
         std::vector<std::uint64_t> pairs_at_m(thresholds.size(), 0);
         std::vector<std::uint64_t> same_pos_at_m(thresholds.size(), 0);
         std::vector<std::uint64_t> labeled_at_m(thresholds.size(), 0);
+        std::vector<std::uint64_t> terminal_agree_at_m(thresholds.size(), 0);
         std::vector<std::vector<std::uint8_t>> node_seen(
             thresholds.size(), std::vector<std::uint8_t>(total_subs, 0));
         std::vector<std::uint32_t> degree1(total_subs, 0);
@@ -855,6 +867,8 @@ RealScalingResult run_real_scaling(const RealScalingConfig& config) {
             ++degree1[a];
             ++degree1[b];
             const bool labeled = !pos_label.empty() && pos_label[a] >= 0 && pos_label[b] >= 0;
+            const bool terminal_agree =
+                terminal_enabled && final_capable[a] == final_capable[b];
             for (std::size_t t = 0; t < thresholds.size(); ++t) {
                 if (count >= thresholds[t]) {
                     ++pairs_at_m[t];
@@ -866,6 +880,9 @@ RealScalingResult run_real_scaling(const RealScalingConfig& config) {
                         if (pos_label[a] == pos_label[b]) {
                             ++same_pos_at_m[t];
                         }
+                    }
+                    if (terminal_agree) {
+                        ++terminal_agree_at_m[t];
                     }
                 }
             }
@@ -917,6 +934,13 @@ RealScalingResult run_real_scaling(const RealScalingConfig& config) {
                                           : static_cast<double>(same_pos_at_m[t]) /
                                                 static_cast<double>(labeled_at_m[t]);
             }
+            if (terminal_enabled) {
+                stats.terminal_agree_pairs = terminal_agree_at_m[t];
+                stats.terminal_purity = pairs_at_m[t] == 0
+                                            ? -1.0
+                                            : static_cast<double>(terminal_agree_at_m[t]) /
+                                                  static_cast<double>(pairs_at_m[t]);
+            }
             metrics.thresholds.push_back(stats);
         }
         components.clear();
@@ -934,9 +958,11 @@ RealScalingResult run_real_scaling(const RealScalingConfig& config) {
                             : static_cast<double>(degree_sum) / static_cast<double>(total_subs);
 
         // ---- neighborhood samples + stability vs previous scale ----------
-        neighborhoods << "\n== scale " << N << " ==\n";
+        neighborhoods << "\n== " << spec.label << "scale " << N << " ==\n";
         double jaccard_sum = 0.0;
         std::size_t jaccard_terms = 0;
+        double completion_sum = 0.0;
+        std::size_t completion_terms = 0;
         for (std::size_t p = 0; p < probes.size(); ++p) {
             neighborhoods << "probe \"" << probes[p].text << "\"";
             std::vector<std::string> top_texts;
@@ -953,7 +979,12 @@ RealScalingResult run_real_scaling(const RealScalingConfig& config) {
                                                                  : std::string("-"))
                               << " context_count=" << context_count[uid]
                               << " shared_context_count=" << shared_context_count[uid]
-                              << " substitution_degree=" << degree1[uid] << "\n";
+                              << " substitution_degree=" << degree1[uid];
+                if (terminal_enabled) {
+                    neighborhoods << " terminal_capable="
+                                  << static_cast<int>(final_capable[uid]);
+                }
+                neighborhoods << "\n";
                 auto& partners = probe_partners[p];
                 std::sort(partners.begin(), partners.end(),
                           [](const auto& x, const auto& y) {
@@ -963,18 +994,31 @@ RealScalingResult run_real_scaling(const RealScalingConfig& config) {
                               return x.second < y.second;
                           });
                 const std::size_t take = std::min(partners.size(), config.top_neighbors);
+                std::size_t terminal_partners = 0;
                 for (std::size_t i = 0; i < take; ++i) {
                     const auto partner_text =
-                        registry.text_of(partners[i].second, corpus.token_text);
+                        registry.text_of(partners[i].second, token_text);
                     top_texts.push_back(partner_text);
                     neighborhoods << "    " << partner_text << " |I|=" << partners[i].first;
                     if (!pos_label.empty() && partners[i].second < registry.n1 &&
                         pos_label[partners[i].second] >= 0) {
                         neighborhoods << " pos="
-                                      << pos_names[static_cast<std::size_t>(
+                                      << pos.pos_names[static_cast<std::size_t>(
                                              pos_label[partners[i].second])];
                     }
+                    if (terminal_enabled && final_capable[partners[i].second] != 0) {
+                        neighborhoods << " terminal";
+                        ++terminal_partners;
+                    }
                     neighborhoods << "\n";
+                }
+                if (terminal_enabled && take > 0) {
+                    const double rate = static_cast<double>(terminal_partners) /
+                                        static_cast<double>(take);
+                    neighborhoods << "    terminal_completion_rate=" << format_double(rate)
+                                  << "\n";
+                    completion_sum += rate;
+                    ++completion_terms;
                 }
             }
             if (!probes[p].previous_top.empty() && !top_texts.empty()) {
@@ -996,8 +1040,12 @@ RealScalingResult run_real_scaling(const RealScalingConfig& config) {
             probes[p].previous_top = std::move(top_texts);
         }
         if (jaccard_terms > 0) {
-            metrics.probe_neighborhood_jaccard_mean = jaccard_sum /
-                                                      static_cast<double>(jaccard_terms);
+            metrics.probe_neighborhood_jaccard_mean =
+                jaccard_sum / static_cast<double>(jaccard_terms);
+        }
+        if (terminal_enabled && completion_terms > 0) {
+            metrics.neighborhood_terminal_completion_rate =
+                completion_sum / static_cast<double>(completion_terms);
         }
 
         // ---- transition vs previous scale --------------------------------
@@ -1052,7 +1100,7 @@ RealScalingResult run_real_scaling(const RealScalingConfig& config) {
         // ---- persist pair file + registry snapshot for the next scale ----
         {
             previous.scale_tokens = N;
-            previous.pair_file = config.output_dir / "pairs_prev.bin";
+            previous.pair_file = spec.pair_file;
             std::ofstream out(previous.pair_file, std::ios::binary | std::ios::trunc);
             for (std::size_t i = 0; i < pair_keys.size(); ++i) {
                 out.write(reinterpret_cast<const char*>(&pair_keys[i]), sizeof(pair_keys[i]));
@@ -1068,14 +1116,15 @@ RealScalingResult run_real_scaling(const RealScalingConfig& config) {
         }
 
         if (config.dump_pairs_limit > 0 && pair_keys.size() <= config.dump_pairs_limit) {
+            std::string tag = spec.label;
+            std::replace(tag.begin(), tag.end(), ' ', '_');
             std::ofstream dump(config.output_dir /
-                               ("pair_dump_" + std::to_string(N) + ".txt"));
+                               ("pair_dump_" + tag + std::to_string(N) + ".txt"));
             for (std::size_t i = 0; i < pair_keys.size(); ++i) {
                 const auto a = static_cast<std::uint32_t>(pair_keys[i] >> 32U);
                 const auto b = static_cast<std::uint32_t>(pair_keys[i] & 0xffffffffULL);
-                dump << registry.text_of(a, corpus.token_text) << "\t"
-                     << registry.text_of(b, corpus.token_text) << "\t" << pair_counts[i]
-                     << "\n";
+                dump << registry.text_of(a, token_text) << "\t"
+                     << registry.text_of(b, token_text) << "\t" << pair_counts[i] << "\n";
             }
         }
 
@@ -1103,18 +1152,17 @@ RealScalingResult run_real_scaling(const RealScalingConfig& config) {
             // Scan the held-out span; collect exact contexts of wanted
             // substrings under the *train* inventory.
             std::vector<CtxRec> hrecords;
-            for (std::size_t i = heldout_begin; i < heldout_end; ++i) {
-                if (corpus.stream[i] == kDocSentinel ||
-                    registry.dense[corpus.stream[i]] == kNoDense) {
+            for (std::size_t i = spec.heldout_begin; i < spec.heldout_end; ++i) {
+                if (registry.dense[full_stream[i]] == kNoDense) {
                     continue;
                 }
-                const std::uint32_t left = i > 0 ? corpus.stream[i - 1] : kDocSentinel;
-                for (std::size_t len = 1; len <= 3 && i + len <= heldout_end; ++len) {
+                const std::uint32_t left = i > 0 ? full_stream[i - 1] : kDocSentinel;
+                for (std::size_t len = 1; len <= 3 && i + len <= spec.heldout_end; ++len) {
                     std::array<std::uint32_t, 3> seq{};
                     bool valid = true;
                     for (std::size_t k = 0; k < len; ++k) {
-                        seq[k] = corpus.stream[i + k];
-                        if (seq[k] == kDocSentinel) {
+                        seq[k] = full_stream[i + k];
+                        if (sentinel[seq[k]] != 0) {
                             valid = false;
                             break;
                         }
@@ -1127,7 +1175,7 @@ RealScalingResult run_real_scaling(const RealScalingConfig& config) {
                         continue;
                     }
                     const std::uint32_t right =
-                        i + len < heldout_end ? corpus.stream[i + len] : kDocSentinel;
+                        i + len < spec.heldout_end ? full_stream[i + len] : kDocSentinel;
                     hrecords.push_back({left, right, static_cast<std::uint32_t>(uid)});
                 }
             }
@@ -1226,7 +1274,100 @@ RealScalingResult run_real_scaling(const RealScalingConfig& config) {
         metrics.peak_rss_mb = peak_rss_mb();
         result.scales.push_back(std::move(metrics));
     }
-    std::filesystem::remove(config.output_dir / "pairs_prev.bin");
+    std::filesystem::remove(spec.pair_file);
+    return result;
+}
+
+}  // namespace
+
+// ---------------------------------------------------------------------------
+// v2.1 runner
+// ---------------------------------------------------------------------------
+
+RealScalingResult run_real_scaling(const RealScalingConfig& config) {
+    const auto ladder_start = std::chrono::steady_clock::now();
+    std::filesystem::create_directories(config.output_dir);
+
+    auto scales = config.scales;
+    std::sort(scales.begin(), scales.end());
+    const std::uint64_t want_tokens =
+        scales.empty() ? 0 : scales.back() + config.heldout_tokens + 1'000'000;
+    TokenCorpus corpus = build_token_corpus(config.input_text, want_tokens);
+
+    RealScalingResult result;
+    result.corpus_real_tokens = corpus.real_tokens;
+    result.corpus_documents = corpus.documents;
+    result.vocab_size = corpus.token_text.size();
+
+    // Clamp scales the corpus cannot fill.
+    while (!scales.empty() && scales.back() > corpus.real_tokens) {
+        scales.pop_back();
+    }
+    if (scales.empty()) {
+        throw std::runtime_error("corpus smaller than the smallest requested scale");
+    }
+
+    // Scale boundaries in stream positions, and the held-out span (starts at
+    // the first document boundary after the largest train prefix).
+    std::vector<std::size_t> scale_end(scales.size(), 0);
+    std::size_t heldout_begin = corpus.stream.size();
+    {
+        std::uint64_t real = 0;
+        std::size_t next = 0;
+        for (std::size_t pos = 0; pos < corpus.stream.size() && next < scales.size(); ++pos) {
+            if (corpus.stream[pos] != kDocSentinel) {
+                ++real;
+                if (real == scales[next]) {
+                    scale_end[next] = pos + 1;
+                    ++next;
+                }
+            }
+        }
+        for (std::size_t pos = scale_end.back(); pos < corpus.stream.size(); ++pos) {
+            if (corpus.stream[pos] == kDocSentinel) {
+                heldout_begin = pos;
+                break;
+            }
+        }
+    }
+    std::size_t heldout_end = heldout_begin;
+    {
+        std::uint64_t real = 0;
+        while (heldout_end < corpus.stream.size() && real < config.heldout_tokens) {
+            if (corpus.stream[heldout_end] != kDocSentinel) {
+                ++real;
+            }
+            ++heldout_end;
+        }
+        result.heldout_tokens_used = real;
+    }
+
+    const PosData pos = load_pos_data(config.ud_conllu);
+
+    std::ofstream neighborhoods(config.output_dir / "neighborhood_samples.txt");
+    neighborhoods << "# SCF v2.1 substitution neighborhoods (top " << config.top_neighbors
+                  << " partners by |I_N(u,v)|, ties by inventory order)\n";
+
+    std::vector<std::uint8_t> sentinel(corpus.token_text.size(), 0);
+    sentinel[kDocSentinel] = 1;
+
+    LadderSpec spec;
+    spec.stream = &corpus.stream;
+    spec.token_text = &corpus.token_text;
+    spec.sentinel = &sentinel;
+    spec.scale_end = scale_end;
+    spec.scale_tokens = scales;
+    spec.heldout_begin = heldout_begin;
+    spec.heldout_end = heldout_end;
+    spec.config = &config;
+    spec.pos = &pos;
+    spec.samples = &neighborhoods;
+    spec.label = "";
+    spec.pair_file = config.output_dir / "pairs_prev.bin";
+
+    auto outputs = run_ladder(spec);
+    result.scales = std::move(outputs.scales);
+    result.heldout = std::move(outputs.heldout);
 
     // ---- CSV outputs -----------------------------------------------------
     {
@@ -1298,6 +1439,373 @@ RealScalingResult run_real_scaling(const RealScalingConfig& config) {
                                        std::chrono::steady_clock::now() - ladder_start)
                                        .count())
                   << " s, peak RSS " << format_double(peak_rss_mb()) << " MB\n";
+    return result;
+}
+
+// ---------------------------------------------------------------------------
+// v2.2 — Terminal x Punctuation ablation
+// ---------------------------------------------------------------------------
+
+bool is_punctuation_token(const std::string_view text) {
+    return text.size() == 1 && std::ispunct(static_cast<unsigned char>(text[0])) != 0;
+}
+
+bool is_final_punctuation_token(const std::string_view text) {
+    return text == "." || text == "?" || text == "!";
+}
+
+std::vector<SentenceSpan> segment_sentences(const TokenCorpus& corpus) {
+    std::vector<std::uint8_t> is_final(corpus.token_text.size(), 0);
+    for (std::size_t id = 0; id < corpus.token_text.size(); ++id) {
+        is_final[id] = is_final_punctuation_token(corpus.token_text[id]) ? 1 : 0;
+    }
+    std::vector<SentenceSpan> sentences;
+    std::size_t document = 0;
+    bool seen_document = false;
+    std::size_t begin = 0;
+    bool open = false;
+    const auto close = [&](const std::size_t end, const bool has_final,
+                           const std::uint32_t final_punct) {
+        if (open && end > begin) {
+            sentences.push_back({begin, end, final_punct, has_final, document});
+        }
+        open = false;
+    };
+    for (std::size_t pos = 0; pos < corpus.stream.size(); ++pos) {
+        const std::uint32_t token = corpus.stream[pos];
+        if (token == kDocSentinel) {
+            close(pos, false, 0);
+            if (seen_document) {
+                ++document;
+            }
+            seen_document = true;
+            continue;
+        }
+        if (is_final[token] != 0) {
+            close(pos, true, token);
+            continue;
+        }
+        if (!open) {
+            begin = pos;
+            open = true;
+        }
+    }
+    close(corpus.stream.size(), false, 0);
+    return sentences;
+}
+
+ConditionStream build_condition_stream(const TokenCorpus& corpus,
+                                       const std::vector<SentenceSpan>& sentences,
+                                       const char condition) {
+    if (condition < 'A' || condition > 'E') {
+        throw std::runtime_error("unknown ablation condition");
+    }
+    const bool anchor = condition == 'C' || condition == 'D';
+    const bool punct_aware = condition != 'B' && condition != 'D';
+    const bool keep_final = condition == 'E';
+
+    ConditionStream out;
+    out.condition = condition;
+    out.token_text = corpus.token_text;
+    std::uint32_t s_id = 0;
+    if (anchor) {
+        s_id = static_cast<std::uint32_t>(out.token_text.size());
+        out.token_text.push_back("<s>");
+    }
+    out.sentinel.assign(out.token_text.size(), 0);
+    out.sentinel[kDocSentinel] = 1;
+    if (anchor) {
+        out.sentinel[s_id] = 1;
+        out.terminal_context_ids.push_back(s_id);
+    } else if (keep_final) {
+        for (std::uint32_t id = 0; id < corpus.token_text.size(); ++id) {
+            if (is_final_punctuation_token(corpus.token_text[id])) {
+                out.terminal_context_ids.push_back(id);
+            }
+        }
+    }
+    std::vector<std::uint8_t> punct(corpus.token_text.size(), 0);
+    for (std::size_t id = 0; id < corpus.token_text.size(); ++id) {
+        punct[id] = is_punctuation_token(corpus.token_text[id]) ? 1 : 0;
+    }
+
+    out.sentence_end_pos.reserve(sentences.size());
+    out.real_tokens_after.reserve(sentences.size());
+    std::uint64_t real = 0;
+    std::size_t current_document = static_cast<std::size_t>(-1);
+    for (const auto& sentence : sentences) {
+        if (sentence.document != current_document) {
+            out.stream.push_back(kDocSentinel);
+            if (anchor) {
+                out.stream.push_back(s_id);
+            }
+            current_document = sentence.document;
+        }
+        for (std::size_t pos = sentence.begin; pos < sentence.end; ++pos) {
+            const std::uint32_t token = corpus.stream[pos];
+            if (!punct_aware && punct[token] != 0) {
+                continue;
+            }
+            out.stream.push_back(token);
+            ++real;
+        }
+        if (keep_final && sentence.has_final_punct) {
+            out.stream.push_back(sentence.final_punct);
+            ++real;
+        }
+        if (anchor) {
+            out.stream.push_back(s_id);
+        }
+        out.sentence_end_pos.push_back(out.stream.size());
+        out.real_tokens_after.push_back(real);
+    }
+    out.stream.push_back(kDocSentinel);
+    return out;
+}
+
+AblationResult run_terminal_punct_ablation(const AblationConfig& config) {
+    std::filesystem::create_directories(config.output_dir);
+
+    auto scales = config.scales;
+    std::sort(scales.begin(), scales.end());
+    if (scales.empty()) {
+        throw std::runtime_error("no scales requested");
+    }
+    // Punctuation-free conditions drop ~15% of tokens; read enough base
+    // tokens that the condition-A budget (which defines the shared split)
+    // still covers the largest scale plus the held-out shard.
+    const std::uint64_t want_base =
+        static_cast<std::uint64_t>(
+            static_cast<double>(scales.back() + config.heldout_tokens) * 1.18) +
+        2'000'000;
+    const TokenCorpus corpus = build_token_corpus(config.input_text, want_base);
+    const auto sentences = segment_sentences(corpus);
+    if (sentences.empty()) {
+        throw std::runtime_error("no sentences after segmentation");
+    }
+
+    // Shared split, in condition-A tokens (sentence spans minus final .?!).
+    std::vector<std::uint64_t> cumulative(sentences.size(), 0);
+    for (std::size_t i = 0; i < sentences.size(); ++i) {
+        const std::uint64_t tokens = sentences[i].end - sentences[i].begin;
+        cumulative[i] = tokens + (i == 0 ? 0 : cumulative[i - 1]);
+    }
+    while (!scales.empty() && scales.back() > cumulative.back()) {
+        scales.pop_back();
+    }
+    if (scales.empty()) {
+        throw std::runtime_error("corpus smaller than the smallest requested scale");
+    }
+    std::vector<std::size_t> train_sentences(scales.size(), 0);
+    for (std::size_t s = 0; s < scales.size(); ++s) {
+        const auto it = std::lower_bound(cumulative.begin(), cumulative.end(), scales[s]);
+        train_sentences[s] = static_cast<std::size_t>(it - cumulative.begin()) + 1;
+    }
+    // Held-out: first sentence of the first NEW document after the largest
+    // train prefix (document-disjoint from every train scale), extended to
+    // the held-out token budget.
+    const std::size_t last_train = train_sentences.back() - 1;
+    std::size_t heldout_first = sentences.size();
+    for (std::size_t i = last_train + 1; i < sentences.size(); ++i) {
+        if (sentences[i].document != sentences[last_train].document) {
+            heldout_first = i;
+            break;
+        }
+    }
+    if (heldout_first >= sentences.size()) {
+        throw std::runtime_error("no held-out documents after the largest train prefix");
+    }
+    std::size_t heldout_last = heldout_first;
+    while (heldout_last + 1 < sentences.size() &&
+           cumulative[heldout_last] - cumulative[heldout_first - 1] < config.heldout_tokens) {
+        ++heldout_last;
+    }
+
+    const PosData pos = load_pos_data(config.base.ud_conllu);
+
+    std::ofstream samples(config.output_dir / "ablation_neighborhood_samples.txt");
+    samples << "# SCF v2.2 terminal x punctuation ablation neighborhoods (top "
+            << config.base.top_neighbors << " partners by |I_N(u,v)|)\n";
+
+    RealScalingConfig ladder_config = config.base;
+    ladder_config.output_dir = config.output_dir;
+
+    AblationResult result;
+    result.sentences = sentences.size();
+    result.heldout_sentences = heldout_last - heldout_first + 1;
+
+    for (const char condition : config.conditions) {
+        const auto cs = build_condition_stream(corpus, sentences, condition);
+        LadderSpec spec;
+        spec.stream = &cs.stream;
+        spec.token_text = &cs.token_text;
+        spec.sentinel = &cs.sentinel;
+        for (std::size_t s = 0; s < scales.size(); ++s) {
+            spec.scale_end.push_back(cs.sentence_end_pos[train_sentences[s] - 1]);
+            spec.scale_tokens.push_back(scales[s]);
+        }
+        spec.heldout_begin = cs.sentence_end_pos[heldout_first - 1];
+        spec.heldout_end = cs.sentence_end_pos[heldout_last];
+        spec.terminal_context_ids = cs.terminal_context_ids;
+        spec.config = &ladder_config;
+        spec.pos = &pos;
+        spec.samples = &samples;
+        spec.label = std::string("condition ") + condition + " ";
+        spec.pair_file =
+            config.output_dir / (std::string("pairs_prev_") + condition + ".bin");
+
+        auto outputs = run_ladder(spec);
+        AblationConditionResult entry;
+        entry.condition = condition;
+        entry.terminal_anchor = condition == 'C' || condition == 'D';
+        entry.punctuation_aware = condition != 'B' && condition != 'D';
+        entry.scales = std::move(outputs.scales);
+        entry.heldout = std::move(outputs.heldout);
+        for (std::size_t s = 0; s < scales.size(); ++s) {
+            entry.actual_tokens.push_back(cs.real_tokens_after[train_sentences[s] - 1]);
+        }
+        result.conditions.push_back(std::move(entry));
+    }
+
+    // ---- CSV -------------------------------------------------------------
+    const std::vector<std::string> metric_names{
+        "actual_tokens",
+        "substrings_total",
+        "singleton_context_share",
+        "shared_context_coverage",
+        "hub_record_share",
+        "largest_component_ratio_m1",
+        "largest_component_ratio_m2",
+        "largest_component_ratio_m4",
+        "largest_component_ratio_m8",
+        "largest_component_ratio_m16",
+        "neighborhood_jaccard_vs_prev",
+        "same_pos_rate_m1",
+        "same_pos_rate_m4",
+        "same_pos_rate_m16",
+        "same_pos_baseline",
+        "heldout_repl_b1",
+        "heldout_repl_b2_3",
+        "heldout_repl_b4_7",
+        "heldout_repl_b8_15",
+        "heldout_repl_b16plus",
+        "terminal_capable_share",
+        "terminal_complete_span_share",
+        "terminal_purity_m1",
+        "terminal_purity_m4",
+        "terminal_purity_m16",
+        "terminal_agreement_baseline",
+        "neighborhood_terminal_completion_rate",
+    };
+    const auto metric_vector = [&](const AblationConditionResult& entry,
+                                   const std::size_t scale_index) {
+        const auto& m = entry.scales[scale_index];
+        const auto threshold = [&](const std::uint32_t want) -> const ThresholdStats* {
+            for (const auto& t : m.thresholds) {
+                if (t.m == want) {
+                    return &t;
+                }
+            }
+            return nullptr;
+        };
+        const auto lcr = [&](const std::uint32_t want) {
+            const auto* t = threshold(want);
+            return t == nullptr ? -1.0 : t->largest_component_ratio;
+        };
+        const auto pos_rate = [&](const std::uint32_t want) {
+            const auto* t = threshold(want);
+            return t == nullptr ? -1.0 : t->same_pos_rate;
+        };
+        const auto term_purity = [&](const std::uint32_t want) {
+            const auto* t = threshold(want);
+            return t == nullptr ? -1.0 : t->terminal_purity;
+        };
+        const auto heldout_rate = [&](const std::string& bucket) {
+            for (const auto& h : entry.heldout) {
+                if (h.scale_tokens == m.scale_tokens && h.bucket == bucket) {
+                    return h.replication_rate;
+                }
+            }
+            return -1.0;
+        };
+        return std::vector<double>{
+            static_cast<double>(entry.actual_tokens[scale_index]),
+            static_cast<double>(m.substrings_total),
+            m.singleton_context_share,
+            m.records_in_shared_contexts_share,
+            m.hub_record_share,
+            lcr(1),
+            lcr(2),
+            lcr(4),
+            lcr(8),
+            lcr(16),
+            m.probe_neighborhood_jaccard_mean,
+            pos_rate(1),
+            pos_rate(4),
+            pos_rate(16),
+            m.same_pos_baseline,
+            heldout_rate("1"),
+            heldout_rate("2-3"),
+            heldout_rate("4-7"),
+            heldout_rate("8-15"),
+            heldout_rate("16+"),
+            m.terminal_capable_share,
+            m.terminal_complete_span_share,
+            term_purity(1),
+            term_purity(4),
+            term_purity(16),
+            m.terminal_agreement_baseline,
+            m.neighborhood_terminal_completion_rate,
+        };
+    };
+
+    std::ofstream csv(config.output_dir / "terminal_punctuation_ablation.csv");
+    csv << "condition,terminal_anchor,punctuation_aware,nominal_scale";
+    for (const auto& name : metric_names) {
+        csv << "," << name;
+    }
+    csv << "\n";
+    for (std::size_t s = 0; s < scales.size(); ++s) {
+        std::map<char, std::vector<double>> values;
+        for (const auto& entry : result.conditions) {
+            const auto row = metric_vector(entry, s);
+            values.emplace(entry.condition, row);
+            csv << entry.condition << "," << (entry.terminal_anchor ? 1 : 0) << ","
+                << (entry.punctuation_aware ? 1 : 0) << "," << scales[s];
+            for (const auto value : row) {
+                csv << "," << format_double(value);
+            }
+            csv << "\n";
+        }
+        const auto delta_row = [&](const std::string& name, const char p1, const char p2,
+                                   const char n1, const char n2) {
+            const auto a = values.find(p1);
+            const auto b = values.find(p2);
+            const auto c = values.find(n1);
+            const auto d = values.find(n2);
+            if (a == values.end() || b == values.end() || c == values.end() ||
+                d == values.end()) {
+                return;
+            }
+            csv << name << ",-,-," << scales[s];
+            for (std::size_t k = 0; k < metric_names.size(); ++k) {
+                const double pa = a->second[k];
+                const double pb = b->second[k];
+                const double na = c->second[k];
+                const double nb = d->second[k];
+                if (pa < 0.0 || pb < 0.0 || na < 0.0 || nb < 0.0) {
+                    csv << ",";
+                } else {
+                    csv << "," << format_double((pa + pb) / 2.0 - (na + nb) / 2.0);
+                }
+            }
+            csv << "\n";
+        };
+        // delta_terminal = mean(C, D) - mean(A, B)
+        delta_row("delta_terminal", 'C', 'D', 'A', 'B');
+        // delta_punct = mean(A, C) - mean(B, D)
+        delta_row("delta_punct", 'A', 'C', 'B', 'D');
+    }
     return result;
 }
 

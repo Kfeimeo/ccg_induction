@@ -525,6 +525,45 @@ writes `scaling_metrics.csv`, `pair_evidence_scaling.csv`,
 `heldout_replication.csv`, and `neighborhood_samples.txt` (committed under
 `results_v2_1_real/`).
 
+## v2.2: terminal x punctuation ablation
+
+Full results in `SCF_V2_2_TERMINAL_PUNCT_REPORT.md`. v2.2 adds a minimal
+2x2 (+ one diagnostic) ablation on top of the v2.1 machinery — the evidence
+definitions, thresholds, hub cap, and ladder are reused verbatim — to
+separate the contribution of **sentence-terminal information** from
+**punctuation information**:
+
+```text
+A: no-terminal    + punctuation-aware
+B: no-terminal    + punctuation-free
+C: terminal-anchor + punctuation-aware
+D: terminal-anchor + punctuation-free
+E: no-terminal    + punctuation-aware, sentence-final .?! kept as tokens
+```
+
+Sentence segmentation is fixed across conditions (every `.?!` ends a
+sentence, as does a document boundary) and the train/held-out split is the
+same set of sentences for every condition. `terminal-anchor` inserts a
+sentence sentinel `<s>` that behaves exactly like `<doc>`: visible in exact
+contexts (a sentence-final token sees right context `<s>`; a complete
+sentence span sees `(<s>, <s>)`), never inside a substring, never in the
+lexical inventory. `punctuation-free` removes internal punctuation tokens;
+the sentence-final `.?!` consumed by segmentation never re-enters A–D, and E
+keeps them as ordinary tokens to test whether final punctuation already
+leaks the terminal signal. Two new observables — terminal-behavior purity of
+evidence pairs and neighborhood terminal-completion rates — join the v2.1
+metric set, with `delta_terminal = mean(C,D) − mean(A,B)` and
+`delta_punct = mean(A,C) − mean(B,D)` rows in the output.
+
+```bash
+build/scf_terminal_punct_ablation --input data/real/wiki2017_head.txt \
+  --output-dir results_v2_2_ablation --ud data/real/en_ewt-ud-train.conllu
+```
+
+writes `terminal_punctuation_ablation.csv` and
+`ablation_neighborhood_samples.txt` (committed under
+`results_v2_2_ablation/`).
+
 ## Layout
 
 Public interfaces live under `include/scf`, implementations under `src`, controlled data under `data/synthetic`, the generators and experiment tools under `tools` (`scf_generate`, `scf_experiment`, `scf_audit`, `scf_real_audit`, `scf_prepare_text`, the v2.0 `scf_oracle_v2`, plus the v1.1 `scf_synthetic_generator`), and the assert-based regression suites under `tests` (`test_main.cpp` for the v1.x core, `test_oracle_v2.cpp` for the v2.0 module). `IMPLEMENTATION_NOTES.md` documents data structures, complexity, correctness caveats, and specification inconsistencies found during implementation.

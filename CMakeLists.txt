@@ -85,6 +85,10 @@ add_executable(scf_real_scaling tools/scf_real_scaling.cpp)
 target_link_libraries(scf_real_scaling PRIVATE scf_real_v21)
 scf_enable_warnings(scf_real_scaling)
 
+add_executable(scf_terminal_punct_ablation tools/scf_terminal_punct_ablation.cpp)
+target_link_libraries(scf_terminal_punct_ablation PRIVATE scf_real_v21)
+scf_enable_warnings(scf_terminal_punct_ablation)
+
 if(SCF_BUILD_TESTS)
     enable_testing()
     set_property(
