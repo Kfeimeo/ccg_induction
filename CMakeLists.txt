@@ -75,6 +75,16 @@ target_link_libraries(scf_oracle_v2_cli PRIVATE scf_oracle_v2)
 set_target_properties(scf_oracle_v2_cli PROPERTIES OUTPUT_NAME scf_oracle_v2)
 scf_enable_warnings(scf_oracle_v2_cli)
 
+# SCF v2.1 — Real Corpus Scaling Experiment: another independent module.
+add_library(scf_real_v21 src/real_scaling.cpp)
+target_include_directories(scf_real_v21 PUBLIC include)
+target_compile_features(scf_real_v21 PUBLIC cxx_std_20)
+scf_enable_warnings(scf_real_v21)
+
+add_executable(scf_real_scaling tools/scf_real_scaling.cpp)
+target_link_libraries(scf_real_scaling PRIVATE scf_real_v21)
+scf_enable_warnings(scf_real_scaling)
+
 if(SCF_BUILD_TESTS)
     enable_testing()
     set_property(
@@ -92,4 +102,9 @@ if(SCF_BUILD_TESTS)
     target_link_libraries(scf_oracle_v2_tests PRIVATE scf_oracle_v2)
     scf_enable_warnings(scf_oracle_v2_tests)
     add_test(NAME scf_oracle_v2_tests COMMAND scf_oracle_v2_tests)
+
+    add_executable(scf_real_v21_tests tests/test_real_scaling.cpp)
+    target_link_libraries(scf_real_v21_tests PRIVATE scf_real_v21)
+    scf_enable_warnings(scf_real_v21_tests)
+    add_test(NAME scf_real_v21_tests COMMAND scf_real_v21_tests)
 endif()

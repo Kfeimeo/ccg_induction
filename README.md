@@ -485,6 +485,46 @@ which writes `category_recovery.csv`, `composition_recovery.csv`,
 `positive_only_recovery.csv`, and `oracle_summary.txt` (committed under
 `results_v2_oracle/`).
 
+## v2.1: real-corpus scaling of external-category evidence
+
+Full results in `SCF_V2_1_REAL_SCALING_REPORT.md`. v2.1 is a third
+independent module (`scf::v21`; library `scf_real_v21`, tool
+`scf_real_scaling`, test binary `scf_real_v21_tests`) that takes the v2.0
+question to real data: with **no** abstraction, supervision, or new
+heuristics, how far does exact-context substitution evidence converge as the
+corpus grows from 1e5 to 1e8 tokens?
+
+The corpus is real English text — the spec names FineWeb, but this
+environment's network policy denies huggingface.co, so the closest reachable
+real corpus is used and documented: the English Wikipedia 2017-10-01 dump
+packaged by gensim-data (fetched deterministically by
+`tools/fetch_wiki_corpus.py` as a fixed 400 MiB range of the first release
+part; ~2e8 tokens after normalization). Per nested scale N the module builds
+high-frequency substrings (lengths 1–3, relative min-frequency floor), exact
+single-token contexts `C_N(u)`, and shared-context evidence
+`I_N(u,v) = C_N(u) ∩ C_N(v)` via context inversion (never an O(n²) pair
+enumeration; contexts with more than `hub_cap` distinct substrings are
+excluded from pair generation and fully accounted). It reports complete
+evidence curves for m ∈ {1,2,4,8,16} (no threshold selection), coverage and
+sparsity statistics, shared-context graph component structure (union-find as
+a read-only diagnostic only — no transitive merging of substrings),
+substitution neighborhoods of fixed probes with cross-scale Jaccard
+stability, evidence growth on retained pairs, a held-out replication test by
+train-evidence bucket (the core generalization metric), and an optional
+POS-purity diagnostic against UD English EWT (labels never enter discovery).
+Everything is deterministic and streaming-friendly (compact token ids; raw
+text never held in memory), with runtime and peak RSS in the output.
+
+```bash
+python3 tools/fetch_wiki_corpus.py data/real/wiki2017_head.txt
+build/scf_real_scaling --input data/real/wiki2017_head.txt \
+  --output-dir results_v2_1_real --ud data/real/en_ewt-ud-train.conllu
+```
+
+writes `scaling_metrics.csv`, `pair_evidence_scaling.csv`,
+`heldout_replication.csv`, and `neighborhood_samples.txt` (committed under
+`results_v2_1_real/`).
+
 ## Layout
 
 Public interfaces live under `include/scf`, implementations under `src`, controlled data under `data/synthetic`, the generators and experiment tools under `tools` (`scf_generate`, `scf_experiment`, `scf_audit`, `scf_real_audit`, `scf_prepare_text`, the v2.0 `scf_oracle_v2`, plus the v1.1 `scf_synthetic_generator`), and the assert-based regression suites under `tests` (`test_main.cpp` for the v1.x core, `test_oracle_v2.cpp` for the v2.0 module). `IMPLEMENTATION_NOTES.md` documents data structures, complexity, correctness caveats, and specification inconsistencies found during implementation.
