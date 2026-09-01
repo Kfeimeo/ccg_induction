@@ -89,6 +89,17 @@ add_executable(scf_terminal_punct_ablation tools/scf_terminal_punct_ablation.cpp
 target_link_libraries(scf_terminal_punct_ablation PRIVATE scf_real_v21)
 scf_enable_warnings(scf_terminal_punct_ablation)
 
+# SCF v2.3 -- conservative, frequency-free evidence-driven merging.
+add_library(scf_conservative_v23 src/conservative_merging.cpp)
+target_include_directories(scf_conservative_v23 PUBLIC include)
+target_compile_features(scf_conservative_v23 PUBLIC cxx_std_20)
+target_link_libraries(scf_conservative_v23 PUBLIC scf_real_v21)
+scf_enable_warnings(scf_conservative_v23)
+
+add_executable(scf_conservative_merging tools/scf_conservative_merging.cpp)
+target_link_libraries(scf_conservative_merging PRIVATE scf_conservative_v23)
+scf_enable_warnings(scf_conservative_merging)
+
 if(SCF_BUILD_TESTS)
     enable_testing()
     set_property(
@@ -111,4 +122,9 @@ if(SCF_BUILD_TESTS)
     target_link_libraries(scf_real_v21_tests PRIVATE scf_real_v21)
     scf_enable_warnings(scf_real_v21_tests)
     add_test(NAME scf_real_v21_tests COMMAND scf_real_v21_tests)
+
+    add_executable(scf_conservative_v23_tests tests/test_conservative_merging.cpp)
+    target_link_libraries(scf_conservative_v23_tests PRIVATE scf_conservative_v23)
+    scf_enable_warnings(scf_conservative_v23_tests)
+    add_test(NAME scf_conservative_v23_tests COMMAND scf_conservative_v23_tests)
 endif()
