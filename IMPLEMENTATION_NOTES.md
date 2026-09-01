@@ -250,3 +250,43 @@ Observational equivalence of gold categories = full containment of >= 2 gold cla
 ## 47. Determinism pins
 
 FNV-1a partition hashes over the canonical class vector (explicit little-endian bytes, no std::hash) are pinned for all four families at (L=3, K=2) in `test_pinned_partition_hashes`; `test_experiment_writes_files` additionally reruns the driver and compares CSV bytes.
+
+# v2.1 additions (real-corpus scaling module)
+
+## 48. Module isolation and data sourcing
+
+`scf::v21` (include/scf/real_scaling.hpp, src/real_scaling.cpp) is a third independent static library with its own tool (`scf_real_scaling`) and test binary; it shares no code with the v1.x core or the v2.0 oracle module. The corpus fetch (`tools/fetch_wiki_corpus.py`) is a fixed HTTP range request (first 400 MiB of the first gensim-data wiki-english-20171001 release part), decompressed as a truncated gzip stream, one article per line; the download is byte-deterministic and its sha256 is recorded in the report. FineWeb itself is unreachable under this environment's network policy (huggingface.co CONNECT 403) — a documented substitution, not a choice.
+
+## 49. Streaming representation
+
+The raw text is tokenized once (fixed normalization: ASCII lowercased letter runs with internal apostrophes, digit runs to `<num>`, wiki bold/italic apostrophe runs as separators, bytes >= 0x80 kept as letter bytes, all other visible ASCII as single-character tokens) into a compact uint32 id stream with `<doc>` sentinels; only that stream (~0.5 GB at 1.2e8 tokens) and the vocabulary are held. All per-scale passes are sequential scans of a stream prefix. Frequent substrings (length 1-3, `min_count(N) = max(8, ceil(2e-6 N))`) are found Apriori-style: unigram counts, then bigram counts only over frequent-token positions, then trigram counts only where both sub-bigrams are frequent — candidate tables stay bounded because every part of a frequent substring is itself frequent. Frequent tokens get dense ids (< 2^21), so bigram/trigram keys pack into one uint64 in open-addressing counters.
+
+## 50. Exact contexts and hub-capped pair generation
+
+Context records are exact (left token, right token, substring) triples, deduplicated by sort+unique — C_N(u) is a set, and absence is never negative evidence. Pair candidates come from inverting the sorted record stream: a context of degree d contributes C(d,2) pairs only when 2 <= d <= hub_cap (default 32); hub contexts and their record mass are counted and reported, never silently dropped. Shared-context counts |I_N(u,v)| are collapsed from the sorted pair-emission vector. Union-find appears only to report component statistics of the resulting graph at each evidence threshold — the spec's prohibition on global DSU/transitive merging refers to evidence construction, and no substring classes are ever merged.
+
+## 51. Cross-scale identity and the transition metrics
+
+Substring identity across scales is the global token sequence, not the per-scale dense id: each scale snapshots per-u token sequences, and the next scale translates the previous pair file through its own inventory (endpoints that left the inventory are `untranslatable_pairs`; translated pairs absent now are `lost_pairs`, which genuinely happens when a context's degree crosses the hub cap as N grows). Probe neighborhoods are compared across scales by surface text (top-20 Jaccard).
+
+## 52. Held-out replication
+
+The held-out shard starts at the first document boundary after the largest train prefix and is document-disjoint from every train scale. Per scale and per train-evidence bucket (1, 2-3, 4-7, 8-15, 16+), up to 2000 pairs are sampled deterministically in hash order (smallest mix64(key) values — no RNG state, order-independent), and |C_H(u) ∩ C_H(v)| is computed exactly from the held-out contexts of the sampled substrings under the train inventory. The naive-reference test samples everything (huge bucket cap) so the production and reference bucket statistics must agree exactly.
+
+## 53. Verification
+
+`tests/test_real_scaling.cpp` re-derives the whole per-scale model (frequent substrings, exact context sets, hub exclusion, pair counts, threshold curves, component structure, transition counts, held-out bucket stats) from a string-based naive implementation that shares only the tokenizer with production code, on a deterministic synthetic corpus, and requires exact equality — including the full pair dump. Determinism is tested by byte-comparing two runs modulo the runtime/RSS fields.
+
+# v2.2 additions (terminal x punctuation ablation)
+
+## 54. Ladder engine extraction
+
+The v2.1 per-scale pipeline moved verbatim into an internal parameterized engine (`run_ladder` over a `LadderSpec`: token stream, per-id sentinel set, per-scale prefix positions, held-out span, optional terminal-context ids, output sink, per-run pair file). `run_real_scaling` is now a thin wrapper and its outputs were verified bit-identical (modulo runtime/RSS fields) against the pre-refactor binary on real data, in addition to the naive-reference suite. Sentinels are generalized from "token id 0" to a per-id flag; since sentinels can never enter the frequent inventory, the dense-id check subsumes the old explicit sentinel checks in the bigram/trigram/record scans.
+
+## 55. Conditions as pure stream transforms
+
+Sentence segmentation is computed once on the base id stream (every . ? ! ends a sentence; document boundaries close sentences without a final mark; empty spans are skipped) and shared by all conditions, as is the sentence-level train/held-out split (prefixes rounded up to whole sentences, measured in condition-A tokens; the held-out shard starts at the first new document after the largest train prefix). Each condition is a deterministic transform of the same sentences: A drops the final .?!, B additionally drops internal punctuation (single visible ASCII punctuation tokens), C/D insert the `<s>` sentinel around every sentence (`<doc> <s> tokens <s> ...`), E keeps the final .?! as ordinary tokens (E's stream is byte-identical to the base stream when no wiki markup is stripped). `<s>` carries the terminal anchor entirely through the existing exact-context machinery: no new evidence definition, no abstraction — a sentence-final token simply *observes* right context `<s>`, and a complete sentence span observes `(<s>, <s>)`.
+
+## 56. Terminal observables
+
+With terminal-context ids set (C/D: `<s>`; E: the .?! token ids as a proxy), the record scan marks per substring `final_capable` (some occurrence with terminal right context) and `complete_span` (terminal on both sides); the pair scan counts, per evidence threshold, agreement on `final_capable` between pair members (terminal_behavior_purity, against the random-pair baseline p^2+(1-p)^2), and probe neighborhoods report the share of top-k partners that are final-capable (terminal_completion_rate). All binary and exact — no frequency thresholds. Conditions without terminal observation report -1, and the delta rows in `terminal_punctuation_ablation.csv` leave undefined cells empty. A hand-checked corpus pins the C-condition values exactly (capable share 0.5, purity 1.0, the two pairs (a,c),(b,d) with |I|=2).
