@@ -1,0 +1,4301 @@
+# SCF v2.1 substitution neighborhoods (top 20 partners by |I_N(u,v)|, ties by inventory order)
+
+== scale 100000 ==
+probe "the" frequency=5694 context_count=4411 shared_context_count=753 substitution_degree=601
+    a |I|=94 pos=DET
+    his |I|=41 pos=PRON
+    and |I|=29 pos=CCONJ
+    this |I|=26 pos=DET
+    an |I|=24 pos=DET
+    its |I|=22 pos=PRON
+    <num> , |I|=22
+    and the |I|=20
+    = the |I|=19
+    = = the |I|=19
+    in the |I|=18
+    that |I|=17 pos=SCONJ
+    <num> . |I|=16
+    <num> , the |I|=16
+    " |I|=15 pos=PUNCT
+    the <num> |I|=15
+    in |I|=14 pos=ADP
+    their |I|=14 pos=PRON
+    the first |I|=14
+    <num> |I|=13
+probe "of" frequency=3150 context_count=2548 shared_context_count=333 substitution_degree=235
+    in |I|=76 pos=ADP
+    . |I|=46 pos=PUNCT
+    , |I|=36 pos=PUNCT
+    to |I|=23 pos=PART
+    and |I|=21 pos=CCONJ
+    for |I|=19 pos=ADP
+    at |I|=14 pos=ADP
+    from |I|=13 pos=ADP
+    of <num> , |I|=11
+    on |I|=10 pos=ADP
+    with |I|=10 pos=ADP
+    is |I|=9 pos=AUX
+    as |I|=9 pos=ADP
+    . in |I|=9
+    by |I|=8 pos=ADP
+    : |I|=8 pos=PUNCT
+    during |I|=8 pos=ADP
+    of the |I|=8
+    after |I|=7 pos=ADP
+    was |I|=6 pos=AUX
+probe "and" frequency=2354 context_count=1990 shared_context_count=396 substitution_degree=601
+    , |I|=58 pos=PUNCT
+    . |I|=44 pos=PUNCT
+    in |I|=34 pos=ADP
+    the |I|=29 pos=DET
+    but |I|=29 pos=CCONJ
+    as |I|=24 pos=ADP
+    or |I|=24 pos=CCONJ
+    <num> |I|=24
+    of |I|=21 pos=ADP
+    is |I|=20 pos=AUX
+    to |I|=20 pos=PART
+    which |I|=20 pos=PRON
+    with |I|=18 pos=ADP
+    <num> , |I|=18
+    , and |I|=17
+    was |I|=15 pos=AUX
+    " |I|=13 pos=PUNCT
+    who |I|=13 pos=PRON
+    a |I|=12 pos=DET
+    that |I|=12 pos=SCONJ
+probe "in" frequency=2228 context_count=1771 shared_context_count=482 substitution_degree=508
+    of |I|=76 pos=ADP
+    . |I|=56 pos=PUNCT
+    , |I|=44 pos=PUNCT
+    on |I|=35 pos=ADP
+    and |I|=34 pos=CCONJ
+    as |I|=29 pos=ADP
+    for |I|=29 pos=ADP
+    at |I|=29 pos=ADP
+    by |I|=28 pos=ADP
+    to |I|=23 pos=PART
+    . in |I|=22
+    from |I|=21 pos=ADP
+    " |I|=21 pos=PUNCT
+    , <num> in |I|=21
+    with |I|=17 pos=ADP
+    <num> , |I|=17
+    that |I|=15 pos=SCONJ
+    the |I|=14 pos=DET
+    ( |I|=14 pos=PUNCT
+    : |I|=14 pos=PUNCT
+probe "was" frequency=613 context_count=561 shared_context_count=135 substitution_degree=251
+    is |I|=34 pos=AUX
+    , |I|=19 pos=PUNCT
+    and |I|=15 pos=CCONJ
+    . |I|=13 pos=PUNCT
+    in |I|=12 pos=ADP
+    has |I|=12 pos=AUX
+    had |I|=10 pos=VERB
+    as |I|=9 pos=ADP
+    of |I|=6 pos=ADP
+    the |I|=5 pos=DET
+    from |I|=5 pos=ADP
+    " |I|=5 pos=PUNCT
+    : |I|=5 pos=PUNCT
+    that |I|=4 pos=SCONJ
+    did |I|=4 pos=AUX
+    but |I|=4 pos=CCONJ
+    for |I|=4 pos=ADP
+    with |I|=4 pos=ADP
+    at |I|=4 pos=ADP
+    became |I|=4 pos=VERB
+probe "is" frequency=754 context_count=622 shared_context_count=157 substitution_degree=224
+    was |I|=34 pos=AUX
+    and |I|=20 pos=CCONJ
+    . |I|=18 pos=PUNCT
+    , |I|=18 pos=PUNCT
+    as |I|=12 pos=ADP
+    has |I|=12 pos=AUX
+    in |I|=11 pos=ADP
+    are |I|=9 pos=AUX
+    of |I|=9 pos=ADP
+    , and |I|=7
+    : |I|=6 pos=PUNCT
+    with |I|=6 pos=ADP
+    from |I|=5 pos=ADP
+    had |I|=5 pos=VERB
+    became |I|=5 pos=VERB
+    a |I|=4 pos=DET
+    the |I|=4 pos=DET
+    does |I|=4 pos=AUX
+    " |I|=4 pos=PUNCT
+    for |I|=4 pos=ADP
+probe "he" frequency=354 context_count=289 shared_context_count=108 substitution_degree=218
+    lincoln |I|=32
+    it |I|=22 pos=PRON
+    aristotle |I|=14
+    and |I|=12 pos=CCONJ
+    which |I|=10 pos=PRON
+    she |I|=8 pos=PRON
+    this |I|=7 pos=DET
+    who |I|=7 pos=PRON
+    but |I|=6 pos=CCONJ
+    they |I|=6 pos=PRON
+    there |I|=5 pos=PRON
+    alabama |I|=5 pos=PROPN
+    gershwin |I|=5
+    the state |I|=5
+    the war |I|=5
+    , |I|=4 pos=PUNCT
+    we |I|=4 pos=PRON
+    achilles |I|=4
+    it is |I|=4
+    that |I|=3 pos=SCONJ
+probe "she" frequency=25 context_count=23 shared_context_count=11 substitution_degree=52
+    he |I|=8 pos=PRON
+    it |I|=7 pos=PRON
+    lincoln |I|=6
+    this |I|=4 pos=DET
+    aristotle |I|=4
+    there |I|=3 pos=PRON
+    achilles |I|=3
+    the state |I|=3
+    anarchism |I|=2
+    godwin |I|=2
+    paris |I|=2 pos=PROPN
+    congress |I|=2 pos=PROPN
+    alabama |I|=2 pos=PROPN
+    thetis |I|=2
+    that |I|=1 pos=SCONJ
+    , |I|=1 pos=PUNCT
+    syndicalism |I|=1
+    i |I|=1 pos=PRON
+    first |I|=1 pos=ADJ
+    proudhon |I|=1
+probe "city" frequency=59 context_count=40 shared_context_count=17 substitution_degree=44
+    <num> |I|=2
+    end |I|=2 pos=NOUN
+    rest |I|=2 pos=NOUN
+    county |I|=2 pos=PROPN
+    . |I|=1 pos=PUNCT
+    state |I|=1 pos=NOUN
+    not |I|=1 pos=PART
+    particular |I|=1 pos=ADJ
+    word |I|=1 pos=NOUN
+    one |I|=1 pos=NUM
+    this |I|=1 pos=DET
+    some |I|=1 pos=DET
+    tradition |I|=1 pos=NOUN
+    work |I|=1 pos=NOUN
+    he |I|=1 pos=PRON
+    school |I|=1 pos=NOUN
+    change |I|=1 pos=NOUN
+    present |I|=1 pos=ADJ
+    king |I|=1 pos=NOUN
+    whites |I|=1
+probe "war" frequency=145 context_count=94 shared_context_count=38 substitution_degree=173
+    state |I|=3 pos=NOUN
+    " |I|=3 pos=PUNCT
+    <num> |I|=3
+    academy |I|=3 pos=PROPN
+    time |I|=2 pos=NOUN
+    government |I|=2 pos=NOUN
+    it |I|=2 pos=PRON
+    case |I|=2 pos=NOUN
+    theory |I|=2 pos=NOUN
+    president |I|=2 pos=PROPN
+    union |I|=2 pos=NOUN
+    forms |I|=2 pos=NOUN
+    public |I|=2 pos=ADJ
+    notes |I|=2 pos=NOUN
+    legislature |I|=2 pos=NOUN
+    former |I|=2 pos=ADJ
+    company |I|=2 pos=NOUN
+    iliad |I|=2
+    confederacy |I|=2
+    state . |I|=2
+probe "world" frequency=43 context_count=37 shared_context_count=19 substitution_degree=66
+    the |I|=5 pos=DET
+    the trojan |I|=3
+    state |I|=2 pos=NOUN
+    union |I|=2 pos=NOUN
+    south |I|=2 pos=PROPN
+    earth |I|=2 pos=NOUN
+    the civil |I|=2
+    body |I|=1 pos=NOUN
+    word |I|=1 pos=NOUN
+    one |I|=1 pos=NUM
+    this |I|=1 pos=DET
+    philosopher |I|=1
+    term |I|=1 pos=NOUN
+    other |I|=1 pos=ADJ
+    works |I|=1 pos=VERB
+    civil |I|=1 pos=ADJ
+    war |I|=1 pos=NOUN
+    part |I|=1 pos=NOUN
+    name |I|=1 pos=NOUN
+    case |I|=1 pos=NOUN
+probe "people" frequency=79 context_count=69 shared_context_count=39 substitution_degree=151
+    children |I|=8 pos=NOUN
+    and |I|=5 pos=CCONJ
+    , <num> people |I|=5
+    , |I|=4 pos=PUNCT
+    <num> |I|=4
+    individuals |I|=4 pos=NOUN
+    . |I|=3 pos=PUNCT
+    ) |I|=3 pos=PUNCT
+    but |I|=3 pos=CCONJ
+    bc |I|=3 pos=PROPN
+    those |I|=3 pos=DET
+    , <num> |I|=3
+    th century |I|=3
+    autistic individuals |I|=3
+    often |I|=2 pos=ADV
+    state |I|=2 pos=NOUN
+    " |I|=2 pos=PUNCT
+    there |I|=2 pos=PRON
+    they |I|=2 pos=PRON
+    states |I|=2 pos=PROPN
+probe "government" frequency=41 context_count=40 shared_context_count=20 substitution_degree=77
+    capital |I|=3 pos=NOUN
+    legislature |I|=3 pos=NOUN
+    anarchists |I|=2
+    war |I|=2 pos=NOUN
+    time |I|=2 pos=NOUN
+    writings |I|=2 pos=NOUN
+    state legislature |I|=2
+    anarchism |I|=1
+    . |I|=1 pos=PUNCT
+    philosophy |I|=1 pos=NOUN
+    self |I|=1 pos=NOUN
+    state |I|=1 pos=NOUN
+    anti |I|=1 pos=X
+    or |I|=1 pos=CCONJ
+    communism |I|=1
+    many |I|=1 pos=ADJ
+    which |I|=1 pos=PRON
+    one |I|=1 pos=NUM
+    ) |I|=1 pos=PUNCT
+    was |I|=1 pos=AUX
+probe "university" frequency=53 context_count=30 shared_context_count=10 substitution_degree=28
+    . |I|=1 pos=PUNCT
+    as |I|=1 pos=ADP
+    state |I|=1 pos=NOUN
+    and |I|=1 pos=CCONJ
+    <num> |I|=1
+    th |I|=1 pos=SCONJ
+    out |I|=1 pos=ADP
+    months |I|=1 pos=NOUN
+    years |I|=1 pos=NOUN
+    % |I|=1 pos=SYM
+    fragments |I|=1
+    edition |I|=1
+    version |I|=1 pos=NOUN
+    constitution |I|=1 pos=NOUN
+    species |I|=1 pos=NOUN
+    . as |I|=1
+    . most |I|=1
+    as part |I|=1
+    , one |I|=1
+    , <num> |I|=1
+probe "music" frequency=19 context_count=19 shared_context_count=12 substitution_degree=81
+    anarchism |I|=2
+    <num> |I|=2
+    autism |I|=2
+    a |I|=1 pos=DET
+    them |I|=1 pos=PRON
+    the |I|=1 pos=DET
+    state |I|=1 pos=NOUN
+    which |I|=1 pos=PRON
+    social |I|=1 pos=ADJ
+    early |I|=1 pos=ADJ
+    common |I|=1 pos=ADJ
+    over |I|=1 pos=ADP
+    where |I|=1 pos=ADV
+    began |I|=1 pos=VERB
+    opposition |I|=1 pos=NOUN
+    may |I|=1 pos=AUX
+    paris |I|=1 pos=PROPN
+    party |I|=1 pos=NOUN
+    democrats |I|=1 pos=PROPN
+    small |I|=1 pos=ADJ
+probe "house" frequency=36 context_count=30 shared_context_count=13 substitution_degree=61
+    " |I|=3 pos=PUNCT
+    dream |I|=3 pos=NOUN
+    , |I|=2 pos=PUNCT
+    <num> |I|=2
+    plant |I|=2 pos=NOUN
+    memory |I|=2 pos=NOUN
+    democrat |I|=2 pos=PROPN
+    thing |I|=2 pos=NOUN
+    philosophy |I|=1 pos=NOUN
+    are |I|=1 pos=AUX
+    state |I|=1 pos=NOUN
+    system |I|=1 pos=NOUN
+    leader |I|=1 pos=NOUN
+    philosopher |I|=1
+    school |I|=1 pos=NOUN
+    with |I|=1 pos=ADP
+    property |I|=1 pos=NOUN
+    person |I|=1 pos=NOUN
+    change |I|=1 pos=NOUN
+    party |I|=1 pos=NOUN
+probe "red" frequency=13 context_count=10 shared_context_count=5 substitution_degree=28
+    black |I|=2 pos=ADJ
+    non |I|=1 pos=X
+    anti |I|=1 pos=X
+    i |I|=1 pos=PRON
+    <num> |I|=1
+    hand |I|=1 pos=NOUN
+    great |I|=1 pos=ADJ
+    at |I|=1 pos=ADP
+    anarcho |I|=1
+    communist |I|=1 pos=ADJ
+    post |I|=1 pos=NOUN
+    two |I|=1 pos=NUM
+    re |I|=1 pos=ADP
+    second |I|=1 pos=ADJ
+    high |I|=1 pos=ADJ
+    majority |I|=1 pos=NOUN
+    third |I|=1 pos=ADJ
+    foreign |I|=1 pos=ADJ
+    nine |I|=1 pos=NUM
+    us |I|=1 pos=PRON
+probe "small" frequency=24 context_count=24 shared_context_count=6 substitution_degree=20
+    anarchism |I|=1
+    single |I|=1 pos=ADJ
+    social |I|=1 pos=ADJ
+    greek |I|=1 pos=ADJ
+    anarcho |I|=1
+    post |I|=1 pos=NOUN
+    long |I|=1 pos=ADJ
+    latin |I|=1 pos=ADJ
+    italian |I|=1 pos=ADJ
+    high |I|=1 pos=ADJ
+    primary |I|=1 pos=ADJ
+    relationship |I|=1 pos=NOUN
+    autism |I|=1
+    regions |I|=1 pos=NOUN
+    music |I|=1 pos=NOUN
+    white |I|=1 pos=ADJ
+    cities |I|=1 pos=NOUN
+    census |I|=1
+    the academy |I|=1
+    asd , |I|=1
+probe "large" frequency=35 context_count=33 shared_context_count=8 substitution_degree=44
+    self |I|=2 pos=NOUN
+    non |I|=2 pos=X
+    the |I|=1 pos=DET
+    far |I|=1 pos=ADV
+    single |I|=1 pos=ADJ
+    many |I|=1 pos=ADJ
+    one |I|=1 pos=NUM
+    <num> |I|=1
+    various |I|=1 pos=ADJ
+    well |I|=1 pos=ADV
+    war |I|=1 pos=NOUN
+    over |I|=1 pos=ADP
+    he |I|=1 pos=PRON
+    rules |I|=1 pos=NOUN
+    certain |I|=1 pos=ADJ
+    post |I|=1 pos=NOUN
+    ten |I|=1 pos=NUM
+    republican |I|=1 pos=ADJ
+    two |I|=1 pos=NUM
+    re |I|=1 pos=ADP
+probe "first" frequency=169 context_count=130 shared_context_count=53 substitution_degree=154
+    second |I|=8 pos=ADJ
+    <num> |I|=6
+    next |I|=5 pos=ADJ
+    " |I|=3 pos=PUNCT
+    earliest |I|=3 pos=ADJ
+    natural |I|=3 pos=ADJ
+    state's |I|=3
+    <num> th |I|=3
+    that |I|=2 pos=SCONJ
+    and |I|=2 pos=CCONJ
+    this |I|=2 pos=DET
+    but |I|=2 pos=CCONJ
+    only |I|=2 pos=ADV
+    new |I|=2 pos=ADJ
+    resulting |I|=2 pos=VERB
+    late |I|=2 pos=ADJ
+    same |I|=2 pos=ADJ
+    top |I|=2 pos=NOUN
+    northern |I|=2 pos=ADJ
+    southern |I|=2 pos=ADJ
+probe "new" frequency=115 context_count=92 shared_context_count=27 substitution_degree=99
+    only |I|=3 pos=ADV
+    confederate |I|=3
+    the |I|=2 pos=DET
+    state |I|=2 pos=NOUN
+    word |I|=2 pos=NOUN
+    first |I|=2 pos=ADJ
+    <num> |I|=2
+    great |I|=2 pos=ADJ
+    modern |I|=2 pos=ADJ
+    democratic |I|=2 pos=ADJ
+    union |I|=2 pos=NOUN
+    national |I|=2 pos=ADJ
+    late |I|=2 pos=ADJ
+    the new |I|=2
+    . |I|=1 pos=PUNCT
+    a |I|=1 pos=DET
+    , |I|=1 pos=PUNCT
+    free |I|=1 pos=ADJ
+    world |I|=1 pos=NOUN
+    individualist |I|=1
+probe "said" frequency=18 context_count=17 shared_context_count=12 substitution_degree=87
+    used |I|=4 pos=VERB
+    believed |I|=4 pos=VERB
+    developed |I|=3 pos=VERB
+    considered |I|=2 pos=VERB
+    left |I|=2 pos=VERB
+    thought |I|=2 pos=VERB
+    was |I|=2 pos=AUX
+    <num> |I|=2
+    also |I|=2 pos=ADV
+    important |I|=2 pos=ADJ
+    called |I|=2 pos=VERB
+    none |I|=2 pos=PRON
+    proposed |I|=2 pos=VERB
+    means |I|=2 pos=VERB
+    extended |I|=2 pos=VERB
+    given |I|=2 pos=VERB
+    sold |I|=2 pos=VERB
+    was a |I|=2
+    . |I|=1 pos=PUNCT
+    described |I|=1 pos=VERB
+probe "made" frequency=56 context_count=55 shared_context_count=22 substitution_degree=92
+    found |I|=3 pos=VERB
+    needed |I|=3 pos=VERB
+    , |I|=2 pos=PUNCT
+    known |I|=2 pos=VERB
+    by |I|=2 pos=ADP
+    put |I|=2 pos=VERB
+    had |I|=2 pos=VERB
+    part |I|=2 pos=NOUN
+    successful |I|=2 pos=ADJ
+    supported |I|=2 pos=VERB
+    changed |I|=2 pos=VERB
+    given |I|=2 pos=VERB
+    free |I|=1 pos=ADJ
+    to |I|=1 pos=PART
+    and |I|=1 pos=CCONJ
+    in |I|=1 pos=ADP
+    economics |I|=1 pos=NOUN
+    been |I|=1 pos=AUX
+    similar |I|=1 pos=ADJ
+    " |I|=1 pos=PUNCT
+probe "found" frequency=49 context_count=39 shared_context_count=21 substitution_degree=99
+    used |I|=5 pos=VERB
+    , |I|=3 pos=PUNCT
+    made |I|=3 pos=VERB
+    present |I|=3 pos=ADJ
+    based |I|=2 pos=VERB
+    <num> |I|=2
+    developed |I|=2 pos=VERB
+    see |I|=2 pos=VERB
+    set |I|=2 pos=VERB
+    successful |I|=2 pos=ADJ
+    founded |I|=2 pos=VERB
+    needed |I|=2 pos=VERB
+    seen |I|=2 pos=VERB
+    presented |I|=2 pos=VERB
+    suggested |I|=2 pos=VERB
+    written |I|=2 pos=VERB
+    announced |I|=2 pos=VERB
+    elected |I|=2 pos=VERB
+    produced |I|=2 pos=VERB
+    sold |I|=2 pos=VERB
+probe "of the" frequency=- context_count=744 shared_context_count=42 substitution_degree=52
+    of |I|=8 pos=ADP
+    the |I|=5 pos=DET
+    in |I|=4 pos=ADP
+    in the |I|=4
+    . |I|=2 pos=PUNCT
+    , |I|=2 pos=PUNCT
+    . the |I|=2
+    of this |I|=2
+    all |I|=1 pos=DET
+    not |I|=1 pos=PART
+    later |I|=1 pos=ADV
+    for |I|=1 pos=ADP
+    by |I|=1 pos=ADP
+    during |I|=1 pos=ADP
+    at |I|=1 pos=ADP
+    case |I|=1 pos=NOUN
+    before |I|=1 pos=SCONJ
+    animals |I|=1 pos=NOUN
+    * |I|=1 pos=PUNCT
+    . . |I|=1
+probe "in the" frequency=- context_count=540 shared_context_count=84 substitution_degree=107
+    the |I|=18 pos=DET
+    in |I|=14 pos=ADP
+    a |I|=5 pos=DET
+    of the |I|=4
+    , |I|=3 pos=PUNCT
+    " |I|=3 pos=PUNCT
+    this |I|=3 pos=DET
+    . the |I|=3
+    , the |I|=3
+    = = = |I|=3
+    according to the |I|=3
+    is |I|=2 pos=AUX
+    as |I|=2 pos=ADP
+    an |I|=2 pos=DET
+    <num> |I|=2
+    = |I|=2 pos=PUNCT
+    by |I|=2 pos=ADP
+    his |I|=2 pos=PRON
+    . by |I|=2
+    on the |I|=2
+probe "united states" frequency=- context_count=34 shared_context_count=30 substitution_degree=112
+    state |I|=9 pos=NOUN
+    alabama |I|=4 pos=PROPN
+    earth |I|=3 pos=NOUN
+    word |I|=2 pos=NOUN
+    <num> |I|=2
+    term |I|=2 pos=NOUN
+    nation |I|=2 pos=NOUN
+    annual |I|=2 pos=ADJ
+    final |I|=2 pos=ADJ
+    union |I|=2 pos=NOUN
+    end |I|=2 pos=NOUN
+    rest |I|=2 pos=NOUN
+    family |I|=2 pos=NOUN
+    us |I|=2 pos=PRON
+    surface |I|=2 pos=NOUN
+    capital |I|=2 pos=NOUN
+    illinois |I|=2
+    iliad |I|=2
+    heel |I|=2 pos=NOUN
+    state legislature |I|=2
+probe "new york" frequency=- context_count=24 shared_context_count=15 substitution_degree=73
+    <num> |I|=4
+    anarchy |I|=2
+    paris |I|=2 pos=PROPN
+    chicago |I|=2 pos=PROPN
+    second |I|=2 pos=ADJ
+    <num> . |I|=2
+    anarchism |I|=1
+    a |I|=1 pos=DET
+    non |I|=1 pos=X
+    the |I|=1 pos=DET
+    state |I|=1 pos=NOUN
+    anti |I|=1 pos=X
+    left |I|=1 pos=VERB
+    world |I|=1 pos=NOUN
+    i |I|=1 pos=PRON
+    first |I|=1 pos=ADJ
+    hand |I|=1 pos=NOUN
+    great |I|=1 pos=ADJ
+    time |I|=1 pos=NOUN
+    natural |I|=1 pos=ADJ
+
+== scale 300000 ==
+probe "the" frequency=16863 context_count=12121 shared_context_count=3063 substitution_degree=2315
+    a |I|=429 pos=DET
+    his |I|=129 pos=PRON
+    this |I|=98 pos=DET
+    an |I|=91 pos=DET
+    and |I|=84 pos=CCONJ
+    = = = |I|=82
+    in |I|=79 pos=ADP
+    its |I|=76 pos=PRON
+    = the |I|=74
+    = = the |I|=74
+    <num> |I|=70
+    their |I|=69 pos=PRON
+    " |I|=64 pos=PUNCT
+    and the |I|=64
+    in the |I|=59
+    these |I|=53 pos=DET
+    the first |I|=53
+    other |I|=47 pos=ADJ
+    some |I|=46 pos=DET
+    <num> , |I|=45
+    jaccard_vs_previous_scale=0.666667
+probe "of" frequency=9416 context_count=7160 shared_context_count=1184 substitution_degree=947
+    . |I|=265 pos=PUNCT
+    in |I|=235 pos=ADP
+    , |I|=164 pos=PUNCT
+    and |I|=94 pos=CCONJ
+    to |I|=85 pos=PART
+    for |I|=75 pos=ADP
+    from |I|=65 pos=ADP
+    on |I|=52 pos=ADP
+    at |I|=51 pos=ADP
+    , and |I|=47
+    with |I|=46 pos=ADP
+    by |I|=44 pos=ADP
+    of the |I|=43
+    as |I|=42 pos=ADP
+    . in |I|=41
+    is |I|=40 pos=AUX
+    during |I|=32 pos=ADP
+    that |I|=31 pos=SCONJ
+    = = = |I|=29
+    ( |I|=24 pos=PUNCT
+    jaccard_vs_previous_scale=0.666667
+probe "and" frequency=7384 context_count=5944 shared_context_count=1305 substitution_degree=1860
+    , |I|=236 pos=PUNCT
+    . |I|=183 pos=PUNCT
+    in |I|=115 pos=ADP
+    of |I|=94 pos=ADP
+    the |I|=84 pos=DET
+    , and |I|=76
+    or |I|=65 pos=CCONJ
+    with |I|=61 pos=ADP
+    as |I|=57 pos=ADP
+    is |I|=53 pos=AUX
+    to |I|=53 pos=PART
+    but |I|=52 pos=CCONJ
+    <num> |I|=44
+    which |I|=41 pos=PRON
+    and the |I|=40
+    " |I|=39 pos=PUNCT
+    for |I|=39 pos=ADP
+    a |I|=38 pos=DET
+    from |I|=36 pos=ADP
+    was |I|=32 pos=AUX
+    jaccard_vs_previous_scale=0.739130
+probe "in" frequency=6418 context_count=4754 shared_context_count=1456 substitution_degree=1631
+    of |I|=235 pos=ADP
+    . |I|=232 pos=PUNCT
+    , |I|=208 pos=PUNCT
+    and |I|=115 pos=CCONJ
+    on |I|=104 pos=ADP
+    by |I|=101 pos=ADP
+    to |I|=95 pos=PART
+    for |I|=85 pos=ADP
+    at |I|=84 pos=ADP
+    from |I|=82 pos=ADP
+    the |I|=79 pos=DET
+    as |I|=72 pos=ADP
+    with |I|=67 pos=ADP
+    . in |I|=64
+    , and |I|=64
+    is |I|=54 pos=AUX
+    ( |I|=52 pos=PUNCT
+    during |I|=46 pos=ADP
+    in the |I|=44
+    that |I|=41 pos=SCONJ
+    jaccard_vs_previous_scale=0.666667
+probe "was" frequency=1575 context_count=1357 shared_context_count=399 substitution_degree=737
+    is |I|=105 pos=AUX
+    , |I|=52 pos=PUNCT
+    . |I|=40 pos=PUNCT
+    and |I|=32 pos=CCONJ
+    in |I|=32 pos=ADP
+    has |I|=24 pos=AUX
+    as |I|=21 pos=ADP
+    of |I|=19 pos=ADP
+    had |I|=19 pos=VERB
+    , and |I|=16
+    are |I|=15 pos=AUX
+    were |I|=15 pos=AUX
+    he |I|=12 pos=PRON
+    from |I|=11 pos=ADP
+    by |I|=11 pos=ADP
+    became |I|=11 pos=VERB
+    with |I|=10 pos=ADP
+    . in |I|=10
+    the |I|=9 pos=DET
+    to |I|=9 pos=PART
+    jaccard_vs_previous_scale=0.481481
+probe "is" frequency=2643 context_count=2103 shared_context_count=611 substitution_degree=964
+    was |I|=105 pos=AUX
+    , |I|=93 pos=PUNCT
+    . |I|=74 pos=PUNCT
+    in |I|=54 pos=ADP
+    and |I|=53 pos=CCONJ
+    are |I|=45 pos=AUX
+    of |I|=40 pos=ADP
+    as |I|=37 pos=ADP
+    has |I|=32 pos=AUX
+    with |I|=19 pos=ADP
+    had |I|=18 pos=VERB
+    it is |I|=16
+    were |I|=15 pos=AUX
+    , and |I|=15
+    from |I|=14 pos=ADP
+    for |I|=14 pos=ADP
+    by |I|=14 pos=ADP
+    : |I|=14 pos=PUNCT
+    at |I|=14 pos=ADP
+    have |I|=13 pos=VERB
+    jaccard_vs_previous_scale=0.600000
+probe "he" frequency=887 context_count=610 shared_context_count=293 substitution_degree=532
+    it |I|=47 pos=PRON
+    she |I|=42 pos=PRON
+    lincoln |I|=40
+    they |I|=36 pos=PRON
+    agassi |I|=27
+    and |I|=24 pos=CCONJ
+    which |I|=24 pos=PRON
+    who |I|=21 pos=PRON
+    rand |I|=20
+    this |I|=18 pos=DET
+    aristotle |I|=17
+    there |I|=13 pos=PRON
+    it is |I|=13
+    was |I|=12 pos=AUX
+    but |I|=12 pos=CCONJ
+    is |I|=11 pos=AUX
+    the |I|=10 pos=DET
+    huxley |I|=9
+    it was |I|=9
+    are |I|=8 pos=AUX
+    jaccard_vs_previous_scale=0.428571
+probe "she" frequency=194 context_count=168 shared_context_count=93 substitution_degree=241
+    he |I|=42 pos=PRON
+    it |I|=18 pos=PRON
+    lincoln |I|=16
+    they |I|=12 pos=PRON
+    this |I|=9 pos=DET
+    rand |I|=8
+    agassi |I|=8
+    huxley |I|=8
+    is |I|=7 pos=AUX
+    was |I|=7 pos=AUX
+    it is |I|=7
+    and |I|=6 pos=CCONJ
+    apollo |I|=6 pos=PROPN
+    aristotle |I|=6
+    , |I|=5 pos=PUNCT
+    who |I|=5 pos=PRON
+    it was |I|=5
+    that |I|=4 pos=SCONJ
+    are |I|=4 pos=AUX
+    the |I|=4 pos=DET
+    jaccard_vs_previous_scale=0.212121
+probe "city" frequency=170 context_count=118 shared_context_count=81 substitution_degree=151
+    city <num> , |I|=28
+    city <num> |I|=16
+    <num> / |I|=7
+    <num> / <num> |I|=7
+    state |I|=6 pos=NOUN
+    cities |I|=3 pos=NOUN
+    group |I|=2 pos=NOUN
+    village |I|=2 pos=PROPN
+    * |I|=2 pos=PUNCT
+    play |I|=2 pos=VERB
+    county |I|=2 pos=PROPN
+    island |I|=2 pos=NOUN
+    cdp |I|=2
+    cdp <num> , |I|=2
+    . |I|=1 pos=PUNCT
+    a |I|=1 pos=DET
+    , |I|=1 pos=PUNCT
+    central |I|=1 pos=ADJ
+    in |I|=1 pos=ADP
+    offer |I|=1 pos=VERB
+    jaccard_vs_previous_scale=0.081081
+probe "war" frequency=216 context_count=137 shared_context_count=66 substitution_degree=235
+    time |I|=3 pos=NOUN
+    <num> s |I|=3
+    war , |I|=3
+    , |I|=2 pos=PUNCT
+    " |I|=2 pos=PUNCT
+    <num> |I|=2
+    government |I|=2 pos=NOUN
+    law |I|=2 pos=NOUN
+    union |I|=2 pos=NOUN
+    membership |I|=2 pos=NOUN
+    animals |I|=2 pos=NOUN
+    bank |I|=2 pos=PROPN
+    cup |I|=2 pos=NOUN
+    company |I|=2 pos=NOUN
+    appeals |I|=2 pos=NOUN
+    wars |I|=2 pos=PROPN
+    academy |I|=2 pos=PROPN
+    united states |I|=2
+    nation . |I|=2
+    civil war |I|=2
+    jaccard_vs_previous_scale=0.212121
+probe "world" frequency=228 context_count=135 shared_context_count=73 substitution_degree=224
+    the |I|=7 pos=DET
+    philosophy |I|=3 pos=NOUN
+    group |I|=3 pos=NOUN
+    countries |I|=3 pos=NOUN
+    region |I|=3 pos=NOUN
+    the trojan |I|=3
+    york times |I|=3
+    the spanish civil |I|=3
+    have |I|=2 pos=VERB
+    state |I|=2 pos=NOUN
+    history |I|=2 pos=NOUN
+    groups |I|=2 pos=NOUN
+    york |I|=2 pos=PROPN
+    south |I|=2 pos=PROPN
+    scholars |I|=2 pos=NOUN
+    jersey |I|=2 pos=PROPN
+    intellectual |I|=2 pos=ADJ
+    way |I|=2 pos=NOUN
+    physical |I|=2 pos=ADJ
+    conventional |I|=2 pos=ADJ
+    jaccard_vs_previous_scale=0.111111
+probe "people" frequency=209 context_count=177 shared_context_count=111 substitution_degree=433
+    they |I|=8 pos=PRON
+    , <num> people |I|=8
+    . |I|=6 pos=PUNCT
+    , |I|=6 pos=PUNCT
+    children |I|=6 pos=NOUN
+    " |I|=5 pos=PUNCT
+    ) |I|=5 pos=PUNCT
+    them |I|=4 pos=PRON
+    the |I|=4 pos=DET
+    one |I|=4 pos=NUM
+    <num> |I|=4
+    states |I|=4 pos=PROPN
+    it |I|=4 pos=PRON
+    those |I|=4 pos=DET
+    apollo |I|=4 pos=PROPN
+    alkanes |I|=4
+    state |I|=3 pos=NOUN
+    and |I|=3 pos=CCONJ
+    there |I|=3 pos=PRON
+    individuals |I|=3 pos=NOUN
+    jaccard_vs_previous_scale=0.538462
+probe "government" frequency=129 context_count=115 shared_context_count=62 substitution_degree=216
+    state |I|=3 pos=NOUN
+    union |I|=3 pos=NOUN
+    data |I|=3 pos=NOUN
+    legislature |I|=3 pos=NOUN
+    . |I|=2 pos=PUNCT
+    communism |I|=2
+    <num> |I|=2
+    war |I|=2 pos=NOUN
+    president |I|=2 pos=PROPN
+    politics |I|=2 pos=NOUN
+    population |I|=2 pos=NOUN
+    water |I|=2 pos=NOUN
+    capital |I|=2 pos=NOUN
+    constitution |I|=2 pos=NOUN
+    legislation |I|=2
+    courts |I|=2 pos=NOUN
+    elections |I|=2 pos=NOUN
+    judges |I|=2 pos=NOUN
+    defendant |I|=2 pos=NOUN
+    of alabama |I|=2
+    jaccard_vs_previous_scale=0.176471
+probe "university" frequency=161 context_count=67 shared_context_count=36 substitution_degree=174
+    and |I|=2 pos=CCONJ
+    one |I|=2 pos=NUM
+    time |I|=2 pos=NOUN
+    out |I|=2 pos=ADP
+    studies |I|=2 pos=NOUN
+    analysis |I|=2 pos=NOUN
+    legislature |I|=2 pos=NOUN
+    courts |I|=2 pos=NOUN
+    house |I|=2 pos=NOUN
+    northwest |I|=2 pos=ADJ
+    linguistics |I|=2
+    as well |I|=2
+    the university |I|=2
+    in <num> |I|=2
+    university press |I|=2
+    football team |I|=2
+    that |I|=1 pos=SCONJ
+    as |I|=1 pos=ADP
+    , |I|=1 pos=PUNCT
+    state |I|=1 pos=NOUN
+    jaccard_vs_previous_scale=0.111111
+probe "music" frequency=70 context_count=57 shared_context_count=37 substitution_degree=150
+    . |I|=3 pos=PUNCT
+    and |I|=2 pos=CCONJ
+    york |I|=2 pos=PROPN
+    agriculture |I|=2
+    aristotle |I|=2
+    anarchism |I|=1
+    these |I|=1 pos=DET
+    , |I|=1 pos=PUNCT
+    the |I|=1 pos=DET
+    state |I|=1 pos=NOUN
+    body |I|=1 pos=NOUN
+    world |I|=1 pos=NOUN
+    view |I|=1 pos=NOUN
+    ( |I|=1 pos=PUNCT
+    " |I|=1 pos=PUNCT
+    ) |I|=1 pos=PUNCT
+    first |I|=1 pos=ADJ
+    this |I|=1 pos=DET
+    <num> |I|=1
+    s |I|=1 pos=PART
+    jaccard_vs_previous_scale=0.111111
+probe "house" frequency=60 context_count=51 shared_context_count=27 substitution_degree=80
+    court |I|=5 pos=PROPN
+    department |I|=3 pos=NOUN
+    " |I|=2 pos=PUNCT
+    other |I|=2 pos=ADJ
+    university |I|=2 pos=PROPN
+    courts |I|=2 pos=NOUN
+    secretary |I|=2 pos=PROPN
+    . |I|=1 pos=PUNCT
+    is |I|=1 pos=AUX
+    are |I|=1 pos=AUX
+    , |I|=1 pos=PUNCT
+    to |I|=1 pos=PART
+    ) |I|=1 pos=PUNCT
+    call |I|=1 pos=VERB
+    has |I|=1 pos=AUX
+    developed |I|=1 pos=VERB
+    school |I|=1 pos=NOUN
+    with |I|=1 pos=ADP
+    law |I|=1 pos=NOUN
+    case |I|=1 pos=NOUN
+    jaccard_vs_previous_scale=0.142857
+probe "red" frequency=50 context_count=42 shared_context_count=22 substitution_degree=77
+    the |I|=3 pos=DET
+    green |I|=3 pos=ADJ
+    <num> |I|=2
+    black |I|=2 pos=ADJ
+    brown |I|=2 pos=PROPN
+    fixed |I|=1 pos=VERB
+    particular |I|=1 pos=ADJ
+    extreme |I|=1 pos=ADJ
+    " |I|=1 pos=PUNCT
+    france |I|=1 pos=PROPN
+    some |I|=1 pos=DET
+    war |I|=1 pos=NOUN
+    english |I|=1 pos=PROPN
+    part |I|=1 pos=NOUN
+    case |I|=1 pos=NOUN
+    live |I|=1 pos=VERB
+    anarcho |I|=1
+    post |I|=1 pos=NOUN
+    small |I|=1 pos=ADJ
+    initiated |I|=1 pos=VERB
+    jaccard_vs_previous_scale=0.111111
+probe "small" frequency=97 context_count=89 shared_context_count=32 substitution_degree=99
+    large |I|=4 pos=ADJ
+    single |I|=3 pos=ADJ
+    <num> |I|=3
+    the |I|=2 pos=DET
+    " |I|=2 pos=PUNCT
+    . |I|=1 pos=PUNCT
+    a |I|=1 pos=DET
+    political |I|=1 pos=ADJ
+    limited |I|=1 pos=ADJ
+    fixed |I|=1 pos=VERB
+    similar |I|=1 pos=ADJ
+    greek |I|=1 pos=ADJ
+    first |I|=1 pos=ADJ
+    few |I|=1 pos=ADJ
+    united |I|=1 pos=ADJ
+    other |I|=1 pos=ADJ
+    great |I|=1 pos=ADJ
+    right |I|=1 pos=ADV
+    group |I|=1 pos=NOUN
+    language |I|=1 pos=NOUN
+    jaccard_vs_previous_scale=0.052632
+probe "large" frequency=120 context_count=109 shared_context_count=40 substitution_degree=132
+    the |I|=5 pos=DET
+    small |I|=4 pos=ADJ
+    first |I|=3 pos=ADJ
+    significant |I|=3 pos=ADJ
+    total |I|=3 pos=ADJ
+    a |I|=2 pos=DET
+    non |I|=2 pos=X
+    " |I|=2 pos=PUNCT
+    few |I|=2 pos=ADJ
+    right |I|=2 pos=ADV
+    certain |I|=2 pos=ADJ
+    largest |I|=2 pos=ADJ
+    same |I|=2 pos=ADJ
+    us |I|=2 pos=PRON
+    smaller |I|=2 pos=ADJ
+    . |I|=1 pos=PUNCT
+    self |I|=1 pos=NOUN
+    on |I|=1 pos=ADP
+    these |I|=1 pos=DET
+    be |I|=1 pos=AUX
+    jaccard_vs_previous_scale=0.111111
+probe "first" frequency=440 context_count=319 shared_context_count=185 substitution_degree=487
+    second |I|=25 pos=ADJ
+    only |I|=16 pos=ADV
+    <num> |I|=13
+    same |I|=10 pos=ADJ
+    next |I|=9 pos=ADJ
+    other |I|=7 pos=ADJ
+    also |I|=7 pos=ADV
+    new |I|=7 pos=ADJ
+    last |I|=7 pos=ADJ
+    " |I|=6 pos=PUNCT
+    highest |I|=6 pos=ADJ
+    <num> th |I|=6
+    later |I|=5 pos=ADV
+    top |I|=5 pos=NOUN
+    the |I|=4 pos=DET
+    french |I|=4 pos=ADJ
+    earliest |I|=4 pos=ADJ
+    most |I|=4 pos=ADV
+    general |I|=4 pos=ADJ
+    best |I|=4 pos=ADJ
+    jaccard_vs_previous_scale=0.333333
+probe "new" frequency=301 context_count=210 shared_context_count=89 substitution_degree=239
+    the |I|=9 pos=DET
+    first |I|=7 pos=ADJ
+    french |I|=5 pos=ADJ
+    the new |I|=5
+    <num> |I|=4
+    only |I|=4 pos=ADV
+    state |I|=3 pos=NOUN
+    democratic |I|=3 pos=ADJ
+    general |I|=3 pos=ADJ
+    confederate |I|=3
+    criminal |I|=3 pos=ADJ
+    a |I|=2 pos=DET
+    , |I|=2 pos=PUNCT
+    and |I|=2 pos=CCONJ
+    " |I|=2 pos=PUNCT
+    this |I|=2 pos=DET
+    common |I|=2 pos=ADJ
+    some |I|=2 pos=DET
+    great |I|=2 pos=ADJ
+    modern |I|=2 pos=ADJ
+    jaccard_vs_previous_scale=0.428571
+probe "said" frequency=57 context_count=42 shared_context_count=30 substitution_degree=168
+    , |I|=5 pos=PUNCT
+    . |I|=4 pos=PUNCT
+    stated |I|=4 pos=VERB
+    was |I|=3 pos=AUX
+    found |I|=3 pos=VERB
+    wrote |I|=3 pos=VERB
+    argued |I|=3 pos=VERB
+    believed |I|=3 pos=VERB
+    announced |I|=3 pos=VERB
+    is |I|=2 pos=AUX
+    considered |I|=2 pos=VERB
+    thought |I|=2 pos=VERB
+    did |I|=2 pos=AUX
+    used |I|=2 pos=VERB
+    developed |I|=2 pos=VERB
+    it |I|=2 pos=PRON
+    called |I|=2 pos=VERB
+    subject |I|=2 pos=NOUN
+    referred |I|=2 pos=VERB
+    extended |I|=2 pos=VERB
+    jaccard_vs_previous_scale=0.290323
+probe "made" frequency=154 context_count=144 shared_context_count=73 substitution_degree=391
+    used |I|=11 pos=VERB
+    found |I|=8 pos=VERB
+    defined |I|=5 pos=VERB
+    " |I|=5 pos=PUNCT
+    known |I|=5 pos=VERB
+    built |I|=5 pos=VERB
+    is |I|=4 pos=AUX
+    considered |I|=4 pos=VERB
+    had |I|=4 pos=VERB
+    became |I|=4 pos=VERB
+    formed |I|=4 pos=VERB
+    written |I|=4 pos=VERB
+    produced |I|=4 pos=VERB
+    sold |I|=4 pos=VERB
+    selected |I|=4 pos=VERB
+    . |I|=3 pos=PUNCT
+    that |I|=3 pos=SCONJ
+    , |I|=3 pos=PUNCT
+    and |I|=3 pos=CCONJ
+    been |I|=3 pos=AUX
+    jaccard_vs_previous_scale=0.212121
+probe "found" frequency=162 context_count=117 shared_context_count=68 substitution_degree=419
+    used |I|=11 pos=VERB
+    made |I|=8 pos=VERB
+    , |I|=7 pos=PUNCT
+    published |I|=7 pos=VERB
+    had |I|=4 pos=VERB
+    developed |I|=4 pos=VERB
+    included |I|=4 pos=VERB
+    established |I|=4 pos=VERB
+    present |I|=4 pos=ADJ
+    held |I|=4 pos=VERB
+    seen |I|=4 pos=VERB
+    presented |I|=4 pos=VERB
+    observed |I|=4 pos=VERB
+    announced |I|=4 pos=VERB
+    considered |I|=3 pos=VERB
+    known |I|=3 pos=VERB
+    for |I|=3 pos=ADP
+    introduced |I|=3 pos=VERB
+    argued |I|=3 pos=VERB
+    shown |I|=3 pos=VERB
+    jaccard_vs_previous_scale=0.250000
+probe "of the" frequency=- context_count=2036 shared_context_count=181 substitution_degree=186
+    of |I|=43 pos=ADP
+    the |I|=10 pos=DET
+    . |I|=7 pos=PUNCT
+    , |I|=7 pos=PUNCT
+    in |I|=6 pos=ADP
+    . the |I|=6
+    in the |I|=6
+    of their |I|=6
+    and |I|=5 pos=CCONJ
+    of the state's |I|=5
+    of his |I|=4
+    for the |I|=4
+    with |I|=3 pos=ADP
+    * |I|=3 pos=PUNCT
+    and the |I|=3
+    of that |I|=3
+    of its |I|=3
+    of alaska's |I|=3
+    by the |I|=3
+    of the first |I|=3
+    jaccard_vs_previous_scale=0.250000
+probe "in the" frequency=- context_count=1468 shared_context_count=239 substitution_degree=377
+    the |I|=59 pos=DET
+    in |I|=44 pos=ADP
+    a |I|=22 pos=DET
+    = = = |I|=17
+    , |I|=9 pos=PUNCT
+    <num> |I|=9
+    this |I|=8 pos=DET
+    some |I|=8 pos=DET
+    and |I|=7 pos=CCONJ
+    from the |I|=7
+    by the |I|=7
+    of |I|=6 pos=ADP
+    . the |I|=6
+    of the |I|=6
+    during the |I|=6
+    with the |I|=6
+    ( |I|=5 pos=PUNCT
+    an |I|=5 pos=DET
+    at |I|=5 pos=ADP
+    , the |I|=5
+    jaccard_vs_previous_scale=0.379310
+probe "united states" frequency=- context_count=80 shared_context_count=63 substitution_degree=252
+    state |I|=8 pos=NOUN
+    alabama |I|=6 pos=PROPN
+    alaska |I|=5 pos=PROPN
+    union |I|=4 pos=NOUN
+    <num> |I|=3
+    last |I|=3 pos=ADJ
+    illinois |I|=3
+    <num> s |I|=3
+    novel . |I|=3
+    the |I|=2 pos=DET
+    first |I|=2 pos=ADJ
+    war |I|=2 pos=NOUN
+    federal |I|=2 pos=ADJ
+    final |I|=2 pos=ADJ
+    new |I|=2 pos=ADJ
+    country |I|=2 pos=NOUN
+    lower |I|=2 pos=ADJ
+    west |I|=2 pos=PROPN
+    british |I|=2 pos=ADJ
+    same |I|=2 pos=ADJ
+    jaccard_vs_previous_scale=0.176471
+probe "new york" frequency=- context_count=43 shared_context_count=31 substitution_degree=80
+    the |I|=5 pos=DET
+    a |I|=3 pos=DET
+    <num> |I|=3
+    greek |I|=2 pos=ADJ
+    the capital |I|=2
+    political |I|=1 pos=ADJ
+    legal |I|=1 pos=ADJ
+    world |I|=1 pos=NOUN
+    social |I|=1 pos=ADJ
+    ) |I|=1 pos=PUNCT
+    first |I|=1 pos=ADJ
+    this |I|=1 pos=DET
+    who |I|=1 pos=PRON
+    for |I|=1 pos=ADP
+    outside |I|=1 pos=ADV
+    only |I|=1 pos=ADV
+    earliest |I|=1 pos=ADJ
+    great |I|=1 pos=ADJ
+    islamic |I|=1 pos=ADJ
+    most |I|=1 pos=ADV
+    jaccard_vs_previous_scale=0.176471
+
+== scale 1000000 ==
+probe "the" frequency=57261 context_count=34256 shared_context_count=12025 substitution_degree=9540
+    a |I|=1852 pos=DET
+    his |I|=546 pos=PRON
+    its |I|=455 pos=PRON
+    this |I|=443 pos=DET
+    an |I|=413 pos=DET
+    = = = |I|=402
+    <num> |I|=380
+    their |I|=364 pos=PRON
+    and |I|=360 pos=CCONJ
+    " |I|=285 pos=PUNCT
+    in |I|=284 pos=ADP
+    = the |I|=261
+    = = the |I|=261
+    in the |I|=254
+    and the |I|=248
+    other |I|=212 pos=ADJ
+    these |I|=198 pos=DET
+    the first |I|=176
+    some |I|=174 pos=DET
+    all |I|=169 pos=DET
+    jaccard_vs_previous_scale=0.904762
+probe "of" frequency=30864 context_count=20544 shared_context_count=4226 substitution_degree=4147
+    . |I|=1001 pos=PUNCT
+    in |I|=817 pos=ADP
+    , |I|=711 pos=PUNCT
+    to |I|=368 pos=PART
+    and |I|=342 pos=CCONJ
+    for |I|=326 pos=ADP
+    from |I|=263 pos=ADP
+    on |I|=250 pos=ADP
+    with |I|=189 pos=ADP
+    . in |I|=189
+    , and |I|=184
+    is |I|=182 pos=AUX
+    at |I|=170 pos=ADP
+    of the |I|=164
+    as |I|=155 pos=ADP
+    by |I|=132 pos=ADP
+    = = = |I|=131
+    ( |I|=110 pos=PUNCT
+    that |I|=103 pos=SCONJ
+    during |I|=98 pos=ADP
+    jaccard_vs_previous_scale=1.000000
+probe "and" frequency=24367 context_count=18221 shared_context_count=5108 substitution_degree=6971
+    , |I|=1014 pos=PUNCT
+    . |I|=713 pos=PUNCT
+    in |I|=428 pos=ADP
+    the |I|=360 pos=DET
+    of |I|=342 pos=ADP
+    , and |I|=319
+    or |I|=251 pos=CCONJ
+    to |I|=250 pos=PART
+    with |I|=204 pos=ADP
+    is |I|=203 pos=AUX
+    <num> |I|=177
+    as |I|=157 pos=ADP
+    which |I|=152 pos=PRON
+    and the |I|=152
+    a |I|=150 pos=DET
+    from |I|=149 pos=ADP
+    but |I|=149 pos=CCONJ
+    for |I|=146 pos=ADP
+    on |I|=135 pos=ADP
+    was |I|=127 pos=AUX
+    jaccard_vs_previous_scale=0.904762
+probe "in" frequency=21606 context_count=14350 shared_context_count=5061 substitution_degree=6187
+    . |I|=998 pos=PUNCT
+    of |I|=817 pos=ADP
+    , |I|=809 pos=PUNCT
+    on |I|=443 pos=ADP
+    and |I|=428 pos=CCONJ
+    to |I|=373 pos=PART
+    for |I|=357 pos=ADP
+    from |I|=339 pos=ADP
+    by |I|=317 pos=ADP
+    at |I|=313 pos=ADP
+    . in |I|=308
+    with |I|=285 pos=ADP
+    the |I|=284 pos=DET
+    as |I|=270 pos=ADP
+    ( |I|=235 pos=PUNCT
+    , and |I|=212
+    is |I|=197 pos=AUX
+    in the |I|=191
+    = = = |I|=184
+    during |I|=148 pos=ADP
+    jaccard_vs_previous_scale=0.904762
+probe "was" frequency=5867 context_count=4705 shared_context_count=1621 substitution_degree=2857
+    is |I|=382 pos=AUX
+    , |I|=208 pos=PUNCT
+    . |I|=206 pos=PUNCT
+    and |I|=127 pos=CCONJ
+    in |I|=113 pos=ADP
+    are |I|=89 pos=AUX
+    were |I|=87 pos=AUX
+    of |I|=81 pos=ADP
+    had |I|=73 pos=VERB
+    has |I|=68 pos=AUX
+    as |I|=66 pos=ADP
+    to |I|=59 pos=PART
+    he |I|=56 pos=PRON
+    for |I|=49 pos=ADP
+    with |I|=49 pos=ADP
+    , and |I|=45
+    from |I|=40 pos=ADP
+    ( |I|=39 pos=PUNCT
+    has been |I|=38
+    on |I|=36 pos=ADP
+    jaccard_vs_previous_scale=0.666667
+probe "is" frequency=8524 context_count=6168 shared_context_count=2280 substitution_degree=3831
+    was |I|=382 pos=AUX
+    . |I|=342 pos=PUNCT
+    , |I|=338 pos=PUNCT
+    and |I|=203 pos=CCONJ
+    in |I|=197 pos=ADP
+    are |I|=186 pos=AUX
+    of |I|=182 pos=ADP
+    as |I|=114 pos=ADP
+    has |I|=109 pos=AUX
+    , and |I|=96
+    to |I|=93 pos=PART
+    with |I|=86 pos=ADP
+    were |I|=84 pos=AUX
+    for |I|=72 pos=ADP
+    had |I|=71 pos=VERB
+    ( |I|=63 pos=PUNCT
+    at |I|=59 pos=ADP
+    from |I|=55 pos=ADP
+    is also |I|=55
+    on |I|=53 pos=ADP
+    jaccard_vs_previous_scale=0.666667
+probe "he" frequency=2404 context_count=1414 shared_context_count=849 substitution_degree=1845
+    it |I|=143 pos=PRON
+    they |I|=119 pos=PRON
+    and |I|=91 pos=CCONJ
+    she |I|=86 pos=PRON
+    lincoln |I|=69
+    which |I|=58 pos=PRON
+    was |I|=56 pos=AUX
+    who |I|=56 pos=PRON
+    it was |I|=51
+    this |I|=40 pos=DET
+    is |I|=37 pos=AUX
+    alexander |I|=36 pos=PROPN
+    einstein |I|=35
+    bell |I|=32 pos=NOUN
+    it is |I|=31
+    agassi |I|=29
+    were |I|=28 pos=AUX
+    hitchcock |I|=26
+    are |I|=25 pos=AUX
+    the |I|=25 pos=DET
+    jaccard_vs_previous_scale=0.600000
+probe "she" frequency=396 context_count=292 shared_context_count=204 substitution_degree=644
+    he |I|=86 pos=PRON
+    it |I|=41 pos=PRON
+    they |I|=27 pos=PRON
+    and |I|=21 pos=CCONJ
+    was |I|=18 pos=AUX
+    lincoln |I|=18
+    who |I|=17 pos=PRON
+    bell |I|=14 pos=NOUN
+    which |I|=13 pos=PRON
+    alexander |I|=12 pos=PROPN
+    agassi |I|=12
+    it was |I|=12
+    this |I|=11 pos=DET
+    einstein |I|=10
+    there |I|=9 pos=PRON
+    apple |I|=9 pos=PROPN
+    rand |I|=9
+    tarkovsky |I|=9
+    , |I|=8 pos=PUNCT
+    abba |I|=8
+    jaccard_vs_previous_scale=0.428571
+probe "city" frequency=566 context_count=315 shared_context_count=230 substitution_degree=774
+    city <num> , |I|=28
+    city <num> |I|=16
+    state |I|=9 pos=NOUN
+    . |I|=7 pos=PUNCT
+    , |I|=7 pos=PUNCT
+    <num> |I|=7
+    <num> / |I|=7
+    <num> / <num> |I|=7
+    the |I|=6 pos=DET
+    ) |I|=6 pos=PUNCT
+    ( |I|=5 pos=PUNCT
+    " |I|=5 pos=PUNCT
+    part |I|=5 pos=NOUN
+    country |I|=5 pos=NOUN
+    in <num> |I|=5
+    a |I|=4 pos=DET
+    times |I|=4 pos=NOUN
+    republic |I|=4 pos=PROPN
+    cities |I|=4 pos=NOUN
+    island |I|=4 pos=NOUN
+    jaccard_vs_previous_scale=0.333333
+probe "war" frequency=914 context_count=441 shared_context_count=250 substitution_degree=827
+    , |I|=10 pos=PUNCT
+    . |I|=9 pos=PUNCT
+    war , |I|=8
+    ( |I|=5 pos=PUNCT
+    " |I|=5 pos=PUNCT
+    <num> |I|=5
+    government |I|=5 pos=NOUN
+    union |I|=5 pos=NOUN
+    wars |I|=5 pos=PROPN
+    war . |I|=5
+    war = |I|=5
+    war ii |I|=5
+    war = = |I|=5
+    the |I|=4 pos=DET
+    rights |I|=4 pos=NOUN
+    two |I|=4 pos=NUM
+    conflict |I|=4 pos=NOUN
+    <num> s |I|=4
+    war * |I|=4
+    ) |I|=3 pos=PUNCT
+    jaccard_vs_previous_scale=0.250000
+probe "world" frequency=782 context_count=363 shared_context_count=242 substitution_degree=1055
+    the |I|=31 pos=DET
+    " |I|=9 pos=PUNCT
+    the civil |I|=9
+    . |I|=8 pos=PUNCT
+    countries |I|=8 pos=NOUN
+    times |I|=8 pos=NOUN
+    the american civil |I|=8
+    a |I|=7 pos=DET
+    state |I|=7 pos=NOUN
+    civil |I|=7 pos=ADJ
+    york |I|=7 pos=PROPN
+    european |I|=7 pos=ADJ
+    national |I|=6 pos=ADJ
+    philosophy |I|=5 pos=NOUN
+    <num> |I|=5
+    history |I|=5 pos=NOUN
+    the cold |I|=5
+    the first world |I|=5
+    the american revolutionary |I|=5
+    the second world |I|=5
+    jaccard_vs_previous_scale=0.176471
+probe "people" frequency=548 context_count=427 shared_context_count=299 substitution_degree=1283
+    , |I|=16 pos=PUNCT
+    they |I|=13 pos=PRON
+    , <num> people |I|=13
+    " |I|=10 pos=PUNCT
+    ) |I|=9 pos=PUNCT
+    <num> |I|=9
+    he |I|=9 pos=PRON
+    those |I|=9 pos=DET
+    . |I|=8 pos=PUNCT
+    children |I|=8 pos=NOUN
+    the |I|=7 pos=DET
+    it |I|=6 pos=PRON
+    him |I|=6 pos=PRON
+    individuals |I|=6 pos=NOUN
+    men |I|=6 pos=NOUN
+    years |I|=6 pos=NOUN
+    words |I|=6 pos=NOUN
+    , <num> |I|=6
+    of them |I|=6
+    them |I|=5 pos=PRON
+    jaccard_vs_previous_scale=0.481481
+probe "government" frequency=467 context_count=371 shared_context_count=222 substitution_degree=875
+    state |I|=12 pos=NOUN
+    the |I|=11 pos=DET
+    " |I|=8 pos=PUNCT
+    ) |I|=6 pos=PUNCT
+    <num> |I|=6
+    forces |I|=6 pos=NOUN
+    capital |I|=6 pos=NOUN
+    . |I|=5 pos=PUNCT
+    , |I|=5 pos=PUNCT
+    war |I|=5 pos=NOUN
+    he |I|=5 pos=PRON
+    law |I|=5 pos=NOUN
+    union |I|=5 pos=NOUN
+    territory |I|=5 pos=NOUN
+    economy |I|=5 pos=NOUN
+    empire |I|=5
+    party |I|=4 pos=NOUN
+    army |I|=4 pos=NOUN
+    republic |I|=4 pos=PROPN
+    british |I|=4 pos=ADJ
+    jaccard_vs_previous_scale=0.176471
+probe "university" frequency=403 context_count=191 shared_context_count=91 substitution_degree=310
+    . |I|=5 pos=PUNCT
+    university press |I|=5
+    , |I|=4 pos=PUNCT
+    ) |I|=4 pos=PUNCT
+    government |I|=3 pos=NOUN
+    office |I|=3 pos=NOUN
+    * aberdeen |I|=3
+    university , |I|=3
+    the |I|=2 pos=DET
+    schools |I|=2 pos=NOUN
+    " |I|=2 pos=PUNCT
+    <num> |I|=2
+    society |I|=2 pos=NOUN
+    time |I|=2 pos=NOUN
+    order |I|=2 pos=NOUN
+    security |I|=2 pos=NOUN
+    city |I|=2 pos=NOUN
+    life |I|=2 pos=NOUN
+    attention |I|=2 pos=NOUN
+    memory |I|=2 pos=NOUN
+    jaccard_vs_previous_scale=0.081081
+probe "music" frequency=292 context_count=225 shared_context_count=128 substitution_degree=362
+    arabic |I|=5 pos=PROPN
+    , |I|=4 pos=PUNCT
+    " |I|=4 pos=PUNCT
+    film |I|=4 pos=NOUN
+    art |I|=4 pos=NOUN
+    a |I|=3 pos=DET
+    work |I|=3 pos=NOUN
+    language |I|=3 pos=NOUN
+    times |I|=3 pos=NOUN
+    greece |I|=3 pos=PROPN
+    period |I|=3 pos=NOUN
+    mechanics |I|=3 pos=NOUN
+    . |I|=2 pos=PUNCT
+    that |I|=2 pos=SCONJ
+    the |I|=2 pos=DET
+    and |I|=2 pos=CCONJ
+    system |I|=2 pos=NOUN
+    greek |I|=2 pos=ADJ
+    first |I|=2 pos=ADJ
+    use |I|=2 pos=VERB
+    jaccard_vs_previous_scale=0.176471
+probe "house" frequency=166 context_count=126 shared_context_count=82 substitution_degree=396
+    ) |I|=6 pos=PUNCT
+    court |I|=6 pos=PROPN
+    " |I|=4 pos=PUNCT
+    department |I|=4 pos=NOUN
+    . |I|=3 pos=PUNCT
+    are |I|=3 pos=AUX
+    , |I|=3 pos=PUNCT
+    ( |I|=3 pos=PUNCT
+    <num> |I|=3
+    college |I|=3 pos=NOUN
+    is |I|=2 pos=AUX
+    state |I|=2 pos=NOUN
+    and |I|=2 pos=CCONJ
+    system |I|=2 pos=NOUN
+    other |I|=2 pos=ADJ
+    school |I|=2 pos=NOUN
+    direction |I|=2 pos=NOUN
+    set |I|=2 pos=VERB
+    austria |I|=2 pos=PROPN
+    woman |I|=2 pos=NOUN
+    jaccard_vs_previous_scale=0.333333
+probe "red" frequency=141 context_count=118 shared_context_count=57 substitution_degree=194
+    the |I|=5 pos=DET
+    brown |I|=3 pos=PROPN
+    a |I|=2 pos=DET
+    " |I|=2 pos=PUNCT
+    black |I|=2 pos=ADJ
+    green |I|=2 pos=ADJ
+    open |I|=2 pos=ADJ
+    white |I|=2 pos=ADJ
+    <num> . <num> |I|=2
+    - |I|=1 pos=PUNCT
+    on |I|=1 pos=ADP
+    , |I|=1 pos=PUNCT
+    more |I|=1 pos=ADJ
+    non |I|=1 pos=X
+    be |I|=1 pos=AUX
+    central |I|=1 pos=ADJ
+    all |I|=1 pos=DET
+    extreme |I|=1 pos=ADJ
+    social |I|=1 pos=ADJ
+    individualist |I|=1
+    jaccard_vs_previous_scale=0.176471
+probe "small" frequency=371 context_count=314 shared_context_count=187 substitution_degree=538
+    large |I|=23 pos=ADJ
+    the |I|=15 pos=DET
+    significant |I|=11 pos=ADJ
+    new |I|=10 pos=ADJ
+    major |I|=6 pos=ADJ
+    a |I|=5 pos=DET
+    higher |I|=5 pos=ADJ
+    limited |I|=4 pos=ADJ
+    single |I|=4 pos=ADJ
+    first |I|=4 pos=ADJ
+    <num> |I|=4
+    long |I|=4 pos=ADJ
+    different |I|=4 pos=ADJ
+    substantial |I|=4 pos=ADJ
+    big |I|=4 pos=ADJ
+    given |I|=4 pos=VERB
+    roman |I|=4 pos=PROPN
+    trace |I|=4
+    larger |I|=4 pos=ADJ
+    finite |I|=4
+    jaccard_vs_previous_scale=0.212121
+probe "large" frequency=470 context_count=379 shared_context_count=210 substitution_degree=663
+    small |I|=23 pos=ADJ
+    the |I|=19 pos=DET
+    new |I|=13 pos=ADJ
+    significant |I|=11 pos=ADJ
+    major |I|=8 pos=ADJ
+    great |I|=7 pos=ADJ
+    single |I|=6 pos=ADJ
+    " |I|=6 pos=PUNCT
+    first |I|=6 pos=ADJ
+    their |I|=6 pos=PRON
+    some |I|=6 pos=DET
+    vast |I|=6 pos=ADJ
+    strong |I|=6 pos=ADJ
+    a |I|=5 pos=DET
+    limited |I|=5 pos=ADJ
+    <num> |I|=5
+    different |I|=5 pos=ADJ
+    low |I|=5 pos=ADJ
+    given |I|=5 pos=VERB
+    smaller |I|=5 pos=ADJ
+    jaccard_vs_previous_scale=0.212121
+probe "first" frequency=1599 context_count=1031 shared_context_count=653 substitution_degree=2081
+    second |I|=66 pos=ADJ
+    <num> |I|=48
+    only |I|=36 pos=ADV
+    last |I|=36 pos=ADJ
+    " |I|=32 pos=PUNCT
+    same |I|=29 pos=ADJ
+    new |I|=26 pos=ADJ
+    next |I|=24 pos=ADJ
+    the |I|=22 pos=DET
+    also |I|=21 pos=ADV
+    following |I|=20 pos=VERB
+    third |I|=20 pos=ADJ
+    largest |I|=19 pos=ADJ
+    final |I|=17 pos=ADJ
+    best |I|=16 pos=ADJ
+    earliest |I|=15 pos=ADJ
+    original |I|=15 pos=ADJ
+    <num> th |I|=15
+    other |I|=14 pos=ADJ
+    = first |I|=13
+    jaccard_vs_previous_scale=0.538462
+probe "new" frequency=1107 context_count=761 shared_context_count=428 substitution_degree=1520
+    the |I|=57 pos=DET
+    <num> |I|=28
+    first |I|=26 pos=ADJ
+    " |I|=17 pos=PUNCT
+    the new |I|=17
+    modern |I|=15 pos=ADJ
+    second |I|=14 pos=ADJ
+    large |I|=13 pos=ADJ
+    single |I|=12 pos=ADJ
+    certain |I|=11 pos=ADJ
+    general |I|=11 pos=ADJ
+    same |I|=11 pos=ADJ
+    small |I|=10 pos=ADJ
+    old |I|=10 pos=ADJ
+    these |I|=9 pos=DET
+    many |I|=9 pos=ADJ
+    and |I|=8 pos=CCONJ
+    similar |I|=8 pos=ADJ
+    this |I|=8 pos=DET
+    french |I|=8 pos=ADJ
+    jaccard_vs_previous_scale=0.333333
+probe "said" frequency=228 context_count=151 shared_context_count=100 substitution_degree=362
+    wrote |I|=11 pos=VERB
+    stated |I|=6 pos=VERB
+    . |I|=5 pos=PUNCT
+    , |I|=5 pos=PUNCT
+    declared |I|=5 pos=VERB
+    and |I|=4 pos=CCONJ
+    been |I|=4 pos=AUX
+    claimed |I|=4 pos=VERB
+    discovered |I|=4 pos=VERB
+    a |I|=3 pos=DET
+    was |I|=3 pos=AUX
+    found |I|=3 pos=VERB
+    argued |I|=3 pos=VERB
+    called |I|=3 pos=VERB
+    responded |I|=3 pos=VERB
+    believed |I|=3 pos=VERB
+    suggested |I|=3 pos=VERB
+    reached |I|=3 pos=VERB
+    stated that |I|=3
+    is |I|=2 pos=AUX
+    jaccard_vs_previous_scale=0.333333
+probe "made" frequency=602 context_count=481 shared_context_count=293 substitution_degree=1044
+    . |I|=17 pos=PUNCT
+    , |I|=16 pos=PUNCT
+    had |I|=15 pos=VERB
+    used |I|=14 pos=VERB
+    in |I|=13 pos=ADP
+    was |I|=11 pos=AUX
+    and |I|=10 pos=CCONJ
+    " |I|=10 pos=PUNCT
+    as |I|=9 pos=ADP
+    became |I|=9 pos=VERB
+    is |I|=8 pos=AUX
+    called |I|=8 pos=VERB
+    divided |I|=7
+    set |I|=7 pos=VERB
+    given |I|=7 pos=VERB
+    built |I|=7 pos=VERB
+    makes |I|=7 pos=VERB
+    on |I|=6 pos=ADP
+    to |I|=6 pos=PART
+    found |I|=6 pos=VERB
+    jaccard_vs_previous_scale=0.333333
+probe "found" frequency=521 context_count=313 shared_context_count=205 substitution_degree=848
+    used |I|=18 pos=VERB
+    . |I|=12 pos=PUNCT
+    , |I|=12 pos=PUNCT
+    had |I|=8 pos=VERB
+    shown |I|=8 pos=VERB
+    common |I|=7 pos=ADJ
+    present |I|=7 pos=ADJ
+    made |I|=6 pos=VERB
+    included |I|=6 pos=VERB
+    located |I|=6 pos=VERB
+    the |I|=5 pos=DET
+    in |I|=5 pos=ADP
+    lost |I|=5 pos=VERB
+    concluded |I|=5 pos=VERB
+    held |I|=5 pos=VERB
+    observed |I|=5 pos=VERB
+    done |I|=5 pos=VERB
+    and |I|=4 pos=CCONJ
+    " |I|=4 pos=PUNCT
+    argued |I|=4 pos=VERB
+    jaccard_vs_previous_scale=0.333333
+probe "of the" frequency=- context_count=6818 shared_context_count=942 substitution_degree=959
+    of |I|=164 pos=ADP
+    the |I|=87 pos=DET
+    in the |I|=48
+    . the |I|=42
+    in |I|=37 pos=ADP
+    , |I|=32 pos=PUNCT
+    of his |I|=27
+    and |I|=24 pos=CCONJ
+    . |I|=23 pos=PUNCT
+    , the |I|=23
+    of a |I|=21
+    of its |I|=20
+    ( |I|=19 pos=PUNCT
+    and the |I|=17
+    to |I|=16 pos=PART
+    a |I|=15 pos=DET
+    of their |I|=12
+    * |I|=11 pos=PUNCT
+    with |I|=10 pos=ADP
+    for the |I|=10
+    jaccard_vs_previous_scale=0.600000
+probe "in the" frequency=- context_count=4749 shared_context_count=1102 substitution_degree=1983
+    the |I|=254 pos=DET
+    in |I|=191 pos=ADP
+    a |I|=91 pos=DET
+    = = = |I|=70
+    , |I|=59 pos=PUNCT
+    . the |I|=54
+    ( |I|=53 pos=PUNCT
+    of the |I|=48
+    and |I|=42 pos=CCONJ
+    . in |I|=36
+    <num> |I|=33
+    and the |I|=33
+    of |I|=32 pos=ADP
+    " |I|=32 pos=PUNCT
+    * |I|=32 pos=PUNCT
+    , the |I|=32
+    during the |I|=32
+    his |I|=27 pos=PRON
+    to the |I|=27
+    from the |I|=27
+    jaccard_vs_previous_scale=0.538462
+probe "united states" frequency=- context_count=170 shared_context_count=147 substitution_degree=525
+    state |I|=8 pos=NOUN
+    us |I|=8 pos=PRON
+    first |I|=7 pos=ADJ
+    national |I|=7 pos=ADJ
+    alabama |I|=6 pos=PROPN
+    the |I|=5 pos=DET
+    " |I|=5 pos=PUNCT
+    american |I|=5 pos=ADJ
+    british |I|=5 pos=ADJ
+    confederate |I|=5
+    alaska |I|=5 pos=PROPN
+    <num> |I|=4
+    europe |I|=4 pos=PROPN
+    new |I|=4 pos=ADJ
+    union |I|=4 pos=NOUN
+    population |I|=4 pos=NOUN
+    same |I|=4 pos=ADJ
+    crew |I|=4 pos=NOUN
+    french |I|=3 pos=ADJ
+    war |I|=3 pos=NOUN
+    jaccard_vs_previous_scale=0.379310
+probe "new york" frequency=- context_count=114 shared_context_count=90 substitution_degree=306
+    the |I|=15 pos=DET
+    <num> |I|=9
+    a |I|=5 pos=DET
+    " |I|=3 pos=PUNCT
+    aberdeen |I|=3
+    the capital |I|=3
+    and |I|=2 pos=CCONJ
+    many |I|=2 pos=ADJ
+    first |I|=2 pos=ADJ
+    this |I|=2 pos=DET
+    paris |I|=2 pos=PROPN
+    american |I|=2 pos=ADJ
+    national |I|=2 pos=ADJ
+    largest |I|=2 pos=ADJ
+    british |I|=2 pos=ADJ
+    birmingham |I|=2 pos=PROPN
+    philadelphia |I|=2 pos=PROPN
+    swedish |I|=2 pos=ADJ
+    , the |I|=2
+    although the |I|=2
+    jaccard_vs_previous_scale=0.176471
+
+== scale 3000000 ==
+probe "the" frequency=161944 context_count=83132 shared_context_count=34053 substitution_degree=29119
+    a |I|=5612 pos=DET
+    his |I|=2107 pos=PRON
+    an |I|=1383 pos=DET
+    this |I|=1309 pos=DET
+    its |I|=1280 pos=PRON
+    their |I|=1131 pos=PRON
+    = = = |I|=1054
+    <num> |I|=926
+    " |I|=909 pos=PUNCT
+    and |I|=908 pos=CCONJ
+    in |I|=853 pos=ADP
+    in the |I|=726
+    * |I|=655 pos=PUNCT
+    other |I|=589 pos=ADJ
+    = the |I|=581
+    = = the |I|=579
+    the first |I|=563
+    and the |I|=560
+    these |I|=524 pos=DET
+    some |I|=494 pos=DET
+    jaccard_vs_previous_scale=0.904762
+probe "of" frequency=93931 context_count=55491 shared_context_count=12903 substitution_degree=12974
+    . |I|=2665 pos=PUNCT
+    in |I|=2248 pos=ADP
+    , |I|=2189 pos=PUNCT
+    and |I|=1045 pos=CCONJ
+    to |I|=996 pos=PART
+    for |I|=953 pos=ADP
+    from |I|=745 pos=ADP
+    on |I|=739 pos=ADP
+    of the |I|=660
+    at |I|=575 pos=ADP
+    with |I|=562 pos=ADP
+    is |I|=543 pos=AUX
+    . in |I|=523
+    , and |I|=494
+    as |I|=485 pos=ADP
+    by |I|=427 pos=ADP
+    ( |I|=365 pos=PUNCT
+    : |I|=329 pos=PUNCT
+    = = = |I|=311
+    that |I|=291 pos=SCONJ
+    jaccard_vs_previous_scale=0.904762
+probe "and" frequency=73540 context_count=48075 shared_context_count=15599 substitution_degree=21754
+    , |I|=3314 pos=PUNCT
+    . |I|=2003 pos=PUNCT
+    in |I|=1233 pos=ADP
+    , and |I|=1102
+    of |I|=1045 pos=ADP
+    the |I|=908 pos=DET
+    or |I|=742 pos=CCONJ
+    to |I|=704 pos=PART
+    with |I|=572 pos=ADP
+    is |I|=527 pos=AUX
+    for |I|=458 pos=ADP
+    as |I|=450 pos=ADP
+    and the |I|=420
+    a |I|=409 pos=DET
+    was |I|=408 pos=AUX
+    from |I|=385 pos=ADP
+    on |I|=376 pos=ADP
+    <num> |I|=370
+    which |I|=369 pos=PRON
+    by |I|=347 pos=ADP
+    jaccard_vs_previous_scale=0.904762
+probe "in" frequency=61082 context_count=35970 shared_context_count=14316 substitution_degree=18502
+    . |I|=2546 pos=PUNCT
+    , |I|=2335 pos=PUNCT
+    of |I|=2248 pos=ADP
+    on |I|=1253 pos=ADP
+    and |I|=1233 pos=CCONJ
+    to |I|=1045 pos=PART
+    for |I|=949 pos=ADP
+    from |I|=919 pos=ADP
+    at |I|=901 pos=ADP
+    by |I|=889 pos=ADP
+    . in |I|=860
+    the |I|=853 pos=DET
+    with |I|=833 pos=ADP
+    ( |I|=761 pos=PUNCT
+    as |I|=695 pos=ADP
+    in the |I|=558
+    , and |I|=506
+    = = = |I|=483
+    is |I|=481 pos=AUX
+    * |I|=460 pos=PUNCT
+    jaccard_vs_previous_scale=0.904762
+probe "was" frequency=18947 context_count=13590 shared_context_count=5386 substitution_degree=9022
+    is |I|=1113 pos=AUX
+    , |I|=765 pos=PUNCT
+    . |I|=600 pos=PUNCT
+    and |I|=408 pos=CCONJ
+    in |I|=292 pos=ADP
+    were |I|=285 pos=AUX
+    of |I|=279 pos=ADP
+    had |I|=278 pos=VERB
+    are |I|=248 pos=AUX
+    as |I|=224 pos=ADP
+    has |I|=217 pos=AUX
+    he |I|=203 pos=PRON
+    , and |I|=159
+    to |I|=144 pos=PART
+    for |I|=140 pos=ADP
+    has been |I|=139
+    ( |I|=136 pos=PUNCT
+    with |I|=131 pos=ADP
+    had been |I|=121
+    also |I|=114 pos=ADV
+    jaccard_vs_previous_scale=0.818182
+probe "is" frequency=22895 context_count=15414 shared_context_count=6500 substitution_degree=10838
+    was |I|=1113 pos=AUX
+    , |I|=1047 pos=PUNCT
+    . |I|=902 pos=PUNCT
+    of |I|=543 pos=ADP
+    and |I|=527 pos=CCONJ
+    in |I|=481 pos=ADP
+    are |I|=439 pos=AUX
+    as |I|=322 pos=ADP
+    has |I|=284 pos=AUX
+    , and |I|=244
+    to |I|=242 pos=PART
+    with |I|=242 pos=ADP
+    were |I|=214 pos=AUX
+    for |I|=213 pos=ADP
+    ( |I|=198 pos=PUNCT
+    from |I|=167 pos=ADP
+    had |I|=158 pos=VERB
+    he |I|=158 pos=PRON
+    on |I|=155 pos=ADP
+    the |I|=152 pos=DET
+    jaccard_vs_previous_scale=0.818182
+probe "he" frequency=9486 context_count=4121 shared_context_count=2673 substitution_degree=5636
+    it |I|=352 pos=PRON
+    they |I|=343 pos=PRON
+    and |I|=277 pos=CCONJ
+    was |I|=203 pos=AUX
+    she |I|=203 pos=PRON
+    is |I|=158 pos=AUX
+    who |I|=157 pos=PRON
+    which |I|=156 pos=PRON
+    it was |I|=130
+    he was |I|=106
+    , |I|=103 pos=PUNCT
+    this |I|=98 pos=DET
+    were |I|=98 pos=AUX
+    it is |I|=98
+    are |I|=97 pos=AUX
+    he also |I|=90
+    the |I|=89 pos=DET
+    lincoln |I|=85
+    he had |I|=77
+    but |I|=70 pos=CCONJ
+    jaccard_vs_previous_scale=0.600000
+probe "she" frequency=1135 context_count=694 shared_context_count=533 substitution_degree=1770
+    he |I|=203 pos=PRON
+    it |I|=81 pos=PRON
+    they |I|=74 pos=PRON
+    and |I|=51 pos=CCONJ
+    which |I|=36 pos=PRON
+    was |I|=33 pos=AUX
+    who |I|=31 pos=PRON
+    is |I|=22 pos=AUX
+    , |I|=22 pos=PUNCT
+    it was |I|=18
+    that |I|=17 pos=SCONJ
+    this |I|=17 pos=DET
+    there |I|=17 pos=PRON
+    were |I|=17 pos=AUX
+    jackson |I|=17
+    he also |I|=17
+    he had |I|=17
+    the |I|=16 pos=DET
+    but |I|=16 pos=CCONJ
+    lincoln |I|=16
+    jaccard_vs_previous_scale=0.428571
+probe "city" frequency=1955 context_count=843 shared_context_count=622 substitution_degree=2527
+    , |I|=30 pos=PUNCT
+    city <num> , |I|=28
+    . |I|=22 pos=PUNCT
+    ) |I|=21 pos=PUNCT
+    town |I|=18 pos=NOUN
+    city <num> |I|=17
+    the |I|=14 pos=DET
+    state |I|=14 pos=NOUN
+    country |I|=14 pos=NOUN
+    in <num> |I|=14
+    ( |I|=13 pos=PUNCT
+    " |I|=12 pos=PUNCT
+    city , |I|=12
+    island |I|=11 pos=NOUN
+    <num> |I|=10
+    in |I|=9 pos=ADP
+    region |I|=9 pos=NOUN
+    university |I|=9 pos=PROPN
+    government |I|=8 pos=NOUN
+    company |I|=8 pos=NOUN
+    jaccard_vs_previous_scale=0.481481
+probe "war" frequency=2397 context_count=960 shared_context_count=603 substitution_degree=2030
+    . |I|=30 pos=PUNCT
+    , |I|=25 pos=PUNCT
+    war , |I|=23
+    ) |I|=21 pos=PUNCT
+    war . |I|=21
+    the |I|=19 pos=DET
+    " |I|=17 pos=PUNCT
+    government |I|=17 pos=NOUN
+    <num> |I|=14
+    wars |I|=13 pos=PROPN
+    a |I|=10 pos=DET
+    rights |I|=10 pos=NOUN
+    empire |I|=10
+    war ii |I|=10
+    war = |I|=9
+    war = = |I|=9
+    day |I|=8 pos=NOUN
+    war * |I|=8
+    rights movement |I|=8
+    and |I|=7 pos=CCONJ
+    jaccard_vs_previous_scale=0.600000
+probe "world" frequency=2234 context_count=853 shared_context_count=628 substitution_degree=2677
+    the |I|=61 pos=DET
+    a |I|=21 pos=DET
+    " |I|=20 pos=PUNCT
+    . |I|=17 pos=PUNCT
+    , |I|=17 pos=PUNCT
+    <num> |I|=15
+    european |I|=15 pos=ADJ
+    ) |I|=14 pos=PUNCT
+    * world |I|=14
+    national |I|=12 pos=ADJ
+    countries |I|=11 pos=NOUN
+    philosophy |I|=10 pos=NOUN
+    american |I|=10 pos=ADJ
+    world = |I|=10
+    world = = |I|=10
+    state |I|=9 pos=NOUN
+    other |I|=9 pos=ADJ
+    the civil |I|=9
+    history |I|=8 pos=NOUN
+    his |I|=8 pos=PRON
+    jaccard_vs_previous_scale=0.428571
+probe "people" frequency=1707 context_count=1088 shared_context_count=795 substitution_degree=2716
+    , |I|=40 pos=PUNCT
+    ) |I|=23 pos=PUNCT
+    , <num> people |I|=21
+    " |I|=20 pos=PUNCT
+    they |I|=20 pos=PRON
+    men |I|=20 pos=NOUN
+    . |I|=19 pos=PUNCT
+    years |I|=18 pos=NOUN
+    the |I|=16 pos=DET
+    them |I|=14 pos=PRON
+    individuals |I|=14 pos=NOUN
+    those |I|=14 pos=DET
+    he |I|=13 pos=PRON
+    children |I|=13 pos=NOUN
+    and |I|=12 pos=CCONJ
+    language |I|=12 pos=NOUN
+    him |I|=12 pos=PRON
+    countries |I|=12 pos=NOUN
+    man |I|=12 pos=NOUN
+    jews |I|=12 pos=PROPN
+    jaccard_vs_previous_scale=0.600000
+probe "government" frequency=1279 context_count=937 shared_context_count=608 substitution_degree=2407
+    the |I|=31 pos=DET
+    state |I|=17 pos=NOUN
+    war |I|=17 pos=NOUN
+    . |I|=16 pos=PUNCT
+    " |I|=16 pos=PUNCT
+    party |I|=16 pos=NOUN
+    army |I|=16 pos=NOUN
+    ) |I|=13 pos=PUNCT
+    , |I|=12 pos=PUNCT
+    s . government |I|=12
+    law |I|=11 pos=NOUN
+    <num> |I|=10
+    forces |I|=10 pos=NOUN
+    in <num> |I|=10
+    and |I|=9 pos=CCONJ
+    union |I|=9 pos=NOUN
+    first |I|=8 pos=ADJ
+    language |I|=8 pos=NOUN
+    territory |I|=8 pos=NOUN
+    economy |I|=8 pos=NOUN
+    jaccard_vs_previous_scale=0.600000
+probe "university" frequency=1369 context_count=591 shared_context_count=333 substitution_degree=1361
+    , |I|=28 pos=PUNCT
+    . |I|=17 pos=PUNCT
+    university press |I|=17
+    ) |I|=14 pos=PUNCT
+    <num> |I|=14
+    the |I|=13 pos=DET
+    " |I|=11 pos=PUNCT
+    city |I|=9 pos=NOUN
+    and |I|=7 pos=CCONJ
+    government |I|=7 pos=NOUN
+    river |I|=7 pos=PROPN
+    university . |I|=7
+    region |I|=6 pos=NOUN
+    cathedral |I|=6
+    = = = |I|=6
+    first |I|=5 pos=ADJ
+    new |I|=5 pos=ADJ
+    county |I|=5 pos=PROPN
+    campus |I|=5 pos=NOUN
+    college |I|=5 pos=NOUN
+    jaccard_vs_previous_scale=0.290323
+probe "music" frequency=632 context_count=461 shared_context_count=296 substitution_degree=1092
+    art |I|=12 pos=NOUN
+    . |I|=11 pos=PUNCT
+    a |I|=11 pos=DET
+    the |I|=10 pos=DET
+    , |I|=8 pos=PUNCT
+    " |I|=8 pos=PUNCT
+    culture |I|=7 pos=NOUN
+    film |I|=6 pos=NOUN
+    music = |I|=6
+    music = = |I|=6
+    that |I|=4 pos=SCONJ
+    and |I|=4 pos=CCONJ
+    <num> |I|=4
+    it |I|=4 pos=PRON
+    london |I|=4 pos=PROPN
+    arabic |I|=4 pos=PROPN
+    singer |I|=4 pos=PROPN
+    system |I|=3 pos=NOUN
+    ) |I|=3 pos=PUNCT
+    first |I|=3 pos=ADJ
+    jaccard_vs_previous_scale=0.428571
+probe "house" frequency=763 context_count=493 shared_context_count=322 substitution_degree=1209
+    . |I|=20 pos=PUNCT
+    " |I|=17 pos=PUNCT
+    , |I|=13 pos=PUNCT
+    ) |I|=13 pos=PUNCT
+    in <num> |I|=12
+    the |I|=11 pos=DET
+    <num> |I|=10
+    and |I|=6 pos=CCONJ
+    work |I|=6 pos=NOUN
+    family |I|=6 pos=NOUN
+    ( |I|=5 pos=PUNCT
+    day |I|=5 pos=NOUN
+    home |I|=5 pos=NOUN
+    team |I|=5 pos=NOUN
+    house . |I|=5
+    a |I|=4 pos=DET
+    government |I|=4 pos=NOUN
+    city |I|=4 pos=NOUN
+    father |I|=4 pos=NOUN
+    company |I|=4 pos=NOUN
+    jaccard_vs_previous_scale=0.212121
+probe "red" frequency=430 context_count=311 shared_context_count=197 substitution_degree=634
+    the |I|=17 pos=DET
+    <num> |I|=8
+    " |I|=7 pos=PUNCT
+    green |I|=7 pos=ADJ
+    white |I|=7 pos=ADJ
+    black |I|=6 pos=ADJ
+    a |I|=4 pos=DET
+    - |I|=4 pos=PUNCT
+    , |I|=4 pos=PUNCT
+    brown |I|=4 pos=PROPN
+    yellow |I|=4 pos=ADJ
+    . |I|=3 pos=PUNCT
+    and |I|=3 pos=CCONJ
+    single |I|=3 pos=ADJ
+    purple |I|=3 pos=ADJ
+    the red |I|=3
+    * red |I|=3
+    non |I|=2 pos=X
+    central |I|=2 pos=ADJ
+    world |I|=2 pos=NOUN
+    jaccard_vs_previous_scale=0.379310
+probe "small" frequency=949 context_count=745 shared_context_count=491 substitution_degree=1784
+    large |I|=60 pos=ADJ
+    the |I|=50 pos=DET
+    new |I|=27 pos=ADJ
+    significant |I|=20 pos=ADJ
+    a |I|=19 pos=DET
+    " |I|=18 pos=PUNCT
+    major |I|=16 pos=ADJ
+    single |I|=15 pos=ADJ
+    <num> |I|=14
+    smaller |I|=14 pos=ADJ
+    larger |I|=14 pos=ADJ
+    great |I|=13 pos=ADJ
+    different |I|=12 pos=ADJ
+    these |I|=10 pos=DET
+    second |I|=9 pos=ADJ
+    number of |I|=9
+    particular |I|=8 pos=ADJ
+    first |I|=8 pos=ADJ
+    other |I|=8 pos=ADJ
+    some |I|=8 pos=DET
+    jaccard_vs_previous_scale=0.379310
+probe "large" frequency=1236 context_count=904 shared_context_count=557 substitution_degree=1977
+    the |I|=75 pos=DET
+    small |I|=60 pos=ADJ
+    major |I|=32 pos=ADJ
+    new |I|=30 pos=ADJ
+    great |I|=29 pos=ADJ
+    <num> |I|=26
+    significant |I|=25 pos=ADJ
+    " |I|=18 pos=PUNCT
+    a |I|=16 pos=DET
+    high |I|=16 pos=ADJ
+    smaller |I|=16 pos=ADJ
+    other |I|=15 pos=ADJ
+    different |I|=15 pos=ADJ
+    single |I|=14 pos=ADJ
+    some |I|=14 pos=DET
+    vast |I|=13 pos=ADJ
+    strong |I|=13 pos=ADJ
+    considerable |I|=13 pos=ADJ
+    wide |I|=13 pos=ADJ
+    these |I|=12 pos=DET
+    jaccard_vs_previous_scale=0.600000
+probe "first" frequency=4706 context_count=2583 shared_context_count=1748 substitution_degree=5554
+    second |I|=171 pos=ADJ
+    <num> |I|=122
+    last |I|=89 pos=ADJ
+    " |I|=81 pos=PUNCT
+    third |I|=77 pos=ADJ
+    only |I|=76 pos=ADV
+    the |I|=64 pos=DET
+    same |I|=57 pos=ADJ
+    new |I|=55 pos=ADJ
+    also |I|=50 pos=ADV
+    largest |I|=48 pos=ADJ
+    original |I|=44 pos=ADJ
+    next |I|=43 pos=ADJ
+    later |I|=42 pos=ADV
+    final |I|=42 pos=ADJ
+    a |I|=38 pos=DET
+    following |I|=38 pos=VERB
+    <num> th |I|=38
+    american |I|=37 pos=ADJ
+    other |I|=36 pos=ADJ
+    jaccard_vs_previous_scale=0.739130
+probe "new" frequency=3340 context_count=1886 shared_context_count=1192 substitution_degree=4375
+    the |I|=148 pos=DET
+    " |I|=63 pos=PUNCT
+    <num> |I|=60
+    first |I|=55 pos=ADJ
+    the new |I|=36
+    single |I|=35 pos=ADJ
+    second |I|=35 pos=ADJ
+    a |I|=34 pos=DET
+    different |I|=33 pos=ADJ
+    other |I|=31 pos=ADJ
+    large |I|=30 pos=ADJ
+    these |I|=28 pos=DET
+    small |I|=27 pos=ADJ
+    old |I|=25 pos=ADJ
+    number of |I|=25
+    major |I|=24 pos=ADJ
+    similar |I|=23 pos=ADJ
+    modern |I|=23 pos=ADJ
+    third |I|=22 pos=ADJ
+    particular |I|=21 pos=ADJ
+    jaccard_vs_previous_scale=0.481481
+probe "said" frequency=745 context_count=395 shared_context_count=279 substitution_degree=882
+    . |I|=18 pos=PUNCT
+    , |I|=18 pos=PUNCT
+    wrote |I|=16 pos=VERB
+    stated |I|=11 pos=VERB
+    and |I|=9 pos=CCONJ
+    " |I|=8 pos=PUNCT
+    claimed |I|=8 pos=VERB
+    the |I|=7 pos=DET
+    to |I|=7 pos=PART
+    ) |I|=7 pos=PUNCT
+    was |I|=7 pos=AUX
+    found |I|=7 pos=VERB
+    reported |I|=7 pos=VERB
+    said that |I|=7
+    a |I|=6 pos=DET
+    as |I|=6 pos=ADP
+    had |I|=6 pos=VERB
+    made |I|=6 pos=VERB
+    says |I|=6 pos=VERB
+    is |I|=5 pos=AUX
+    jaccard_vs_previous_scale=0.333333
+probe "made" frequency=1755 context_count=1260 shared_context_count=820 substitution_degree=2694
+    , |I|=71 pos=PUNCT
+    . |I|=62 pos=PUNCT
+    in |I|=37 pos=ADP
+    was |I|=34 pos=AUX
+    had |I|=33 pos=VERB
+    the |I|=32 pos=DET
+    and |I|=31 pos=CCONJ
+    used |I|=30 pos=VERB
+    a |I|=29 pos=DET
+    " |I|=26 pos=PUNCT
+    as |I|=25 pos=ADP
+    is |I|=22 pos=AUX
+    taken |I|=21 pos=VERB
+    with |I|=19 pos=ADP
+    of |I|=18 pos=ADP
+    became |I|=18 pos=VERB
+    wrote |I|=17 pos=VERB
+    been |I|=16 pos=AUX
+    gave |I|=16 pos=VERB
+    found |I|=15 pos=VERB
+    jaccard_vs_previous_scale=0.428571
+probe "found" frequency=1481 context_count=790 shared_context_count=552 substitution_degree=1678
+    . |I|=57 pos=PUNCT
+    , |I|=50 pos=PUNCT
+    used |I|=36 pos=VERB
+    and |I|=17 pos=CCONJ
+    had |I|=16 pos=VERB
+    was |I|=15 pos=AUX
+    made |I|=15 pos=VERB
+    the |I|=12 pos=DET
+    a |I|=11 pos=DET
+    of |I|=11 pos=ADP
+    showed |I|=11 pos=VERB
+    is |I|=10 pos=AUX
+    in |I|=10 pos=ADP
+    " |I|=9 pos=PUNCT
+    seen |I|=9 pos=VERB
+    mentioned |I|=9 pos=VERB
+    has |I|=8 pos=AUX
+    also |I|=8 pos=ADV
+    included |I|=8 pos=VERB
+    , and |I|=8
+    jaccard_vs_previous_scale=0.333333
+probe "of the" frequency=- context_count=19876 shared_context_count=3757 substitution_degree=3974
+    of |I|=660 pos=ADP
+    the |I|=302 pos=DET
+    in the |I|=208
+    , |I|=178 pos=PUNCT
+    in |I|=163 pos=ADP
+    . the |I|=145
+    of a |I|=144
+    of his |I|=115
+    and |I|=108 pos=CCONJ
+    , the |I|=108
+    . |I|=106 pos=PUNCT
+    of its |I|=83
+    ( |I|=81 pos=PUNCT
+    * |I|=69 pos=PUNCT
+    a |I|=63 pos=DET
+    to the |I|=59
+    to |I|=57 pos=PART
+    and the |I|=56
+    for the |I|=54
+    . in |I|=53
+    jaccard_vs_previous_scale=0.818182
+probe "in the" frequency=- context_count=12656 shared_context_count=3528 substitution_degree=6086
+    the |I|=726 pos=DET
+    in |I|=558 pos=ADP
+    a |I|=265 pos=DET
+    of the |I|=208
+    , |I|=186 pos=PUNCT
+    ( |I|=160 pos=PUNCT
+    = = = |I|=158
+    . the |I|=149
+    * |I|=126 pos=PUNCT
+    . in |I|=112
+    and |I|=109 pos=CCONJ
+    of |I|=105 pos=ADP
+    at the |I|=100
+    . |I|=95 pos=PUNCT
+    . * |I|=88
+    on the |I|=85
+    during the |I|=79
+    , the |I|=77
+    from the |I|=75
+    " |I|=73 pos=PUNCT
+    jaccard_vs_previous_scale=0.666667
+probe "united states" frequency=- context_count=434 shared_context_count=376 substitution_degree=1530
+    the |I|=28 pos=DET
+    first |I|=22 pos=ADJ
+    us |I|=20 pos=PRON
+    american |I|=17 pos=ADJ
+    " |I|=16 pos=PUNCT
+    national |I|=14 pos=ADJ
+    <num> |I|=13
+    british |I|=13 pos=ADJ
+    state |I|=12 pos=NOUN
+    french |I|=12 pos=ADJ
+    union |I|=11 pos=NOUN
+    new |I|=10 pos=ADJ
+    a |I|=9 pos=DET
+    german |I|=9 pos=ADJ
+    royal |I|=9 pos=ADJ
+    federal |I|=8 pos=ADJ
+    city |I|=8 pos=NOUN
+    australian |I|=8 pos=ADJ
+    <num> th |I|=8
+    largest |I|=7 pos=ADJ
+    jaccard_vs_previous_scale=0.428571
+probe "new york" frequency=- context_count=225 shared_context_count=199 substitution_degree=679
+    the |I|=26 pos=DET
+    " |I|=8 pos=PUNCT
+    <num> |I|=7
+    largest |I|=5 pos=ADJ
+    a |I|=4 pos=DET
+    , |I|=4 pos=PUNCT
+    first |I|=4 pos=ADJ
+    french |I|=4 pos=ADJ
+    chicago |I|=4 pos=PROPN
+    british |I|=4 pos=ADJ
+    same |I|=4 pos=ADJ
+    ) |I|=3 pos=PUNCT
+    american |I|=3 pos=ADJ
+    london |I|=3 pos=PROPN
+    major |I|=3 pos=ADJ
+    city |I|=3 pos=NOUN
+    princeton |I|=3 pos=PROPN
+    us |I|=3 pos=PRON
+    columbia |I|=3 pos=PROPN
+    boston |I|=3 pos=PROPN
+    jaccard_vs_previous_scale=0.250000
+
+== scale 10000000 ==
+probe "the" frequency=563478 context_count=224715 shared_context_count=102568 substitution_degree=54464
+    a |I|=17942 pos=DET
+    his |I|=5431 pos=PRON
+    an |I|=4292 pos=DET
+    its |I|=4283 pos=PRON
+    their |I|=4032 pos=PRON
+    <num> |I|=3548
+    this |I|=3490 pos=DET
+    " |I|=3364 pos=PUNCT
+    = = = |I|=2925
+    and |I|=2791 pos=CCONJ
+    in |I|=2732 pos=ADP
+    * |I|=2557 pos=PUNCT
+    in the |I|=2424
+    other |I|=1896 pos=ADJ
+    = the |I|=1799
+    = = the |I|=1796
+    the first |I|=1660
+    these |I|=1659 pos=DET
+    . the |I|=1587
+    some |I|=1569 pos=DET
+    jaccard_vs_previous_scale=0.904762
+probe "of" frequency=303612 context_count=149819 shared_context_count=43035 substitution_degree=29929
+    . |I|=7486 pos=PUNCT
+    , |I|=6514 pos=PUNCT
+    in |I|=6164 pos=ADP
+    of the |I|=3283
+    and |I|=3213 pos=CCONJ
+    for |I|=2748 pos=ADP
+    to |I|=2498 pos=PART
+    from |I|=2030 pos=ADP
+    on |I|=1979 pos=ADP
+    with |I|=1675 pos=ADP
+    is |I|=1672 pos=AUX
+    , and |I|=1528
+    at |I|=1442 pos=ADP
+    . in |I|=1398
+    as |I|=1363 pos=ADP
+    ( |I|=1300 pos=PUNCT
+    by |I|=1180 pos=ADP
+    the |I|=1106 pos=DET
+    : |I|=1017 pos=PUNCT
+    = = = |I|=966
+    jaccard_vs_previous_scale=0.904762
+probe "and" frequency=237250 context_count=143620 shared_context_count=54731 substitution_degree=47234
+    , |I|=12996 pos=PUNCT
+    . |I|=7383 pos=PUNCT
+    , and |I|=4260
+    in |I|=3780 pos=ADP
+    of |I|=3213 pos=ADP
+    or |I|=2826 pos=CCONJ
+    the |I|=2791 pos=DET
+    to |I|=2264 pos=PART
+    with |I|=1873 pos=ADP
+    is |I|=1749 pos=AUX
+    ( |I|=1525 pos=PUNCT
+    for |I|=1508 pos=ADP
+    and the |I|=1506
+    as |I|=1376 pos=ADP
+    was |I|=1342 pos=AUX
+    <num> |I|=1330
+    * |I|=1237 pos=PUNCT
+    a |I|=1214 pos=DET
+    from |I|=1210 pos=ADP
+    " |I|=1205 pos=PUNCT
+    jaccard_vs_previous_scale=0.739130
+probe "in" frequency=206325 context_count=101505 shared_context_count=45444 substitution_degree=38595
+    . |I|=7414 pos=PUNCT
+    , |I|=7284 pos=PUNCT
+    of |I|=6164 pos=ADP
+    and |I|=3780 pos=CCONJ
+    on |I|=3443 pos=ADP
+    to |I|=2862 pos=PART
+    for |I|=2796 pos=ADP
+    the |I|=2732 pos=DET
+    . in |I|=2622
+    from |I|=2578 pos=ADP
+    ( |I|=2566 pos=PUNCT
+    with |I|=2417 pos=ADP
+    by |I|=2312 pos=ADP
+    at |I|=2257 pos=ADP
+    in the |I|=2143
+    as |I|=1948 pos=ADP
+    , and |I|=1632
+    is |I|=1509 pos=AUX
+    * |I|=1349 pos=PUNCT
+    = = = |I|=1325
+    jaccard_vs_previous_scale=1.000000
+probe "was" frequency=62935 context_count=40465 shared_context_count=17926 substitution_degree=20834
+    is |I|=3744 pos=AUX
+    , |I|=2788 pos=PUNCT
+    . |I|=1991 pos=PUNCT
+    and |I|=1342 pos=CCONJ
+    were |I|=1092 pos=AUX
+    are |I|=907 pos=AUX
+    in |I|=817 pos=ADP
+    had |I|=804 pos=VERB
+    of |I|=780 pos=ADP
+    has |I|=751 pos=AUX
+    as |I|=644 pos=ADP
+    , and |I|=587
+    ( |I|=543 pos=PUNCT
+    has been |I|=529
+    he |I|=511 pos=PRON
+    had been |I|=467
+    to |I|=423 pos=PART
+    for |I|=399 pos=ADP
+    with |I|=383 pos=ADP
+    : |I|=371 pos=PUNCT
+    jaccard_vs_previous_scale=0.904762
+probe "is" frequency=78188 context_count=46827 shared_context_count=22401 substitution_degree=25033
+    , |I|=3952 pos=PUNCT
+    was |I|=3744 pos=AUX
+    . |I|=3169 pos=PUNCT
+    and |I|=1749 pos=CCONJ
+    of |I|=1672 pos=ADP
+    are |I|=1568 pos=AUX
+    in |I|=1509 pos=ADP
+    as |I|=1037 pos=ADP
+    has |I|=1001 pos=AUX
+    ( |I|=884 pos=PUNCT
+    were |I|=839 pos=AUX
+    , and |I|=799
+    with |I|=722 pos=ADP
+    to |I|=708 pos=PART
+    for |I|=652 pos=ADP
+    : |I|=558 pos=PUNCT
+    had |I|=543 pos=VERB
+    from |I|=509 pos=ADP
+    has been |I|=494
+    on |I|=488 pos=ADP
+    jaccard_vs_previous_scale=0.818182
+probe "he" frequency=24865 context_count=8542 shared_context_count=6082 substitution_degree=10751
+    it |I|=895 pos=PRON
+    they |I|=802 pos=PRON
+    and |I|=516 pos=CCONJ
+    was |I|=511 pos=AUX
+    she |I|=456 pos=PRON
+    is |I|=391 pos=AUX
+    , |I|=336 pos=PUNCT
+    which |I|=300 pos=PRON
+    it was |I|=298
+    were |I|=282 pos=AUX
+    who |I|=266 pos=PRON
+    the |I|=250 pos=DET
+    he was |I|=228
+    this |I|=223 pos=DET
+    are |I|=221 pos=AUX
+    it is |I|=205
+    that |I|=186 pos=SCONJ
+    he had |I|=172
+    , he |I|=170
+    i |I|=162 pos=PRON
+    jaccard_vs_previous_scale=0.739130
+probe "she" frequency=3505 context_count=1756 shared_context_count=1427 substitution_degree=3719
+    he |I|=456 pos=PRON
+    it |I|=206 pos=PRON
+    they |I|=190 pos=PRON
+    and |I|=107 pos=CCONJ
+    was |I|=71 pos=AUX
+    is |I|=64 pos=AUX
+    it was |I|=59
+    which |I|=53 pos=PRON
+    who |I|=53 pos=PRON
+    the |I|=49 pos=DET
+    this |I|=47 pos=DET
+    , |I|=45 pos=PUNCT
+    i |I|=43 pos=PRON
+    that he |I|=42
+    are |I|=41 pos=AUX
+    he was |I|=39
+    he also |I|=39
+    were |I|=36 pos=AUX
+    that it |I|=35
+    he had |I|=35
+    jaccard_vs_previous_scale=0.600000
+probe "city" frequency=6918 context_count=2545 shared_context_count=1864 substitution_degree=5924
+    , |I|=103 pos=PUNCT
+    . |I|=84 pos=PUNCT
+    the |I|=71 pos=DET
+    ) |I|=64 pos=PUNCT
+    " |I|=61 pos=PUNCT
+    <num> |I|=44
+    town |I|=38 pos=NOUN
+    and |I|=37 pos=CCONJ
+    state |I|=36 pos=NOUN
+    in <num> |I|=34
+    ( |I|=29 pos=PUNCT
+    city <num> , |I|=28
+    region |I|=26 pos=NOUN
+    country |I|=25 pos=NOUN
+    a |I|=24 pos=DET
+    cities |I|=24 pos=NOUN
+    area |I|=22 pos=NOUN
+    island |I|=22 pos=NOUN
+    in |I|=21 pos=ADP
+    government |I|=21 pos=NOUN
+    jaccard_vs_previous_scale=0.666667
+probe "war" frequency=7249 context_count=2309 shared_context_count=1597 substitution_degree=4730
+    , |I|=68 pos=PUNCT
+    . |I|=67 pos=PUNCT
+    the |I|=63 pos=DET
+    ) |I|=50 pos=PUNCT
+    war . |I|=50
+    war , |I|=50
+    <num> |I|=49
+    " |I|=47 pos=PUNCT
+    wars |I|=42 pos=PROPN
+    a |I|=27 pos=DET
+    government |I|=23 pos=NOUN
+    army |I|=22 pos=NOUN
+    in <num> |I|=22
+    and |I|=21 pos=CCONJ
+    war = |I|=21
+    war = = |I|=21
+    state |I|=19 pos=NOUN
+    century |I|=17 pos=NOUN
+    war ii |I|=17
+    empire |I|=16
+    jaccard_vs_previous_scale=0.666667
+probe "world" frequency=8209 context_count=2395 shared_context_count=1802 substitution_degree=6021
+    the |I|=161 pos=DET
+    a |I|=62 pos=DET
+    " |I|=57 pos=PUNCT
+    , |I|=48 pos=PUNCT
+    <num> |I|=46
+    . |I|=43 pos=PUNCT
+    european |I|=38 pos=ADJ
+    national |I|=36 pos=ADJ
+    ) |I|=33 pos=PUNCT
+    * |I|=29 pos=PUNCT
+    the world |I|=28
+    international |I|=25 pos=ADJ
+    and |I|=23 pos=CCONJ
+    first |I|=23 pos=ADJ
+    american |I|=21 pos=ADJ
+    = = = |I|=20
+    civil |I|=19 pos=ADJ
+    his |I|=17 pos=PRON
+    countries |I|=17 pos=NOUN
+    life |I|=17 pos=NOUN
+    jaccard_vs_previous_scale=0.428571
+probe "people" frequency=5201 context_count=2878 shared_context_count=2201 substitution_degree=6293
+    , |I|=107 pos=PUNCT
+    " |I|=65 pos=PUNCT
+    the |I|=61 pos=DET
+    they |I|=57 pos=PRON
+    ) |I|=53 pos=PUNCT
+    . |I|=50 pos=PUNCT
+    men |I|=47 pos=NOUN
+    <num> |I|=44
+    and |I|=43 pos=CCONJ
+    those |I|=43 pos=DET
+    them |I|=40 pos=PRON
+    language |I|=37 pos=NOUN
+    it |I|=37 pos=PRON
+    individuals |I|=36 pos=NOUN
+    to |I|=33 pos=PART
+    women |I|=32 pos=NOUN
+    languages |I|=32 pos=NOUN
+    , <num> people |I|=32
+    he |I|=31 pos=PRON
+    him |I|=30 pos=PRON
+    jaccard_vs_previous_scale=0.600000
+probe "government" frequency=4907 context_count=2908 shared_context_count=2021 substitution_degree=6286
+    the |I|=127 pos=DET
+    , |I|=70 pos=PUNCT
+    . |I|=55 pos=PUNCT
+    state |I|=54 pos=NOUN
+    army |I|=53 pos=NOUN
+    <num> |I|=51
+    ) |I|=49 pos=PUNCT
+    " |I|=47 pos=PUNCT
+    party |I|=45 pos=NOUN
+    and |I|=39 pos=CCONJ
+    his |I|=36 pos=PRON
+    public |I|=31 pos=ADJ
+    a |I|=30 pos=DET
+    republic |I|=29 pos=PROPN
+    military |I|=29 pos=ADJ
+    other |I|=27 pos=ADJ
+    forces |I|=27 pos=NOUN
+    law |I|=26 pos=NOUN
+    federal |I|=24 pos=ADJ
+    their |I|=23 pos=PRON
+    jaccard_vs_previous_scale=0.428571
+probe "university" frequency=4295 context_count=1643 shared_context_count=1049 substitution_degree=3575
+    . |I|=82 pos=PUNCT
+    , |I|=76 pos=PUNCT
+    ) |I|=55 pos=PUNCT
+    university press |I|=47
+    <num> |I|=45
+    the |I|=36 pos=DET
+    in <num> |I|=35
+    " |I|=27 pos=PUNCT
+    , <num> |I|=21
+    university press . |I|=20
+    and |I|=18 pos=CCONJ
+    government |I|=17 pos=NOUN
+    state |I|=16 pos=NOUN
+    university . |I|=16
+    school |I|=15 pos=NOUN
+    college |I|=15 pos=NOUN
+    . in <num> |I|=15
+    river |I|=14 pos=PROPN
+    university , |I|=14
+    ( <num> ) |I|=14
+    jaccard_vs_previous_scale=0.428571
+probe "music" frequency=3299 context_count=1997 shared_context_count=1420 substitution_degree=4648
+    , |I|=94 pos=PUNCT
+    " |I|=79 pos=PUNCT
+    . |I|=64 pos=PUNCT
+    the |I|=62 pos=DET
+    ) |I|=49 pos=PUNCT
+    and |I|=33 pos=CCONJ
+    art |I|=29 pos=NOUN
+    style |I|=26 pos=NOUN
+    <num> |I|=25
+    songs |I|=25 pos=NOUN
+    film |I|=24 pos=NOUN
+    a |I|=23 pos=DET
+    culture |I|=23 pos=NOUN
+    song |I|=19 pos=NOUN
+    ( |I|=18 pos=PUNCT
+    , and |I|=18
+    period |I|=17 pos=NOUN
+    in <num> |I|=17
+    works |I|=16 pos=VERB
+    group |I|=16 pos=NOUN
+    jaccard_vs_previous_scale=0.379310
+probe "house" frequency=2620 context_count=1442 shared_context_count=1014 substitution_degree=3722
+    , |I|=78 pos=PUNCT
+    . |I|=77 pos=PUNCT
+    ) |I|=55 pos=PUNCT
+    " |I|=44 pos=PUNCT
+    the |I|=36 pos=DET
+    <num> |I|=32
+    in <num> |I|=27
+    ( <num> ) |I|=22
+    court |I|=14 pos=PROPN
+    a |I|=13 pos=DET
+    ( |I|=13 pos=PUNCT
+    and |I|=12 pos=CCONJ
+    city |I|=12 pos=NOUN
+    company |I|=12 pos=NOUN
+    in |I|=11 pos=ADP
+    house . |I|=11
+    is |I|=10 pos=AUX
+    was |I|=10 pos=AUX
+    town |I|=10 pos=NOUN
+    houses |I|=10 pos=NOUN
+    jaccard_vs_previous_scale=0.481481
+probe "red" frequency=2086 context_count=1188 shared_context_count=840 substitution_degree=2798
+    the |I|=99 pos=DET
+    " |I|=51 pos=PUNCT
+    black |I|=51 pos=ADJ
+    white |I|=50 pos=ADJ
+    a |I|=41 pos=DET
+    <num> |I|=38
+    blue |I|=36 pos=ADJ
+    green |I|=27 pos=ADJ
+    , |I|=22 pos=PUNCT
+    the red |I|=21
+    yellow |I|=17 pos=ADJ
+    and |I|=16 pos=CCONJ
+    new |I|=15 pos=ADJ
+    golden |I|=15 pos=ADJ
+    boston red |I|=15
+    ) |I|=14 pos=PUNCT
+    this |I|=12 pos=DET
+    brown |I|=12 pos=PROPN
+    * |I|=12 pos=PUNCT
+    . |I|=11 pos=PUNCT
+    jaccard_vs_previous_scale=0.481481
+probe "small" frequency=3273 context_count=2238 shared_context_count=1660 substitution_degree=5210
+    the |I|=225 pos=DET
+    large |I|=176 pos=ADJ
+    new |I|=81 pos=ADJ
+    " |I|=78 pos=PUNCT
+    a |I|=71 pos=DET
+    <num> |I|=71
+    other |I|=68 pos=ADJ
+    major |I|=54 pos=ADJ
+    single |I|=51 pos=ADJ
+    high |I|=45 pos=ADJ
+    larger |I|=42 pos=ADJ
+    significant |I|=41 pos=ADJ
+    these |I|=36 pos=DET
+    great |I|=36 pos=ADJ
+    number of |I|=36
+    their |I|=31 pos=PRON
+    smaller |I|=31 pos=ADJ
+    two |I|=30 pos=NUM
+    different |I|=30 pos=ADJ
+    many |I|=29 pos=ADJ
+    jaccard_vs_previous_scale=0.666667
+probe "large" frequency=4315 context_count=2764 shared_context_count=1911 substitution_degree=5657
+    the |I|=243 pos=DET
+    small |I|=176 pos=ADJ
+    new |I|=97 pos=ADJ
+    " |I|=89 pos=PUNCT
+    <num> |I|=86
+    a |I|=85 pos=DET
+    other |I|=64 pos=ADJ
+    major |I|=57 pos=ADJ
+    significant |I|=54 pos=ADJ
+    single |I|=49 pos=ADJ
+    high |I|=49 pos=ADJ
+    great |I|=48 pos=ADJ
+    their |I|=45 pos=PRON
+    number of |I|=42
+    two |I|=41 pos=NUM
+    some |I|=37 pos=DET
+    larger |I|=37 pos=ADJ
+    smaller |I|=36 pos=ADJ
+    its |I|=35 pos=PRON
+    these |I|=34 pos=DET
+    jaccard_vs_previous_scale=0.600000
+probe "first" frequency=15706 context_count=6917 shared_context_count=5059 substitution_degree=12290
+    second |I|=358 pos=ADJ
+    <num> |I|=338
+    " |I|=278 pos=PUNCT
+    the |I|=250 pos=DET
+    only |I|=199 pos=ADV
+    last |I|=196 pos=ADJ
+    third |I|=192 pos=ADJ
+    also |I|=183 pos=ADV
+    new |I|=161 pos=ADJ
+    a |I|=140 pos=DET
+    later |I|=125 pos=ADV
+    not |I|=122 pos=PART
+    same |I|=115 pos=ADJ
+    own |I|=114 pos=ADJ
+    next |I|=104 pos=ADJ
+    final |I|=102 pos=ADJ
+    original |I|=100 pos=ADJ
+    then |I|=90 pos=ADV
+    <num> th |I|=87
+    largest |I|=86 pos=ADJ
+    jaccard_vs_previous_scale=0.739130
+probe "new" frequency=12387 context_count=5902 shared_context_count=4216 substitution_degree=11127
+    the |I|=549 pos=DET
+    <num> |I|=234
+    " |I|=206 pos=PUNCT
+    first |I|=161 pos=ADJ
+    a |I|=152 pos=DET
+    other |I|=135 pos=ADJ
+    the new |I|=114
+    single |I|=107 pos=ADJ
+    second |I|=102 pos=ADJ
+    large |I|=97 pos=ADJ
+    major |I|=94 pos=ADJ
+    different |I|=87 pos=ADJ
+    these |I|=84 pos=DET
+    number of |I|=82
+    small |I|=81 pos=ADJ
+    national |I|=74 pos=ADJ
+    old |I|=72 pos=ADJ
+    his |I|=71 pos=PRON
+    common |I|=67 pos=ADJ
+    two |I|=67 pos=NUM
+    jaccard_vs_previous_scale=0.666667
+probe "said" frequency=2477 context_count=1211 shared_context_count=890 substitution_degree=2705
+    . |I|=82 pos=PUNCT
+    , |I|=77 pos=PUNCT
+    stated |I|=47 pos=VERB
+    and |I|=41 pos=CCONJ
+    wrote |I|=38 pos=VERB
+    " |I|=35 pos=PUNCT
+    believed |I|=27 pos=VERB
+    ) |I|=23 pos=PUNCT
+    in <num> |I|=23
+    was |I|=22 pos=AUX
+    the |I|=21 pos=DET
+    is |I|=20 pos=AUX
+    as |I|=19 pos=ADP
+    of |I|=19 pos=ADP
+    a |I|=17 pos=DET
+    in |I|=17 pos=ADP
+    thought |I|=17 pos=VERB
+    found |I|=17 pos=VERB
+    argued |I|=17 pos=VERB
+    claimed |I|=17 pos=VERB
+    jaccard_vs_previous_scale=0.538462
+probe "made" frequency=6044 context_count=3551 shared_context_count=2538 substitution_degree=6588
+    . |I|=245 pos=PUNCT
+    , |I|=245 pos=PUNCT
+    in |I|=123 pos=ADP
+    and |I|=117 pos=CCONJ
+    a |I|=112 pos=DET
+    the |I|=103 pos=DET
+    was |I|=85 pos=AUX
+    as |I|=84 pos=ADP
+    used |I|=73 pos=VERB
+    of |I|=72 pos=ADP
+    is |I|=71 pos=AUX
+    had |I|=69 pos=VERB
+    " |I|=68 pos=PUNCT
+    with |I|=56 pos=ADP
+    on |I|=53 pos=ADP
+    for |I|=53 pos=ADP
+    , and |I|=52
+    to |I|=47 pos=PART
+    at |I|=42 pos=ADP
+    not |I|=39 pos=PART
+    jaccard_vs_previous_scale=0.538462
+probe "found" frequency=4352 context_count=1983 shared_context_count=1508 substitution_degree=4212
+    . |I|=230 pos=PUNCT
+    , |I|=173 pos=PUNCT
+    used |I|=101 pos=VERB
+    and |I|=60 pos=CCONJ
+    made |I|=38 pos=VERB
+    is |I|=37 pos=AUX
+    " |I|=36 pos=PUNCT
+    the |I|=35 pos=DET
+    of |I|=35 pos=ADP
+    , and |I|=35
+    a |I|=33 pos=DET
+    was |I|=32 pos=AUX
+    are |I|=30 pos=AUX
+    in |I|=30 pos=ADP
+    ) |I|=30 pos=PUNCT
+    seen |I|=30 pos=VERB
+    reported |I|=28 pos=VERB
+    = = = |I|=28
+    had |I|=27 pos=VERB
+    not |I|=26 pos=PART
+    jaccard_vs_previous_scale=0.600000
+probe "of the" frequency=- context_count=60986 shared_context_count=17198 substitution_degree=13752
+    of |I|=3283 pos=ADP
+    the |I|=1371 pos=DET
+    in the |I|=1160
+    . the |I|=904
+    , |I|=895 pos=PUNCT
+    in |I|=758 pos=ADP
+    of a |I|=716
+    . |I|=706 pos=PUNCT
+    , the |I|=602
+    and |I|=525 pos=CCONJ
+    ( |I|=405 pos=PUNCT
+    of his |I|=387
+    to the |I|=349
+    of its |I|=340
+    a |I|=337 pos=DET
+    for the |I|=313
+    * |I|=288 pos=PUNCT
+    from the |I|=277
+    of their |I|=256
+    and the |I|=241
+    jaccard_vs_previous_scale=0.818182
+probe "in the" frequency=- context_count=39888 shared_context_count=14829 substitution_degree=16777
+    the |I|=2424 pos=DET
+    in |I|=2143 pos=ADP
+    of the |I|=1160
+    a |I|=872 pos=DET
+    . the |I|=834
+    , |I|=816 pos=PUNCT
+    of |I|=667 pos=ADP
+    ( |I|=605 pos=PUNCT
+    and |I|=529 pos=CCONJ
+    . |I|=494 pos=PUNCT
+    * |I|=493 pos=PUNCT
+    , the |I|=445
+    . in |I|=439
+    = = = |I|=393
+    to the |I|=389
+    on the |I|=379
+    at the |I|=358
+    during the |I|=340
+    from the |I|=339
+    . in the |I|=299
+    jaccard_vs_previous_scale=0.818182
+probe "united states" frequency=- context_count=1034 shared_context_count=915 substitution_degree=3154
+    the |I|=89 pos=DET
+    us |I|=48 pos=PRON
+    <num> |I|=38
+    british |I|=38 pos=ADJ
+    a |I|=33 pos=DET
+    * |I|=29 pos=PUNCT
+    state |I|=20 pos=NOUN
+    " |I|=20 pos=PUNCT
+    american |I|=20 pos=ADJ
+    first |I|=18 pos=ADJ
+    french |I|=17 pos=ADJ
+    government |I|=17 pos=NOUN
+    german |I|=17 pos=ADJ
+    the united states |I|=16
+    , |I|=15 pos=PUNCT
+    and |I|=15 pos=CCONJ
+    national |I|=15 pos=ADJ
+    <num> th |I|=15
+    = |I|=14 pos=PUNCT
+    australian |I|=14 pos=ADJ
+    jaccard_vs_previous_scale=0.538462
+probe "new york" frequency=- context_count=735 shared_context_count=595 substitution_degree=1791
+    the |I|=98 pos=DET
+    a |I|=25 pos=DET
+    <num> |I|=24
+    the new york |I|=20
+    " |I|=13 pos=PUNCT
+    , the |I|=12
+    , |I|=11 pos=PUNCT
+    london |I|=11 pos=PROPN
+    . the |I|=10
+    san francisco |I|=10
+    other |I|=9 pos=ADJ
+    his |I|=9 pos=PRON
+    national |I|=9 pos=ADJ
+    los angeles |I|=9
+    <num> new york |I|=9
+    . |I|=8 pos=PUNCT
+    two |I|=8 pos=NUM
+    boston |I|=8 pos=PROPN
+    and the |I|=8
+    and |I|=7 pos=CCONJ
+    jaccard_vs_previous_scale=0.212121
+
+== scale 30000000 ==
+probe "the" frequency=1688467 context_count=526387 shared_context_count=261314 substitution_degree=69671
+    a |I|=46229 pos=DET
+    his |I|=13174 pos=PRON
+    an |I|=10964 pos=DET
+    its |I|=10530 pos=PRON
+    " |I|=10221 pos=PUNCT
+    their |I|=10220 pos=PRON
+    <num> |I|=8672
+    this |I|=8090 pos=DET
+    in |I|=7669 pos=ADP
+    * |I|=7340 pos=PUNCT
+    and |I|=6906 pos=CCONJ
+    in the |I|=6622
+    = = = |I|=6476
+    , |I|=5167 pos=PUNCT
+    . the |I|=4950
+    of the |I|=4666
+    other |I|=4651 pos=ADJ
+    , the |I|=4462
+    . |I|=4237 pos=PUNCT
+    these |I|=4189 pos=DET
+    jaccard_vs_previous_scale=0.666667
+probe "of" frequency=911424 context_count=376466 shared_context_count=129820 substitution_degree=48754
+    . |I|=19913 pos=PUNCT
+    , |I|=18597 pos=PUNCT
+    in |I|=16303 pos=ADP
+    of the |I|=13105
+    and |I|=9493 pos=CCONJ
+    for |I|=7775 pos=ADP
+    to |I|=6473 pos=PART
+    from |I|=5028 pos=ADP
+    on |I|=4700 pos=ADP
+    with |I|=4594 pos=ADP
+    , and |I|=4468
+    is |I|=4343 pos=AUX
+    ( |I|=4291 pos=PUNCT
+    the |I|=4050 pos=DET
+    . in |I|=3617
+    as |I|=3412 pos=ADP
+    at |I|=3351 pos=ADP
+    . the |I|=3281
+    by |I|=3105 pos=ADP
+    : |I|=2952 pos=PUNCT
+    jaccard_vs_previous_scale=0.904762
+probe "and" frequency=704041 context_count=376683 shared_context_count=164250 substitution_degree=68002
+    , |I|=42801 pos=PUNCT
+    . |I|=22146 pos=PUNCT
+    , and |I|=14459
+    in |I|=10155 pos=ADP
+    or |I|=9682 pos=CCONJ
+    of |I|=9493 pos=ADP
+    to |I|=7039 pos=PART
+    the |I|=6906 pos=DET
+    is |I|=5453 pos=AUX
+    ( |I|=5127 pos=PUNCT
+    with |I|=5112 pos=ADP
+    * |I|=4648 pos=PUNCT
+    and the |I|=4609
+    for |I|=4443 pos=ADP
+    was |I|=4022 pos=AUX
+    as |I|=3935 pos=ADP
+    " |I|=3747 pos=PUNCT
+    . the |I|=3714
+    that |I|=3658 pos=SCONJ
+    from |I|=3381 pos=ADP
+    jaccard_vs_previous_scale=0.818182
+probe "in" frequency=622468 context_count=256204 shared_context_count=127535 substitution_degree=58307
+    , |I|=19976 pos=PUNCT
+    . |I|=19549 pos=PUNCT
+    of |I|=16303 pos=ADP
+    and |I|=10155 pos=CCONJ
+    on |I|=8359 pos=ADP
+    for |I|=7720 pos=ADP
+    the |I|=7669 pos=DET
+    to |I|=7397 pos=PART
+    in the |I|=7291
+    ( |I|=7179 pos=PUNCT
+    . in |I|=7112
+    from |I|=6461 pos=ADP
+    with |I|=6200 pos=ADP
+    by |I|=5861 pos=ADP
+    at |I|=5405 pos=ADP
+    as |I|=4947 pos=ADP
+    , and |I|=4852
+    is |I|=3715 pos=AUX
+    * |I|=3694 pos=PUNCT
+    a |I|=3636 pos=DET
+    jaccard_vs_previous_scale=0.904762
+probe "was" frequency=184436 context_count=103639 shared_context_count=50833 substitution_degree=35376
+    is |I|=10341 pos=AUX
+    , |I|=9108 pos=PUNCT
+    . |I|=5682 pos=PUNCT
+    and |I|=4022 pos=CCONJ
+    were |I|=3053 pos=AUX
+    are |I|=2596 pos=AUX
+    of |I|=2119 pos=ADP
+    has |I|=2077 pos=AUX
+    in |I|=2048 pos=ADP
+    had |I|=2034 pos=VERB
+    ( |I|=2009 pos=PUNCT
+    , and |I|=1865
+    as |I|=1796 pos=ADP
+    has been |I|=1587
+    had been |I|=1274
+    to |I|=1124 pos=PART
+    can be |I|=1098
+    he |I|=1085 pos=PRON
+    : |I|=985 pos=PUNCT
+    for |I|=984 pos=ADP
+    jaccard_vs_previous_scale=0.904762
+probe "is" frequency=241603 context_count=124535 shared_context_count=66571 substitution_degree=41943
+    , |I|=12805 pos=PUNCT
+    was |I|=10341 pos=AUX
+    . |I|=9118 pos=PUNCT
+    and |I|=5453 pos=CCONJ
+    are |I|=4856 pos=AUX
+    of |I|=4343 pos=ADP
+    in |I|=3715 pos=ADP
+    ( |I|=3136 pos=PUNCT
+    as |I|=2929 pos=ADP
+    has |I|=2781 pos=AUX
+    , and |I|=2655
+    were |I|=2463 pos=AUX
+    with |I|=1972 pos=ADP
+    to |I|=1829 pos=PART
+    for |I|=1769 pos=ADP
+    : |I|=1758 pos=PUNCT
+    can be |I|=1747
+    has been |I|=1514
+    the |I|=1417 pos=DET
+    " |I|=1414 pos=PUNCT
+    jaccard_vs_previous_scale=0.739130
+probe "he" frequency=74014 context_count=18551 shared_context_count=13856 substitution_degree=18213
+    it |I|=1960 pos=PRON
+    they |I|=1725 pos=PRON
+    and |I|=1216 pos=CCONJ
+    was |I|=1085 pos=AUX
+    she |I|=1074 pos=PRON
+    , |I|=1052 pos=PUNCT
+    is |I|=825 pos=AUX
+    it was |I|=630
+    the |I|=623 pos=DET
+    which |I|=608 pos=PRON
+    , he |I|=585
+    were |I|=579 pos=AUX
+    that |I|=575 pos=SCONJ
+    who |I|=515 pos=PRON
+    are |I|=507 pos=AUX
+    . he |I|=495
+    he was |I|=455
+    i |I|=443 pos=PRON
+    it is |I|=443
+    this |I|=433 pos=DET
+    jaccard_vs_previous_scale=0.904762
+probe "she" frequency=9940 context_count=4128 shared_context_count=3461 substitution_degree=7237
+    he |I|=1074 pos=PRON
+    it |I|=515 pos=PRON
+    they |I|=432 pos=PRON
+    and |I|=202 pos=CCONJ
+    was |I|=156 pos=AUX
+    , |I|=149 pos=PUNCT
+    is |I|=139 pos=AUX
+    the |I|=139 pos=DET
+    it was |I|=132
+    i |I|=119 pos=PRON
+    who |I|=114 pos=PRON
+    which |I|=110 pos=PRON
+    this |I|=109 pos=DET
+    were |I|=105 pos=AUX
+    that he |I|=98
+    he had |I|=96
+    that |I|=93 pos=SCONJ
+    he was |I|=93
+    he also |I|=91
+    it is |I|=90
+    jaccard_vs_previous_scale=0.818182
+probe "city" frequency=18564 context_count=5659 shared_context_count=4315 substitution_degree=10135
+    , |I|=301 pos=PUNCT
+    . |I|=222 pos=PUNCT
+    " |I|=155 pos=PUNCT
+    the |I|=153 pos=DET
+    ) |I|=138 pos=PUNCT
+    <num> |I|=111
+    in <num> |I|=93
+    state |I|=81 pos=NOUN
+    town |I|=80 pos=NOUN
+    and |I|=76 pos=CCONJ
+    ( |I|=76 pos=PUNCT
+    city , |I|=69
+    a |I|=63 pos=DET
+    area |I|=48 pos=NOUN
+    university |I|=46 pos=PROPN
+    cities |I|=46 pos=NOUN
+    country |I|=45 pos=NOUN
+    ( <num> ) |I|=45
+    region |I|=43 pos=NOUN
+    city . |I|=41
+    jaccard_vs_previous_scale=0.666667
+probe "war" frequency=21487 context_count=5505 shared_context_count=4056 substitution_degree=9504
+    , |I|=210 pos=PUNCT
+    . |I|=190 pos=PUNCT
+    " |I|=141 pos=PUNCT
+    war , |I|=141
+    the |I|=126 pos=DET
+    <num> |I|=123
+    ) |I|=121 pos=PUNCT
+    war . |I|=116
+    wars |I|=115 pos=PROPN
+    and |I|=73 pos=CCONJ
+    army |I|=54 pos=NOUN
+    conflict |I|=51 pos=NOUN
+    government |I|=50 pos=NOUN
+    a |I|=48 pos=DET
+    war = |I|=46
+    in <num> |I|=45
+    war = = |I|=45
+    empire |I|=43
+    ( |I|=40 pos=PUNCT
+    it |I|=39 pos=PRON
+    jaccard_vs_previous_scale=0.739130
+probe "world" frequency=25021 context_count=5783 shared_context_count=4549 substitution_degree=11052
+    the |I|=334 pos=DET
+    " |I|=155 pos=PUNCT
+    a |I|=147 pos=DET
+    , |I|=145 pos=PUNCT
+    . |I|=121 pos=PUNCT
+    <num> |I|=109
+    european |I|=107 pos=ADJ
+    national |I|=99 pos=ADJ
+    ) |I|=78 pos=PUNCT
+    international |I|=72 pos=ADJ
+    the world |I|=69
+    * |I|=63 pos=PUNCT
+    countries |I|=50 pos=NOUN
+    and |I|=49 pos=CCONJ
+    first |I|=48 pos=ADJ
+    league |I|=47 pos=PROPN
+    in the |I|=45
+    ( |I|=44 pos=PUNCT
+    . the |I|=43
+    state |I|=42 pos=NOUN
+    jaccard_vs_previous_scale=0.600000
+probe "people" frequency=15962 context_count=7368 shared_context_count=5916 substitution_degree=12614
+    , |I|=341 pos=PUNCT
+    " |I|=211 pos=PUNCT
+    . |I|=195 pos=PUNCT
+    they |I|=183 pos=PRON
+    the |I|=166 pos=DET
+    ) |I|=154 pos=PUNCT
+    to |I|=118 pos=PART
+    <num> |I|=110
+    them |I|=109 pos=PRON
+    it |I|=105 pos=PRON
+    men |I|=105 pos=NOUN
+    and |I|=103 pos=CCONJ
+    language |I|=93 pos=NOUN
+    he |I|=86 pos=PRON
+    him |I|=83 pos=PRON
+    a |I|=82 pos=DET
+    we |I|=80 pos=PRON
+    languages |I|=79 pos=NOUN
+    those |I|=76 pos=DET
+    you |I|=72 pos=PRON
+    jaccard_vs_previous_scale=0.739130
+probe "government" frequency=15939 context_count=7837 shared_context_count=5751 substitution_degree=11522
+    the |I|=307 pos=DET
+    , |I|=236 pos=PUNCT
+    . |I|=163 pos=PUNCT
+    state |I|=151 pos=NOUN
+    " |I|=145 pos=PUNCT
+    ) |I|=136 pos=PUNCT
+    army |I|=121 pos=NOUN
+    military |I|=113 pos=ADJ
+    and |I|=106 pos=CCONJ
+    <num> |I|=105
+    party |I|=95 pos=NOUN
+    public |I|=73 pos=ADJ
+    forces |I|=68 pos=NOUN
+    economy |I|=67 pos=NOUN
+    his |I|=66 pos=PRON
+    council |I|=64 pos=PROPN
+    other |I|=63 pos=ADJ
+    population |I|=63 pos=NOUN
+    their |I|=62 pos=PRON
+    in <num> |I|=59
+    jaccard_vs_previous_scale=0.666667
+probe "university" frequency=13879 context_count=4019 shared_context_count=2749 substitution_degree=6824
+    . |I|=216 pos=PUNCT
+    , |I|=209 pos=PUNCT
+    ) |I|=174 pos=PUNCT
+    <num> |I|=118
+    in <num> |I|=117
+    the |I|=96 pos=DET
+    " |I|=93 pos=PUNCT
+    college |I|=87 pos=NOUN
+    university press |I|=81
+    , <num> |I|=78
+    school |I|=61 pos=NOUN
+    university , |I|=59
+    ( <num> ) |I|=56
+    and |I|=48 pos=CCONJ
+    university . |I|=47
+    city |I|=46 pos=NOUN
+    ( |I|=43 pos=PUNCT
+    ( <num> |I|=43
+    university press . |I|=42
+    * |I|=39 pos=PUNCT
+    jaccard_vs_previous_scale=0.666667
+probe "music" frequency=10151 context_count=5198 shared_context_count=3947 substitution_degree=9152
+    , |I|=246 pos=PUNCT
+    " |I|=190 pos=PUNCT
+    . |I|=176 pos=PUNCT
+    ) |I|=135 pos=PUNCT
+    the |I|=120 pos=DET
+    and |I|=82 pos=CCONJ
+    <num> |I|=75
+    songs |I|=72 pos=NOUN
+    art |I|=65 pos=NOUN
+    film |I|=60 pos=NOUN
+    ( |I|=50 pos=PUNCT
+    style |I|=48 pos=NOUN
+    a |I|=47 pos=DET
+    song |I|=47 pos=NOUN
+    dance |I|=46 pos=NOUN
+    rock |I|=45 pos=NOUN
+    in <num> |I|=44
+    that |I|=41 pos=SCONJ
+    musical |I|=41 pos=ADJ
+    music , |I|=41
+    jaccard_vs_previous_scale=0.600000
+probe "house" frequency=8499 context_count=3831 shared_context_count=2737 substitution_degree=7328
+    , |I|=208 pos=PUNCT
+    . |I|=190 pos=PUNCT
+    ) |I|=132 pos=PUNCT
+    " |I|=117 pos=PUNCT
+    <num> |I|=82
+    the |I|=80 pos=DET
+    in <num> |I|=55
+    ( <num> ) |I|=50
+    and |I|=44 pos=CCONJ
+    ( |I|=33 pos=PUNCT
+    houses |I|=33 pos=NOUN
+    a |I|=31 pos=DET
+    court |I|=30 pos=PROPN
+    . in <num> |I|=30
+    ( <num> |I|=28
+    ; |I|=27 pos=PUNCT
+    , <num> |I|=27
+    , and |I|=26
+    family |I|=25 pos=NOUN
+    school |I|=24 pos=NOUN
+    jaccard_vs_previous_scale=0.481481
+probe "red" frequency=6172 context_count=3124 shared_context_count=2327 substitution_degree=6513
+    the |I|=332 pos=DET
+    " |I|=155 pos=PUNCT
+    a |I|=149 pos=DET
+    white |I|=149 pos=ADJ
+    blue |I|=105 pos=ADJ
+    black |I|=104 pos=ADJ
+    green |I|=96 pos=ADJ
+    <num> |I|=86
+    and |I|=63 pos=CCONJ
+    , |I|=55 pos=PUNCT
+    the red |I|=54
+    yellow |I|=48 pos=ADJ
+    . |I|=43 pos=PUNCT
+    ) |I|=41 pos=PUNCT
+    * |I|=41 pos=PUNCT
+    brown |I|=40 pos=PROPN
+    new |I|=38 pos=ADJ
+    other |I|=35 pos=ADJ
+    first |I|=30 pos=ADJ
+    golden |I|=30 pos=ADJ
+    jaccard_vs_previous_scale=0.818182
+probe "small" frequency=9644 context_count=5681 shared_context_count=4480 substitution_degree=10247
+    the |I|=594 pos=DET
+    large |I|=393 pos=ADJ
+    " |I|=223 pos=PUNCT
+    a |I|=204 pos=DET
+    other |I|=193 pos=ADJ
+    <num> |I|=180
+    new |I|=165 pos=ADJ
+    two |I|=119 pos=NUM
+    major |I|=102 pos=ADJ
+    these |I|=101 pos=DET
+    smaller |I|=100 pos=ADJ
+    their |I|=98 pos=PRON
+    single |I|=93 pos=ADJ
+    larger |I|=91 pos=ADJ
+    many |I|=88 pos=ADJ
+    high |I|=77 pos=ADJ
+    some |I|=75 pos=DET
+    his |I|=70 pos=PRON
+    local |I|=69 pos=ADJ
+    its |I|=68 pos=PRON
+    jaccard_vs_previous_scale=0.666667
+probe "large" frequency=12309 context_count=6785 shared_context_count=5123 substitution_degree=11088
+    the |I|=663 pos=DET
+    small |I|=393 pos=ADJ
+    a |I|=224 pos=DET
+    " |I|=210 pos=PUNCT
+    <num> |I|=201
+    other |I|=192 pos=ADJ
+    new |I|=182 pos=ADJ
+    major |I|=163 pos=ADJ
+    significant |I|=122 pos=ADJ
+    larger |I|=115 pos=ADJ
+    these |I|=114 pos=DET
+    high |I|=113 pos=ADJ
+    their |I|=106 pos=PRON
+    two |I|=103 pos=NUM
+    some |I|=96 pos=DET
+    single |I|=94 pos=ADJ
+    smaller |I|=94 pos=ADJ
+    great |I|=93 pos=ADJ
+    different |I|=88 pos=ADJ
+    its |I|=86 pos=PRON
+    jaccard_vs_previous_scale=0.904762
+probe "first" frequency=46585 context_count=16436 shared_context_count=12242 substitution_degree=21724
+    " |I|=805 pos=PUNCT
+    <num> |I|=760
+    second |I|=751 pos=ADJ
+    the |I|=649 pos=DET
+    also |I|=484 pos=ADV
+    only |I|=402 pos=ADV
+    a |I|=401 pos=DET
+    own |I|=400 pos=ADJ
+    last |I|=397 pos=ADJ
+    third |I|=358 pos=ADJ
+    new |I|=347 pos=ADJ
+    not |I|=300 pos=PART
+    later |I|=298 pos=ADV
+    , |I|=281 pos=PUNCT
+    final |I|=248 pos=ADJ
+    then |I|=235 pos=ADV
+    original |I|=235 pos=ADJ
+    same |I|=204 pos=ADJ
+    was |I|=198 pos=AUX
+    other |I|=191 pos=ADJ
+    jaccard_vs_previous_scale=0.739130
+probe "new" frequency=38553 context_count=15116 shared_context_count=11391 substitution_degree=19727
+    the |I|=1460 pos=DET
+    " |I|=586 pos=PUNCT
+    <num> |I|=484
+    a |I|=419 pos=DET
+    other |I|=397 pos=ADJ
+    first |I|=347 pos=ADJ
+    the new |I|=252
+    different |I|=213 pos=ADJ
+    their |I|=211 pos=PRON
+    his |I|=200 pos=PRON
+    two |I|=198 pos=NUM
+    major |I|=197 pos=ADJ
+    single |I|=188 pos=ADJ
+    these |I|=185 pos=DET
+    in |I|=183 pos=ADP
+    large |I|=182 pos=ADJ
+    second |I|=176 pos=ADJ
+    old |I|=174 pos=ADJ
+    small |I|=165 pos=ADJ
+    number of |I|=164
+    jaccard_vs_previous_scale=0.818182
+probe "said" frequency=7258 context_count=3084 shared_context_count=2357 substitution_degree=5578
+    , |I|=289 pos=PUNCT
+    . |I|=272 pos=PUNCT
+    and |I|=124 pos=CCONJ
+    stated |I|=123 pos=VERB
+    " |I|=107 pos=PUNCT
+    wrote |I|=98 pos=VERB
+    ) |I|=97 pos=PUNCT
+    , and |I|=79
+    was |I|=75 pos=AUX
+    announced |I|=71 pos=VERB
+    in <num> |I|=66
+    of |I|=59 pos=ADP
+    claimed |I|=58 pos=VERB
+    believed |I|=56 pos=VERB
+    is |I|=55 pos=AUX
+    in |I|=55 pos=ADP
+    argued |I|=55 pos=VERB
+    states |I|=53 pos=PROPN
+    the |I|=48 pos=DET
+    ( |I|=48 pos=PUNCT
+    jaccard_vs_previous_scale=0.666667
+probe "made" frequency=18123 context_count=9010 shared_context_count=6783 substitution_degree=13234
+    , |I|=812 pos=PUNCT
+    . |I|=771 pos=PUNCT
+    and |I|=404 pos=CCONJ
+    in |I|=309 pos=ADP
+    the |I|=263 pos=DET
+    a |I|=254 pos=DET
+    was |I|=250 pos=AUX
+    is |I|=231 pos=AUX
+    as |I|=228 pos=ADP
+    " |I|=205 pos=PUNCT
+    of |I|=203 pos=ADP
+    used |I|=173 pos=VERB
+    had |I|=173 pos=VERB
+    , and |I|=163
+    with |I|=160 pos=ADP
+    for |I|=159 pos=ADP
+    ( |I|=136 pos=PUNCT
+    to |I|=133 pos=PART
+    on |I|=112 pos=ADP
+    : |I|=111 pos=PUNCT
+    jaccard_vs_previous_scale=0.818182
+probe "found" frequency=12346 context_count=4782 shared_context_count=3757 substitution_degree=8419
+    . |I|=576 pos=PUNCT
+    , |I|=490 pos=PUNCT
+    and |I|=167 pos=CCONJ
+    used |I|=150 pos=VERB
+    " |I|=138 pos=PUNCT
+    , and |I|=127
+    in |I|=119 pos=ADP
+    is |I|=114 pos=AUX
+    the |I|=106 pos=DET
+    was |I|=92 pos=AUX
+    ( |I|=91 pos=PUNCT
+    of |I|=89 pos=ADP
+    a |I|=87 pos=DET
+    ) |I|=83 pos=PUNCT
+    = = = |I|=81
+    are |I|=74 pos=AUX
+    made |I|=69 pos=VERB
+    had |I|=60 pos=VERB
+    ; |I|=57 pos=PUNCT
+    as |I|=56 pos=ADP
+    jaccard_vs_previous_scale=0.739130
+probe "of the" frequency=- context_count=162372 shared_context_count=60529 substitution_degree=30622
+    of |I|=13105 pos=ADP
+    the |I|=4666 pos=DET
+    in the |I|=4355
+    . the |I|=3917
+    , |I|=3702 pos=PUNCT
+    . |I|=3137 pos=PUNCT
+    of a |I|=3084
+    in |I|=3031 pos=ADP
+    , the |I|=2631
+    and |I|=2421 pos=CCONJ
+    to the |I|=1500
+    of his |I|=1464
+    ( |I|=1430 pos=PUNCT
+    for the |I|=1409
+    of its |I|=1270
+    * |I|=1223 pos=PUNCT
+    a |I|=1199 pos=DET
+    from the |I|=1156
+    for |I|=1110 pos=ADP
+    and the |I|=1091
+    jaccard_vs_previous_scale=0.904762
+probe "in the" frequency=- context_count=104930 shared_context_count=47997 substitution_degree=32880
+    in |I|=7291 pos=ADP
+    the |I|=6622 pos=DET
+    of the |I|=4355
+    . the |I|=3117
+    , |I|=3033 pos=PUNCT
+    of |I|=2771 pos=ADP
+    a |I|=2395 pos=DET
+    . |I|=2338 pos=PUNCT
+    and |I|=1889 pos=CCONJ
+    , the |I|=1823
+    ( |I|=1799 pos=PUNCT
+    to the |I|=1540
+    * |I|=1479 pos=PUNCT
+    on the |I|=1479
+    from the |I|=1205
+    . in |I|=1164
+    in a |I|=1161
+    by the |I|=1137
+    at the |I|=1134
+    for the |I|=1130
+    jaccard_vs_previous_scale=0.739130
+probe "united states" frequency=- context_count=2412 shared_context_count=2149 substitution_degree=5289
+    the |I|=152 pos=DET
+    us |I|=79 pos=PRON
+    <num> |I|=57
+    british |I|=56 pos=ADJ
+    a |I|=54 pos=DET
+    * |I|=44 pos=PUNCT
+    " |I|=39 pos=PUNCT
+    . |I|=36 pos=PUNCT
+    state |I|=36 pos=NOUN
+    , |I|=32 pos=PUNCT
+    french |I|=31 pos=ADJ
+    american |I|=30 pos=ADJ
+    german |I|=29 pos=ADJ
+    first |I|=26 pos=ADJ
+    government |I|=26 pos=NOUN
+    national |I|=26 pos=ADJ
+    the united states |I|=25
+    and |I|=23 pos=CCONJ
+    his |I|=21 pos=PRON
+    former |I|=21 pos=ADJ
+    jaccard_vs_previous_scale=0.739130
+probe "new york" frequency=- context_count=1650 shared_context_count=1403 substitution_degree=3408
+    the |I|=203 pos=DET
+    a |I|=71 pos=DET
+    <num> |I|=58
+    " |I|=34 pos=PUNCT
+    the new york |I|=33
+    . the |I|=25
+    , |I|=24 pos=PUNCT
+    in the |I|=24
+    american |I|=20 pos=ADJ
+    and |I|=19 pos=CCONJ
+    first |I|=18 pos=ADJ
+    in new york |I|=18
+    , the |I|=17
+    of the |I|=16
+    london |I|=15 pos=PROPN
+    san francisco |I|=15
+    . |I|=14 pos=PUNCT
+    in |I|=14 pos=ADP
+    his |I|=14 pos=PRON
+    new |I|=14 pos=ADJ
+    jaccard_vs_previous_scale=0.481481
+
+== scale 100000000 ==
+probe "the" frequency=5546628 context_count=1277737 shared_context_count=681671 substitution_degree=80019
+    a |I|=116176 pos=DET
+    his |I|=33941 pos=PRON
+    " |I|=29313 pos=PUNCT
+    an |I|=26886 pos=DET
+    their |I|=26394 pos=PRON
+    its |I|=25840 pos=PRON
+    <num> |I|=22623
+    in |I|=22272 pos=ADP
+    * |I|=21071 pos=PUNCT
+    in the |I|=20129
+    this |I|=18835 pos=DET
+    and |I|=18319 pos=CCONJ
+    . the |I|=17951
+    , |I|=17759 pos=PUNCT
+    of the |I|=16889
+    , the |I|=16155
+    of |I|=14940 pos=ADP
+    . |I|=14886 pos=PUNCT
+    = = = |I|=13950
+    to |I|=11041 pos=PART
+    jaccard_vs_previous_scale=0.818182
+probe "of" frequency=2994174 context_count=975338 shared_context_count=397442 substitution_degree=67391
+    , |I|=57696 pos=PUNCT
+    . |I|=56769 pos=PUNCT
+    of the |I|=50943
+    in |I|=47383 pos=ADP
+    and |I|=30222 pos=CCONJ
+    for |I|=23691 pos=ADP
+    to |I|=19007 pos=PART
+    the |I|=14940 pos=DET
+    . the |I|=14844
+    from |I|=14728 pos=ADP
+    with |I|=13867 pos=ADP
+    ( |I|=13721 pos=PUNCT
+    , and |I|=13389
+    on |I|=12843 pos=ADP
+    is |I|=11912 pos=AUX
+    in the |I|=11368
+    of a |I|=11181
+    by |I|=10024 pos=ADP
+    * |I|=9762 pos=PUNCT
+    , the |I|=9740
+    jaccard_vs_previous_scale=0.666667
+probe "and" frequency=2301091 context_count=1035059 shared_context_count=516834 substitution_degree=81652
+    , |I|=146169 pos=PUNCT
+    . |I|=70781 pos=PUNCT
+    , and |I|=52894
+    or |I|=31186 pos=CCONJ
+    of |I|=30222 pos=ADP
+    in |I|=29585 pos=ADP
+    to |I|=23300 pos=PART
+    ( |I|=18329 pos=PUNCT
+    the |I|=18319 pos=DET
+    is |I|=17470 pos=AUX
+    * |I|=17374 pos=PUNCT
+    . the |I|=16418
+    with |I|=15574 pos=ADP
+    and the |I|=15014
+    for |I|=14635 pos=ADP
+    was |I|=14025 pos=AUX
+    that |I|=12363 pos=SCONJ
+    " |I|=12015 pos=PUNCT
+    as |I|=11639 pos=ADP
+    , the |I|=11012
+    jaccard_vs_previous_scale=0.904762
+probe "in" frequency=2051229 context_count=677940 shared_context_count=372863 substitution_degree=74448
+    , |I|=59205 pos=PUNCT
+    . |I|=54168 pos=PUNCT
+    of |I|=47383 pos=ADP
+    and |I|=29585 pos=CCONJ
+    in the |I|=26109
+    on |I|=23380 pos=ADP
+    the |I|=22272 pos=DET
+    for |I|=22174 pos=ADP
+    to |I|=21197 pos=PART
+    . in |I|=21183
+    ( |I|=21022 pos=PUNCT
+    from |I|=18202 pos=ADP
+    with |I|=17382 pos=ADP
+    by |I|=15983 pos=ADP
+    at |I|=15423 pos=ADP
+    , and |I|=13845
+    as |I|=12854 pos=ADP
+    * |I|=12622 pos=PUNCT
+    of the |I|=12001
+    . the |I|=11194
+    jaccard_vs_previous_scale=0.818182
+probe "was" frequency=628407 context_count=291352 shared_context_count=158273 substitution_degree=54444
+    is |I|=33342 pos=AUX
+    , |I|=32814 pos=PUNCT
+    . |I|=18531 pos=PUNCT
+    and |I|=14025 pos=CCONJ
+    were |I|=10158 pos=AUX
+    are |I|=8133 pos=AUX
+    ( |I|=7956 pos=PUNCT
+    , and |I|=6825
+    had |I|=6314 pos=VERB
+    of |I|=6025 pos=ADP
+    has |I|=5955 pos=AUX
+    in |I|=5784 pos=ADP
+    as |I|=5650 pos=ADP
+    has been |I|=4855
+    had been |I|=4009
+    , was |I|=3474
+    to |I|=3310 pos=PART
+    " |I|=3304 pos=PUNCT
+    can be |I|=3267
+    to be |I|=3175
+    jaccard_vs_previous_scale=0.739130
+probe "is" frequency=768901 context_count=334995 shared_context_count=197292 substitution_degree=60071
+    , |I|=41837 pos=PUNCT
+    was |I|=33342 pos=AUX
+    . |I|=27067 pos=PUNCT
+    and |I|=17470 pos=CCONJ
+    are |I|=15107 pos=AUX
+    of |I|=11912 pos=ADP
+    ( |I|=10879 pos=PUNCT
+    in |I|=9610 pos=ADP
+    , and |I|=8854
+    as |I|=8125 pos=ADP
+    were |I|=8024 pos=AUX
+    has |I|=7553 pos=AUX
+    can be |I|=5569
+    with |I|=5338 pos=ADP
+    to |I|=5158 pos=PART
+    for |I|=4718 pos=ADP
+    : |I|=4592 pos=PUNCT
+    has been |I|=4555
+    " |I|=4356 pos=PUNCT
+    had |I|=4350 pos=VERB
+    jaccard_vs_previous_scale=0.904762
+probe "he" frequency=254480 context_count=43459 shared_context_count=34137 substitution_degree=29115
+    it |I|=4132 pos=PRON
+    they |I|=3806 pos=PRON
+    , |I|=3645 pos=PUNCT
+    and |I|=3396 pos=CCONJ
+    she |I|=3162 pos=PRON
+    was |I|=2378 pos=AUX
+    , he |I|=2076
+    is |I|=1856 pos=AUX
+    . he |I|=1700
+    that |I|=1674 pos=SCONJ
+    the |I|=1523 pos=DET
+    were |I|=1458 pos=AUX
+    it was |I|=1444
+    , and |I|=1385
+    that he |I|=1381
+    which |I|=1350 pos=PRON
+    are |I|=1194 pos=AUX
+    " |I|=1174 pos=PUNCT
+    who |I|=1163 pos=PRON
+    , which |I|=1113
+    jaccard_vs_previous_scale=0.666667
+probe "she" frequency=44365 context_count=12172 shared_context_count=10574 substitution_degree=14215
+    he |I|=3162 pos=PRON
+    it |I|=1473 pos=PRON
+    they |I|=1219 pos=PRON
+    and |I|=747 pos=CCONJ
+    , |I|=645 pos=PUNCT
+    was |I|=433 pos=AUX
+    that he |I|=421
+    , he |I|=396
+    it was |I|=381
+    that |I|=380 pos=SCONJ
+    the |I|=380 pos=DET
+    is |I|=372 pos=AUX
+    i |I|=370 pos=PRON
+    . he |I|=343
+    which |I|=338 pos=PRON
+    who |I|=334 pos=PRON
+    he had |I|=324
+    " |I|=303 pos=PUNCT
+    were |I|=275 pos=AUX
+    he was |I|=273
+    jaccard_vs_previous_scale=0.739130
+probe "city" frequency=68051 context_count=15244 shared_context_count=11888 substitution_degree=19033
+    , |I|=873 pos=PUNCT
+    . |I|=671 pos=PUNCT
+    " |I|=423 pos=PUNCT
+    ) |I|=394 pos=PUNCT
+    the |I|=359 pos=DET
+    <num> |I|=339
+    and |I|=278 pos=CCONJ
+    town |I|=246 pos=NOUN
+    ( |I|=245 pos=PUNCT
+    state |I|=217 pos=NOUN
+    in <num> |I|=202
+    city , |I|=184
+    cities |I|=147 pos=NOUN
+    . the |I|=144
+    county |I|=143 pos=PROPN
+    , and |I|=140
+    * |I|=132 pos=PUNCT
+    city . |I|=128
+    a |I|=122 pos=DET
+    university |I|=120 pos=PROPN
+    jaccard_vs_previous_scale=0.666667
+probe "war" frequency=77309 context_count=14591 shared_context_count=11249 substitution_degree=17641
+    , |I|=567 pos=PUNCT
+    . |I|=503 pos=PUNCT
+    war , |I|=377
+    " |I|=371 pos=PUNCT
+    the |I|=328 pos=DET
+    war . |I|=308
+    ) |I|=285 pos=PUNCT
+    wars |I|=268 pos=PROPN
+    <num> |I|=260
+    and |I|=209 pos=CCONJ
+    army |I|=142 pos=NOUN
+    government |I|=127 pos=NOUN
+    ( |I|=124 pos=PUNCT
+    a |I|=121 pos=DET
+    conflict |I|=118 pos=NOUN
+    war and |I|=105
+    campaign |I|=101 pos=NOUN
+    , and |I|=98
+    war ii |I|=97
+    forces |I|=92 pos=NOUN
+    jaccard_vs_previous_scale=0.600000
+probe "world" frequency=80143 context_count=14564 shared_context_count=11849 substitution_degree=19397
+    the |I|=707 pos=DET
+    " |I|=457 pos=PUNCT
+    , |I|=430 pos=PUNCT
+    . |I|=366 pos=PUNCT
+    a |I|=316 pos=DET
+    <num> |I|=251
+    national |I|=234 pos=ADJ
+    ) |I|=223 pos=PUNCT
+    international |I|=197 pos=ADJ
+    and |I|=178 pos=CCONJ
+    european |I|=178 pos=ADJ
+    * |I|=170 pos=PUNCT
+    the world |I|=146
+    in |I|=135 pos=ADP
+    american |I|=122 pos=ADJ
+    . the |I|=120
+    ( |I|=118 pos=PUNCT
+    in the |I|=96
+    life |I|=95 pos=NOUN
+    of the |I|=94
+    jaccard_vs_previous_scale=0.666667
+probe "people" frequency=54051 context_count=18928 shared_context_count=15785 substitution_degree=22391
+    , |I|=1020 pos=PUNCT
+    . |I|=615 pos=PUNCT
+    " |I|=605 pos=PUNCT
+    ) |I|=475 pos=PUNCT
+    they |I|=420 pos=PRON
+    the |I|=400 pos=DET
+    and |I|=397 pos=CCONJ
+    to |I|=365 pos=PART
+    them |I|=311 pos=PRON
+    him |I|=292 pos=PRON
+    language |I|=279 pos=NOUN
+    men |I|=279 pos=NOUN
+    women |I|=278 pos=NOUN
+    <num> |I|=246
+    it |I|=235 pos=PRON
+    children |I|=216 pos=NOUN
+    individuals |I|=215 pos=NOUN
+    a |I|=211 pos=DET
+    population |I|=201 pos=NOUN
+    those |I|=200 pos=DET
+    jaccard_vs_previous_scale=0.666667
+probe "government" frequency=53455 context_count=20642 shared_context_count=15779 substitution_degree=21129
+    , |I|=814 pos=PUNCT
+    the |I|=697 pos=DET
+    . |I|=488 pos=PUNCT
+    state |I|=387 pos=NOUN
+    army |I|=382 pos=NOUN
+    ) |I|=371 pos=PUNCT
+    " |I|=363 pos=PUNCT
+    and |I|=340 pos=CCONJ
+    military |I|=305 pos=ADJ
+    party |I|=281 pos=NOUN
+    <num> |I|=254
+    forces |I|=243 pos=NOUN
+    public |I|=213 pos=ADJ
+    troops |I|=177 pos=NOUN
+    regime |I|=164 pos=NOUN
+    , and |I|=164
+    economy |I|=163 pos=NOUN
+    a |I|=161 pos=DET
+    their |I|=161 pos=PRON
+    his |I|=153 pos=PRON
+    jaccard_vs_previous_scale=0.666667
+probe "university" frequency=51894 context_count=12003 shared_context_count=8914 substitution_degree=14417
+    , |I|=761 pos=PUNCT
+    . |I|=630 pos=PUNCT
+    ) |I|=533 pos=PUNCT
+    in <num> |I|=329
+    <num> |I|=327
+    " |I|=306 pos=PUNCT
+    university , |I|=275
+    college |I|=261 pos=NOUN
+    and |I|=228 pos=CCONJ
+    the |I|=217 pos=DET
+    , <num> |I|=200
+    ( <num> ) |I|=187
+    ( |I|=185 pos=PUNCT
+    school |I|=155 pos=NOUN
+    university . |I|=155
+    ( <num> |I|=152
+    * |I|=149 pos=PUNCT
+    , and |I|=134
+    university press |I|=130
+    city |I|=120 pos=NOUN
+    jaccard_vs_previous_scale=0.904762
+probe "music" frequency=34927 context_count=14041 shared_context_count=11195 substitution_degree=17562
+    , |I|=618 pos=PUNCT
+    " |I|=524 pos=PUNCT
+    . |I|=457 pos=PUNCT
+    the |I|=325 pos=DET
+    ) |I|=308 pos=PUNCT
+    and |I|=247 pos=CCONJ
+    film |I|=203 pos=NOUN
+    <num> |I|=191
+    a |I|=163 pos=DET
+    musical |I|=162 pos=ADJ
+    rock |I|=151 pos=NOUN
+    art |I|=149 pos=NOUN
+    ( |I|=141 pos=PUNCT
+    songs |I|=124 pos=NOUN
+    music , |I|=114
+    - |I|=111 pos=PUNCT
+    . the |I|=109
+    it |I|=103 pos=PRON
+    work |I|=100 pos=NOUN
+    song |I|=100 pos=NOUN
+    jaccard_vs_previous_scale=0.666667
+probe "house" frequency=28229 context_count=10375 shared_context_count=7927 substitution_degree=14451
+    , |I|=628 pos=PUNCT
+    . |I|=512 pos=PUNCT
+    " |I|=389 pos=PUNCT
+    ) |I|=382 pos=PUNCT
+    <num> |I|=202
+    the |I|=197 pos=DET
+    and |I|=169 pos=CCONJ
+    in <num> |I|=162
+    ( <num> ) |I|=137
+    ( |I|=136 pos=PUNCT
+    ( <num> |I|=104
+    , and |I|=98
+    , <num> |I|=97
+    was |I|=94 pos=AUX
+    houses |I|=90 pos=NOUN
+    house , |I|=83
+    a |I|=76 pos=DET
+    is |I|=73 pos=AUX
+    * |I|=73 pos=PUNCT
+    . in <num> |I|=70
+    jaccard_vs_previous_scale=0.666667
+probe "red" frequency=20426 context_count=8421 shared_context_count=6573 substitution_degree=12870
+    the |I|=908 pos=DET
+    a |I|=446 pos=DET
+    " |I|=409 pos=PUNCT
+    white |I|=400 pos=ADJ
+    black |I|=270 pos=ADJ
+    blue |I|=252 pos=ADJ
+    green |I|=245 pos=ADJ
+    <num> |I|=217
+    , |I|=185 pos=PUNCT
+    yellow |I|=156 pos=ADJ
+    . |I|=150 pos=PUNCT
+    and |I|=142 pos=CCONJ
+    * |I|=140 pos=PUNCT
+    the red |I|=138
+    brown |I|=110 pos=PROPN
+    ) |I|=89 pos=PUNCT
+    in |I|=84 pos=ADP
+    his |I|=78 pos=PRON
+    ( |I|=76 pos=PUNCT
+    other |I|=75 pos=ADJ
+    jaccard_vs_previous_scale=0.739130
+probe "small" frequency=31088 context_count=14786 shared_context_count=12351 substitution_degree=18366
+    the |I|=1459 pos=DET
+    large |I|=941 pos=ADJ
+    " |I|=576 pos=PUNCT
+    a |I|=537 pos=DET
+    other |I|=499 pos=ADJ
+    <num> |I|=434
+    new |I|=359 pos=ADJ
+    two |I|=257 pos=NUM
+    smaller |I|=253 pos=ADJ
+    these |I|=242 pos=DET
+    major |I|=241 pos=ADJ
+    high |I|=225 pos=ADJ
+    single |I|=203 pos=ADJ
+    many |I|=203 pos=ADJ
+    of the |I|=201
+    their |I|=197 pos=PRON
+    some |I|=196 pos=DET
+    larger |I|=184 pos=ADJ
+    different |I|=178 pos=ADJ
+    in |I|=168 pos=ADP
+    jaccard_vs_previous_scale=0.739130
+probe "large" frequency=39464 context_count=17632 shared_context_count=14178 substitution_degree=19638
+    the |I|=1694 pos=DET
+    small |I|=941 pos=ADJ
+    a |I|=662 pos=DET
+    " |I|=594 pos=PUNCT
+    <num> |I|=463
+    other |I|=462 pos=ADJ
+    major |I|=411 pos=ADJ
+    new |I|=369 pos=ADJ
+    two |I|=304 pos=NUM
+    their |I|=298 pos=PRON
+    high |I|=293 pos=ADJ
+    larger |I|=287 pos=ADJ
+    significant |I|=272 pos=ADJ
+    these |I|=241 pos=DET
+    some |I|=239 pos=DET
+    smaller |I|=235 pos=ADJ
+    many |I|=230 pos=ADJ
+    its |I|=229 pos=PRON
+    different |I|=227 pos=ADJ
+    in |I|=215 pos=ADP
+    jaccard_vs_previous_scale=0.818182
+probe "first" frequency=158474 context_count=41589 shared_context_count=31305 substitution_degree=34689
+    " |I|=2030 pos=PUNCT
+    <num> |I|=1734
+    the |I|=1726 pos=DET
+    second |I|=1550 pos=ADJ
+    also |I|=1100 pos=ADV
+    own |I|=1013 pos=ADJ
+    a |I|=951 pos=DET
+    , |I|=888 pos=PUNCT
+    only |I|=846 pos=ADV
+    last |I|=817 pos=ADJ
+    new |I|=731 pos=ADJ
+    third |I|=707 pos=ADJ
+    later |I|=604 pos=ADV
+    not |I|=593 pos=PART
+    original |I|=581 pos=ADJ
+    was |I|=534 pos=AUX
+    then |I|=520 pos=ADV
+    and |I|=515 pos=CCONJ
+    final |I|=478 pos=ADJ
+    . |I|=469 pos=PUNCT
+    jaccard_vs_previous_scale=0.818182
+probe "new" frequency=137386 context_count=39219 shared_context_count=30466 substitution_degree=31794
+    the |I|=3664 pos=DET
+    " |I|=1561 pos=PUNCT
+    <num> |I|=1195
+    a |I|=1122 pos=DET
+    other |I|=1036 pos=ADJ
+    first |I|=731 pos=ADJ
+    the new |I|=665
+    in |I|=547 pos=ADP
+    their |I|=544 pos=PRON
+    two |I|=538 pos=NUM
+    different |I|=530 pos=ADJ
+    his |I|=512 pos=PRON
+    of the |I|=503
+    major |I|=461 pos=ADJ
+    . |I|=454 pos=PUNCT
+    more |I|=446 pos=ADJ
+    , |I|=443 pos=PUNCT
+    these |I|=421 pos=DET
+    own |I|=421 pos=ADJ
+    many |I|=415 pos=ADJ
+    jaccard_vs_previous_scale=0.538462
+probe "said" frequency=25269 context_count=9528 shared_context_count=7650 substitution_degree=11893
+    , |I|=990 pos=PUNCT
+    . |I|=947 pos=PUNCT
+    stated |I|=440 pos=VERB
+    wrote |I|=375 pos=VERB
+    ) |I|=373 pos=PUNCT
+    and |I|=364 pos=CCONJ
+    " |I|=292 pos=PUNCT
+    , and |I|=274
+    announced |I|=243 pos=VERB
+    believed |I|=210 pos=VERB
+    in <num> |I|=207
+    claimed |I|=202 pos=VERB
+    that |I|=192 pos=SCONJ
+    was |I|=192 pos=AUX
+    in |I|=184 pos=ADP
+    as |I|=176 pos=ADP
+    states |I|=173 pos=PROPN
+    noted |I|=172 pos=VERB
+    argued |I|=170 pos=VERB
+    says |I|=162 pos=VERB
+    jaccard_vs_previous_scale=0.666667
+probe "made" frequency=59173 context_count=24132 shared_context_count=19280 substitution_degree=24609
+    , |I|=2673 pos=PUNCT
+    . |I|=2388 pos=PUNCT
+    and |I|=1235 pos=CCONJ
+    in |I|=973 pos=ADP
+    was |I|=700 pos=AUX
+    the |I|=689 pos=DET
+    as |I|=657 pos=ADP
+    " |I|=636 pos=PUNCT
+    , and |I|=618
+    of |I|=613 pos=ADP
+    a |I|=612 pos=DET
+    is |I|=610 pos=AUX
+    had |I|=557 pos=VERB
+    for |I|=523 pos=ADP
+    with |I|=502 pos=ADP
+    ( |I|=480 pos=PUNCT
+    to |I|=445 pos=PART
+    used |I|=371 pos=VERB
+    : |I|=337 pos=PUNCT
+    on |I|=330 pos=ADP
+    jaccard_vs_previous_scale=1.000000
+probe "found" frequency=38703 context_count=12137 shared_context_count=9878 substitution_degree=15149
+    . |I|=1415 pos=PUNCT
+    , |I|=1253 pos=PUNCT
+    and |I|=492 pos=CCONJ
+    " |I|=370 pos=PUNCT
+    , and |I|=351
+    used |I|=300 pos=VERB
+    in |I|=297 pos=ADP
+    is |I|=283 pos=AUX
+    was |I|=253 pos=AUX
+    of |I|=240 pos=ADP
+    ( |I|=239 pos=PUNCT
+    ) |I|=229 pos=PUNCT
+    the |I|=207 pos=DET
+    a |I|=197 pos=DET
+    are |I|=191 pos=AUX
+    as |I|=175 pos=ADP
+    made |I|=168 pos=VERB
+    ; |I|=166 pos=PUNCT
+    = = = |I|=164
+    , but |I|=154
+    jaccard_vs_previous_scale=0.904762
+probe "of the" frequency=- context_count=441856 shared_context_count=204427 substitution_degree=53653
+    of |I|=50943 pos=ADP
+    . the |I|=17135
+    the |I|=16889 pos=DET
+    in the |I|=16798
+    , |I|=15839 pos=PUNCT
+    . |I|=13594 pos=PUNCT
+    of a |I|=12410
+    in |I|=12001 pos=ADP
+    , the |I|=11142
+    and |I|=10598 pos=CCONJ
+    to the |I|=6555
+    for the |I|=6083
+    of his |I|=5560
+    ( |I|=5248 pos=PUNCT
+    for |I|=5245 pos=ADP
+    from the |I|=5115
+    * |I|=5043 pos=PUNCT
+    to |I|=4780 pos=PART
+    and the |I|=4446
+    a |I|=4432 pos=DET
+    jaccard_vs_previous_scale=0.904762
+probe "in the" frequency=- context_count=291698 shared_context_count=159412 substitution_degree=54566
+    in |I|=26109 pos=ADP
+    the |I|=20129 pos=DET
+    of the |I|=16798
+    . the |I|=13687
+    , |I|=12042 pos=PUNCT
+    of |I|=11368 pos=ADP
+    . |I|=10189 pos=PUNCT
+    and |I|=7769 pos=CCONJ
+    , the |I|=7640
+    a |I|=7248 pos=DET
+    on the |I|=6488
+    to the |I|=6276
+    ( |I|=5736 pos=PUNCT
+    from the |I|=5312
+    * |I|=4997 pos=PUNCT
+    in a |I|=4938
+    for the |I|=4794
+    at the |I|=4765
+    to |I|=4520 pos=PART
+    by the |I|=4453
+    jaccard_vs_previous_scale=0.904762
+probe "united states" frequency=- context_count=5981 shared_context_count=5441 substitution_degree=9691
+    the |I|=367 pos=DET
+    us |I|=187 pos=PRON
+    <num> |I|=144
+    a |I|=142 pos=DET
+    british |I|=120 pos=ADJ
+    american |I|=118 pos=ADJ
+    * |I|=115 pos=PUNCT
+    " |I|=112 pos=PUNCT
+    , |I|=98 pos=PUNCT
+    . |I|=81 pos=PUNCT
+    state |I|=80 pos=NOUN
+    french |I|=74 pos=ADJ
+    german |I|=69 pos=ADJ
+    the united states |I|=69
+    first |I|=67 pos=ADJ
+    other |I|=62 pos=ADJ
+    international |I|=57 pos=ADJ
+    national |I|=57 pos=ADJ
+    = = = |I|=54
+    and |I|=52 pos=CCONJ
+    jaccard_vs_previous_scale=0.739130
+probe "new york" frequency=- context_count=4449 shared_context_count=3898 substitution_degree=7189
+    the |I|=476 pos=DET
+    a |I|=150 pos=DET
+    " |I|=114 pos=PUNCT
+    <num> |I|=107
+    the new york |I|=84
+    . the |I|=80
+    , |I|=76 pos=PUNCT
+    in the |I|=66
+    . |I|=59 pos=PUNCT
+    , the |I|=53
+    and |I|=50 pos=CCONJ
+    * |I|=49 pos=PUNCT
+    american |I|=47 pos=ADJ
+    london |I|=47 pos=PROPN
+    in |I|=45 pos=ADP
+    of the |I|=41
+    in new york |I|=36
+    his |I|=34 pos=PRON
+    local |I|=32 pos=ADJ
+    former |I|=32 pos=ADJ
+    jaccard_vs_previous_scale=0.739130
+
+# total wall time: 213.452867 s, peak RSS 3731.015625 MB
