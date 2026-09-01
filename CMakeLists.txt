@@ -63,6 +63,18 @@ add_executable(scf_real_audit tools/scf_real_audit.cpp)
 target_link_libraries(scf_real_audit PRIVATE scf_core)
 scf_enable_warnings(scf_real_audit)
 
+# SCF v2.0 — Oracle Category Recovery: an independent experimental module
+# with no dependency on the v1.x core.
+add_library(scf_oracle_v2 src/oracle_v2.cpp)
+target_include_directories(scf_oracle_v2 PUBLIC include)
+target_compile_features(scf_oracle_v2 PUBLIC cxx_std_20)
+scf_enable_warnings(scf_oracle_v2)
+
+add_executable(scf_oracle_v2_cli tools/scf_oracle_v2.cpp)
+target_link_libraries(scf_oracle_v2_cli PRIVATE scf_oracle_v2)
+set_target_properties(scf_oracle_v2_cli PROPERTIES OUTPUT_NAME scf_oracle_v2)
+scf_enable_warnings(scf_oracle_v2_cli)
+
 if(SCF_BUILD_TESTS)
     enable_testing()
     set_property(
@@ -75,4 +87,9 @@ if(SCF_BUILD_TESTS)
     target_compile_definitions(scf_tests PRIVATE SCF_SOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}")
     scf_enable_warnings(scf_tests)
     add_test(NAME scf_tests COMMAND scf_tests)
+
+    add_executable(scf_oracle_v2_tests tests/test_oracle_v2.cpp)
+    target_link_libraries(scf_oracle_v2_tests PRIVATE scf_oracle_v2)
+    scf_enable_warnings(scf_oracle_v2_tests)
+    add_test(NAME scf_oracle_v2_tests COMMAND scf_oracle_v2_tests)
 endif()
