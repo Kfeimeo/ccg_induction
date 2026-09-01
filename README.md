@@ -2,6 +2,28 @@
 
 SCF is a correctness-first C++20 research prototype for discovering anonymous string equivalence and maximum-evidence projective binary structure from tokenized sentences. It uses no tags, labels, probabilities, embeddings, neural models, or external runtime libraries.
 
+## v2.3 conservative evidence-driven merging
+
+The v2.3 experiment starts every observed token/substring in a singleton
+class and considers a pair only after an exact full-sentence substitution
+witness. It uses no frequency threshold or similarity score, keeps local
+witnesses separate from global equality, and checks observed composition in
+a rollback transaction before committing a merge.
+
+```bash
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build --target scf_conservative_merging
+build/scf_conservative_merging --oracle-only
+build/scf_conservative_merging \
+  --input data/real/wiki_text.txt \
+  --scales 100000,1000000,10000000,100000000 \
+  --output-dir results_v2_3_conservative
+```
+
+See `SCF_V2_3_CONSERVATIVE_MERGING_REPORT.md` for the semantics, diagnostics,
+oracle cases, and the exact distinction between learner-state separation and
+logical inequality.
+
 v1.2 adds a controlled synthetic benchmark, a gold evaluator, batch experiments, and identifiability diagnostics on top of the unchanged v1.1 core. Its purpose is to make one research question measurable:
 
 > When does direct surface substitution evidence uniquely determine unlabeled binary structure, and when is structure underdetermined?
