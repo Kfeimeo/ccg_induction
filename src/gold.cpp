@@ -1,4 +1,5 @@
 #include "scf/gold.hpp"
+#include "scf/platform.hpp"
 
 #include <algorithm>
 #include <cctype>
@@ -250,6 +251,7 @@ std::vector<GoldSpanRow> read_gold_span_rows(std::istream& input) {
     std::size_t line_number = 0;
     while (std::getline(input, line)) {
         ++line_number;
+        platform::strip_trailing_cr(line);
         if (line.empty() || line.front() == '#') {
             continue;
         }

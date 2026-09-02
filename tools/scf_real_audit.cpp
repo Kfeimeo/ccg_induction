@@ -7,6 +7,7 @@
 // overdetermination or matrix rank.
 
 #include "scf/context_indexed.hpp"
+#include "scf/platform.hpp"
 #include "scf/corpus.hpp"
 #include "scf/equivalence_solver.hpp"
 #include "scf/evaluator.hpp"
@@ -168,6 +169,7 @@ double raw_direct_giant_ratio(const scf::Corpus& corpus, const scf::EvidenceBuil
 }  // namespace
 
 int main(int argc, char** argv) {
+    scf::platform::initialize_console();
     try {
         Options options;
         for (int index = 1; index < argc; ++index) {

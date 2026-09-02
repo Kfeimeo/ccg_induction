@@ -1,3 +1,5 @@
+#include "scf/platform.hpp"
+
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -43,6 +45,7 @@ void write_deep(const std::filesystem::path& directory) {
 }  // namespace
 
 int main(int argc, char** argv) {
+    scf::platform::initialize_console();
     try {
         const std::filesystem::path output_directory = argc > 1 ? argv[1] : "data/synthetic";
         std::filesystem::create_directories(output_directory);

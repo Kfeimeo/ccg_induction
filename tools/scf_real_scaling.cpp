@@ -6,6 +6,7 @@
 // and neighborhood_samples.txt into the output directory.
 
 #include "scf/real_scaling.hpp"
+#include "scf/platform.hpp"
 
 #include <iostream>
 #include <sstream>
@@ -25,6 +26,7 @@ void print_usage() {
 }  // namespace
 
 int main(int argc, char** argv) {
+    scf::platform::initialize_console();
     scf::v21::RealScalingConfig config;
     config.output_dir = "results_v2_1_real";
     try {

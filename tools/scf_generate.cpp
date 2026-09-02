@@ -1,4 +1,5 @@
 #include "scf/synthetic.hpp"
+#include "scf/platform.hpp"
 
 #include <cstdint>
 #include <filesystem>
@@ -37,6 +38,7 @@ std::string require_value(const int argc, char** argv, int& index) {
 }  // namespace
 
 int main(int argc, char** argv) {
+    scf::platform::initialize_console();
     try {
         std::optional<std::string> grammar;
         std::optional<std::filesystem::path> output_directory;
