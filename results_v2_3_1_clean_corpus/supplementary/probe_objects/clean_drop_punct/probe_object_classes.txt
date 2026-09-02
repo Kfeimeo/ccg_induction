@@ -1,0 +1,12 @@
+# SCF v2.3.1 final class of each probe object -- corpus clean_wiki_body (clean_body_drop_punct)
+# [S] = member observed as a complete sentence ((eps,eps) frame)
+
+# scale 40000
+<num> [S]: class size 8: <num> [S] | what is property | <num> b | spanish and <num> | <num> white v | <num> and scots | daphne [S] | at t [S]
+the: class size 1
+a: class size 3: a | cyrillic a | a version <num>
+in: class size 14: in | <num> per <num> | greek alpha version | etruscan a version | semitic a version | forces on april | <num> white | carr <num> and | the tally reached | immigration from outside | <num> were undocumented | <num> english | <num> irish | it seats
+to: class size 13: to | jewish [S] | surface [S] | w m− | to the <num> | in spanish and | were undocumented <num> | hispanic white | and scots irish | buddhist and | in april | billion in march | million travellers spent
+,: not an object at this scale
+and: class size 1
+of: class size 2: of | of south

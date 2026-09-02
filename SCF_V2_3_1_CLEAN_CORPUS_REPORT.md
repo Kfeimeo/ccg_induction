@@ -38,7 +38,8 @@ short utterances, `the` merged with heterogeneous phrases, boilerplate-like
 complete spans, fragment-like terminal spans) all appear in this baseline
 (§5), so the comparison is meaningful for the question asked.
 
-**Scales.** 1e5 was run to completion for both corpora. 1e6 and 1e7 are
+**Scales.** 1e5 was run to completion for both corpora (the clean run took
+2.5 h, see §6). 1e6 and 1e7 are
 **resource-bound for the unchanged learner on both corpora** and are
 reported as a measured bound (§6), not as numbers: the `(ε,ε)` hub makes the
 candidate table C(d,2) in the number d of distinct complete short sentences,
@@ -258,8 +259,8 @@ Pattern check against the v2.3 list:
 
 | pattern named for FineWeb v2.3 | v2.3 baseline (1e5) | clean body (1e5) |
 |---|---|---|
-| `<num>` merged with unrelated short utterances | yes — `<num>` class of 15 complete spans (`what is property`, `surveys of u`, `london duckworth <num>`) | `<num>`-containing complete spans are in the hub (`<num> to <num>`, `<num> – <num>`, `in <num> ,`, `an estimated <num>`, `more than <num>`); the token `<num>` is itself a complete-sentence object whose hub candidate with `a` is rejected by composition (`Comp(a, is, a is)` vs `Comp(<num>, is, <num> is)`); its final class is listed in `probe_object_classes.txt` (PROBE_NUM_CLEAN) |
-| `the` merged with heterogeneous phrases | no — `the` stays a singleton (candidates `the <=> the <num>`, `the <=> surveys of` rejected) | no accepted merge involving `the` appears in the listed examples; 8 of its candidates are rejected (`several <=> the` in `[] _ u`, `the <=> the <num>`); its final class: PROBE_THE_CLEAN |
+| `<num>` merged with unrelated short utterances | yes — `<num>` class of 15 complete spans (`what is property`, `surveys of u`, `london duckworth <num>`) | `<num>`-containing complete spans are in the hub (`<num> to <num>`, `<num> – <num>`, `in <num> ,`, `an estimated <num>`, `more than <num>`); the token `<num>` is itself a complete-sentence object whose hub candidate with `a` is rejected by composition (`Comp(a, is, a is)` vs `Comp(<num>, is, <num> is)`); its final class at 1e5 was not dumped (the probe dump was added after that 2.5 h run and two re-runs were terminated by container restarts); at 4e4 / 8e4 (`supplementary/probe_objects/`) `<num>` heads a class of 3 / 5 (`<num> | spanish and <num> | hispanic white ) | * david davis | lines <num>`) against 6 / 11 in the baseline at the same scales — the pattern persists, smaller |
+| `the` merged with heterogeneous phrases | no — `the` stays a singleton (candidates `the <=> the <num>`, `the <=> surveys of` rejected) | no accepted merge involving `the` appears in the listed examples; 8 of its candidates are rejected (`several <=> the` in `[] _ u`, `the <=> the <num>`); at 4e4 and 8e4 `the` is a singleton in all three preprocessings (`supplementary/probe_objects/`); at 1e5 not dumped (see the `<num>` cell) |
 | boilerplate-like complete spans | yes — references (`published in <num>`, `woodcock george ed`) | yes, different boilerplate — list items, captions, table rows |
 | fragment-like terminal spans | yes — `g`, `also m`, `cf`, `surveys of u`, `e`, `l`, `h` | yes — `n`, `also m`, `in <num> b`, `a`, `e`, `l`, `h`, `s`, `mr`, `jack d`, `lyle r` |
 | `in`/`to`/`e` merged through one-token frames | yes — `in` (19), `to` (24), `e` (45) | yes — `-` (47, `<num> _ <num>`), `in` (29), `e` (45), `s` (26), `,`/`a` in the hub |
@@ -314,9 +315,12 @@ members of that class and, for each conflicting output pair,
 (1.18e7 candidates) needs on the order of 10^6–10^7 s and 1e7 (5.7e8
 candidates, ≥ 6.9 GB of witness records alone) is out of reach; the baseline
 corpus at 1e6 (1.65e6 candidates) is in the 10^4–10^5 s range. The unchanged
-v2.3 CLI was started on the baseline corpus at 1e6 during this session;
-its outcome is recorded in `results_v2_3_conservative/attempt_1e6/`
-(ATTEMPT_1E6_OUTCOME). Per v2.3 §7 this bound is the result: reintroducing a
+v2.3 CLI was started twice on the baseline corpus at 1e6 during this
+session; the first attempt ran 247 min of CPU (833 MB RSS) and the second
+59 min without completing before the session container was restarted
+(`results_v2_3_conservative/attempt_1e6/ATTEMPTS_TERMINATED.txt`). No 1e6
+row exists for either corpus; the measured lower bound (> 1.5e4 s for the
+smaller of the two hubs) is consistent with the extrapolation. Per v2.3 §7 this bound is the result: reintroducing a
 count, length or hub threshold would define a different experiment.
 
 ## 7. Corpus/preprocessing effect vs algorithm/witness-semantics effect
@@ -457,9 +461,15 @@ ctest --test-dir build --output-on-failure
                                           deterministic ladder outputs)
 ```
 
-`-Wall -Wextra -Wpedantic` clean. Determinism: the 1e5 clean run was
-executed twice (once before and once after adding the probe-object dump);
-all CSV columns except runtime/RSS are byte-identical (DETERMINISM_NOTE).
+`-Wall -Wextra -Wpedantic` clean. Determinism: the 4e4 and 8e4 clean-body
+runs and the 4e4 baseline-mode and drop-punctuation runs were executed a
+second time (after adding the probe-object dump, in differently composed
+nested ladders); every merge and frame-type column is identical to the
+first runs, and only the previous-scale partition-change columns differ, as
+they must when the preceding scale differs. A second 1e5 clean run with the
+probe dump was started twice and terminated both times by container
+restarts after 110 and 59 minutes, so the 1e5 probe-object classes are not
+available; `supplementary/probe_objects/` holds them for 4e4 and 8e4.
 
 ## 10. Reproduction
 

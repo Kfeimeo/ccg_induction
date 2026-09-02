@@ -1,0 +1,22 @@
+# SCF v2.3.1 final class of each probe object -- corpus v23_baseline_condition_d (v23_condition_d)
+# [S] = member observed as a complete sentence ((eps,eps) frame)
+
+# scale 40000
+<num> [S]: class size 6: <num> [S] | what is property | spanish and <num> | <num> white v | <num> and scots | <num> billion in
+the: class size 1
+a [S]: class size 1
+in: class size 11: in | london pluto press | <num> per <num> | <num> deciduous trees | forces on april | carr <num> and | the tally reached | immigration from outside | <num> were undocumented | <num> other race | muslim
+to: class size 25: to | jewish | open ocean | worn asphalt | conifer forest summer | bare soil | green grass | desert sand | new concrete | ocean ice | fresh snow | freshly fallen snow | w m− | to the <num> | in spanish and | <num> <num> <num> | were undocumented <num> | hispanic white | asian | and scots irish | mormon | buddhist and | in april | billion in march | million travellers spent
+,: not an object at this scale
+and: class size 1
+of: class size 1
+
+# scale 80000
+<num> [S]: class size 11: <num> [S] | what is property | g [S] | spanish and <num> | <num> white v | <num> and scots | <num> billion in | overruled frémont's proclamation | biographers james g | surveys of u | a biography <num>
+the: class size 1
+a [S]: class size 1
+in: class size 17: in | london pluto press | <num> per <num> | <num> deciduous trees | forces on april | carr <num> and | the tally reached | immigration from outside | <num> were undocumented | <num> hispanic white | <num> other race | muslim | <num> in april | it seats | accessed march | george washington and | lincoln a biography
+to: class size 23: to | jewish | open ocean | worn asphalt | conifer forest summer | bare soil | green grass | desert sand | new concrete | ocean ice | fresh snow | freshly fallen snow | w m− | to the <num> | in spanish and | <num> <num> <num> | were undocumented <num> | asian | and scots irish | mormon | buddhist and | billion in march | million travellers spent
+,: not an object at this scale
+and: class size 1
+of: class size 1

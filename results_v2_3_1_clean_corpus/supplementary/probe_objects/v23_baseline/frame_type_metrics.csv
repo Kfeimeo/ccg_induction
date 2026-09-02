@@ -1,0 +1,11 @@
+corpus,nominal_tokens,frame_type,witness_count,witness_share,candidate_count_any,candidate_count_only,candidate_only_share,accepted_any,accepted_only,accepted_only_share,rejected_any,rejected_only,redundant_only,induced_unions_only,accepted_only_in_largest_class
+v23_baseline_condition_d,40000,empty_frame,2628,0.529092,2628,2626,0.530184,58,58,0.394558,1242,1240,1328,0,52
+v23_baseline_condition_d,40000,left_boundary,779,0.156835,778,771,0.155663,28,28,0.190476,584,577,166,0,0
+v23_baseline_condition_d,40000,right_boundary,868,0.174753,867,862,0.174036,27,27,0.183673,566,561,274,1,0
+v23_baseline_condition_d,40000,internal_frame,692,0.139320,691,687,0.138704,34,34,0.231293,419,415,238,39,0
+v23_baseline_condition_d,40000,mixed,0,0,7,7,0.001413,0,0,0.000000,7,7,0,0,0
+v23_baseline_condition_d,80000,empty_frame,7140,0.716077,7140,7136,0.716826,98,98,0.451613,3710,3706,3332,0,82
+v23_baseline_condition_d,80000,left_boundary,1079,0.108214,1078,1071,0.107584,47,47,0.216590,842,835,189,2,0
+v23_baseline_condition_d,80000,right_boundary,1059,0.106208,1058,1051,0.105575,39,39,0.179724,673,666,346,3,0
+v23_baseline_condition_d,80000,internal_frame,693,0.069502,692,688,0.069111,33,33,0.152074,460,456,199,35,0
+v23_baseline_condition_d,80000,mixed,0,0,9,9,0.000904,0,0,0.000000,9,9,0,0,0

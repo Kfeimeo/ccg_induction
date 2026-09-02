@@ -1,0 +1,6 @@
+corpus,nominal_tokens,frame_type,witness_count,witness_share,candidate_count_any,candidate_count_only,candidate_only_share,accepted_any,accepted_only,accepted_only_share,rejected_any,rejected_only,redundant_only,induced_unions_only,accepted_only_in_largest_class
+clean_wiki_body,40000,empty_frame,33411,0.958159,33411,33342,0.958489,221,221,0.572539,17196,17132,15989,8,177
+clean_wiki_body,40000,left_boundary,581,0.016662,578,567,0.016300,80,80,0.207254,379,370,117,4,4
+clean_wiki_body,40000,right_boundary,592,0.016977,590,558,0.016041,59,59,0.152850,347,316,183,1,12
+clean_wiki_body,40000,internal_frame,286,0.008202,286,248,0.007129,26,26,0.067358,204,169,53,22,0
+clean_wiki_body,40000,mixed,0,0,71,71,0.002041,0,0,0.000000,66,66,5,0,0

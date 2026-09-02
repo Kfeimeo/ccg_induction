@@ -1,0 +1,22 @@
+# SCF v2.3.1 final class of each probe object -- corpus clean_wiki_body (clean_body_keep_punct)
+# [S] = member observed as a complete sentence ((eps,eps) frame)
+
+# scale 40000
+<num> [S]: class size 3: <num> [S] | spanish and <num> | hispanic white )
+the: class size 1
+a: class size 2: a | / cyrillic a
+in: class size 10: in | in spanish and | forces on april | immigration from outside | asian , | mormon , | jewish , | muslim , | buddhist , and | it seats
+to: class size 2: to | to the <num>
+, [S]: class size 126: , [S] | e [S] | in <num> , [S] | n [S] | <num> to <num> [S] | <num> – <num> [S] | <num> , <num> [S] | l [S] | g [S] | also m [S] | an estimated <num> [S] | multiple [S] | <num> deletion syndrome [S] | they include : [S] | * genetic disorders [S] | * intellectual disability [S] | * preempted diagnoses [S] | president pictures [S] | <num> - <num> [S] | + sample albedos [S] | typicalalbedo [S] | fresh asphalt [S] | open ocean [S] | worn asphalt [S] | bare soil [S] | green grass [S] | desert sand [S] | new concrete [S] | ocean ice [S] | , ) [S] | egyptian [S] | cretan [S] | phoenician aleph [S] | greek uncial [S] | roman a [S] | boeotioan <num> bc [S] | in <num> b [S] | blackletter ablackletter a [S] | uncial auncial a [S] | russell [S] | ... (86 more)
+and: class size 1
+of: class size 2: of | of south
+
+# scale 80000
+<num> [S]: class size 5: <num> [S] | spanish and <num> | hispanic white ) | * david davis | lines <num>
+the: class size 1
+a: class size 2: a | / cyrillic a
+in: class size 11: in | in spanish and | forces on april | immigration from outside | asian , | mormon , | jewish , | muslim , | buddhist , and | it seats | battle of may
+to: class size 2: to | to the <num>
+, [S]: class size 217: , [S] | in <num> , [S] | <num> to <num> [S] | <num> – <num> [S] | <num> , <num> [S] | g [S] | also m [S] | an estimated <num> [S] | <num> deletion syndrome [S] | they include : [S] | * genetic disorders [S] | * intellectual disability [S] | * preempted diagnoses [S] | president pictures [S] | <num> - <num> [S] | + sample albedos [S] | typicalalbedo [S] | fresh asphalt [S] | open ocean [S] | worn asphalt [S] | bare soil [S] | green grass [S] | desert sand [S] | new concrete [S] | ocean ice [S] | , ) [S] | egyptian [S] | cretan [S] | phoenician aleph [S] | greek uncial [S] | roman a [S] | boeotioan <num> bc [S] | in <num> b [S] | blackletter ablackletter a [S] | uncial auncial a [S] | gulf of mexico [S] | rapier [S] | autauga [S] | city of birmingham [S] | white v | ... (177 more)
+and: class size 1
+of: class size 2: of | of south

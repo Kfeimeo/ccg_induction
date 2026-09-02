@@ -1,0 +1,2 @@
+first attempt: started 2026-09-02T17:11:44Z, ran ~247 min CPU (single thread, 833 MB RSS) without completing; terminated by a container restart
+second attempt: started 2026-09-02T21:26:43Z, ran ~59 min CPU without completing; terminated by a second container restart
