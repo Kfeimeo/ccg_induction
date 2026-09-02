@@ -1,4 +1,5 @@
 #include "scf/corpus.hpp"
+#include "scf/platform.hpp"
 #include "scf/evaluator.hpp"
 #include "scf/formatter.hpp"
 #include "scf/pipeline.hpp"
@@ -51,6 +52,7 @@ bool parse_bool(const std::string_view text) {
 }  // namespace
 
 int main(int argc, char** argv) {
+    scf::platform::initialize_console();
     try {
         std::optional<std::string> input_path;
         std::optional<std::filesystem::path> output_path;

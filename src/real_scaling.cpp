@@ -1,4 +1,5 @@
 #include "scf/real_scaling.hpp"
+#include "scf/platform.hpp"
 
 #include <algorithm>
 #include <cctype>
@@ -17,8 +18,6 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#include <sys/resource.h>
-
 namespace scf::v21 {
 
 namespace {
@@ -27,10 +26,9 @@ constexpr std::uint32_t kNoDense = 0xffffffffU;
 constexpr std::uint64_t kDenseBits = 21;  // frequent tokens per scale < 2^21
 constexpr std::uint64_t kDenseMask = (1ULL << kDenseBits) - 1;
 
+// Peak RSS is operating-system specific; see scf/platform.hpp.
 double peak_rss_mb() {
-    rusage usage{};
-    getrusage(RUSAGE_SELF, &usage);
-    return static_cast<double>(usage.ru_maxrss) / 1024.0;  // linux: KiB
+    return scf::platform::peak_rss_mb();
 }
 
 std::string format_double(double value) {
@@ -325,7 +323,10 @@ void tokenize_line(const std::string_view line,
 
 TokenCorpus build_token_corpus(const std::filesystem::path& input_text,
                                const std::uint64_t real_token_limit) {
-    std::ifstream input(input_text);
+    // Binary mode: identical bytes on every platform (no CRLF translation and
+    // no Ctrl-Z end-of-file on Windows).  tokenize_line treats '\r' as white
+    // space, so CRLF corpora are handled the same way everywhere.
+    std::ifstream input(input_text, std::ios::binary);
     if (!input) {
         throw std::runtime_error("cannot open corpus text: " + input_text.string());
     }
@@ -423,6 +424,7 @@ PosData load_pos_data(const std::filesystem::path& ud_conllu) {
     std::unordered_map<std::string, std::map<std::string, std::uint32_t>> votes;
     std::string line;
     while (std::getline(ud, line)) {
+        scf::platform::strip_trailing_cr(line);
         if (line.empty() || line[0] == '#') {
             continue;
         }

@@ -6,6 +6,7 @@
 // delta_terminal / delta_punct rows) and ablation_neighborhood_samples.txt.
 
 #include "scf/real_scaling.hpp"
+#include "scf/platform.hpp"
 
 #include <iostream>
 #include <sstream>
@@ -24,6 +25,7 @@ void print_usage() {
 }  // namespace
 
 int main(int argc, char** argv) {
+    scf::platform::initialize_console();
     scf::v21::AblationConfig config;
     config.output_dir = "results_v2_2_ablation";
     try {

@@ -1,4 +1,5 @@
 #include "scf/conservative_merging.hpp"
+#include "scf/platform.hpp"
 
 #include <algorithm>
 #include <cctype>
@@ -114,6 +115,7 @@ PosTable load_pos(const std::filesystem::path& path) {
     std::map<std::string, std::map<std::string, std::uint64_t>> votes;
     std::string line;
     while (std::getline(input, line)) {
+        scf::platform::strip_trailing_cr(line);
         if (line.empty() || line.front() == '#') {
             continue;
         }

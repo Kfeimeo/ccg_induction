@@ -6,6 +6,7 @@
 // oracle_summary.txt into the output directory.
 
 #include "scf/oracle_v2.hpp"
+#include "scf/platform.hpp"
 
 #include <cstdint>
 #include <iostream>
@@ -37,6 +38,7 @@ void print_usage() {
 }  // namespace
 
 int main(int argc, char** argv) {
+    scf::platform::initialize_console();
     scf::v2::OracleExperimentConfig config;
     std::string output_dir = "results_v2_oracle";
     try {
@@ -53,11 +55,11 @@ int main(int argc, char** argv) {
             } else if (arg == "--grammars") {
                 config.grammars = split_csv(next());
             } else if (arg == "--min-len") {
-                config.min_len = std::stoul(next());
+                config.min_len = std::stoull(next());
             } else if (arg == "--max-len") {
-                config.max_len = std::stoul(next());
+                config.max_len = std::stoull(next());
             } else if (arg == "--max-k") {
-                config.max_k = std::stoul(next());
+                config.max_k = std::stoull(next());
             } else if (arg == "--coverages") {
                 config.coverages.clear();
                 for (const auto& part : split_csv(next())) {

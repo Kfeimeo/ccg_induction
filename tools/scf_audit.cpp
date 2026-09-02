@@ -7,6 +7,7 @@
 // No parser, objective, or evidence change is made here (Acceptance G).
 
 #include "scf/audit.hpp"
+#include "scf/platform.hpp"
 #include "scf/context_indexed.hpp"
 #include "scf/corpus.hpp"
 #include "scf/enumerator.hpp"
@@ -1279,6 +1280,7 @@ void run_v14_shadow(const std::filesystem::path& directory) {
 }  // namespace
 
 int main(int argc, char** argv) {
+    scf::platform::initialize_console();
     try {
         std::optional<std::filesystem::path> output_directory;
         std::uint64_t seeds = 20;

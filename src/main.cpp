@@ -1,4 +1,5 @@
 #include "scf/corpus.hpp"
+#include "scf/platform.hpp"
 #include "scf/equivalence_solver.hpp"
 #include "scf/evaluator.hpp"
 #include "scf/evidence_builder.hpp"
@@ -411,6 +412,7 @@ void export_diagnostics(const std::filesystem::path& directory,
 }  // namespace
 
 int main(int argc, char** argv) {
+    scf::platform::initialize_console();
     try {
         const auto options = parse_arguments(argc, argv);
         scf::Corpus corpus(options.config);

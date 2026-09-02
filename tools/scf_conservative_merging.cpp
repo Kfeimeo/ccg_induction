@@ -1,6 +1,7 @@
 // SCF v2.3 -- conservative evidence-driven merging driver.
 
 #include "scf/conservative_merging.hpp"
+#include "scf/platform.hpp"
 
 #include <iostream>
 #include <sstream>
@@ -19,6 +20,7 @@ void usage() {
 }  // namespace
 
 int main(int argc, char** argv) {
+    scf::platform::initialize_console();
     scf::v23::ConservativeScalingConfig config;
     bool oracle_only = false;
     try {

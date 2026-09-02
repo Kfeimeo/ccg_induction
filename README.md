@@ -54,6 +54,30 @@ On Linux or a single-configuration Windows generator, the executable is normally
 scf_synthetic_generator data/synthetic
 ```
 
+### Windows notes
+
+The code base is portable C++20 and builds with MSVC (Visual Studio 2022 or newer), clang-cl and MinGW-w64 as well as GCC/Clang on Linux and macOS. Everything operating-system specific is isolated behind `include/scf/platform.hpp` (library `scf_platform`, implementation `src/platform.cpp`); the rest of the sources never include OS headers. The header exposes plain preprocessor switches for the rare places that need a platform branch:
+
+| Macro | Value |
+| --- | --- |
+| `SCF_PLATFORM_WINDOWS` | 1 on Windows (MSVC, clang-cl, MinGW), otherwise 0 |
+| `SCF_PLATFORM_LINUX` / `SCF_PLATFORM_APPLE` | 1 on Linux / macOS |
+| `SCF_PLATFORM_POSIX` | 1 on any non-Windows platform |
+
+What the layer provides:
+
+- `scf::platform::peak_rss_mb()` — peak resident memory (Windows: `GetProcessMemoryInfo`, POSIX: `getrusage`), used by the v2.1 scaling metrics.
+- `scf::platform::initialize_console()` — called first in every `main()`; on Windows it switches the console to UTF-8 so corpus tokens print correctly, elsewhere it is a no-op.
+- `scf::platform::strip_trailing_cr()` — makes the line-oriented readers tolerate CRLF files on every platform.
+
+The CMake helper `scf_configure_target` adds the Windows-specific build flags (`/utf-8`, `/permissive-`, `NOMINMAX`, `WIN32_LEAN_AND_MEAN`, an 8 MiB stack matching Linux, and an embedded UTF-8 code-page manifest so non-ASCII paths on the command line behave like on Linux). Build exactly as above, e.g. with the Visual Studio generator:
+
+```bat
+cmake -S . -B build
+cmake --build build --config Release
+ctest --test-dir build -C Release --output-on-failure
+```
+
 Important CLI options are `--max-len`, `--lowercase`, `--deduplicate`, `--config`, `--stats`, `--dump-classes`, `--dump-proofs`, `--dump-witnesses`, `--dump-evidence`, `--dump-optimal-forest`, and `--dump-trees`. Supplying `--output-dir DIR` writes:
 
 - `saturation.csv`

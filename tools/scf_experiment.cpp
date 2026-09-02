@@ -1,4 +1,5 @@
 #include "scf/audit.hpp"
+#include "scf/platform.hpp"
 #include "scf/context_indexed.hpp"
 #include "scf/corpus.hpp"
 #include "scf/equivalence_solver.hpp"
@@ -98,6 +99,7 @@ void write_file(const std::filesystem::path& path, const std::string& content) {
 }  // namespace
 
 int main(int argc, char** argv) {
+    scf::platform::initialize_console();
     try {
         std::optional<std::string> grammar;
         std::optional<std::filesystem::path> output_directory;
