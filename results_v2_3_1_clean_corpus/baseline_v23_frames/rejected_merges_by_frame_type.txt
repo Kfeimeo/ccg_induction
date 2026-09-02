@@ -1,0 +1,211 @@
+# SCF v2.3.1 rejected candidates grouped by the boundary type of ALL their witnesses -- corpus v23_baseline_condition_d (v23_condition_d)
+
+# scale 100000
+
+## empty_frame (10108 rejected candidates)
+candidate anarchism <=> a | witness L=[] R=[] | witness_types=empty_frame
+  conflict: Comp(anarchism, is, anarchism is) vs Comp(a, is, a is); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> e | witness L=[] R=[] | witness_types=empty_frame
+  conflict: Comp(century, anarchism, century anarchism) vs Comp(century, e, century e); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> in <num> | witness L=[] R=[] | witness_types=empty_frame
+  conflict: Comp(anarchism, is, anarchism is) vs Comp(in <num>, is, in <num> is); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> <num> | witness L=[] R=[] | witness_types=empty_frame
+  conflict: Comp(anarchism, is, anarchism is) vs Comp(<num>, is, <num> is); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> <num> s | witness L=[] R=[] | witness_types=empty_frame
+  conflict: Comp(anarchism, a, anarchism a) vs Comp(<num> s, a, <num> s a); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> s | witness L=[] R=[] | witness_types=empty_frame
+  conflict: Comp(anarchism, a, anarchism a) vs Comp(s, a, s a); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> states | witness L=[] R=[] | witness_types=empty_frame
+  conflict: Comp(anarchism, that, anarchism that) vs Comp(states, that, states that); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> william b | witness L=[] R=[] | witness_types=empty_frame
+  conflict: Comp(and, anarchism, and anarchism) vs Comp(and, william b, and william b); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> b | witness L=[] R=[] | witness_types=empty_frame
+  conflict: Comp(anarchism, is, anarchism is) vs Comp(b, is, b is); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> congress | witness L=[] R=[] | witness_types=empty_frame
+  conflict: Comp(anarchism, as, anarchism as) vs Comp(congress, as, congress as); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> st | witness L=[] R=[] | witness_types=empty_frame
+  conflict: Comp(anarchism, the, anarchism the) vs Comp(st, the, st the); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> <num> million | witness L=[] R=[] | witness_types=empty_frame
+  conflict: Comp(anarchism, with, anarchism with) vs Comp(<num> million, with, <num> million with); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> c | witness L=[] R=[] | witness_types=empty_frame
+  conflict: Comp(anarchism, and, anarchism and) vs Comp(c, and, c and); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> n | witness L=[] R=[] | witness_types=empty_frame
+  conflict: Comp(anarchism, a, anarchism a) vs Comp(n, a, n a); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> t | witness L=[] R=[] | witness_types=empty_frame
+  conflict: Comp(anarchism, the, anarchism the) vs Comp(t, the, t the); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> science | witness L=[] R=[] | witness_types=empty_frame
+  conflict: Comp(anarchism, are, anarchism are) vs Comp(science, are, science are); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> territory | witness L=[] R=[] | witness_types=empty_frame
+  conflict: Comp(anarchism, and, anarchism and) vs Comp(territory, and, territory and); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> <num> <num> | witness L=[] R=[] | witness_types=empty_frame
+  conflict: Comp(anarchism, that, anarchism that) vs Comp(<num> <num>, that, <num> <num> that); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> city | witness L=[] R=[] | witness_types=empty_frame
+  conflict: Comp(anarchism, is, anarchism is) vs Comp(city, is, city is); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> p | witness L=[] R=[] | witness_types=empty_frame
+  conflict: Comp(anarchism, <num>, anarchism <num>) vs Comp(p, <num>, p <num>); outputs have different observed exact-context profiles and no direct substitution witness
+
+## left_boundary (1164 rejected candidates)
+candidate several <=> the | witness L=[] R=[u] | witness_types=left_boundary
+  conflict: Comp(several, authors, several authors) vs Comp(the, authors, the authors); outputs have different observed exact-context profiles and no direct substitution witness
+candidate several <=> in the | witness L=[] R=[u] | witness_types=left_boundary
+  conflict: Comp(several, months, several months) vs Comp(in the, months, in the months); outputs have different observed exact-context profiles and no direct substitution witness
+candidate several <=> according to | witness L=[] R=[u] | witness_types=left_boundary
+  conflict: Comp(several, other, several other) vs Comp(according to, other, according to other); outputs have different observed exact-context profiles and no direct substitution witness
+candidate the <=> in the | witness L=[] R=[u] | witness_types=left_boundary
+  conflict: Comp(the, more, the more) vs Comp(in the, more, in the more); outputs have different observed exact-context profiles and no direct substitution witness
+candidate the <=> according to | witness L=[] R=[u] | witness_types=left_boundary
+  conflict: Comp(the, a, the a) vs Comp(according to, a, according to a); outputs have different observed exact-context profiles and no direct substitution witness
+candidate the <=> according to the | witness L=[] R=[u] | witness_types=left_boundary
+  conflict: Comp(the, authors, the authors) vs Comp(several, authors, several authors); outputs have different observed exact-context profiles and no direct substitution witness
+candidate the <=> mercedes benz | witness L=[] R=[u] | witness_types=left_boundary
+  conflict: Comp(the, authors, the authors) vs Comp(several, authors, several authors); outputs have different observed exact-context profiles and no direct substitution witness
+candidate the <=> in surveys of | witness L=[] R=[u] | witness_types=left_boundary
+  conflict: Comp(the, authors, the authors) vs Comp(several, authors, several authors); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <=> in <num> | witness L=[] R=[<num>] | witness_types=left_boundary
+  conflict: Comp(in, a, in a) vs Comp(in <num>, a, in <num> a); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <=> according to | witness L=[] R=[the u] | witness_types=left_boundary
+  conflict: Comp(in, a, in a) vs Comp(according to, a, according to a); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <=> published in | witness L=[] R=[<num>] | witness_types=left_boundary
+  conflict: Comp(in, a, in a) vs Comp(published in, a, published in a); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <=> <num> in | witness L=[] R=[<num>] | witness_types=left_boundary
+  conflict: Comp(in, a, in a) vs Comp(<num> in, a, <num> in a); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <=> <num> march | witness L=[] R=[<num>] | witness_types=left_boundary
+  conflict: Comp(in, more, in more) vs Comp(<num> march, more, <num> march more); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <=> <num> to | witness L=[] R=[<num>] | witness_types=left_boundary
+  conflict: Comp(in, a, in a) vs Comp(<num> to, a, <num> to a); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <=> about | witness L=[] R=[<num>] | witness_types=left_boundary
+  conflict: Comp(in, a, in a) vs Comp(about, a, about a); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <=> <num> – | witness L=[] R=[<num>] | witness_types=left_boundary
+  conflict: Comp(in, at, in at) vs Comp(<num> –, at, <num> – at); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <=> <num> black | witness L=[] R=[<num>] | witness_types=left_boundary
+  conflict: Comp(in, and, in and) vs Comp(<num> black, and, <num> black and); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <=> <num> per | witness L=[] R=[<num> <num>] | witness_types=left_boundary
+  conflict: Comp(and, in, and in) vs Comp(and, <num> per, and <num> per); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <=> an estimated | witness L=[] R=[<num>] | witness_types=left_boundary
+  conflict: Comp(which, in, which in) vs Comp(which, an estimated, which an estimated); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <=> more than | witness L=[] R=[<num>] | witness_types=left_boundary
+  conflict: Comp(in, the, in the) vs Comp(more than, the, more than the); outputs have different observed exact-context profiles and no direct substitution witness
+
+## right_boundary (862 rejected candidates)
+candidate without <=> <num> | witness L=[<num> <num>] R=[] | witness_types=right_boundary
+  conflict: Comp(without, a, without a) vs Comp(<num>, a, <num> a); outputs have different observed exact-context profiles and no direct substitution witness
+candidate without <=> <num> <num> | witness L=[<num> <num>] R=[] | witness_types=right_boundary
+  conflict: Comp(without, the, without the) vs Comp(<num> <num>, the, <num> <num> the); outputs have different observed exact-context profiles and no direct substitution witness
+candidate without <=> african americans | witness L=[<num> <num>] R=[] | witness_types=right_boundary
+  conflict: Comp(without, and, without and) vs Comp(african americans, and, african americans and); outputs have different observed exact-context profiles and no direct substitution witness
+candidate without <=> <num> <num> <num> | witness L=[<num> <num>] R=[] | witness_types=right_boundary
+  conflict: Comp(without, a, without a) vs Comp(anarchism, a, anarchism a); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <num> <=> bc | witness L=[<num>] R=[] | witness_types=right_boundary
+  conflict: Comp(in <num>, is, in <num> is) vs Comp(bc, is, bc is); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <num> <=> to <num> | witness L=[<num>] R=[] | witness_types=right_boundary
+  conflict: Comp(in <num>, a, in <num> a) vs Comp(to <num>, a, to <num> a); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <num> <=> million | witness L=[<num>] R=[] | witness_types=right_boundary
+  conflict: Comp(in <num>, of, in <num> of) vs Comp(million, of, million of); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <num> <=> – <num> | witness L=[<num>] R=[] | witness_types=right_boundary
+  conflict: Comp(in <num>, as, in <num> as) vs Comp(– <num>, as, – <num> as); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <num> <=> in french | witness L=[<num>] R=[] | witness_types=right_boundary
+  conflict: Comp(in <num>, as, in <num> as) vs Comp(in french, as, in french as); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <num> <=> march <num> | witness L=[<num>] R=[] | witness_types=right_boundary
+  conflict: Comp(in <num>, the, in <num> the) vs Comp(march <num>, the, march <num> the); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <num> <=> open ocean <num> | witness L=[<num>] R=[] | witness_types=right_boundary
+  conflict: Comp(in <num>, a, in <num> a) vs Comp(to <num>, a, to <num> a); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <num> <=> worn asphalt <num> | witness L=[<num>] R=[] | witness_types=right_boundary
+  conflict: Comp(in <num>, a, in <num> a) vs Comp(to <num>, a, to <num> a); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <num> <=> bare soil <num> | witness L=[<num>] R=[] | witness_types=right_boundary
+  conflict: Comp(in <num>, a, in <num> a) vs Comp(to <num>, a, to <num> a); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <num> <=> green grass <num> | witness L=[<num>] R=[] | witness_types=right_boundary
+  conflict: Comp(in <num>, a, in <num> a) vs Comp(to <num>, a, to <num> a); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <num> <=> desert sand <num> | witness L=[<num>] R=[] | witness_types=right_boundary
+  conflict: Comp(in <num>, a, in <num> a) vs Comp(to <num>, a, to <num> a); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <num> <=> new concrete <num> | witness L=[<num>] R=[] | witness_types=right_boundary
+  conflict: Comp(in <num>, a, in <num> a) vs Comp(to <num>, a, to <num> a); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <num> <=> ocean ice <num> | witness L=[<num>] R=[] | witness_types=right_boundary
+  conflict: Comp(in <num>, a, in <num> a) vs Comp(to <num>, a, to <num> a); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <num> <=> fresh snow <num> | witness L=[<num>] R=[] | witness_types=right_boundary
+  conflict: Comp(in <num>, a, in <num> a) vs Comp(to <num>, a, to <num> a); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <num> <=> w m− <num> | witness L=[<num>] R=[] | witness_types=right_boundary
+  conflict: Comp(in <num>, a, in <num> a) vs Comp(to <num>, a, to <num> a); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <num> <=> asian <num> | witness L=[<num>] R=[] | witness_types=right_boundary
+  conflict: Comp(in <num>, a, in <num> a) vs Comp(to <num>, a, to <num> a); outputs have different observed exact-context profiles and no direct substitution witness
+
+## internal_frame (550 rejected candidates)
+candidate the <=> the <num> | witness L=[according to] R=[u] | witness_types=internal_frame
+  conflict: Comp(the, <num>, the <num>) vs Comp(the <num>, <num>, the <num> <num>); outputs have different observed exact-context profiles and no direct substitution witness
+candidate the <=> surveys of | witness L=[in] R=[u] | witness_types=internal_frame
+  conflict: Comp(in the, months, in the months) vs Comp(several, months, several months); outputs have different observed exact-context profiles and no direct substitution witness
+candidate to <=> in | witness L=[<num>] R=[<num>] | witness_types=internal_frame
+  conflict: Comp(to, anarchism, to anarchism) vs Comp(in, anarchism, in anarchism); outputs have different observed exact-context profiles and no direct substitution witness
+candidate to <=> <num> | witness L=[<num>] R=[<num>] | witness_types=internal_frame
+  conflict: Comp(to, anarchism, to anarchism) vs Comp(<num>, <num> pp, <num> <num> pp); outputs have different observed exact-context profiles and no direct substitution witness
+candidate to <=> to the | witness L=[according] R=[u] | witness_types=internal_frame
+  conflict: Comp(to, state, to state) vs Comp(to the, state, to the state); outputs have different observed exact-context profiles and no direct substitution witness
+candidate to <=> english | witness L=[<num>] R=[<num>] | witness_types=internal_frame
+  conflict: Comp(to, the, to the) vs Comp(english, the, english the); outputs have different observed exact-context profiles and no direct substitution witness
+candidate to <=> – | witness L=[<num>] R=[<num>] | witness_types=internal_frame
+  conflict: Comp(to, that, to that) vs Comp(–, that, – that); outputs have different observed exact-context profiles and no direct substitution witness
+candidate to <=> march | witness L=[<num>] R=[<num>] | witness_types=internal_frame
+  conflict: Comp(to, more, to more) vs Comp(march, more, march more); outputs have different observed exact-context profiles and no direct substitution witness
+candidate to <=> german | witness L=[<num>] R=[<num>] | witness_types=internal_frame
+  conflict: Comp(to, anarchists, to anarchists) vs Comp(german, anarchists, german anarchists); outputs have different observed exact-context profiles and no direct substitution witness
+candidate to <=> <num> <num> | witness L=[<num>] R=[<num>] | witness_types=internal_frame
+  conflict: Comp(to, that, to that) vs Comp(<num> <num>, that, <num> <num> that); outputs have different observed exact-context profiles and no direct substitution witness
+candidate to <=> black | witness L=[<num>] R=[<num>] | witness_types=internal_frame
+  conflict: Comp(jewish, and, jewish and) vs Comp(black, and, black and); outputs have different observed exact-context profiles and no direct substitution witness
+candidate to <=> per <num> | witness L=[<num>] R=[<num>] | witness_types=internal_frame
+  conflict: Comp(cases, to, cases to) vs Comp(cases, per <num>, cases per <num>); outputs have different observed exact-context profiles and no direct substitution witness
+candidate to <=> white | witness L=[<num>] R=[<num>] | witness_types=internal_frame
+  conflict: Comp(jewish, and, jewish and) vs Comp(white, and, white and); outputs have different observed exact-context profiles and no direct substitution witness
+candidate to <=> deciduous trees | witness L=[<num>] R=[<num>] | witness_types=internal_frame
+  conflict: Comp(to, have, to have) vs Comp(deciduous trees, have, deciduous trees have); outputs have different observed exact-context profiles and no direct substitution witness
+candidate to <=> irish | witness L=[<num>] R=[<num>] | witness_types=internal_frame
+  conflict: Comp(jewish, and, jewish and) vs Comp(irish, and, irish and); outputs have different observed exact-context profiles and no direct substitution witness
+candidate to <=> native | witness L=[<num>] R=[<num>] | witness_types=internal_frame
+  conflict: Comp(and, to, and to) vs Comp(and, native, and native); outputs have different observed exact-context profiles and no direct substitution witness
+candidate to <=> <num> <num> <num> | witness L=[<num>] R=[<num>] | witness_types=internal_frame
+  conflict: Comp(to, a, to a) vs Comp(anarchism, a, anarchism a); outputs have different observed exact-context profiles and no direct substitution witness
+candidate to <=> hispanic white | witness L=[<num>] R=[<num>] | witness_types=internal_frame
+  conflict: Comp(jewish, and, jewish and) vs Comp(hispanic white, and, hispanic white and); outputs have different observed exact-context profiles and no direct substitution witness
+candidate to <=> other race | witness L=[<num>] R=[<num>] | witness_types=internal_frame
+  conflict: Comp(jewish, and, jewish and) vs Comp(other race, and, other race and); outputs have different observed exact-context profiles and no direct substitution witness
+candidate to <=> muslim | witness L=[<num>] R=[<num>] | witness_types=internal_frame
+  conflict: Comp(fresh snow, to, fresh snow to) vs Comp(jewish, muslim, jewish muslim); outputs have different observed exact-context profiles and no direct substitution witness
+
+## mixed (19 rejected candidates)
+candidate in <=> <num> | witness L=[] R=[<num>] | witness_types=left_boundary+internal_frame
+  conflict: Comp(in, anarchism, in anarchism) vs Comp(<num>, <num> pp, <num> <num> pp); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <=> <num> <num> | witness L=[] R=[<num>] | witness_types=left_boundary+internal_frame
+  conflict: Comp(in, that, in that) vs Comp(<num> <num>, that, <num> <num> that); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <=> <num> <num> <num> | witness L=[] R=[<num>] | witness_types=left_boundary+internal_frame
+  conflict: Comp(in, a, in a) vs Comp(anarchism, a, anarchism a); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <num> <=> <num> | witness L=[] R=[] | witness_types=empty_frame+left_boundary+right_boundary
+  conflict: Comp(in <num>, is, in <num> is) vs Comp(<num>, is, <num> is); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <num> <=> s | witness L=[] R=[] | witness_types=empty_frame+right_boundary
+  conflict: Comp(in <num>, a, in <num> a) vs Comp(s, a, s a); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <num> <=> <num> <num> | witness L=[] R=[] | witness_types=empty_frame+left_boundary+right_boundary
+  conflict: Comp(in <num>, that, in <num> that) vs Comp(<num> <num>, that, <num> <num> that); outputs have different observed exact-context profiles and no direct substitution witness
+candidate in <num> <=> <num> <num> <num> | witness L=[] R=[] | witness_types=empty_frame+left_boundary+right_boundary
+  conflict: Comp(in <num>, is, in <num> is) vs Comp(anarchism, is, anarchism is); outputs have different observed exact-context profiles and no direct substitution witness
+candidate <num> <=> s | witness L=[] R=[] | witness_types=empty_frame+right_boundary
+  conflict: Comp(<num>, a, <num> a) vs Comp(s, a, s a); outputs have different observed exact-context profiles and no direct substitution witness
+candidate <num> <=> b | witness L=[] R=[] | witness_types=empty_frame+right_boundary
+  conflict: Comp(<num>, is, <num> is) vs Comp(b, is, b is); outputs have different observed exact-context profiles and no direct substitution witness
+candidate <num> <=> <num> <num> | witness L=[] R=[] | witness_types=empty_frame+left_boundary+right_boundary+internal_frame
+  conflict: Comp(<num>, that, <num> that) vs Comp(<num> <num>, that, <num> <num> that); outputs have different observed exact-context profiles and no direct substitution witness
+candidate <num> <=> the u | witness L=[] R=[] | witness_types=empty_frame+right_boundary
+  conflict: Comp(as, <num>, as <num>) vs Comp(as, the u, as the u); outputs have different observed exact-context profiles and no direct substitution witness
+candidate <num> <=> <num> <num> <num> | witness L=[] R=[] | witness_types=empty_frame+left_boundary+right_boundary+internal_frame
+  conflict: Comp(<num>, is, <num> is) vs Comp(anarchism, is, anarchism is); outputs have different observed exact-context profiles and no direct substitution witness
+candidate s <=> <num> <num> | witness L=[] R=[] | witness_types=empty_frame+right_boundary
+  conflict: Comp(s, the, s the) vs Comp(<num> <num>, the, <num> <num> the); outputs have different observed exact-context profiles and no direct substitution witness
+candidate s <=> <num> <num> <num> | witness L=[] R=[] | witness_types=empty_frame+right_boundary
+  conflict: Comp(s, a, s a) vs Comp(anarchism, a, anarchism a); outputs have different observed exact-context profiles and no direct substitution witness
+candidate b <=> c | witness L=[] R=[] | witness_types=empty_frame+right_boundary
+  conflict: Comp(the, b, the b) vs Comp(the, c, the c); outputs have different observed exact-context profiles and no direct substitution witness
+candidate b <=> j | witness L=[] R=[] | witness_types=empty_frame+right_boundary
+  conflict: Comp(b, is, b is) vs Comp(actrius, is, actrius is); outputs have different observed exact-context profiles and no direct substitution witness
+candidate c <=> j | witness L=[] R=[] | witness_types=empty_frame+right_boundary
+  conflict: Comp(c, and, c and) vs Comp(<num> s, and, <num> s and); outputs have different observed exact-context profiles and no direct substitution witness
+candidate <num> <num> <=> the u | witness L=[] R=[] | witness_types=empty_frame+right_boundary
+  conflict: Comp(as, <num> <num>, as <num> <num>) vs Comp(as, the u, as the u); outputs have different observed exact-context profiles and no direct substitution witness
+candidate <num> <num> <=> <num> <num> <num> | witness L=[] R=[] | witness_types=empty_frame+left_boundary+right_boundary+internal_frame
+  conflict: Comp(<num> <num>, that, <num> <num> that) vs Comp(anarchism, that, anarchism that); outputs have different observed exact-context profiles and no direct substitution witness

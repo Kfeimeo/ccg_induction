@@ -1,0 +1,23 @@
+# SCF v2.3 learned class examples
+
+# scale 100000 -- largest classes
+size=162: anarchism | leader ruler cf | published in <num> | <num> to <num> | <num> – <num> | g | also m | <num> march <num> | graeber david | an anarchist faq | scott james c | woodcock george ed | <num> in <num> | an estimated <num> | unbalanced excitatory–inhibitory networks | <num> deletion syndrome | by <num> months | more than <num> | <num> <num> without | preempted diagnoses | president pictures | aerosol indirect effect | in <num> b | <num> in french | rapier | bankhead | in the u | <num> <num> <num> | <num> white <num> | <num> asian <num>
+size=45: e | in <num> | l | per <num> <num> | an estimated | deletion syndrome | <num> without | and <num> μm | deciduous trees <num> | for dirty snow | <num> african americans | <num> native | white <num> | hispanic white <num> | native <num> | <num> english | english <num> | <num> irish | irish <num> | german <num> | black <num> | other race <num> | french incl | patois cajun | muslim <num> | hindu | in april <num> | it seats <num> | accessed march <num> | bc from vulci
+size=24: to | jewish | open ocean | worn asphalt | conifer forest summer | bare soil | green grass | desert sand | new concrete | ocean ice | fresh snow | freshly fallen snow | w m− | to the <num> | in spanish and | were undocumented <num> | asian | and scots irish | mormon | buddhist and | billion in march | million travellers spent | cm tall weighs | lb
+size=19: in | london pluto press | <num> per <num> | <num> deciduous trees | forces on april | carr <num> and | the tally reached | immigration from outside | <num> were undocumented | <num> hispanic white | <num> other race | muslim | <num> in april | it seats | accessed march | george washington and | lincoln a biography | de groot jean | pangle lorraine smith
+size=16: to <num> | open ocean <num> | worn asphalt <num> | bare soil <num> | green grass <num> | desert sand <num> | new concrete <num> | ocean ice <num> | fresh snow <num> | w m− <num> | asian <num> | mormon <num> | jewish <num> | buddhist and <num> | lb <num> | million viewers
+size=15: <num> | what is property | <num> january <num> | spanish and <num> | january <num> <num> | <num> white v | <num> and scots | <num> billion in | overruled frémont's proclamation | biographers james g | surveys of u | a biography <num> | london duckworth <num> | <num> the r | <num> <num> january
+size=15: <num> to | <num> open ocean | <num> worn asphalt | <num> bare soil | <num> green grass | <num> desert sand | <num> new concrete | <num> ocean ice | <num> fresh snow | <num> w m− | <num> asian | <num> mormon | <num> jewish | <num> buddhist and | <num> lb
+size=11: william | allen | scott james | white ronald | ad <num> to | ackrill | halper edward | loux michael | reprinted in | reeve | zolfo changeling james
+size=10: also | crook judge frank | barr john | burnyeat | barnes | tyler samuel | fox walter | earl hedrick samuel | blumenthal walter | corso john
+size=9: st | h | f | senator | richard a | jack d | john mccarthy jr | lili e | hugh b
+size=9: robert | dale | jonathan | general ulysses | darling david | gausman ira | scott paul | moore mickey | webb mickey
+size=8: in <num> the | peirce neal | schofield and | davis lyle | comer frank | gausman ruby | comer robert | stewart campbell peter
+size=7: <num> s | p | k | income tax | j | presidents | actrius
+size=6: james | biographer james | lincoln biographers james | lloyd | robert luthardt edward | chan edward
+size=6: baltimore johns hopkins | princeton princeton | cambridge cambridge | chicago chicago | ithaca ny cornell | ithaca cornell
+size=6: franklin | willis jack | wills jack | webb jack | preston ames jack | schoppe michael
+size=6: albany suny | princeton princeton university | oxford clarendon | cambridge cambridge university | chicago chicago university | ithaca cornell university
+size=5: published in | <num> march | <num> – | <num> black | <num> white
+size=5: c | <num> billion | d | washington and <num> | detitta jr
+size=5: brown | moore | cathcart | horning gene allen | horning urie mccleary

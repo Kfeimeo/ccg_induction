@@ -1,0 +1,24 @@
+# SCF v2.3.1 largest learned classes -- corpus clean_wiki_body (clean_body_drop_punct)
+# [S] = member observed as a complete sentence ((eps,eps) frame)
+
+# scale 40000 -- top 20 classes of 63603 (objects 64024)
+size=204 complete_sentence_members=180 single_token_members=42 contains_num_members=42: these are [S] | e [S] | leader ruler cf [S] | in <num> [S] | published in <num> [S] | league [S] | george woodcock states [S] | c [S] | n [S] | t [S] | <num> to <num> [S] | <num> – <num> [S] | l [S] | g [S] | also m [S] | per <num> <num> | <num> in <num> [S] | an estimated | an estimated <num> [S] | unbalanced excitatory–inhibitory networks [S] | <num> deletion syndrome [S] | deletion syndrome | by <num> months [S] | <num> <num> without [S] | <num> without | they include [S] | genetic disorders [S] | preempted diagnoses [S] | president pictures [S] | and <num> μm | class wikitable [S] | sample albedos [S] | typicalalbedo [S] | fresh asphalt [S] | open ocean [S] | worn asphalt [S] | conifer forest summer [S] | deciduous trees [S] | bare soil [S] | green grass [S] | ... (164 more)
+size=16 complete_sentence_members=9 single_token_members=11 contains_num_members=1: s [S] | protestant [S] | democratic [S] | about <num> [S] | semitic [S] | hoover [S] | hoover talladega | decatur albertville | gadsden [S] | madison [S] | city schools | hospital system | football [S] | barons | havoc | hammers
+size=14 complete_sentence_members=0 single_token_members=1 contains_num_members=6: in | <num> per <num> | greek alpha version | etruscan a version | semitic a version | forces on april | <num> white | carr <num> and | the tally reached | immigration from outside | <num> were undocumented | <num> english | <num> irish | it seats
+size=13 complete_sentence_members=2 single_token_members=3 contains_num_members=2: to | jewish [S] | surface [S] | w m− | to the <num> | in spanish and | were undocumented <num> | hispanic white | and scots irish | buddhist and | in april | billion in march | million travellers spent
+size=8 complete_sentence_members=3 single_token_members=2 contains_num_members=5: <num> [S] | what is property | <num> b | spanish and <num> | <num> white v | <num> and scots | daphne [S] | at t [S]
+size=8 complete_sentence_members=1 single_token_members=1 contains_num_members=6: to <num> | in french | w m− <num> | hispanic white <num> | jewish <num> | buddhist and <num> | hindu [S] | in april <num>
+size=6 complete_sentence_members=6 single_token_members=5 contains_num_members=1: states [S] | <num> million [S] | boeotian [S] | anniston [S] | morgan [S] | guntersville [S]
+size=6 complete_sentence_members=0 single_token_members=1 contains_num_members=0: name | of montgomery | of tuscaloosa | of florence | of decatur | of guntersville
+size=6 complete_sentence_members=6 single_token_members=4 contains_num_members=0: international [S] | p [S] | multiple [S] | evangelical protestant [S] | redstone arsenal [S] | soccer [S]
+size=6 complete_sentence_members=0 single_token_members=0 contains_num_members=6: <num> to | <num> w m− | <num> hispanic white | <num> jewish | <num> buddhist and | <num> in april
+size=6 complete_sentence_members=0 single_token_members=2 contains_num_members=0: etruscan | roman cyrillic | crete | semitic letter | blackletter ablackletter | uncial auncial
+size=5 complete_sentence_members=4 single_token_members=3 contains_num_members=0: christian [S] | language [S] | fresh snow [S] | freshly fallen snow | marshall [S]
+size=5 complete_sentence_members=3 single_token_members=1 contains_num_members=0: german [S] | autumn tree | of population [S] | briarwood presbyterian church | regions field [S]
+size=5 complete_sentence_members=0 single_token_members=0 contains_num_members=5: waay <num> abc | whnt <num> cbs | wzdx <num> fox | waff <num> nbc | whiq <num> pbs
+size=4 complete_sentence_members=0 single_token_members=1 contains_num_members=0: several | according to the | mercedes benz | the state's two
+size=4 complete_sentence_members=0 single_token_members=1 contains_num_members=1: greek | latin <num> ad | greek classical | coptic letter
+size=4 complete_sentence_members=4 single_token_members=3 contains_num_members=0: spanish [S] | william b [S] | affiliation [S] | fox [S]
+size=4 complete_sentence_members=4 single_token_members=3 contains_num_members=0: st [S] | intellectual disability [S] | jefferson [S] | employer [S]
+size=4 complete_sentence_members=0 single_token_members=2 contains_num_members=1: fresh | worn | freshly fallen | <num> for dirty
+size=4 complete_sentence_members=0 single_token_members=1 contains_num_members=0: public schools | biscuits | riverwalk stadium | on woodruff lake

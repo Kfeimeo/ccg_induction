@@ -1,0 +1,23 @@
+# Direct-witness candidates accepted by transactional closure
+
+# scale 100000
+anarchism <=> leader ruler cf | L=[] R=[] | induced_unions=0
+anarchism <=> published in <num> | L=[] R=[] | induced_unions=0
+anarchism <=> <num> to <num> | L=[] R=[] | induced_unions=0
+anarchism <=> <num> – <num> | L=[] R=[] | induced_unions=0
+anarchism <=> g | L=[] R=[] | induced_unions=0
+anarchism <=> also m | L=[] R=[] | induced_unions=0
+anarchism <=> <num> march <num> | L=[] R=[] | induced_unions=0
+anarchism <=> graeber david | L=[] R=[] | induced_unions=0
+anarchism <=> an anarchist faq | L=[] R=[] | induced_unions=0
+anarchism <=> scott james c | L=[] R=[] | induced_unions=0
+anarchism <=> woodcock george ed | L=[] R=[] | induced_unions=0
+anarchism <=> <num> in <num> | L=[] R=[] | induced_unions=0
+anarchism <=> an estimated <num> | L=[] R=[] | induced_unions=0
+anarchism <=> unbalanced excitatory–inhibitory networks | L=[] R=[] | induced_unions=0
+anarchism <=> <num> deletion syndrome | L=[] R=[] | induced_unions=0
+anarchism <=> by <num> months | L=[] R=[] | induced_unions=0
+anarchism <=> more than <num> | L=[] R=[] | induced_unions=0
+anarchism <=> <num> <num> without | L=[] R=[] | induced_unions=0
+anarchism <=> preempted diagnoses | L=[] R=[] | induced_unions=0
+anarchism <=> president pictures | L=[] R=[] | induced_unions=0

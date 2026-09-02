@@ -147,6 +147,18 @@ add_executable(scf_conservative_merging tools/scf_conservative_merging.cpp)
 target_link_libraries(scf_conservative_merging PRIVATE scf_conservative_v23)
 scf_configure_target(scf_conservative_merging)
 
+# SCF v2.3.1 -- clean-corpus replication: new corpus reader and frame-type
+# diagnostics around the UNCHANGED v2.3 observation and merge code.
+add_library(scf_clean_corpus_v231 STATIC src/clean_corpus.cpp)
+target_include_directories(scf_clean_corpus_v231 PUBLIC include)
+target_compile_features(scf_clean_corpus_v231 PUBLIC cxx_std_20)
+target_link_libraries(scf_clean_corpus_v231 PUBLIC scf_conservative_v23)
+scf_configure_target(scf_clean_corpus_v231)
+
+add_executable(scf_clean_corpus tools/scf_clean_corpus.cpp)
+target_link_libraries(scf_clean_corpus PRIVATE scf_clean_corpus_v231)
+scf_configure_target(scf_clean_corpus)
+
 if(SCF_BUILD_TESTS)
     enable_testing()
     set_property(
@@ -174,4 +186,9 @@ if(SCF_BUILD_TESTS)
     target_link_libraries(scf_conservative_v23_tests PRIVATE scf_conservative_v23)
     scf_configure_target(scf_conservative_v23_tests)
     add_test(NAME scf_conservative_v23_tests COMMAND scf_conservative_v23_tests)
+
+    add_executable(scf_clean_corpus_v231_tests tests/test_clean_corpus.cpp)
+    target_link_libraries(scf_clean_corpus_v231_tests PRIVATE scf_clean_corpus_v231)
+    scf_configure_target(scf_clean_corpus_v231_tests)
+    add_test(NAME scf_clean_corpus_v231_tests COMMAND scf_clean_corpus_v231_tests)
 endif()

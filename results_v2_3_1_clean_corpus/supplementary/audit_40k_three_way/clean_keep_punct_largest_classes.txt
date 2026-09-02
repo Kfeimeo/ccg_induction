@@ -1,0 +1,46 @@
+# SCF v2.3.1 largest learned classes -- corpus clean_probe (clean_body_keep_punct)
+# [S] = member observed as a complete sentence ((eps,eps) frame)
+
+# scale 20000 -- top 20 classes of 33529 (objects 33558)
+size=18 complete_sentence_members=18 single_token_members=7 contains_num_members=4: e [S] | s [S] | william b [S] | <num> million [S] | c [S] | n [S] | t [S] | l [S] | g [S] | also m [S] | about <num> [S] | an estimated <num> [S] | <num> deletion syndrome [S] | they include : [S] | * genetic disorders [S] | * intellectual disability [S] | * preempted diagnoses [S] | president pictures [S]
+size=4 complete_sentence_members=0 single_token_members=0 contains_num_members=0: intellectual disability | unbalanced excitatory–inhibitory networks | genetic disorders | preempted diagnoses
+size=3 complete_sentence_members=0 single_token_members=1 contains_num_members=0: , published in | about | an estimated
+size=3 complete_sentence_members=0 single_token_members=1 contains_num_members=1: million | deletion syndrome | : <num> without
+size=2 complete_sentence_members=0 single_token_members=1 contains_num_members=0: ) | * no babbling
+size=2 complete_sentence_members=0 single_token_members=0 contains_num_members=0: george woodcock states | they include
+size=2 complete_sentence_members=0 single_token_members=1 contains_num_members=0: babbling | single words
+size=2 complete_sentence_members=0 single_token_members=0 contains_num_members=0: no babbling | no single words
+size=2 complete_sentence_members=0 single_token_members=0 contains_num_members=0: babbling by | single words by
+size=1 complete_sentence_members=0 single_token_members=1 contains_num_members=0: anarchism
+size=1 complete_sentence_members=0 single_token_members=0 contains_num_members=0: anarchism is
+size=1 complete_sentence_members=0 single_token_members=0 contains_num_members=0: anarchism is a
+size=1 complete_sentence_members=0 single_token_members=1 contains_num_members=0: is
+size=1 complete_sentence_members=0 single_token_members=0 contains_num_members=0: is a
+size=1 complete_sentence_members=0 single_token_members=0 contains_num_members=0: is a political
+size=1 complete_sentence_members=0 single_token_members=1 contains_num_members=0: a
+size=1 complete_sentence_members=0 single_token_members=0 contains_num_members=0: a political
+size=1 complete_sentence_members=0 single_token_members=0 contains_num_members=0: a political philosophy
+size=1 complete_sentence_members=0 single_token_members=1 contains_num_members=0: political
+size=1 complete_sentence_members=0 single_token_members=0 contains_num_members=0: political philosophy
+
+# scale 40000 -- top 20 classes of 60224 (objects 60586)
+size=126 complete_sentence_members=124 single_token_members=36 contains_num_members=12: , [S] | e [S] | in <num> , [S] | n [S] | <num> to <num> [S] | <num> – <num> [S] | <num> , <num> [S] | l [S] | g [S] | also m [S] | an estimated <num> [S] | multiple [S] | <num> deletion syndrome [S] | they include : [S] | * genetic disorders [S] | * intellectual disability [S] | * preempted diagnoses [S] | president pictures [S] | <num> - <num> [S] | + sample albedos [S] | typicalalbedo [S] | fresh asphalt [S] | open ocean [S] | worn asphalt [S] | bare soil [S] | green grass [S] | desert sand [S] | new concrete [S] | ocean ice [S] | , ) [S] | egyptian [S] | cretan [S] | phoenician aleph [S] | greek uncial [S] | roman a [S] | boeotioan <num> bc [S] | in <num> b [S] | blackletter ablackletter a [S] | uncial auncial a [S] | russell [S] | ... (86 more)
+size=16 complete_sentence_members=7 single_token_members=6 contains_num_members=6: ) [S] | protestant [S] | published in <num> | <num> million [S] | in french | * no babbling | : <num> without | for dirty snow | semitic [S] | x <num> px | white ( <num> | opelika [S] | estimates ) | hindu [S] | in april <num> | morgan [S]
+size=14 complete_sentence_members=0 single_token_members=1 contains_num_members=3: - | per <num> , | , <num> , | w m− | to + | % in | % white ( | % asian , | % mormon , | % jewish , | % muslim , | % in april | billion in march | % <num> ,
+size=12 complete_sentence_members=0 single_token_members=0 contains_num_members=12: in <num> | <num> per <num> | <num> % asian | asian , <num> | <num> % mormon | mormon , <num> | <num> % jewish | jewish , <num> | <num> % muslim | muslim , <num> | <num> % <num> | it seats <num>
+size=10 complete_sentence_members=0 single_token_members=1 contains_num_members=0: in | in spanish and | forces on april | immigration from outside | asian , | mormon , | jewish , | muslim , | buddhist , and | it seats
+size=8 complete_sentence_members=6 single_token_members=4 contains_num_members=0: : [S] | , published in | william b [S] | t [S] | location [S] | fresh snow [S] | the tally reached | affiliation [S]
+size=6 complete_sentence_members=6 single_token_members=3 contains_num_members=0: " [S] | deciduous trees [S] | boeotian [S] | albertville [S] | vestavia hills [S] | redstone arsenal [S]
+size=6 complete_sentence_members=6 single_token_members=5 contains_num_members=0: s [S] | democratic [S] | c [S] | gadsden [S] | evangelical protestant [S] | football [S]
+size=6 complete_sentence_members=0 single_token_members=0 contains_num_members=5: <num> to | an estimated | <num> - | <num> w m− | <num> to + | <num> % in
+size=6 complete_sentence_members=0 single_token_members=0 contains_num_members=2: per <num> | % asian | % mormon | % jewish | % muslim | % <num>
+size=6 complete_sentence_members=0 single_token_members=0 contains_num_members=0: intellectual disability | unbalanced excitatory–inhibitory networks | genetic disorders | preempted diagnoses | aerosol direct effect | aerosol indirect effect
+size=6 complete_sentence_members=0 single_token_members=3 contains_num_members=0: - hoover | city schools | hospital system | barons | havoc | hammers
+size=5 complete_sentence_members=0 single_token_members=1 contains_num_members=0: name | of montgomery | of florence | of decatur | of guntersville
+size=5 complete_sentence_members=3 single_token_members=1 contains_num_members=1: <num> ) [S] | black [S] | autumn tree | briarwood presbyterian church | regions field [S]
+size=5 complete_sentence_members=5 single_token_members=5 contains_num_members=0: spanish [S] | jewish [S] | asian [S] | mormon [S] | muslim [S]
+size=5 complete_sentence_members=2 single_token_members=1 contains_num_members=0: white [S] | other race [S] | ) , english | ) , irish | ) , german
+size=5 complete_sentence_members=0 single_token_members=0 contains_num_members=5: waay <num> abc | whnt <num> cbs | wzdx <num> fox | waff <num> nbc | whiq <num> pbs
+size=4 complete_sentence_members=0 single_token_members=1 contains_num_members=0: several | according to the | mercedes - benz | the state's two
+size=4 complete_sentence_members=4 single_token_members=3 contains_num_members=0: christian [S] | baldwin [S] | phenix city [S] | employer [S]
+size=4 complete_sentence_members=3 single_token_members=3 contains_num_members=0: language [S] | st [S] | hoover [S] | hoover - talladega

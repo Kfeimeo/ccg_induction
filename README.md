@@ -2,6 +2,49 @@
 
 SCF is a correctness-first C++20 research prototype for discovering anonymous string equivalence and maximum-evidence projective binary structure from tokenized sentences. It uses no tags, labels, probabilities, embeddings, neural models, or external runtime libraries.
 
+## v2.3.1 clean-corpus replication (same algorithm, cleaner corpus)
+
+v2.3.1 is a corpus-quality control experiment around the **unchanged** v2.3
+learner: `scf::v23::observe_sentences` and `scf::v23::ConservativeMerger`
+are called as they are. The new module (`scf::v231`, library
+`scf_clean_corpus_v231`, CLI `scf_clean_corpus`) adds a
+structure-preserving corpus reader (documents and paragraphs kept, body text
+only, punctuation kept, sentence terminators absorbed into the boundary),
+nested whole-sentence prefixes, and post-hoc diagnostics that classify every
+witness, candidate, accepted merge and rejected merge by the boundary type of
+its exact frame (`empty_frame`, `left_boundary`, `right_boundary`,
+`internal_frame`).
+
+```bash
+# 1. fixed 400 MiB range of the gensim-data Wikipedia 2017-10-01 release part
+curl -L -r 0-419430399 -o data/real/wiki-english-20171001.gz_00.head400m \
+  https://github.com/piskvorky/gensim-data/releases/download/wiki-english-20171001/wiki-english-20171001.gz_00
+# 2. the two corpus variants from the same bytes
+python3 tools/extract_wiki_body.py --mode legacy data/real/wiki-english-20171001.gz_00.head400m data/real/wiki2017_head.txt
+python3 tools/extract_wiki_body.py --mode body   data/real/wiki-english-20171001.gz_00.head400m data/real/wiki2017_body.txt
+# 3. baseline (unchanged v2.3 CLI) and clean-corpus replication
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release && cmake --build build
+build/scf_conservative_merging --input data/real/wiki2017_head.txt --scales 100000 --output-dir results_v2_3_conservative
+build/scf_clean_corpus --input data/real/wiki2017_body.txt --preprocess clean_body --punctuation keep \
+  --scales 100000,1000000,10000000 --output-dir results_v2_3_1_clean_corpus
+# frame-type diagnostics attached to the v2.3 preprocessing (must reproduce the v2.3 CSV exactly)
+build/scf_clean_corpus --input data/real/wiki2017_head.txt --preprocess v23_condition_d \
+  --label v23_baseline_condition_d --scales 100000 --output-dir results_v2_3_1_clean_corpus/baseline_v23_frames
+# size of the (eps,eps) hub per scale without running the learner
+build/scf_clean_corpus --hub-stats-only --input data/real/wiki2017_body.txt --scales 100000,1000000,10000000 --output-dir results_v2_3_1_clean_corpus/hub_clean
+python3 tools/compare_v231.py --baseline results_v2_3_conservative/conservative_scaling.csv \
+  --baseline-frames results_v2_3_1_clean_corpus/baseline_v23_frames --condition results_v2_3_1_clean_corpus \
+  --out results_v2_3_1_clean_corpus/comparison_with_v23_baseline.md
+```
+
+Outputs: `clean_corpus_scaling.csv`, `frame_type_metrics.csv`,
+`largest_classes.txt`, `successful_merges_by_frame_type.txt`,
+`rejected_merges_by_frame_type.txt`, plus `largest_class_members.txt` and
+`probe_object_classes.txt` for the manual audit. See
+`SCF_V2_3_1_CLEAN_CORPUS_REPORT.md` for the data, the measured resource
+bound of the unchanged learner above 1e5 tokens, and the answers to the six
+research questions.
+
 ## v2.3 conservative evidence-driven merging
 
 The v2.3 experiment starts every observed token/substring in a singleton

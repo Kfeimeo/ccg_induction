@@ -1,0 +1,2 @@
+scale 100000 (actual 100007, sentences 7136, documents 15): objects 140764, witnesses 707503, candidates 707196, accepted 2018, rejected 252154, classes 138593, largest 984, empty-frame objects 1180, empty-frame-only accepted 1088, runtime 9002.61 s, peak RSS 150.102 MB
+available sentences 7193, nominal tokens 101102; wrote results_v2_3_1_clean_corpus/probe_1e5

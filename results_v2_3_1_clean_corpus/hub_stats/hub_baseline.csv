@@ -1,0 +1,8 @@
+corpus,nominal_tokens,actual_tokens,sentences,short_sentence_occurrences,distinct_complete_spans,hub_candidate_pairs
+v23_baseline_condition_d,20000,17782,804,44,28,378
+v23_baseline_condition_d,40000,35308,1753,161,73,2628
+v23_baseline_condition_d,100000,87975,4450,482,216,23220
+v23_baseline_condition_d,300000,260349,13271,1376,603,181503
+v23_baseline_condition_d,1000000,865260,43900,4297,1816,1648020
+v23_baseline_condition_d,3000000,2575122,131023,12376,5043,12713403
+v23_baseline_condition_d,10000000,8631179,435755,46460,15446,119281735

@@ -1,0 +1,94 @@
+# SCF v2.3.1 accepted merges grouped by the boundary type of ALL their witnesses -- corpus v23_baseline_condition_d (v23_condition_d)
+# A merge listed under empty_frame was triggered by (eps,eps) alone.
+
+# scale 40000
+
+## empty_frame (58 accepted merges)
+anarchism <=> leader ruler cf | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+anarchism <=> published in <num> | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+anarchism <=> st | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+anarchism <=> n | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+anarchism <=> t | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+anarchism <=> <num> to <num> | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+anarchism <=> <num> – <num> | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+anarchism <=> l | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+anarchism <=> g | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+anarchism <=> also m | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+anarchism <=> <num> march <num> | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+anarchism <=> graeber david | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+anarchism <=> an anarchist faq | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+anarchism <=> scott james c | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+anarchism <=> woodcock george ed | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+anarchism <=> <num> in <num> | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+anarchism <=> an estimated <num> | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+anarchism <=> unbalanced excitatory–inhibitory networks | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+anarchism <=> <num> deletion syndrome | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+anarchism <=> by <num> months | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+
+## left_boundary (28 accepted merges)
+in <=> london pluto press | L=[] R=[<num>] | witness_types=left_boundary | induced_unions=0
+in <=> <num> per <num> | L=[] R=[<num>] | witness_types=left_boundary | induced_unions=0
+in <=> <num> deciduous trees | L=[] R=[<num>] | witness_types=left_boundary | induced_unions=0
+in <=> forces on april | L=[] R=[<num> <num>] | witness_types=left_boundary | induced_unions=0
+in <=> carr <num> and | L=[] R=[reynolds v] | witness_types=left_boundary | induced_unions=0
+in <=> the tally reached | L=[] R=[<num>] | witness_types=left_boundary | induced_unions=0
+in <=> immigration from outside | L=[] R=[the u] | witness_types=left_boundary | induced_unions=0
+in <=> <num> were undocumented | L=[] R=[<num> <num>] | witness_types=left_boundary | induced_unions=0
+in <=> <num> other race | L=[] R=[<num>] | witness_types=left_boundary | induced_unions=0
+in the <=> according to the | L=[] R=[u] | witness_types=left_boundary | induced_unions=0
+in the <=> mercedes benz | L=[] R=[u] | witness_types=left_boundary | induced_unions=0
+without and archos <=> archon or arkhē | L=[] R=[i] | witness_types=left_boundary | induced_unions=0
+in <num> <=> <num> black | L=[] R=[<num>] | witness_types=left_boundary | induced_unions=0
+in <num> <=> an estimated | L=[] R=[<num>] | witness_types=left_boundary | induced_unions=0
+in <num> <=> <num> white | L=[] R=[<num>] | witness_types=left_boundary | induced_unions=0
+in <num> <=> <num> native | L=[] R=[<num>] | witness_types=left_boundary | induced_unions=0
+in <num> <=> <num> english | L=[] R=[<num>] | witness_types=left_boundary | induced_unions=0
+in <num> <=> <num> irish | L=[] R=[<num>] | witness_types=left_boundary | induced_unions=0
+in <num> <=> <num> german | L=[] R=[<num>] | witness_types=left_boundary | induced_unions=0
+in <num> <=> patois cajun | L=[] R=[<num>] | witness_types=left_boundary | induced_unions=0
+
+## right_boundary (27 accepted merges)
+in <num> <=> per <num> <num> | L=[<num>] R=[] | witness_types=right_boundary | induced_unions=0
+in <num> <=> deletion syndrome | L=[<num>] R=[] | witness_types=right_boundary | induced_unions=0
+in <num> <=> <num> without | L=[<num>] R=[] | witness_types=right_boundary | induced_unions=0
+in <num> <=> and <num> μm | L=[<num>] R=[] | witness_types=right_boundary | induced_unions=0
+in <num> <=> deciduous trees <num> | L=[<num>] R=[] | witness_types=right_boundary | induced_unions=0
+in <num> <=> for dirty snow | L=[<num>] R=[] | witness_types=right_boundary | induced_unions=0
+in <num> <=> <num> african americans | L=[<num>] R=[] | witness_types=right_boundary | induced_unions=0
+in <num> <=> white <num> | L=[<num>] R=[] | witness_types=right_boundary | induced_unions=0
+in <num> <=> native <num> | L=[<num>] R=[] | witness_types=right_boundary | induced_unions=0
+in <num> <=> english <num> | L=[<num>] R=[] | witness_types=right_boundary | induced_unions=0
+in <num> <=> irish <num> | L=[<num>] R=[] | witness_types=right_boundary | induced_unions=0
+in <num> <=> german <num> | L=[<num>] R=[] | witness_types=right_boundary | induced_unions=0
+in <num> <=> black <num> | L=[<num>] R=[] | witness_types=right_boundary | induced_unions=0
+in <num> <=> other race <num> | L=[<num>] R=[] | witness_types=right_boundary | induced_unions=0
+in <num> <=> french incl | L=[<num>] R=[] | witness_types=right_boundary | induced_unions=0
+in <num> <=> hindu | L=[<num>] R=[] | witness_types=right_boundary | induced_unions=0
+<num> <=> what is property | L=[in] R=[] | witness_types=right_boundary | induced_unions=0
+<num> <=> spanish and <num> | L=[<num> in] R=[] | witness_types=right_boundary | induced_unions=0
+<num> <=> <num> white v | L=[in] R=[] | witness_types=right_boundary | induced_unions=0
+to <num> <=> in french | L=[<num>] R=[] | witness_types=right_boundary | induced_unions=0
+
+## internal_frame (34 accepted merges)
+to <=> jewish | L=[<num>] R=[<num>] | witness_types=internal_frame | induced_unions=2
+to <=> open ocean | L=[<num>] R=[<num>] | witness_types=internal_frame | induced_unions=2
+to <=> worn asphalt | L=[<num>] R=[<num>] | witness_types=internal_frame | induced_unions=2
+to <=> conifer forest summer | L=[<num>] R=[<num>] | witness_types=internal_frame | induced_unions=0
+to <=> bare soil | L=[<num>] R=[<num>] | witness_types=internal_frame | induced_unions=2
+to <=> green grass | L=[<num>] R=[<num>] | witness_types=internal_frame | induced_unions=2
+to <=> desert sand | L=[<num>] R=[<num>] | witness_types=internal_frame | induced_unions=2
+to <=> new concrete | L=[<num>] R=[<num>] | witness_types=internal_frame | induced_unions=2
+to <=> ocean ice | L=[<num>] R=[<num>] | witness_types=internal_frame | induced_unions=2
+to <=> fresh snow | L=[<num>] R=[<num>] | witness_types=internal_frame | induced_unions=2
+to <=> w m− | L=[<num>] R=[<num>] | witness_types=internal_frame | induced_unions=2
+to <=> to the <num> | L=[according] R=[u] | witness_types=internal_frame | induced_unions=0
+to <=> in spanish and | L=[<num>] R=[<num>] | witness_types=internal_frame | induced_unions=0
+to <=> <num> <num> <num> | L=[<num>] R=[<num>] | witness_types=internal_frame | induced_unions=0
+to <=> were undocumented <num> | L=[<num>] R=[<num>] | witness_types=internal_frame | induced_unions=0
+to <=> hispanic white | L=[<num>] R=[<num>] | witness_types=internal_frame | induced_unions=2
+to <=> asian | L=[<num>] R=[<num>] | witness_types=internal_frame | induced_unions=2
+to <=> and scots irish | L=[<num>] R=[<num>] | witness_types=internal_frame | induced_unions=0
+to <=> mormon | L=[<num>] R=[<num>] | witness_types=internal_frame | induced_unions=2
+to <=> buddhist and | L=[<num>] R=[<num>] | witness_types=internal_frame | induced_unions=2
+
+## mixed (0 accepted merges)

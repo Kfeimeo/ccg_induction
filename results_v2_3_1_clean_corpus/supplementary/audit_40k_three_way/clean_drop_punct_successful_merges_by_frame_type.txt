@@ -1,0 +1,94 @@
+# SCF v2.3.1 accepted merges grouped by the boundary type of ALL their witnesses -- corpus clean_wiki_body (clean_body_drop_punct)
+# A merge listed under empty_frame was triggered by (eps,eps) alone.
+
+# scale 40000
+
+## empty_frame (221 accepted merges)
+these are <=> e | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+these are <=> leader ruler cf | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+these are <=> in <num> | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+these are <=> published in <num> | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+these are <=> league | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+these are <=> george woodcock states | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+these are <=> c | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+these are <=> n | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+these are <=> t | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+these are <=> <num> to <num> | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+these are <=> <num> – <num> | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+these are <=> l | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+these are <=> g | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+these are <=> also m | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+these are <=> <num> in <num> | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+these are <=> an estimated <num> | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+these are <=> unbalanced excitatory–inhibitory networks | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+these are <=> <num> deletion syndrome | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+these are <=> by <num> months | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+these are <=> <num> <num> without | L=[] R=[] | witness_types=empty_frame | induced_unions=0
+
+## left_boundary (80 accepted merges)
+several <=> according to the | L=[] R=[u] | witness_types=left_boundary | induced_unions=0
+several <=> mercedes benz | L=[] R=[u] | witness_types=left_boundary | induced_unions=0
+several <=> the state's two | L=[] R=[u] | witness_types=left_boundary | induced_unions=0
+non <=> other non | L=[] R=[christian faiths] | witness_types=left_boundary | induced_unions=1
+state <=> a general map | L=[] R=[of alabama] | witness_types=left_boundary | induced_unions=0
+state <=> echota cherokee tribe | L=[] R=[of alabama] | witness_types=left_boundary | induced_unions=0
+in <=> <num> per <num> | L=[] R=[<num>] | witness_types=left_boundary | induced_unions=0
+in <=> greek alpha version | L=[] R=[<num>] | witness_types=left_boundary | induced_unions=0
+in <=> semitic a version | L=[] R=[<num>] | witness_types=left_boundary | induced_unions=0
+in <=> forces on april | L=[] R=[<num> <num>] | witness_types=left_boundary | induced_unions=0
+in <=> <num> white | L=[] R=[<num>] | witness_types=left_boundary | induced_unions=0
+in <=> carr <num> and | L=[] R=[reynolds v] | witness_types=left_boundary | induced_unions=0
+in <=> the tally reached | L=[] R=[<num>] | witness_types=left_boundary | induced_unions=0
+in <=> immigration from outside | L=[] R=[the u] | witness_types=left_boundary | induced_unions=0
+in <=> <num> were undocumented | L=[] R=[<num> <num>] | witness_types=left_boundary | induced_unions=0
+in <=> <num> english | L=[] R=[<num>] | witness_types=left_boundary | induced_unions=0
+in <=> <num> irish | L=[] R=[<num>] | witness_types=left_boundary | induced_unions=0
+in <=> it seats | L=[] R=[<num> <num>] | witness_types=left_boundary | induced_unions=1
+greek <=> latin <num> ad | L=[] R=[uncial] | witness_types=left_boundary | induced_unions=0
+greek <=> coptic letter | L=[] R=[alpha] | witness_types=left_boundary | induced_unions=0
+
+## right_boundary (59 accepted merges)
+a <=> cyrillic a | L=[roman] R=[] | witness_types=right_boundary | induced_unions=1
+a <=> a version <num> | L=[etruscan] R=[] | witness_types=right_boundary | induced_unions=0
+in <num> <=> per <num> <num> | L=[<num>] R=[] | witness_types=right_boundary | induced_unions=0
+in <num> <=> deletion syndrome | L=[<num>] R=[] | witness_types=right_boundary | induced_unions=0
+in <num> <=> <num> without | L=[<num>] R=[] | witness_types=right_boundary | induced_unions=0
+in <num> <=> and <num> μm | L=[<num>] R=[] | witness_types=right_boundary | induced_unions=0
+in <num> <=> for dirty snow | L=[<num>] R=[] | witness_types=right_boundary | induced_unions=0
+in <num> <=> x <num> px | L=[<num>] R=[] | witness_types=right_boundary | induced_unions=0
+in <num> <=> <num> african americans | L=[<num>] R=[] | witness_types=right_boundary | induced_unions=0
+in <num> <=> white <num> | L=[<num>] R=[] | witness_types=right_boundary | induced_unions=0
+in <num> <=> english <num> | L=[<num>] R=[] | witness_types=right_boundary | induced_unions=0
+in <num> <=> irish <num> | L=[<num>] R=[] | witness_types=right_boundary | induced_unions=0
+in <num> <=> german <num> | L=[<num>] R=[] | witness_types=right_boundary | induced_unions=0
+in <num> <=> bc from vulci | L=[<num>] R=[] | witness_types=right_boundary | induced_unions=0
+<num> <=> what is property | L=[in] R=[] | witness_types=right_boundary | induced_unions=0
+<num> <=> <num> b | L=[in] R=[] | witness_types=right_boundary | induced_unions=0
+<num> <=> spanish and <num> | L=[<num> in] R=[] | witness_types=right_boundary | induced_unions=0
+<num> <=> <num> white v | L=[in] R=[] | witness_types=right_boundary | induced_unions=0
+th century bc <=> ad uncial | L=[latin <num>] R=[] | witness_types=right_boundary | induced_unions=0
+name <=> of montgomery | L=[port] R=[] | witness_types=right_boundary | induced_unions=0
+
+## internal_frame (26 accepted merges)
+to <=> jewish | L=[<num>] R=[<num>] | witness_types=internal_frame | induced_unions=2
+to <=> w m− | L=[<num>] R=[<num>] | witness_types=internal_frame | induced_unions=2
+to <=> to the <num> | L=[according] R=[u] | witness_types=internal_frame | induced_unions=0
+to <=> in spanish and | L=[<num>] R=[<num>] | witness_types=internal_frame | induced_unions=0
+to <=> were undocumented <num> | L=[<num>] R=[<num>] | witness_types=internal_frame | induced_unions=0
+to <=> hispanic white | L=[<num>] R=[<num>] | witness_types=internal_frame | induced_unions=2
+to <=> and scots irish | L=[<num>] R=[<num>] | witness_types=internal_frame | induced_unions=0
+to <=> buddhist and | L=[<num>] R=[<num>] | witness_types=internal_frame | induced_unions=2
+to <=> in april | L=[<num>] R=[<num>] | witness_types=internal_frame | induced_unions=2
+to <=> billion in march | L=[<num>] R=[<num>] | witness_types=internal_frame | induced_unions=0
+to <=> million travellers spent | L=[<num>] R=[<num>] | witness_types=internal_frame | induced_unions=0
+of <=> of south | L=[university] R=[alabama] | witness_types=internal_frame | induced_unions=2
+english <=> per <num> | L=[<num>] R=[<num>] | witness_types=internal_frame | induced_unions=0
+in spanish <=> non hispanic white | L=[<num>] R=[and <num>] | witness_types=internal_frame | induced_unions=0
+in spanish <=> buddhist | L=[<num>] R=[and <num>] | witness_types=internal_frame | induced_unions=1
+cases of <=> decisions in | L=[united states supreme court] R=[baker v] | witness_types=internal_frame | induced_unions=2
+people as of <=> travellers spent | L=[<num> million] R=[<num>] | witness_types=internal_frame | induced_unions=0
+babbling <=> single words | L=[no] R=[by <num> months] | witness_types=internal_frame | induced_unions=2
+sex ratio averages <=> tally reached | L=[the] R=[<num>] | witness_types=internal_frame | induced_unions=0
+fresh <=> freshly fallen | L=[<num> for] R=[snow to about <num>] | witness_types=internal_frame | induced_unions=2
+
+## mixed (0 accepted merges)

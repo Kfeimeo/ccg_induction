@@ -1,0 +1,2 @@
+nominal_tokens,actual_condition_d_tokens,initial_objects,local_witnesses,merge_candidates,accepted_merges,rejected_merges,redundant_candidates,induced_unions,resulting_eclasses,largest_eclass,largest_eclass_ratio,median_class_size,p95_class_size,common_objects_prev,changed_pairs_prev,changed_pair_share_prev,pos_labeled_objects,within_class_pos_purity,within_class_labeled_pairs,pairwise_same_pos_precision,runtime_seconds
+100000,87975,135661,27149,27107,442,12703,13962,55,135164,162,0.001194,1,1,0,0,0.000000,0,-1,0,-1,4.850537

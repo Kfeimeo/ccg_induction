@@ -1,0 +1,8 @@
+corpus,nominal_tokens,actual_tokens,sentences,short_sentence_occurrences,distinct_complete_spans,hub_candidate_pairs
+clean_wiki_body,20000,20008,817,38,21,210
+clean_wiki_body,40000,40001,2393,600,214,22791
+clean_wiki_body,100000,100007,7136,2488,1180,695610
+clean_wiki_body,300000,300025,19976,5775,2347,2753031
+clean_wiki_body,1000000,1000002,59896,13847,4857,11792796
+clean_wiki_body,3000000,3000032,182781,39188,9839,48398041
+clean_wiki_body,10000000,10000013,624533,153458,33823,571980753

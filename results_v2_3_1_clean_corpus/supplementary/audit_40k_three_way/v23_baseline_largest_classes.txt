@@ -1,0 +1,24 @@
+# SCF v2.3.1 largest learned classes -- corpus v23_baseline_condition_d (v23_condition_d)
+# [S] = member observed as a complete sentence ((eps,eps) frame)
+
+# scale 40000 -- top 20 classes of 57209 (objects 57396)
+size=53 complete_sentence_members=53 single_token_members=9 contains_num_members=26: anarchism [S] | leader ruler cf [S] | published in <num> [S] | st [S] | n [S] | t [S] | <num> to <num> [S] | <num> – <num> [S] | l [S] | g [S] | also m [S] | <num> march <num> [S] | graeber david [S] | an anarchist faq [S] | scott james c [S] | woodcock george ed [S] | <num> in <num> [S] | an estimated <num> [S] | unbalanced excitatory–inhibitory networks [S] | <num> deletion syndrome [S] | by <num> months [S] | <num> <num> without [S] | preempted diagnoses [S] | president pictures [S] | aerosol indirect effect [S] | in <num> b [S] | <num> in french [S] | rapier [S] | bankhead [S] | in the u [S] | <num> white <num> [S] | <num> asian <num> [S] | in <num> <num> [S] | <num> english <num> [S] | <num> irish <num> [S] | <num> german <num> [S] | <num> black <num> [S] | <num> native <num> [S] | rank [S] | population <num> census [S] | ... (13 more)
+size=28 complete_sentence_members=3 single_token_members=3 contains_num_members=20: e [S] | in <num> [S] | c [S] | <num> black | per <num> <num> | an estimated | deletion syndrome | <num> without | and <num> μm | deciduous trees <num> | for dirty snow | <num> african americans | <num> white | <num> native | white <num> | native <num> | <num> english | english <num> | <num> irish | irish <num> | <num> german | german <num> | black <num> | other race <num> | french incl | patois cajun | muslim <num> | hindu
+size=25 complete_sentence_members=0 single_token_members=4 contains_num_members=3: to | jewish | open ocean | worn asphalt | conifer forest summer | bare soil | green grass | desert sand | new concrete | ocean ice | fresh snow | freshly fallen snow | w m− | to the <num> | in spanish and | <num> <num> <num> | were undocumented <num> | hispanic white | asian | and scots irish | mormon | buddhist and | in april | billion in march | million travellers spent
+size=17 complete_sentence_members=0 single_token_members=0 contains_num_members=16: to <num> | in french | open ocean <num> | worn asphalt <num> | bare soil <num> | green grass <num> | desert sand <num> | new concrete <num> | ocean ice <num> | fresh snow <num> | w m− <num> | hispanic white <num> | asian <num> | mormon <num> | jewish <num> | buddhist and <num> | in april <num>
+size=16 complete_sentence_members=0 single_token_members=0 contains_num_members=16: <num> to | <num> open ocean | <num> worn asphalt | <num> bare soil | <num> green grass | <num> desert sand | <num> new concrete | <num> ocean ice | <num> fresh snow | <num> w m− | <num> hispanic white | <num> asian | <num> mormon | <num> jewish | <num> buddhist and | <num> in april
+size=11 complete_sentence_members=0 single_token_members=2 contains_num_members=5: in | london pluto press | <num> per <num> | <num> deciduous trees | forces on april | carr <num> and | the tally reached | immigration from outside | <num> were undocumented | <num> other race | muslim
+size=6 complete_sentence_members=1 single_token_members=1 contains_num_members=5: <num> [S] | what is property | spanish and <num> | <num> white v | <num> and scots | <num> billion in
+size=4 complete_sentence_members=0 single_token_members=0 contains_num_members=3: published in | <num> in | <num> march | <num> muslim
+size=3 complete_sentence_members=0 single_token_members=0 contains_num_members=0: in the | according to the | mercedes benz
+size=3 complete_sentence_members=3 single_token_members=1 contains_num_members=1: s [S] | william b [S] | about <num> [S]
+size=3 complete_sentence_members=0 single_token_members=1 contains_num_members=0: in spanish | non hispanic white | buddhist
+size=3 complete_sentence_members=0 single_token_members=0 contains_num_members=1: per <num> | deciduous trees | other race
+size=2 complete_sentence_members=0 single_token_members=0 contains_num_members=0: without and archos | archon or arkhē
+size=2 complete_sentence_members=2 single_token_members=1 contains_num_members=1: states [S] | <num> million [S]
+size=2 complete_sentence_members=0 single_token_members=1 contains_num_members=0: by | no babbling by
+size=2 complete_sentence_members=0 single_token_members=1 contains_num_members=0: also | crook judge frank
+size=2 complete_sentence_members=0 single_token_members=1 contains_num_members=1: population | <num> since the
+size=2 complete_sentence_members=0 single_token_members=2 contains_num_members=0: german | irish
+size=2 complete_sentence_members=1 single_token_members=0 contains_num_members=2: <num> <num> [S] | <num> b
+size=2 complete_sentence_members=0 single_token_members=0 contains_num_members=1: anarchist faq | estimated <num>

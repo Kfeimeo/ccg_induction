@@ -1,0 +1,4 @@
+corpus,nominal_tokens,actual_tokens,sentences,short_sentence_occurrences,distinct_complete_spans,hub_candidate_pairs
+clean_wiki_body_drop_punct,100000,100014,7683,2697,1314,862641
+clean_wiki_body_drop_punct,1000000,1000004,69007,17648,6681,22314540
+clean_wiki_body_drop_punct,10000000,10000002,696047,185922,52022,1353118231

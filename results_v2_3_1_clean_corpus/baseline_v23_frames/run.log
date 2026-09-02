@@ -1,0 +1,2 @@
+scale 100000 (actual 87975, sentences 4450, documents 15): objects 135661, witnesses 27149, candidates 27107, accepted 442, rejected 12703, classes 135164, largest 162, empty-frame objects 216, empty-frame-only accepted 186, runtime 5.53377 s, peak RSS 116.859 MB
+available sentences 88930, nominal tokens 2040877; wrote results_v2_3_1_clean_corpus/baseline_v23_frames

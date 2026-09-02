@@ -1,0 +1,43 @@
+# Candidates rolled back by exact composition conflicts
+
+# scale 100000
+candidate anarchism <=> a | witness L=[] R=[]
+  conflict: Comp(anarchism, is, anarchism is) vs Comp(a, is, a is); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> e | witness L=[] R=[]
+  conflict: Comp(century, anarchism, century anarchism) vs Comp(century, e, century e); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> in <num> | witness L=[] R=[]
+  conflict: Comp(anarchism, is, anarchism is) vs Comp(in <num>, is, in <num> is); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> <num> | witness L=[] R=[]
+  conflict: Comp(anarchism, is, anarchism is) vs Comp(<num>, is, <num> is); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> <num> s | witness L=[] R=[]
+  conflict: Comp(anarchism, a, anarchism a) vs Comp(<num> s, a, <num> s a); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> s | witness L=[] R=[]
+  conflict: Comp(anarchism, a, anarchism a) vs Comp(s, a, s a); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> states | witness L=[] R=[]
+  conflict: Comp(anarchism, that, anarchism that) vs Comp(states, that, states that); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> william b | witness L=[] R=[]
+  conflict: Comp(and, anarchism, and anarchism) vs Comp(and, william b, and william b); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> b | witness L=[] R=[]
+  conflict: Comp(anarchism, is, anarchism is) vs Comp(b, is, b is); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> congress | witness L=[] R=[]
+  conflict: Comp(anarchism, as, anarchism as) vs Comp(congress, as, congress as); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> st | witness L=[] R=[]
+  conflict: Comp(anarchism, the, anarchism the) vs Comp(st, the, st the); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> <num> million | witness L=[] R=[]
+  conflict: Comp(anarchism, with, anarchism with) vs Comp(<num> million, with, <num> million with); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> c | witness L=[] R=[]
+  conflict: Comp(anarchism, and, anarchism and) vs Comp(c, and, c and); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> n | witness L=[] R=[]
+  conflict: Comp(anarchism, a, anarchism a) vs Comp(n, a, n a); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> t | witness L=[] R=[]
+  conflict: Comp(anarchism, the, anarchism the) vs Comp(t, the, t the); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> science | witness L=[] R=[]
+  conflict: Comp(anarchism, are, anarchism are) vs Comp(science, are, science are); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> territory | witness L=[] R=[]
+  conflict: Comp(anarchism, and, anarchism and) vs Comp(territory, and, territory and); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> <num> <num> | witness L=[] R=[]
+  conflict: Comp(anarchism, that, anarchism that) vs Comp(<num> <num>, that, <num> <num> that); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> city | witness L=[] R=[]
+  conflict: Comp(anarchism, is, anarchism is) vs Comp(city, is, city is); outputs have different observed exact-context profiles and no direct substitution witness
+candidate anarchism <=> p | witness L=[] R=[]
+  conflict: Comp(anarchism, <num>, anarchism <num>) vs Comp(p, <num>, p <num>); outputs have different observed exact-context profiles and no direct substitution witness
