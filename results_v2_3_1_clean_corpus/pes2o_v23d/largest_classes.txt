@@ -1,0 +1,43 @@
+# SCF v2.3.1 largest learned classes (pes2o, v23d)
+
+# scale 100000 -- 20 largest classes
+size=111 lexical_members=17 members_with_empty_frame=110 accepted_merges[empty_frame=109 left_boundary=0 right_boundary=1 internal_frame=0]
+  of a | paper | ncbi | nlm | gov | solge nomics | org | <num> b <num> | panth erdb | and <num> p | <num> and <num> | <num> to <num> | room temp | <num> • | <num> p <num> | clin | haque et al | rajkumar et al | rhodus et al | sahebjamee et al | korostoff et al | sharma et al | rajkumar et at | poldrack et al | gountouna et al | face vs | white et al | happy discrimination | <num> <num> female | py program | faces vs | <num> vs | ambiguous vs | nimh | fixation faces vs | <num> c <num> | <num> fair icc | <num> good icc | <num> sd <num> | baseline activity r | ... (71 more)
+size=62 lexical_members=2 members_with_empty_frame=2 accepted_merges[empty_frame=1 left_boundary=0 right_boundary=60 internal_frame=0]
+  a | mathews sharrock <num> | weller et al | nih | figure <num> b | franklin et al | fisher's exact test | were considered significant | were also revealed | respectively figure <num> | chen et al | test retest reliability | gradin et al | yendiki et al | years sd <num> | and excellent icc | and task vs | b graphpad software | or p <num> | ml cat no | cancel each other | one by one | to k <num> | n ă <num> | sex biased genes | up to <num> | wilcoxon rank test | these genes <num> | were female biased | before further analysis | × <num> <num> | a sd <num> | b − <num> | sd and <num> | kg to <num> | lg ml respectively | have been neglected | for ν <num> | pallero et al | owers et al | ... (22 more)
+size=60 lexical_members=22 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=30 right_boundary=0 internal_frame=0]
+  <num> franklin | white | <num> weller | likewise woods | haque | rajkumar | sahebjamee | korostoff | sharma | similar to rhodus | poldrack | gountouna | <num> gradin | <num> yendiki | neutral plichta | <num> white | <num> chen | grunert | emrich | similarly mclean | barreiro hurlé | ono | ma | poggianti | <num> pallero | ferrari | <num> owers | pranger | stroe | recently zenteno | <num> morganson | <num> collaboration | nurgaliev | <num> menanteau | <num> komatsu | <num> respectively chiu | <num> and dietrich | crocce | <num> song | <num> zenteno | ... (20 more)
+size=55 lexical_members=0 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=1 right_boundary=0 internal_frame=0]
+  <num> weller et | <num> franklin et | likewise woods et | haque et | rajkumar et | and lee at | sahebjamee et | korostoff et | sharma et | poldrack et | gountouna et | <num> gradin et | <num> yendiki et | neutral plichta et | <num> white et | white et | <num> chen et | grunert et | emrich et | similarly mclean et | barreiro hurlé et | ono et | poggianti et | <num> pallero et | ferrari et | <num> owers et | pranger et | ma et | stroe et | recently zenteno et | <num> morganson et | <num> collaboration et | nurgaliev et | <num> menanteau et | <num> komatsu et | crocce et | <num> song et | <num> zenteno et | <num> weilbacher et | <num> mcdonald et | ... (15 more)
+size=46 lexical_members=1 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=45 right_boundary=0 internal_frame=0]
+  of | <num> mathews sharrock | org downloaded may | <num> respectively figure | <num> years sd | a total of | <num> Â | k <num> mh | elegans model | p values of | potential targeted treatment | <num> × <num> | <num> over | similarly the cdst | in going from | samples x px | proof of theorem | <num> to k | <num> up to | bs <num> proposition | bs <num> lemma | assume p ě | ver <num> corollary | n m in | asz <num> lemma | <num> n ă | bub <num> lemma | cjmp <num> theorem | ranging from | module <num> contained | of these genes | <num> a sd | <num> b − | <num> sd and | <num> kg to | and mg | <num> or p | motion <num> | <num> for ν | <num> <num> z∼ | ... (6 more)
+size=29 lexical_members=0 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=0 internal_frame=1]
+  weller et | franklin et | chen et | gradin et | yendiki et | pallero et | owers et | yoon et | song et | zenteno et | morganson et | collaboration et | menanteau et | komatsu et | respectively chiu et | and dietrich et | weilbacher et | and bayliss et | mcdonald et | pillepich et | springel et | naiman et | marinacci et | ribeiro et | lopes et | olave rojas et | monteiro oliveira et | mahler et | navarro et
+size=28 lexical_members=23 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=0 internal_frame=27]
+  chen | franklin | weller | gradin | yendiki | pallero | owers | yoon | song | zenteno | morganson | menanteau | komatsu | respectively chiu | and dietrich | weilbacher | and bayliss | mcdonald | pillepich | springel | naiman | marinacci | ribeiro | lopes | olave rojas | monteiro oliveira | mahler | navarro
+size=23 lexical_members=1 members_with_empty_frame=1 accepted_merges[empty_frame=0 left_boundary=14 right_boundary=7 internal_frame=1]
+  <num> | <num> <num> and | <num> figure <num> | overt and happy | fixation faces | <num> and task | average faces | additional contrasts angry | difference value ambiguous | overt faces happy | values of <num> | a error <num> | receive allergy alerts | the best interpretability | if one chooses | substituting these choices | note however that | see appendix h | <num> nmbce mmcr | <num> lg ml | <num> t m | dietrich et al | bayliss et al
+size=16 lexical_members=0 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=0 internal_frame=15]
+  mathews sharrock | respectively figure | up to | years sd | or p | sd and | × <num> | to k | for ν | n ă | a sd | b − | kg to | <num> z∼ | for reference | ≤ ≤
+size=13 lexical_members=4 members_with_empty_frame=1 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=12 internal_frame=0]
+  to <num> | • | vs | <num> female | fair icc | good icc | graphpad software | and v | in eq | for details | sd respectively | arcsec | mags
+size=13 lexical_members=1 members_with_empty_frame=12 accepted_merges[empty_frame=2 left_boundary=0 right_boundary=1 internal_frame=0]
+  of <num> | less than <num> | iv | <num> Â <num> | elegans model <num> | <num> over <num> | ranging from <num> | and mg <num> | motion <num> <num> | <num> Ω <num> | <num> kpc | <num> auto <num> | <num> estimated <num>
+size=9 lexical_members=1 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=0 internal_frame=8]
+  and | woo krishnan wager | and a error | discussed in section | fdr <num> e | g cm <num> | lg ml and | for muse spectra | m see §
+size=9 lexical_members=1 members_with_empty_frame=2 accepted_merges[empty_frame=1 left_boundary=7 right_boundary=0 internal_frame=0]
+  gov sra srp | motion | org content <num> | <num> × | d Á n | <num> on chromosome | <num> at chromosome | <num> g cm | tokyo japan
+size=6 lexical_members=1 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=2 internal_frame=0]
+  over <num> | Â <num> | Ω <num> | kpc | auto <num> | estimated <num>
+size=5 lexical_members=2 members_with_empty_frame=5 accepted_merges[empty_frame=4 left_boundary=0 right_boundary=0 internal_frame=0]
+  co | angry faces | remark <num> | dq | <num> nb
+size=5 lexical_members=1 members_with_empty_frame=2 accepted_merges[empty_frame=1 left_boundary=1 right_boundary=1 internal_frame=0]
+  <num> p | lee at al | <num> alex andoni | ‚ by | dynamics
+size=5 lexical_members=1 members_with_empty_frame=3 accepted_merges[empty_frame=2 left_boundary=0 right_boundary=1 internal_frame=1]
+  figure <num> | proof | corrected version | <num> algorithm | chiu et al
+size=5 lexical_members=2 members_with_empty_frame=2 accepted_merges[empty_frame=1 left_boundary=0 right_boundary=3 internal_frame=0]
+  fig | iii | addition <num> | our notation | going from <num>
+size=4 lexical_members=1 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=3 right_boundary=0 internal_frame=0]
+  in | differential expression of | <num> discussed in | f lower bounds
+size=4 lexical_members=1 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=3 right_boundary=0 internal_frame=0]
+  <num> and | iccs for the | substituting | the cdst

@@ -1,0 +1,91 @@
+# SCF v2.3.1 accepted merges by witness frame type (pes2o, v23d)
+
+# scale 100000
+
+## empty_frame accepted merges (first 20 in candidate order)
+of a <=> paper | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+of a <=> ncbi | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+of a <=> nlm | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+of a <=> gov | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+of a <=> solge nomics | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+of a <=> org | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+of a <=> <num> b <num> | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+of a <=> panth erdb | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+of a <=> and <num> p | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+of a <=> <num> and <num> | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+of a <=> <num> to <num> | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+of a <=> room temp | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+of a <=> <num> • | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+of a <=> <num> p <num> | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+of a <=> clin | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+of a <=> haque et al | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+of a <=> rajkumar et al | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+of a <=> rhodus et al | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+of a <=> sahebjamee et al | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+of a <=> korostoff et al | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+
+## left_boundary accepted merges (first 20 in candidate order)
+of <=> <num> mathews sharrock | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+of <=> org downloaded may | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+of <=> <num> respectively figure | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+of <=> <num> years sd | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+of <=> a total of | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+of <=> <num> Â | L=[] R=[<num>] | induced_unions=1 | pair_witnesses=1 | witness_types=left_boundary
+of <=> k <num> mh | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+of <=> elegans model | L=[] R=[<num>] | induced_unions=1 | pair_witnesses=1 | witness_types=left_boundary
+of <=> p values of | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+of <=> potential targeted treatment | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+of <=> <num> × <num> | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+of <=> <num> over | L=[] R=[<num>] | induced_unions=1 | pair_witnesses=1 | witness_types=left_boundary
+of <=> similarly the cdst | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+of <=> in going from | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+of <=> samples x px | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+of <=> proof of theorem | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+of <=> <num> to k | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+of <=> <num> up to | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+of <=> bs <num> proposition | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+of <=> bs <num> lemma | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+
+## right_boundary accepted merges (first 20 in candidate order)
+a <=> mathews sharrock <num> | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+a <=> weller et al | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+a <=> figure <num> b | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+a <=> franklin et al | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+a <=> fisher's exact test | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+a <=> were considered significant | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+a <=> were also revealed | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+a <=> respectively figure <num> | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+a <=> chen et al | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+a <=> test retest reliability | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+a <=> gradin et al | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+a <=> yendiki et al | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+a <=> years sd <num> | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+a <=> and excellent icc | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+a <=> and task vs | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+a <=> b graphpad software | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+a <=> or p <num> | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+a <=> ml cat no | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+a <=> cancel each other | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+a <=> one by one | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+
+## internal_frame accepted merges (first 20 in candidate order)
+and <=> woo krishnan wager | L=[<num>] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+and <=> and a error | L=[<num>] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+and <=> discussed in section | L=[<num>] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+and <=> fdr <num> e | L=[<num>] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+and <=> g cm <num> | L=[<num>] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+and <=> lg ml and | L=[<num>] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+and <=> for muse spectra | L=[<num>] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+and <=> m see § | L=[<num> × <num> <num>] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+to <=> g and g | L=[<num>] R=[<num> t m] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+chen <=> franklin | L=[<num>] R=[et al] | induced_unions=3 | pair_witnesses=1 | witness_types=internal_frame
+chen <=> weller | L=[<num>] R=[et al] | induced_unions=3 | pair_witnesses=1 | witness_types=internal_frame
+chen <=> gradin | L=[<num>] R=[et al] | induced_unions=3 | pair_witnesses=1 | witness_types=internal_frame
+chen <=> yendiki | L=[<num>] R=[et al] | induced_unions=3 | pair_witnesses=1 | witness_types=internal_frame
+chen <=> pallero | L=[<num>] R=[et al] | induced_unions=3 | pair_witnesses=1 | witness_types=internal_frame
+chen <=> owers | L=[<num>] R=[et al] | induced_unions=3 | pair_witnesses=1 | witness_types=internal_frame
+chen <=> yoon | L=[<num>] R=[et al] | induced_unions=3 | pair_witnesses=1 | witness_types=internal_frame
+chen <=> song | L=[<num>] R=[et al] | induced_unions=3 | pair_witnesses=1 | witness_types=internal_frame
+chen <=> zenteno | L=[<num>] R=[et al] | induced_unions=3 | pair_witnesses=1 | witness_types=internal_frame
+chen <=> morganson | L=[<num>] R=[et al] | induced_unions=3 | pair_witnesses=1 | witness_types=internal_frame
+chen <=> menanteau | L=[<num>] R=[et al] | induced_unions=3 | pair_witnesses=1 | witness_types=internal_frame

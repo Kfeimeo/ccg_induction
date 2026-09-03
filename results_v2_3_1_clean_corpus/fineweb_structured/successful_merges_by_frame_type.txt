@@ -1,0 +1,91 @@
+# SCF v2.3.1 accepted merges by witness frame type (fineweb, structured)
+
+# scale 100000
+
+## empty_frame accepted merges (first 20 in candidate order)
+<num> <=> <num> , <num> | L=[] R=[] | induced_unions=0 | pair_witnesses=2 | witness_types=empty_frame+internal_frame
+<num> <=> if only | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> sigh | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> you ran | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> why the excuses | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> why the denial | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> its weird | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> urinary incontinence | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> advanced directives | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> clear and precise | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> chemical reaction | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> free the cans | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> - get advice | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> - make friends | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> - upload photos | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> opening reception sat | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> game index | | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> all rights reserved | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> great decorating addition | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> sort it out | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+
+## left_boundary accepted merges (first 20 in candidate order)
+the <=> cio ( | L=[] R=[sept] | induced_unions=1 | pair_witnesses=1 | witness_types=left_boundary
+the <=> flanked by | L=[] R=[u . s] | induced_unions=1 | pair_witnesses=1 | witness_types=left_boundary
+february <=> published on january | L=[] R=[<num> , <num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+february <=> tuesday , august | L=[] R=[<num> , <num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+february <=> friday may | L=[] R=[<num> , <num>] | induced_unions=1 | pair_witnesses=1 | witness_types=left_boundary
+february <=> times june | L=[] R=[<num> , <num>] | induced_unions=1 | pair_witnesses=1 | witness_types=left_boundary
+february <num> <=> <num> : <num> | L=[] R=[, <num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+february <num> <=> july <num> | L=[] R=[, <num>] | induced_unions=1 | pair_witnesses=1 | witness_types=left_boundary
+february <num> <=> archive for november | L=[] R=[, <num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+february <num> <=> going out | L=[] R=[, <num>] | induced_unions=1 | pair_witnesses=1 | witness_types=left_boundary
+<num> <=> <num> . <num> | L=[] R=[)] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+<num> <=> <num> - <num> | L=[] R=[. <num> : <num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+<num> <=> ( turkey | L=[] R=[)] | induced_unions=1 | pair_witnesses=1 | witness_types=left_boundary
+<num> <=> ( france | L=[] R=[)] | induced_unions=1 | pair_witnesses=1 | witness_types=left_boundary
+<num> <=> ( mike frisch | L=[] R=[)] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+<num> <=> <num> , etc | L=[] R=[. <num> : <num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+<num> <=> luke <num> | L=[] R=[: <num> , <num> . <num> : <num>] | induced_unions=1 | pair_witnesses=1 | witness_types=left_boundary
+<num> , <=> september <num> , | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+<num> , <=> june <num> , | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+<num> , <=> april <num> , | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+
+## right_boundary accepted merges (first 20 in candidate order)
+single post <=> public profile | L=[view] R=[] | induced_unions=1 | pair_witnesses=1 | witness_types=right_boundary
+single post <=> on map | L=[view] R=[] | induced_unions=1 | pair_witnesses=1 | witness_types=right_boundary
+<num> <=> at ohio state | L=[<num> ,] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+<num> <=> delaware state * | L=[<num> ,] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+<num> <=> is scheduled to | L=[<num> ,] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+, <num> <=> , tennessee state | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+, <num> <=> , samford | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+, <num> <=> . <num> ) | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+, <num> <=> + five = | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+, <num> <=> stirling rd | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+, <num> <=> tim . iv | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+, <num> <=> cor . ix | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+, <num> <=> cor . xv | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+, <num> <=> cor . iv | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+, <num> <=> uber as prefix | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+, <num> <=> and <num> here | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+, <num> <=> clifton court | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+: <num> am <=> : <num> pm | L=[, wednesday , august <num> th , <num> <num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+<num> am <=> <num> pm | L=[, wednesday , august <num> th , <num> <num> :] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+am <=> pm | L=[, wednesday , august <num> th , <num> <num> : <num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+
+## internal_frame accepted merges (first 20 in candidate order)
+: <=> : <num> , | L=[<num>] R=[<num> . <num> : <num>] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+of <=> of non - | L=[| number] R=[critical violations : | | <num> |] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+of <=> . <num> : | L=[<num> - <num>] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+<num> <=> <num> here and | L=[buzz words of] R=[here] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+<num> <=> <num> part two | L=[buzz words of] R=[here] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+feb <=> sep | L=[join date :] R=[<num>] | induced_unions=4 | pair_witnesses=1 | witness_types=internal_frame
+, <=> - <num> of | L=[<num>] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+about <=> holiday recycling | L=[it's] R=[time] | induced_unions=2 | pair_witnesses=1 | witness_types=internal_frame
+. <=> , <num> . | L=[<num> : <num>] R=[<num> : <num>] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+. <=> - <num> . | L=[<num>] R=[<num> : <num>] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+. <=> : <num> . | L=[<num>] R=[<num> : <num>] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+. <=> , etc . | L=[<num>] R=[<num> : <num>] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+<num> ) <=> <num> ) - | L=[website magazine ( may <num> ,] R=[report puts facebook , google ad values on display] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+tim <=> cor | L=[<num>] R=[. iv] | induced_unions=3 | pair_witnesses=1 | witness_types=internal_frame
+critical <=> non - critical | L=[| number of] R=[violations : | | <num> |] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+critical <=> resource - based | L=[part <num> : a] R=[discourse in studies of the small , family business] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+rolls <=> rolling | L=[<num> , <num> ) - google] R=[out adwords management for multiple devices] | induced_unions=5 | pair_witnesses=1 | witness_types=internal_frame
+feel <=> taste | L=[you cannot] R=[it] | induced_unions=3 | pair_witnesses=1 | witness_types=internal_frame
+wednesday , <=> thursday , | L=[,] R=[august <num> th , <num> <num> : <num> pm] | induced_unions=2 | pair_witnesses=1 | witness_types=internal_frame
+<num> yr fixed <=> <num> yr refi | L=[|] R=[| | <num> . <num> % | | <num> . <num> % |] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame

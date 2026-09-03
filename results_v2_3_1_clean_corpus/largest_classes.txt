@@ -1,0 +1,43 @@
+# SCF v2.3.1 largest learned classes (pes2o, structured)
+
+# scale 100000 -- 20 largest classes
+size=42 lexical_members=6 members_with_empty_frame=42 accepted_merges[empty_frame=41 left_boundary=0 right_boundary=0 internal_frame=0]
+  <num> | | gravitropism | | phototropism | [ <num> ] | histopathology and immunohistochemistry | j . clin | conclusions | | introduction | | participants | | task paradigms | visual search task | | behavioral data | | acquisition | | imaging preprocessing | | imaging analysis | | discussion | mouse behavioural analysis | quantification microrna panel | patients characteristics | mechanism signaling pathways | literature review | description levels * | list of products | discussion and conclusion | preliminaries | grant assumption <num> | fix any t | if we choose | output w m | n ` ˆ | sample description | gene expression measurements | gene expression qc | go category enrichment | i . introduction | vi | vii | acknowledgment | cluster redshift estimation | cluster member selection | ... (2 more)
+size=8 lexical_members=1 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=7 internal_frame=0]
+  phototropism | go enrichment analysis | con clus ions | task paradigms | behavioral data | imaging preprocessing | imaging analysis | materials and methods
+size=5 lexical_members=1 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=4 right_boundary=0 internal_frame=0]
+  data | | go enrichment | voxel - wise | roi - based | data collection and
+size=4 lexical_members=2 members_with_empty_frame=4 accepted_merges[empty_frame=3 left_boundary=0 right_boundary=0 internal_frame=0]
+  results | introduction | data analysis | let ď
+size=4 lexical_members=1 members_with_empty_frame=4 accepted_merges[empty_frame=3 left_boundary=0 right_boundary=0 internal_frame=0]
+  background | differential expression | <num> : | galaxy redshifts
+size=4 lexical_members=1 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=3 right_boundary=0 internal_frame=0]
+  table | proof of theorem | assume p ě | <num> n ă
+size=3 lexical_members=1 members_with_empty_frame=3 accepted_merges[empty_frame=2 left_boundary=0 right_boundary=0 internal_frame=0]
+  paper | laboratory tests | case report
+size=3 lexical_members=2 members_with_empty_frame=3 accepted_merges[empty_frame=2 left_boundary=0 right_boundary=0 internal_frame=0]
+  statistical analysis | med | iv
+size=3 lexical_members=1 members_with_empty_frame=3 accepted_merges[empty_frame=2 left_boundary=0 right_boundary=0 internal_frame=0]
+  study group | immunohistochemistry | remark <num>
+size=3 lexical_members=0 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=1 right_boundary=0 internal_frame=0]
+  evolution rates of | genomic location of | tissue specificity of
+size=2 lexical_members=1 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=0 internal_frame=1]
+  in | highly enrich
+size=2 lexical_members=1 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=1 internal_frame=0]
+  : | n ă <num>
+size=2 lexical_members=0 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=0 internal_frame=0]
+  genes in | genes highly enrich
+size=2 lexical_members=1 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=1 internal_frame=0]
+  analysis | collection and analysis
+size=2 lexical_members=0 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=0 internal_frame=1]
+  auxin responses | photosynthetic responses
+size=2 lexical_members=1 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=1 right_boundary=0 internal_frame=0]
+  | | left panel :
+size=2 lexical_members=1 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=0 internal_frame=1]
+  rneasy | rneasy plant mini
+size=2 lexical_members=1 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=0 internal_frame=1]
+  plant mini kit | kit
+size=2 lexical_members=0 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=0 internal_frame=1]
+  rnaseq differential expression | go enrichment
+size=2 lexical_members=1 members_with_empty_frame=2 accepted_merges[empty_frame=1 left_boundary=0 right_boundary=0 internal_frame=0]
+  figure <num> | discussion

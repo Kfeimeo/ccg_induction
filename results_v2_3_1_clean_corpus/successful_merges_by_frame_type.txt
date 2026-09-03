@@ -1,0 +1,84 @@
+# SCF v2.3.1 accepted merges by witness frame type (pes2o, structured)
+
+# scale 100000
+
+## empty_frame accepted merges (first 20 in candidate order)
+<num> <=> | gravitropism | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> | phototropism | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> [ <num> ] | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> histopathology and immunohistochemistry | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> j . clin | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> conclusions | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> | introduction | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> | participants | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> | task paradigms | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> visual search task | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> | behavioral data | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> | acquisition | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> | imaging preprocessing | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> | imaging analysis | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> | discussion | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> mouse behavioural analysis | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> quantification microrna panel | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> patients characteristics | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> mechanism signaling pathways | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> <=> literature review | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+
+## left_boundary accepted merges (first 20 in candidate order)
+| <=> left panel : | L=[] R=[visual search task] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+data <=> | go enrichment | L=[] R=[analysis] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+data <=> voxel - wise | L=[] R=[analysis] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+data <=> roi - based | L=[] R=[analysis] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+data <=> data collection and | L=[] R=[analysis] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+table <=> proof of theorem | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+table <=> assume p ě | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+table <=> <num> n ă | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+number <=> figure <num> characterization | L=[] R=[of female - and male - biased genes] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+sex <=> age specific sex | L=[] R=[effects on gene expression] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+face - <=> | face - | L=[] R=[emotion labeling task] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+therefore , <=> step two : | L=[] R=[lim nÑ <num> r r <num> k , n ď <num> r <num> k] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+visual <=> | visual | L=[] R=[search task] | induced_unions=1 | pair_witnesses=1 | witness_types=left_boundary
+| behavioral <=> x - ray | L=[] R=[data] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+| imaging <=> mouse behavioural | L=[] R=[analysis] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+average linear <=> average quadratic | L=[] R=[slope activity at the first session was correlated with the associated reliability map ( r = . <num> )] | induced_unions=1 | pair_witnesses=1 | witness_types=left_boundary
+the discrete choice <=> description of the | L=[] R=[model] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+product and attribute <=> cluster member | L=[] R=[selection] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+then , lim <=> therefore , lim | L=[] R=[nÑ <num> r r <num> k , n ď <num> r <num> k] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+evolution rates <=> genomic location | L=[] R=[of sex - biased genes] | induced_unions=1 | pair_witnesses=1 | witness_types=left_boundary
+
+## right_boundary accepted merges (first 20 in candidate order)
+: <=> n ă <num> | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+analysis <=> collection and analysis | L=[data] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+phototropism <=> go enrichment analysis | L=[|] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+phototropism <=> con clus ions | L=[|] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+phototropism <=> task paradigms | L=[|] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+phototropism <=> behavioral data | L=[|] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+phototropism <=> imaging preprocessing | L=[|] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+phototropism <=> imaging analysis | L=[|] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+phototropism <=> materials and methods | L=[|] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+discrete choice model <=> strongly convex case | L=[the] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+of the model <=> levels * | L=[description] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+ď <=> ρ ď d | L=[let] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+completes the proof <=> establishes step one | L=[this] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+expression measurements <=> expression qc | L=[gene] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+review objective <=> radiation dose monitoring | L=[<num> . a |] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+redshift estimation <=> member selection | L=[cluster] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+
+## internal_frame accepted merges (first 20 in candidate order)
+in <=> highly enrich | L=[sex - biased genes] R=[modules of correlated transcripts] | induced_unions=2 | pair_witnesses=1 | witness_types=internal_frame
+auxin responses <=> photosynthetic responses | L=[| phyb <num> and phyb <num> differentially modulate] R=[in tomato seedlings] | induced_unions=2 | pair_witnesses=1 | witness_types=internal_frame
+rneasy <=> rneasy plant mini | L=[total rna was extracted using an] R=[kit ( qiagen ) according to the manufacturer's instructions] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+plant mini kit <=> kit | L=[total rna was extracted using an rneasy] R=[( qiagen ) according to the manufacturer's instructions] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+rnaseq differential expression <=> go enrichment | L=[|] R=[analysis] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+differentially modulate auxin <=> differentially modulate photosynthetic | L=[| phyb <num> and phyb <num>] R=[responses in tomato seedlings] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+modulate auxin <=> modulate photosynthetic | L=[| phyb <num> and phyb <num> differentially] R=[responses in tomato seedlings] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+of photosynthesis <=> of auxin responses | L=[| regulation] R=[by phytochrome b] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+auxin responses by <=> photosynthesis by | L=[| regulation of] R=[phytochrome b] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+linear <=> log - transformed | L=[average] R=[slope activity at the first session was correlated with the associated reliability map ( r = . <num> )] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+responses were <=> choices were | L=[a total of <num>] R=[collected] | induced_unions=2 | pair_witnesses=1 | witness_types=internal_frame
+linear slope activity <=> quadratic slope activity | L=[average] R=[at the first session was correlated with the associated reliability map ( r = . <num> )] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+of <num> choices <=> of <num> responses | L=[a total] R=[were collected] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+<num> choices <=> <num> responses | L=[a total of] R=[were collected] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+" Ω¨r <=> " Ω¨r r | L=[assumption <num> holds and if x <num> " d <num> n , then ef papx <num> qq´f˚] R=[k d¨ <num> ? n ` m in <num>] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+Ω¨r <=> Ω¨r r | L=[assumption <num> holds and if x <num> " d <num> n , then ef papx <num> qq´f˚ "] R=[k d¨ <num> ? n ` m in <num>] | induced_unions=1 | pair_witnesses=1 | witness_types=internal_frame
+k d¨ <=> r k d¨ | L=[assumption <num> holds and if x <num> " d <num> n , then ef papx <num> qq´f˚ " Ω¨r] R=[<num> ? n ` m in <num>] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
