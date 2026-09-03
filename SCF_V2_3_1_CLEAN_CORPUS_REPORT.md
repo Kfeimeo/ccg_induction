@@ -27,7 +27,9 @@ Because v2.3 removed punctuation (condition D) and v2.3.1 keeps it, the
 comparison is run as a 2×2 at the shared scales — {FineWeb, peS2o} ×
 {v2.3-D preprocessing, v2.3.1 structured preprocessing} — so that the
 corpus effect and the punctuation/segmentation effect can be read
-separately. The main ladder (1e5, 1e6, 1e7, nested) is peS2o × v2.3.1.
+separately. The main ladder is peS2o × v2.3.1 with nested prefixes
+1e5, 2e5, 4e5, 1e6; 1e7 was started and stopped at a measured runtime
+bound (§5.4).
 
 ## 1. Data
 
@@ -139,7 +141,7 @@ merger's public state; the merger itself was not modified.
 | run | corpus | preprocessing | scales completed | output |
 |---|---|---|---|---|
 | baseline | FineWeb | v2.3 CLI, condition D | 1e5 | `results_v2_3_conservative/fineweb_baseline/` |
-| control | FineWeb | v23d (v2.3.1 tool) | 1e5, 2e5; 1e6 stopped (§5.4) | `results_v2_3_1_clean_corpus/fineweb_v23d/` (+ `_growth_2e5`) |
+| control | FineWeb | v23d (v2.3.1 tool) | 1e5, 2e5 (79 min); 1e6 stopped (§5.4) | `results_v2_3_1_clean_corpus/fineweb_v23d/` (+ `_growth_2e5`) |
 | control | FineWeb | structured (v2.3.1) | 1e5, 2e5; 1e6 stopped (§5.4) | `results_v2_3_1_clean_corpus/fineweb_structured/` (+ `_growth_2e5`) |
 | control | peS2o | v23d | 1e5, 2e5; 1e6 stopped (§5.4) | `results_v2_3_1_clean_corpus/pes2o_v23d/` (+ `_growth_2e5`) |
 | **main** | **peS2o** | **structured** | **1e5, 2e5, 4e5, 1e6; 1e7 stopped (§5.4)** | `results_v2_3_1_clean_corpus/pes2o_structured/` (+ `_growth_2e5`, `_growth_4e5`) |
@@ -293,7 +295,33 @@ or a frequency floor to reach 1e7 would define a different experiment.
 
 ### 5.5 Controls at 2e5
 
-PENDING_2E5_TABLE
+The three control cells were re-run at 2e5 (the largest scale all four
+cells could complete: FineWeb / v2.3-D needed 79 min for 242k candidates).
+
+| metric (2e5) | FineWeb / v2.3-D | FineWeb / v2.3.1 | peS2o / v2.3-D | **peS2o / v2.3.1** |
+|---|---|---|---|---|
+| actual tokens | 179,028 | 200,002 | 172,837 | 200,020 |
+| initial objects | 254,349 | 264,315 | 203,521 | 214,140 |
+| local witnesses | 241,979 | 169,292 | 118,718 | **16,846** |
+| merge candidates | 241,834 | 169,058 | 118,056 | **16,824** |
+| accepted / rejected | 1,392 / 135,878 | 1,420 / 53,208 | 1,050 / 59,020 | 232 / 12,205 |
+| accepted / rejected merge rate | 0.0058 / 0.562 | 0.0084 / 0.315 | 0.0089 / 0.500 | 0.0138 / 0.726 |
+| largest class (ratio) | 580 (0.0023) | 503 (0.0019) | 210 (0.0010) | **95 (0.0004)** |
+| #{u : (ε,ε) observed} | 680 | 570 | 326 | **181** |
+| empty-frame candidate share | 0.955 | 0.959 | 0.446 | 0.967 |
+| empty-frame accepted share | 0.411 | 0.367 | 0.232 | 0.552 |
+| largest-class members with (ε,ε) | 451 / 580 | 471 / 503 | 207 / 210 | 94 / 95 |
+| largest-class accepted merges by type (E/L/R/I) | 449 / 38 / 80 / 10 | 466 / 16 / 9 / 6 | 205 / 1 / 1 / 0 | 93 / 1 / 0 / 0 |
+| internal-frame candidates / accepted (acceptance) | 499 / 100 (0.20) | 902 / 205 (0.23) | 12,504 / 282 (0.02) | 56 / 27 (0.48) |
+| runtime (s) | 4,722 | 47 | 147 | 8 |
+
+The 1e5 picture is unchanged at 2e5: every cell's largest class is the
+`(ε,ε)` class (78–98 % of its merges empty-frame, 81–99 % of its members
+carrying `(ε,ε)`); the clean corpus with structured preprocessing has
+14× fewer candidates and a 6× smaller largest class than the baseline, but
+the highest empty-frame share among accepted merges (0.55). From 1e5 to 2e5
+the largest class grows 323 → 580 (FineWeb, baseline preprocessing) and
+42 → 95 (peS2o, structured): the same ×1.8–2.3 growth on both corpora.
 
 ## 6. Manual class audit (recorded, not corrected)
 
@@ -479,7 +507,8 @@ four cells and across 1e5–4e5):
    brackets, formula fragments, by 4e5 the token `and`, by 1e6 the token
    `the`), it is built 96–100 % from empty-frame merges, and it grows
    linearly with the prefix (42 → 95 → 168 → 368), tracking half of all
-   `(ε,ε)` objects; at 1e6 it is larger than FineWeb's class at 1e5.
+   `(ε,ε)` objects, at the same relative rate as FineWeb's (323 → 580 from
+   1e5 to 2e5); at 1e6 it is larger than FineWeb's class at 1e5.
 2. **Does `(ε,ε)` still produce many wrong-looking merges?** Yes. Empty
    frames are 93–97 % of all candidates on the clean corpus (a *higher*
    share than on FineWeb, because the clean corpus removes the other noise

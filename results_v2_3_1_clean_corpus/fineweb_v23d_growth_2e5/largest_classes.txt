@@ -1,0 +1,43 @@
+# SCF v2.3.1 largest learned classes (fineweb, v23d)
+
+# scale 200000 -- 20 largest classes
+size=580 lexical_members=70 members_with_empty_frame=451 accepted_merges[empty_frame=449 left_boundary=38 right_boundary=80 internal_frame=10]
+  <num> | and newfound feelings | stefano | stefano stefano stefano | sigh | you ran | sorry everyone | and move on | why the excuses | why the denial | its weird | or is it | of the <num> | free the cans | rapidrecallexchange | <num> in august | september <num> <num> | <num> and <num> | limit bacteria growth | <num> <num> pm | <num> sat | stephen t | read more » | all rights reserved | sort it out | good for you | <num> peak | <num> yr fixed | yr fixed <num> | <num> yr refi | yr refi <num> | enderle and co | yards per return | <num> of revenue | of revenue to | <num> during <num> | <num> net margin | net margin and | <num> y y | <num> to <num> | ... (540 more)
+size=62 lexical_members=7 members_with_empty_frame=7 accepted_merges[empty_frame=6 left_boundary=54 right_boundary=1 internal_frame=0]
+  the | <num> <num> <num> | <num> <num> and | <num> billion in | a number of | <num> and samford | <num> tennessee state | <num> samford | vi | platform macosx gcc | call <num> <num> | louis ksdk the | salary and benefits | <num> john <num> | oryx <num> <num> | ibis <num> <num> | ardea <num> <num> | ” <num> … | xix | congratulations | <num> percent in | com tel <num> | for £ | sell at | going out | <num> ghz and | <num> db | <num> provided | <num> million of | flanked by | know your h | caleb chaney | <num> long | manufacturer model | be careful | we have <num> | “princeton | <num> and gcc | x kdrive | bangor’s women <num> | ... (22 more)
+size=32 lexical_members=4 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=31 internal_frame=0]
+  sat | in august | during <num> | and no | y y | <num> gal | in orlando | <num> oppa | or above | a share | stirling rd | to show | <num> rom | <num> jer | <num> matt | <num> oxf | <num> provincialibus | million <num> | million today | ghz <num> | ghz fig | miles later | capaldiracing | truecar | victory points | sect | of fig | is pressed | f appears | i appears | or fig | suits walnuts
+size=19 lexical_members=5 members_with_empty_frame=10 accepted_merges[empty_frame=9 left_boundary=7 right_boundary=2 internal_frame=0]
+  <num> <num> | and yet | tar | wow | and sliders | oryx <num> | ibis <num> | ardea <num> | ” <num> <num> | <num> min | arkwright | com tel | gradually | see also | bangor’s women | bangor | grant i | satishchandra p | wadia r
+size=18 lexical_members=4 members_with_empty_frame=16 accepted_merges[empty_frame=15 left_boundary=0 right_boundary=2 internal_frame=0]
+  really | okay | orlando fla | read more | gen | facebook vs | dot | badger rd | who cares | … <num> | what is this | <num> etc | <num> luke ii | ann's academy | simon j | new recipes | any suggestions | posted feb
+size=18 lexical_members=4 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=17 internal_frame=0]
+  newfound feelings | youre still running | move on | then again | their fans | doritos | m ms | fried chicken | subs | pretzels | sycamore av | cairo ill | it didn't | koopman s | <num> percent overnight | baraka | mcarthur j | shankar s
+size=17 lexical_members=0 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=12 internal_frame=0]
+  colfer e | wood m | fallon l | thompson k | dowd s | foley j | lennon t | melling o | sf mckinty a | doyle r | kiernan c | marsden j | gebhart r | stiefvater m | laybourne e | my lane a | smith r
+size=15 lexical_members=0 members_with_empty_frame=15 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=0 internal_frame=0]
+  the <num> | for £ <num> | sell at <num> | going out <num> | <num> provided <num> | manufacturer model <num> | x kdrive <num> | bangor <num> <num> | skerovic a <num> | reboot computer <num> | community care <num> | pmid <num> | <num> long <num> | about us <num> | our liability <num>
+size=14 lexical_members=9 members_with_empty_frame=14 accepted_merges[empty_frame=13 left_boundary=0 right_boundary=0 internal_frame=0]
+  please | if only | the kidneys | great idea | n | inc | fl | thickened | elastica | literally | comparethemarket | imported | pirate costumes | world challenge
+size=13 lexical_members=0 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=8 internal_frame=4]
+  easter brunch | pizza rustica | torta di riso | buttery lemon bars | sumptuous strawberry soup | chicksinanest <num> | egg strata <num> | vegetable noodle kugel | kugel <num> | chicken salad <num> | italian ricotta cheesecake | ricotta cheesecake <num> | lemon bars <num>
+size=11 lexical_members=3 members_with_empty_frame=3 accepted_merges[empty_frame=2 left_boundary=8 right_boundary=0 internal_frame=0]
+  love | j | iv | i can't believe | you cannot touch | you cannot see | you cannot taste | you cannot hear | you cannot feel | can you solve | i had made
+size=11 lexical_members=0 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=8 internal_frame=0]
+  <num> pm | and dec | and u | google vs | <num> tim | luke xix | luke xxi | luke x | <num> thess | issued jul | issued sep
+size=11 lexical_members=6 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=10 right_boundary=0 internal_frame=0]
+  and koopman | natchev | everall | lipton and | and shankar | pujari | kothari | kulkarni | bhagat | trey gowdy r | ya dowd
+size=10 lexical_members=7 members_with_empty_frame=8 accepted_merges[empty_frame=7 left_boundary=2 right_boundary=0 internal_frame=0]
+  good | fr | hey | in this recent | accuweather | amen | here's how it | he didn't | branders | diaz
+size=9 lexical_members=1 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=8 internal_frame=0]
+  am | can't believe it | second that nathanael | love you baltimore | was in shock | had made it | hate intermittent problems | just forgot man | took a ny
+size=9 lexical_members=5 members_with_empty_frame=6 accepted_merges[empty_frame=5 left_boundary=1 right_boundary=2 internal_frame=0]
+  i would | com | www | stupid | y | divinity pgrad mththeologicalethics | divinity pgrad awards | they filled the | preferences
+size=9 lexical_members=1 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=8 internal_frame=0]
+  material | at all | american pie | pirates uniforms | anna ms | shown in fig | indicated in fig | shown in figs | a member yet
+size=9 lexical_members=0 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=7 right_boundary=0 internal_frame=0]
+  <num> of | in the drawings | not shown in | as shown in | referring now to | referring again to | <num> illustrated in | still referring to | circuit shown in
+size=8 lexical_members=4 members_with_empty_frame=2 accepted_merges[empty_frame=1 left_boundary=0 right_boundary=6 internal_frame=0]
+  pat | sept | guardian jan | steeler way | rs sets | outrage | item i | audacity
+size=8 lexical_members=3 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=7 right_boundary=0 internal_frame=0]
+  indian | commandeur | letter from | and mcarthur | atkinson | rogers brian | ya foley | ya marsden
