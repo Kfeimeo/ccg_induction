@@ -139,10 +139,10 @@ merger's public state; the merger itself was not modified.
 | run | corpus | preprocessing | scales completed | output |
 |---|---|---|---|---|
 | baseline | FineWeb | v2.3 CLI, condition D | 1e5 | `results_v2_3_conservative/fineweb_baseline/` |
-| control | FineWeb | v23d (v2.3.1 tool) | 1e5, 1e6 (see §5.3) | `results_v2_3_1_clean_corpus/fineweb_v23d/` |
-| control | FineWeb | structured (v2.3.1) | 1e5, 1e6 (see §5.3) | `results_v2_3_1_clean_corpus/fineweb_structured/` |
-| control | peS2o | v23d | 1e5, 1e6 (see §5.3) | `results_v2_3_1_clean_corpus/pes2o_v23d/` |
-| **main** | **peS2o** | **structured** | **1e5, 2e5, 4e5, 1e6 (see §5.3); 1e7 not reached (§5.4)** | `results_v2_3_1_clean_corpus/pes2o_structured/` (+ `_growth_2e5`, `_growth_4e5`) |
+| control | FineWeb | v23d (v2.3.1 tool) | 1e5, 2e5; 1e6 stopped (§5.4) | `results_v2_3_1_clean_corpus/fineweb_v23d/` (+ `_growth_2e5`) |
+| control | FineWeb | structured (v2.3.1) | 1e5, 2e5; 1e6 stopped (§5.4) | `results_v2_3_1_clean_corpus/fineweb_structured/` (+ `_growth_2e5`) |
+| control | peS2o | v23d | 1e5, 2e5; 1e6 stopped (§5.4) | `results_v2_3_1_clean_corpus/pes2o_v23d/` (+ `_growth_2e5`) |
+| **main** | **peS2o** | **structured** | **1e5, 2e5, 4e5, 1e6; 1e7 stopped (§5.4)** | `results_v2_3_1_clean_corpus/pes2o_structured/` (+ `_growth_2e5`, `_growth_4e5`) |
 
 Top-level `clean_corpus_scaling.csv` and `frame_type_metrics.csv` concatenate
 every run (the `corpus,preprocessing` columns identify the cell);
@@ -244,26 +244,56 @@ complete-sentence spans essentially never shares any other exact frame.
 | 1e5 | 100,022 | 3,253 | 108,058 | 3,232 | 3,228 | 116 | 2,242 | 107,932 | 42 | 0.00039 | 78 | 0.929 | 0.509 | 32 / 17 | 2.5 | 205 |
 | 2e5 | 200,020 | 6,630 | 214,140 | 16,846 | 16,824 | 232 | 12,205 | 213,888 | 95 | 0.00044 | 181 | 0.967 | 0.552 | 56 / 27 | 8.4 | 184 |
 | 4e5 | 400,036 | 13,054 | 381,544 | 54,830 | 54,751 | 484 | 40,488 | 381,030 | 168 | 0.00044 | 327 | 0.973 | 0.479 | 158 / 78 | 111.1 | 329 |
-| 1e6 | PENDING_1E6 |
+| 1e6 | 1,000,009 | 33,225 | 867,768 | 245,794 | 245,453 | 1,318 | 181,368 | 866,450 | 368 | 0.00042 | 694 | 0.979 | 0.371 | 755 / 312 | 2,578.7 | 895 |
 
-The number of `(ε,ε)` objects grows linearly with the prefix (78 → 181 → 327),
-the empty-frame witnesses quadratically (3.0k → 16.3k → 53.3k ≈ n²/2), the
-largest class ≈ half of the `(ε,ε)` objects at every scale (42/78, 95/181,
-168/327), and the largest-class ratio is flat (≈ 4×10⁻⁴). Internal-frame
-candidates stay at 0.3–1 % of all candidates.
+The number of `(ε,ε)` objects grows linearly with the prefix (78 → 181 →
+327 → 694), the empty-frame witnesses quadratically (3.0k → 16.3k → 53.3k →
+240.5k ≈ n²/2), the largest class ≈ half of the `(ε,ε)` objects at every
+scale (42/78, 95/181, 168/327, 368/694), and the largest-class ratio is
+flat (≈ 4×10⁻⁴). Internal-frame candidates stay at 0.3–1 % of all
+candidates (755 of 245k at 1e6). At 1e6 the frame-type rows are:
 
-### 5.4 1e7: measured bound, not run
+| frame type (1e6) | witnesses | candidates | accepted | rejected | acceptance | exclusive candidates | in largest class |
+|---|---|---|---|---|---|---|---|
+| empty_frame | 240,471 | 240,404 | 489 | 178,018 | 0.002 | 240,312 | 352 |
+| left_boundary | 2,976 | 2,877 | 267 | 2,184 | 0.093 | 2,867 | 3 |
+| right_boundary | 1,478 | 1,417 | 250 | 919 | 0.176 | 1,351 | 2 |
+| internal_frame | 869 | 755 | 312 | 247 | 0.413 | 745 | 10 |
 
-Runtime of the unchanged learner grows faster than the candidate count
-(2.5 s → 8.4 s → 111 s for 3.2k → 16.8k → 54.8k candidates: the per-candidate
-transaction cost rises with the size of the `(ε,ε)` class it has to scan).
-Extrapolating the linear growth of `(ε,ε)` objects gives ≈ 8,000 at 1e7 and
-therefore ≈ 3×10⁷ empty-frame candidates, each more expensive than at 4e5;
-this is far outside the session budget. The 1e7 prefix was therefore not
-completed. This is the same bound the v2.3 report anticipated ("runtime and
-memory are empirical outputs of this baseline"): it is caused by the
-`(ε,ε)` hub, i.e. by witness semantics, and reintroducing a hub cap or a
-frequency floor to reach 1e7 would define a different experiment. PENDING_1E6_RUNTIME
+The cross-scale partition change 1e5 → 1e6 (`changed_pair_share_prev`) is
+in the CSV; the largest class at 1e6 (368 members, 353 with `(ε,ε)`, 352
+empty-frame merges) is the 1e5 class grown, and now also contains `the`,
+`<num> . <num>`, `<num> , <num>`, `table s <num>`, `in table <num>`,
+`fig . <num>`, `concluding remarks`, `socio - demographic`.
+
+### 5.4 Measured runtime bound: 1e7 (main) and 1e6 (controls) not completed
+
+Runtime of the unchanged learner grows faster than the candidate count:
+
+| main run scale | candidates | runtime (s) | ms per candidate | peak RSS (MB) |
+|---|---|---|---|---|
+| 1e5 | 3,228 | 2.5 | 0.8 | 205 |
+| 2e5 | 16,824 | 8.4 | 0.5 | 184 |
+| 4e5 | 54,751 | 111.1 | 2.0 | 329 |
+| 1e6 | 245,453 | 2,578.7 | 10.5 | 895 |
+
+The per-candidate cost rises with the size of the `(ε,ε)` class every
+transaction has to scan (`compare_behavior` gathers the observed
+compositions of all members of both classes). Extrapolating the linear
+growth of `(ε,ε)` objects gives ≈ 7,000 at 1e7, i.e. ≈ 2.5×10⁷ empty-frame
+candidates at > 10 ms each — more than 70 hours on this machine; the 1e7
+stage was stopped after 24 minutes at 7 GB RSS (observation table still
+being built). The three control cells have 10–20× more `(ε,ε)` objects than
+the main run at the same scale (362 / 339 / 188 vs 78 at 1e5), so their 1e6
+stages (≈ 3–6×10⁶ candidates each) were stopped after 66 minutes and
+replaced by 2e5 runs (§5.5). This is the bound the v2.3 report anticipated
+("runtime and memory are empirical outputs of this baseline"): it is caused
+by the `(ε,ε)` hub, i.e. by witness semantics, and reintroducing a hub cap
+or a frequency floor to reach 1e7 would define a different experiment.
+
+### 5.5 Controls at 2e5
+
+PENDING_2E5_TABLE
 
 ## 6. Manual class audit (recorded, not corrected)
 
@@ -307,7 +337,7 @@ analysis and discussion | collection methods | accessibility statement`
 | FineWeb v2.3 pattern | FineWeb (baseline) example | present on peS2o / structured? |
 |---|---|---|
 | `<num>` merged with unrelated short utterances | `<num> ⇔ and newfound feelings`, `<num> ⇔ sigh`, `<num> ⇔ sorry everyone` (empty frame) | **yes** — `<num> ⇔ \| gravitropism`, `<num> ⇔ histopathology and immunohistochemistry`, `<num> ⇔ conclusions`, `<num> ⇔ j . clin`; 20 of the first 20 empty-frame merges have `<num>` as one side |
-| `the` merged with heterogeneous phrases | `the ⇔ a number of / european and / flanked by / we have <num>` via `L=[] R=[u]`, `R=[sept]` (fragments of `u.s.`, `sept.`) | **no** for `the` (no `the` class in the top 20 at any scale: the segmentation fragments that created the frame are gone). **yes** for `and` at 4e5, which enters the `(ε,ε)` class as a one-token "sentence" left by a source line break |
+| `the` merged with heterogeneous phrases | `the ⇔ a number of / european and / flanked by / we have <num>` via `L=[] R=[u]`, `R=[sept]` (fragments of `u.s.`, `sept.`) | **delayed, not removed.** The FineWeb route (segmentation fragments `u`, `sept`) is gone. But `and` enters the `(ε,ε)` class at 4e5 and `the` at 1e6 — each appears somewhere as a one-token source line — after which `the` is in the same class as `<num> . <num>`, `conflict of interest`, `fig . <num>`, … |
 | boilerplate-like complete spans | `all rights reserved`, `read more »`, `view public profile`, `sort it out` | **yes, in scientific form** — section headers `introduction`, `conclusions`, `materials and methods`, `conflict of interest`, `national science foundation`, `\| participants` are the boilerplate of this corpus and are exactly the `(ε,ε)` objects |
 | fragment-like terminal spans | class of 38 right-boundary spans `get advice \| make friends \| upload photos \| gender : male \| posts : <num>` | **yes, smaller** — `phototropism \| go enrichment analysis \| con clus ions \| task paradigms` after `L=[\|]`; `n ă <num> \| : ` after `L=[<num>]`; `ρ ď d ⇔ ď` after `L=[let]` |
 
@@ -358,7 +388,13 @@ Roughly two thirds are same-category or modifier-insertion pairs
 (`auxin responses / photosynthetic responses`, `linear / log-transformed`,
 `has / still has`, `primers / specific primers`); the rest are numeric or
 punctuation templates inside formulas (`. ⇔ , <num> ,`) and one clear error
-(`in ⇔ highly enrich`). None of these merges reaches the largest class.
+(`in ⇔ highly enrich`). At 1e5–4e5 none of these merges reaches the largest
+class. At 1e6 the picture worsens: the first 20 internal-frame merges in
+candidate order include `of ⇔ of the soybean`, `the ⇔ algorithm and
+numerical`, `, ⇔ , <num> ,`, `, ⇔ . <num> .`, `, ⇔ - <num> -`, `; ⇔ ; <num> .`
+— frames such as `L=[<num>] R=[<num>]` are numeric templates that act like
+small hubs — and 10 internal-frame merges land in the largest class
+(§6.6 quantifies this on a 400-example sample).
 FineWeb's internal-frame merges at 1e5 are dominated by numeric templates
 (`<num> ⇔ <num> yr fixed`, `billion in ⇔ percent in`, `fixed ⇔ refi`,
 `ohio ⇔ morgan`).
@@ -418,9 +454,10 @@ four cells and across 1e5–4e5):
    peS2o?** In size, yes: 323 → 42 members at 1e5 (ratio 2.3×10⁻³ →
    3.9×10⁻⁴), witnesses 69.6k → 3.2k. In kind, no: the largest class is
    still the same heterogeneous `(ε,ε)` class (`<num>` with section headers,
-   brackets, formula fragments, and by 4e5 the token `and`), it is built
-   100 % from empty-frame merges, and it grows linearly with the prefix
-   (42 → 95 → 168), tracking half of all `(ε,ε)` objects.
+   brackets, formula fragments, by 4e5 the token `and`, by 1e6 the token
+   `the`), it is built 96–100 % from empty-frame merges, and it grows
+   linearly with the prefix (42 → 95 → 168 → 368), tracking half of all
+   `(ε,ε)` objects; at 1e6 it is larger than FineWeb's class at 1e5.
 2. **Does `(ε,ε)` still produce many wrong-looking merges?** Yes. Empty
    frames are 93–97 % of all candidates on the clean corpus (a *higher*
    share than on FineWeb, because the clean corpus removes the other noise
@@ -428,11 +465,15 @@ four cells and across 1e5–4e5):
    232/484); every one of the 20 audited empty-frame merges is wrong-looking
    and every one has exactly one witness, which is `(ε,ε)`.
 3. **Are internal exact-frame witnesses cleaner than boundary witnesses?**
-   Clearly: within-type acceptance 0.53 (internal) vs 0.02 (empty), 0.26
-   (left) and 0.16 (right) at 1e5, and 0.49 vs 0.004 at 4e5; the audited
-   internal merges are mostly same-category or modifier-insertion pairs;
-   internal merges contribute 0–1 merges to the largest class. But they are
-   rare: 32 of 3,228 candidates at 1e5, 158 of 54,751 at 4e5.
+   Yes, but not clean: within-type acceptance 0.53 (internal) vs 0.02
+   (empty), 0.26 (left) and 0.16 (right) at 1e5, and 0.41 vs 0.002 at 1e6;
+   the audited internal merges at 1e5–4e5 are mostly same-category or
+   modifier-insertion pairs and contribute 0–1 merges to the largest class.
+   At 1e6, however, numeric/punctuation frames (`L=[<num>] R=[<num>]`,
+   `L=[(] R=[. <num> )]`) produce internal merges of the same hub kind
+   (`, ⇔ , <num> ,`, `of ⇔ of the soybean`) and 10 internal merges enter
+   the largest class (§6.6). Internal witnesses are also rare: 32 of 3,228
+   candidates at 1e5, 755 of 245,453 at 1e6.
 4. **Does a cleaner corpus significantly improve conservative merging
    without changing the algorithm?** It improves the *counts* (fewer
    witnesses, smaller hub, smaller largest class, no `the` class) but not

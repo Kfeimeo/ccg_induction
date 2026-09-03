@@ -20,7 +20,7 @@ import sys
 RUNS = ["fineweb_v23d", "fineweb_structured", "pes2o_v23d", "pes2o_structured"]
 # Extra single-scale runs used for the runtime growth curve (their rows carry
 # the same corpus/preprocessing labels and are appended after the main runs).
-GROWTH_PREFIX = "pes2o_structured_growth_"
+GROWTH_MARK = "_growth_"
 MAIN_RUN = "pes2o_structured"
 BASELINE = "results_v2_3_conservative/fineweb_baseline/conservative_scaling.csv"
 AUDIT_FILES = ["largest_classes.txt", "successful_merges_by_frame_type.txt",
@@ -70,7 +70,7 @@ def fmt(value, digits=4):
 def main():
     root = sys.argv[1] if len(sys.argv) > 1 else "results_v2_3_1_clean_corpus"
     scaling, frames = [], []
-    growth = sorted(d for d in os.listdir(root) if d.startswith(GROWTH_PREFIX)
+    growth = sorted(d for d in os.listdir(root) if GROWTH_MARK in d
                     and os.path.isdir(os.path.join(root, d)))
     for run in RUNS + growth:
         run_dir = os.path.join(root, run)

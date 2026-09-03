@@ -112,3 +112,39 @@ Frame-type breakdown (witnesses / candidates / accepted / rejected, acceptance r
 | right_boundary | 517 / 509 / 76 / 366 ; acc 0.149 ; largest 0 |
 | internal_frame | 170 / 158 / 78 / 56 ; acc 0.494 ; largest 1 |
 
+## Scale 1,000,000 nominal tokens
+
+| metric | peS2o / v2.3.1 |
+|---|---|
+| actual tokens | 1,000,009 |
+| sentences | 33,225 |
+| initial objects | 867,768 |
+| local witnesses | 245,794 |
+| merge candidates | 245,453 |
+| accepted merges | 1,318 |
+| rejected merges | 181,368 |
+| accepted merge rate | 0.0054 |
+| rejected merge rate | 0.7389 |
+| resulting classes | 866,322 |
+| largest class | 368 |
+| largest class ratio | 0.0004 |
+| median / p95 class size | 1 / 1 |
+| objects with (eps,eps) | 694 |
+| empty-frame witness share | 0.9783 |
+| empty-frame candidate share | 0.9794 |
+| empty-frame accepted share | 0.3710 |
+| largest-class members with (eps,eps) | 353 |
+| within-class POS purity | 0.9996 |
+| pairwise same-POS precision | 0.3333 |
+| runtime (s) | 2578.7493 |
+| peak RSS (MB) | 894.6602 |
+
+Frame-type breakdown (witnesses / candidates / accepted / rejected, acceptance rate within type, accepted merges inside the largest class):
+
+| frame type | peS2o / v2.3.1 |
+|---|---|
+| empty_frame | 240,471 / 240,404 / 489 / 178,018 ; acc 0.002 ; largest 352 |
+| left_boundary | 2,976 / 2,877 / 267 / 2,184 ; acc 0.093 ; largest 3 |
+| right_boundary | 1,478 / 1,417 / 250 / 919 ; acc 0.176 ; largest 2 |
+| internal_frame | 869 / 755 / 312 / 247 ; acc 0.413 ; largest 10 |
+

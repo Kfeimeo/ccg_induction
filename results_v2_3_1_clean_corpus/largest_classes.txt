@@ -41,3 +41,45 @@ size=2 lexical_members=0 members_with_empty_frame=0 accepted_merges[empty_frame=
   rnaseq differential expression | go enrichment
 size=2 lexical_members=1 members_with_empty_frame=2 accepted_merges[empty_frame=1 left_boundary=0 right_boundary=0 internal_frame=0]
   figure <num> | discussion
+
+# scale 1000000 -- 20 largest classes
+size=368 lexical_members=12 members_with_empty_frame=353 accepted_merges[empty_frame=352 left_boundary=3 right_boundary=2 internal_frame=10]
+  the | <num> . <num> | <num> , <num> | | gravitropism | | phototropism | table s <num> | differential gene expression | national science foundation | conflict of interest | [ <num> ] | the study was | histopathology and immunohistochemistry | in table <num> | j . clin | | introduction | | participants | | task paradigms | visual search task | | behavioral data | | acquisition | | imaging preprocessing | | imaging analysis | | discussion | mouse behavioural analysis | page and immunoblotting | circulating tumor cells | quantification microrna panel | patients characteristics | fig . <num> | mechanism signaling pathways | description levels * | socio - demographic | list of products | discussion and conclusion | preliminaries | grant assumption <num> | concluding remarks | in our notation | fix any t | if we choose | ... (328 more)
+size=26 lexical_members=1 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=24 right_boundary=0 internal_frame=1]
+  ( | theorem <num> . | proof of theorem | proposition <num> . | lemma <num> . | proposition d . | assume p ě | corollary <num> . | example <num> . | definition <num> . | remark <num> . | edss value was | numerical example set | anyang , korea | hypotheses : study | double immunofluorescence figure | sérsic <num> - | as a table | return to step | pod <num> and | assumption <num> . | proposition b . | theorem e . | theorem d . | definition d . | as h →
+size=20 lexical_members=1 members_with_empty_frame=2 accepted_merges[empty_frame=1 left_boundary=7 right_boundary=9 internal_frame=2]
+  <num> | <num> and <num> | s <num> ) | e . <num> | b . <num> | d . <num> | an increase of | koyama et al | ( c <num> | c <num> ) | data availability | l − <num> | assume hypothesis <num> | <num> - ins | <num> workloads | <num> oil | a tired sea | <num> / discharge | ( spectral classification | spectral classification )
+size=15 lexical_members=1 members_with_empty_frame=1 accepted_merges[empty_frame=0 left_boundary=1 right_boundary=12 internal_frame=1]
+  results | go enrichment analysis | con clus ions | task paradigms | imaging preprocessing | copy number variants | laboratory methodology | non - paternity | design and participants | strategy and results | corresponding velocity distributions | ■ results | <num> : summary | characterization and discussion | visits and procedures
+size=13 lexical_members=1 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=12 internal_frame=0]
+  decrease | discrete choice model | strongly convex case | capacitated equilibrium conditions | republic of karelia | study remains blinded | electroweak precision measurements | tellegen chiral medium | wheel of five | transcriptional activation assays | fact that eqn | boundary condition eqn | pursuit of happiness
+size=12 lexical_members=1 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=11 internal_frame=0]
+  ) | . high gradients | ) proof | - ins ) | in vitro translation | , contractfailure ) | , amount ) | . computational method | . scattering mechanisms | . electron mobility | : return mgo | . multiple tracer
+size=12 lexical_members=3 members_with_empty_frame=12 accepted_merges[empty_frame=11 left_boundary=0 right_boundary=0 internal_frame=0]
+  separately | pigments | statistical methods | let ď | not applicable | study procedures | acknowledgments | uva crosslinking | training setup | transactivation assays | experimental evaluation | glitching pulsars
+size=11 lexical_members=2 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=10 right_boundary=0 internal_frame=0]
+  | | left panel : | data analysis and | | materials and | study design and | recapitulations and | | general | data sources and | liability exclusions and | bioanalytical | experimental characterization and
+size=10 lexical_members=1 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=9 right_boundary=0 internal_frame=0]
+  other | | behavioral | x - ray | year outcome | numerical simulation of | study strategy and | cross - validation | hbmsc viability and | macrophage viability and | summary of main
+size=9 lexical_members=0 members_with_empty_frame=2 accepted_merges[empty_frame=1 left_boundary=0 right_boundary=3 internal_frame=3]
+  . <num> | . <num> for | . <num> , | . <num> ) | . <num> b | . <num> c | ) wkl <num> | force interpolation | . <num> workloads
+size=9 lexical_members=0 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=8 internal_frame=0]
+  different consecutive limit | mathematical model | nonchiral isotropic medium | tired sea ) | happy jet rippled | mosaic of concerns | . some definitions | . single tracer | borel right processes
+size=8 lexical_members=4 members_with_empty_frame=8 accepted_merges[empty_frame=7 left_boundary=0 right_boundary=0 internal_frame=0]
+  during | med | patient characteristics | premise | animal experiments | postoperative procedure | fret | pulsar properties
+size=8 lexical_members=3 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=7 right_boundary=0 internal_frame=0]
+  pigment | | imaging | mouse behavioural | fn | ms data | ahi subgroup | cytogenetic | prenatal serological
+size=8 lexical_members=1 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=0 internal_frame=7]
+  amount | extent , anyloss | discontinuance , contractfailure | thirdparty , content | discontinuance , amount | anyreason , nowarning | justposted , consresp | nonotice , fulldiscretion
+size=7 lexical_members=1 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=6 internal_frame=0]
+  availability | of the study | collection and analysis | analysis and discussion | and future directions | collection and administration | sources and limitations
+size=7 lexical_members=1 members_with_empty_frame=3 accepted_merges[empty_frame=2 left_boundary=0 right_boundary=3 internal_frame=0]
+  <num> ) | biochemical analysis | <num> b ) | <num> c ) | <num> ) holds | ojphi | <num> ) proof
+size=7 lexical_members=1 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=6 right_boundary=0 internal_frame=0]
+  phylogenetic | | go enrichment | voxel - wise | roi - based | data collection and | pharmacokinetic and statistical | fix - point
+size=6 lexical_members=0 members_with_empty_frame=5 accepted_merges[empty_frame=4 left_boundary=0 right_boundary=0 internal_frame=0]
+  | rna extraction | rna extraction | the decrease | study results | thermodynamic integration | periodic systems
+size=6 lexical_members=0 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=5 right_boundary=0 internal_frame=0]
+  table s | ( table s | ( fig . | ( <num> . | k <num> mh | open access and
+size=6 lexical_members=0 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=5 internal_frame=0]
+  and design | and methods | collection methods | availability statement | accessibility statement | and apparatus
