@@ -1,0 +1,11 @@
+SCF v2.3 synthetic oracle sanity
+================================
+same-class lexical items dog/cat: 1
+observationally indistinguishable alpha/beta merged: 1
+single-context false friends p/q rejected: 1
+low-frequency rare1/rare2 separate before second witness: 1
+low-frequency rare1/rare2 merged after more data: 1
+learned-vs-oracle lexical pair precision: 1
+learned-vs-oracle lexical pair recall: 1
+learned-vs-oracle TP/FP/FN: 4/0/0
+objects=65 witnesses=76 candidates=73 accepted=18 rejected=1 classes=41

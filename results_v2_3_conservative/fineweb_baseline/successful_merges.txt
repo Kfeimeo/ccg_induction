@@ -1,0 +1,23 @@
+# Direct-witness candidates accepted by transactional closure
+
+# scale 100000
+the <=> a number of | L=[] R=[u] | induced_unions=0
+the <=> <num> and samford | L=[] R=[sept] | induced_unions=0
+the <=> <num> tennessee state | L=[] R=[sept] | induced_unions=0
+the <=> <num> samford | L=[] R=[sept] | induced_unions=1
+the <=> european and | L=[] R=[u] | induced_unions=1
+the <=> louis ksdk the | L=[] R=[u] | induced_unions=0
+the <=> salary and benefits | L=[] R=[u] | induced_unions=0
+the <=> flanked by | L=[] R=[u] | induced_unions=1
+the <=> we have <num> | L=[] R=[u] | induced_unions=0
+of <=> “we’d talk about | L=[] R=[the u] | induced_unions=0
+<num> <=> <num> <num> <num> | L=[] R=[] | induced_unions=0
+<num> <=> and newfound feelings | L=[] R=[] | induced_unions=0
+<num> <=> if only | L=[] R=[] | induced_unions=0
+<num> <=> stefano | L=[] R=[] | induced_unions=0
+<num> <=> stefano stefano stefano | L=[] R=[] | induced_unions=0
+<num> <=> sigh | L=[] R=[] | induced_unions=0
+<num> <=> you ran | L=[] R=[] | induced_unions=0
+<num> <=> sorry everyone | L=[] R=[] | induced_unions=0
+<num> <=> and move on | L=[] R=[] | induced_unions=0
+<num> <=> why the excuses | L=[] R=[] | induced_unions=0
