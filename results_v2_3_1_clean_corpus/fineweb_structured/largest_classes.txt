@@ -1,0 +1,43 @@
+# SCF v2.3.1 largest learned classes (fineweb, structured)
+
+# scale 100000 -- 20 largest classes
+size=301 lexical_members=14 members_with_empty_frame=284 accepted_merges[empty_frame=280 left_boundary=11 right_boundary=3 internal_frame=2]
+  <num> | <num> , <num> | if only | sigh | you ran | why the excuses | why the denial | its weird | urinary incontinence | advanced directives | clear and precise | chemical reaction | free the cans | <num> . <num> | - get advice | - make friends | - upload photos | <num> - <num> | opening reception sat | game index | | all rights reserved | great decorating addition | sort it out | good for you | department of education | view single post | view public profile | visit laurlynn's gallery | <num> in orlando | the sept | <num> , samford | at ohio state | delaware state * | - how to | - be healthy | - home beautiful | scheduled for dec | you're toooo funny | we love her | test your knowledge | ... (261 more)
+size=54 lexical_members=14 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=52 right_boundary=0 internal_frame=0]
+  search engine journal | marketing profs | search engine watch | small biz trends | search engine land | ppc hero | memeburn | portent | social media today | ecommerce times | web analytics world | state of search | web pro news | dow jones newswire | inc magazine | boston globe | rethink wireless | businessinsider | clickz | wired magazine | pc world | informationweek | tgdaily | international business times | insidermonkey | itworld | washington post | gomonews | smart company | screenwerk | usa today | the guardian | boston business journal | adage | horse talk | fast company | popcrush | zap <num> it | film industry network | top rank blog | ... (14 more)
+size=38 lexical_members=1 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=37 internal_frame=0]
+  kidneys | u . s | get advice | make friends | share your expertise | send private messages | join interest groups | track your mood | upload photos | tv & video | renovation & decorating | how to | be healthy | home beautiful | guardian ( jan | posts : <num> | gender : male | phd student | habitat selection | pollination ecology | pollination restoration | conservation genetics | online chat capabilities | registering online | sending an email | award type : | location : connacht | heatgear® sweatband | auto news > | sonic pricing | upcoming internet conferences | meklerweb tradeshow listings | official nascar hologram | birth of heisenberg | its monumental scale | religious institutions | multiple dwelling | health and research
+size=36 lexical_members=0 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=1 right_boundary=0 internal_frame=0]
+  memeburn ( | portent ( | ecommerce times ( | marketing profs ( | ppc hero ( | inc magazine ( | boston globe ( | rethink wireless ( | businessinsider ( | clickz ( | wired magazine ( | pc world ( | informationweek ( | tgdaily ( | insidermonkey ( | itworld ( | washington post ( | gomonews ( | smart company ( | screenwerk ( | usa today ( | the guardian ( | adage ( | horse talk ( | fast company ( | popcrush ( | internet retailer ( | hotel marketing ( | hubspot ( | travel news ( | cmswire ( | huffington post ( | biz report ( | advertisement journal ( | cms wire ( | dallas ,
+size=19 lexical_members=0 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=16 right_boundary=0 internal_frame=0]
+  <num> , | september <num> , | june <num> , | april <num> , | july <num> , | jalopnik ( may | august <num> , | february <num> , | schedule of promotions | total items = | - posts : | <num> september | provencal , louisiana | october <num> , | regional award | michael howard aug | going out , | only $ | know your h
+size=14 lexical_members=0 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=12 internal_frame=0]
+  , <num> | , tennessee state | , samford | . <num> ) | + five = | stirling rd | , jer | tim . iv | cor . ix | cor . xv | cor . iv | uber as prefix | and <num> here | clifton court
+size=14 lexical_members=3 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=12 right_boundary=0 internal_frame=0]
+  seomoz | business insider | performance marketing insider | <num> k blueprint | shopatron | interactivity marketing | social marketing forum | koozai blog | seo theory | saleschase blog | ghost blog writers | kairay media adwars | ppc associates blog | istudio
+size=12 lexical_members=1 members_with_empty_frame=2 accepted_merges[empty_frame=1 left_boundary=0 right_boundary=10 internal_frame=0]
+  sept | dayofweek function | vermont standard | ice hotel | committee encourages | good works | once was | metreon pen | rs sets | doctor's wife | tenderfoot bride | black beauty
+size=11 lexical_members=0 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=8 internal_frame=0]
+  journal ( mar | land ( feb | watch ( feb | journal ( feb | watch ( dec | journal ( nov | land ( nov | watch ( oct | land ( oct | land ( mar | watch ( jan
+size=8 lexical_members=5 members_with_empty_frame=8 accepted_merges[empty_frame=7 left_boundary=0 right_boundary=0 internal_frame=0]
+  please | okay | caregivers | matt | suppose the | finale | discussion paper | pizza rustica
+size=8 lexical_members=5 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=7 internal_frame=0]
+  soon | their fans | sliders | doritos | fried chicken | subs | pretzels | it didn't
+size=8 lexical_members=0 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=0 internal_frame=0]
+  seomoz ( | business insider ( | shopatron ( | interactivity marketing ( | koozai blog ( | seo theory ( | saleschase blog ( | istudio (
+size=7 lexical_members=0 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=4 right_boundary=0 internal_frame=0]
+  february <num> | <num> : <num> | july <num> | friday may <num> | archive for november | times june <num> | going out
+size=7 lexical_members=4 members_with_empty_frame=7 accepted_merges[empty_frame=6 left_boundary=0 right_boundary=0 internal_frame=0]
+  really | and yet | click here | apr | gen | et | who cares
+size=7 lexical_members=6 members_with_empty_frame=7 accepted_merges[empty_frame=6 left_boundary=0 right_boundary=0 internal_frame=0]
+  stefano | sat | continued | amen | <num> … | mercy | damaging
+size=7 lexical_members=0 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=6 right_boundary=0 internal_frame=0]
+  today's featured rates | print pdf pages | - award type | here’s the rundown | read below | some tips | more info
+size=7 lexical_members=0 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=5 internal_frame=0]
+  did alright | don’t know | filled the streets | pay their taxes | pay their mortgage | clicked instantly | turned out awesome
+size=7 lexical_members=0 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=5 right_boundary=0 internal_frame=0]
+  you cannot touch | you cannot see | you cannot taste | you cannot hear | you cannot feel | go for | can you solve
+size=6 lexical_members=1 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=5 internal_frame=0]
+  ran | cannot touch it | cannot see it | cannot taste it | cannot hear it | cannot feel it
+size=6 lexical_members=0 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=5 right_boundary=0 internal_frame=0]
+  tell us | <num> and <num> | proposition c is | remember me | there's a pattern | just click

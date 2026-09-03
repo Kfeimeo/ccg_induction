@@ -24,6 +24,36 @@ See `SCF_V2_3_CONSERVATIVE_MERGING_REPORT.md` for the semantics, diagnostics,
 oracle cases, and the exact distinction between learner-state separation and
 logical inequality.
 
+## v2.3.1 clean-corpus replication (peS2o)
+
+v2.3.1 re-runs the unchanged v2.3 conservative learner on a cleaner formal
+English corpus (peS2o v2 full-text body paragraphs) with structure-
+preserving preprocessing (document / paragraph / sentence boundaries kept,
+punctuation kept, sentence-final `. ? !` consumed as the `<EOS>` boundary)
+and classifies every witness by its frame boundary type
+(`empty_frame`, `left_boundary`, `right_boundary`, `internal_frame`).
+The merge semantics are untouched; only the corpus in front of the learner
+and the diagnostics behind it differ.
+
+```bash
+python3 tools/prepare_clean_corpus.py pes2o   data/real/pes2o_body
+python3 tools/prepare_clean_corpus.py fineweb data/real/fineweb_sample
+cmake --build build --target scf_clean_corpus
+build/scf_clean_corpus --input data/real/pes2o_body.scs --corpus pes2o \
+  --preprocessing structured --scales 100000,1000000,10000000 \
+  --output-dir results_v2_3_1_clean_corpus/pes2o_structured \
+  --ud data/real/en_ewt-ud-train.conllu
+build/scf_clean_corpus --input data/real/fineweb_sample.txt --corpus fineweb \
+  --preprocessing v23d --scales 100000,1000000 \
+  --output-dir results_v2_3_1_clean_corpus/fineweb_v23d
+python3 tools/summarize_clean_corpus.py
+```
+
+`--preprocessing v23d` reproduces the v2.3 condition-D pipeline exactly
+(verified against `scf_conservative_merging` output) so the FineWeb
+baseline gets the same frame-type diagnostics. See
+`SCF_V2_3_1_CLEAN_CORPUS_REPORT.md`.
+
 v1.2 adds a controlled synthetic benchmark, a gold evaluator, batch experiments, and identifiability diagnostics on top of the unchanged v1.1 core. Its purpose is to make one research question measurable:
 
 > When does direct surface substitution evidence uniquely determine unlabeled binary structure, and when is structure underdetermined?

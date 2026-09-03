@@ -1,0 +1,5 @@
+corpus,preprocessing,nominal_tokens,frame_type,witness_count,witness_share,candidate_count,candidate_share,accepted_merge_count,accepted_share,rejected_merge_count,rejected_share,redundant_candidate_count,induced_unions,exclusive_candidate_count,exclusive_accepted_count,largest_class_accepted_merges,largest_class_contribution_share,acceptance_rate_within_type
+pes2o,v23d,100000,empty_frame,17578,0.565573,17523,0.565769,134,0.259188,11431,0.653088,5958,0,17506,134,109,0.990909,0.007647
+pes2o,v23d,100000,left_boundary,6447,0.207432,6436,0.207801,154,0.297872,2004,0.114495,4278,52,6415,154,0,0.000000,0.023928
+pes2o,v23d,100000,right_boundary,5296,0.170399,5269,0.170121,116,0.224371,3340,0.190824,1813,1,5224,116,1,0.009091,0.022016
+pes2o,v23d,100000,internal_frame,1759,0.056596,1744,0.056309,113,0.218569,728,0.041593,903,97,1741,113,0,0.000000,0.064794

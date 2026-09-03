@@ -1,0 +1,43 @@
+# Candidates rolled back by exact composition conflicts
+
+# scale 100000
+candidate the <=> a | witness L=[] R=[u]
+  conflict: Comp(the, single, the single) vs Comp(a, single, a single); outputs have different observed exact-context profiles and no direct substitution witness
+candidate the <=> of the | witness L=[] R=[u]
+  conflict: Comp(the, post, the post) vs Comp(of the, post, of the post); outputs have different observed exact-context profiles and no direct substitution witness
+candidate the <=> is a | witness L=[] R=[u]
+  conflict: Comp(the, <num>, the <num>) vs Comp(is a, <num>, is a <num>); outputs have different observed exact-context profiles and no direct substitution witness
+candidate the <=> cio | witness L=[] R=[sept]
+  conflict: Comp(the, the, the the) vs Comp(cio, the, cio the); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of <=> louis ksdk | witness L=[] R=[the u]
+  conflict: Comp(of the, post, of the post) vs Comp(the, post, the post); outputs have different observed exact-context profiles and no direct substitution witness
+candidate <num> <=> <num> <num> | witness L=[] R=[]
+  conflict: Comp(<num>, post, <num> post) vs Comp(<num> <num>, post, <num> <num> post); outputs have different observed exact-context profiles and no direct substitution witness
+candidate <num> <=> really | witness L=[] R=[]
+  conflict: Comp(<num>, the, <num> the) vs Comp(really, the, really the); outputs have different observed exact-context profiles and no direct substitution witness
+candidate <num> <=> please | witness L=[] R=[]
+  conflict: Comp(<num>, do, <num> do) vs Comp(please, do, please do); outputs have different observed exact-context profiles and no direct substitution witness
+candidate <num> <=> only | witness L=[] R=[<num>]
+  conflict: Comp(<num>, the, <num> the) vs Comp(only, the, only the); outputs have different observed exact-context profiles and no direct substitution witness
+candidate <num> <=> to | witness L=[<num>] R=[<num>]
+  conflict: Comp(<num>, the, <num> the) vs Comp(to, the, to the); outputs have different observed exact-context profiles and no direct substitution witness
+candidate <num> <=> i | witness L=[] R=[]
+  conflict: Comp(<num>, for, <num> for) vs Comp(i, for, i for); outputs have different observed exact-context profiles and no direct substitution witness
+candidate <num> <=> okay | witness L=[] R=[]
+  conflict: Comp(<num>, to, <num> to) vs Comp(okay, to, okay to); outputs have different observed exact-context profiles and no direct substitution witness
+candidate <num> <=> sat | witness L=[<num>] R=[]
+  conflict: Comp(<num>, here, <num> here) vs Comp(sat, here, sat here); outputs have different observed exact-context profiles and no direct substitution witness
+candidate <num> <=> i would | witness L=[] R=[]
+  conflict: Comp(<num>, have, <num> have) vs Comp(i would, have, i would have); outputs have different observed exact-context profiles and no direct substitution witness
+candidate <num> <=> maybe | witness L=[] R=[]
+  conflict: Comp(<num>, you, <num> you) vs Comp(maybe, you, maybe you); outputs have different observed exact-context profiles and no direct substitution witness
+candidate <num> <=> why | witness L=[] R=[]
+  conflict: Comp(<num>, the, <num> the) vs Comp(why, the, why the); outputs have different observed exact-context profiles and no direct substitution witness
+candidate <num> <=> more | witness L=[] R=[]
+  conflict: Comp(<num>, from, <num> from) vs Comp(more, from, more from); outputs have different observed exact-context profiles and no direct substitution witness
+candidate <num> <=> at | witness L=[<num>] R=[<num>]
+  conflict: Comp(<num>, the, <num> the) vs Comp(at, the, at the); outputs have different observed exact-context profiles and no direct substitution witness
+candidate <num> <=> com | witness L=[] R=[]
+  conflict: Comp(<num>, for, <num> for) vs Comp(com, for, com for); outputs have different observed exact-context profiles and no direct substitution witness
+candidate <num> <=> google | witness L=[] R=[]
+  conflict: Comp(<num>, the, <num> the) vs Comp(google, the, google the); outputs have different observed exact-context profiles and no direct substitution witness

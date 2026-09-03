@@ -1,0 +1,43 @@
+# SCF v2.3.1 largest learned classes (pes2o, structured)
+
+# scale 400000 -- 20 largest classes
+size=168 lexical_members=8 members_with_empty_frame=166 accepted_merges[empty_frame=165 left_boundary=1 right_boundary=0 internal_frame=1]
+  and | <num> . <num> | | gravitropism | | phototropism | national science foundation | conflict of interest | [ <num> ] | the study was | histopathology and immunohistochemistry | j . clin | | introduction | | participants | | task paradigms | visual search task | | behavioral data | | acquisition | | imaging preprocessing | | imaging analysis | | discussion | mouse behavioural analysis | protease inhibitors | page and immunoblotting | quantification microrna panel | patients characteristics | fig . <num> | mechanism signaling pathways | description levels * | list of products | discussion and conclusion | grant assumption <num> | in our notation | fix any t | if we choose | output w m | n ` ˆ | sample description | gene expression measurements | gene expression qc | go category enrichment | materials and methods | ... (128 more)
+size=15 lexical_members=1 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=14 right_boundary=0 internal_frame=0]
+  ( | theorem <num> . | proof of theorem | lemma <num> . | assume p ě | corollary <num> . | example <num> . | <num> n ă | definition <num> . | remark <num> . | edss value was | numerical example set | anyang , korea | hypotheses : study | double immunofluorescence figure
+size=12 lexical_members=1 members_with_empty_frame=3 accepted_merges[empty_frame=2 left_boundary=0 right_boundary=9 internal_frame=0]
+  results | go enrichment analysis | con clus ions | task paradigms | imaging preprocessing | imaging analysis | let ď | copy number variants | laboratory methodology | non - paternity | ethical issues | open access
+size=8 lexical_members=1 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=7 right_boundary=0 internal_frame=0]
+  | | left panel : | data analysis and | | materials and | summary and | recapitulations and | year outcome | numerical simulation of
+size=6 lexical_members=2 members_with_empty_frame=5 accepted_merges[empty_frame=4 left_boundary=0 right_boundary=0 internal_frame=1]
+  - | preliminaries | spectral classification | and weight - | sa deployment | introduction :
+size=6 lexical_members=1 members_with_empty_frame=1 accepted_merges[empty_frame=0 left_boundary=3 right_boundary=2 internal_frame=0]
+  <num> | table s <num> | s <num> ) | model verification | assume hypothesis <num> | <num> - ins
+size=6 lexical_members=1 members_with_empty_frame=1 accepted_merges[empty_frame=0 left_boundary=4 right_boundary=1 internal_frame=0]
+  materials and | data collection | operative | material and | description of surgical | patient selection
+size=6 lexical_members=1 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=5 internal_frame=0]
+  decrease | discrete choice model | strongly convex case | capacitated equilibrium conditions | republic of karelia | study remains blinded
+size=5 lexical_members=1 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=4 internal_frame=0]
+  availability | collection and analysis | analysis and discussion | collection methods | accessibility statement
+size=5 lexical_members=1 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=4 internal_frame=0]
+  ) | n ă <num> | . high gradients | ) proof | - ins )
+size=5 lexical_members=1 members_with_empty_frame=5 accepted_merges[empty_frame=4 left_boundary=0 right_boundary=0 internal_frame=0]
+  a | statistical methods | patient characteristics | competing interests | supplementary data
+size=5 lexical_members=1 members_with_empty_frame=3 accepted_merges[empty_frame=2 left_boundary=0 right_boundary=1 internal_frame=0]
+  <num> ) | <num> c ) | ojphi | study results | <num> ) proof
+size=5 lexical_members=2 members_with_empty_frame=5 accepted_merges[empty_frame=4 left_boundary=0 right_boundary=0 internal_frame=0]
+  background | premise | galaxy redshifts | postoperative procedure | numerical models
+size=5 lexical_members=1 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=4 right_boundary=0 internal_frame=0]
+  data | | go enrichment | voxel - wise | roi - based | data collection and
+size=5 lexical_members=1 members_with_empty_frame=2 accepted_merges[empty_frame=1 left_boundary=3 right_boundary=0 internal_frame=0]
+  funding | weyl's alternative | data accessibility | author contribution | declaration of interest's
+size=4 lexical_members=0 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=0 right_boundary=0 internal_frame=3]
+  <num> and | <num> , and | <num> and that | <num> and suppose
+size=4 lexical_members=1 members_with_empty_frame=4 accepted_merges[empty_frame=3 left_boundary=0 right_boundary=0 internal_frame=0]
+  then | concluding remarks | adiabatic approach | transactivation assays
+size=4 lexical_members=1 members_with_empty_frame=4 accepted_merges[empty_frame=3 left_boundary=0 right_boundary=0 internal_frame=0]
+  paper | additional file | data management | cell culture
+size=4 lexical_members=0 members_with_empty_frame=0 accepted_merges[empty_frame=0 left_boundary=3 right_boundary=0 internal_frame=0]
+  <num> . | edss was | growth performance | bacterial diversity
+size=4 lexical_members=1 members_with_empty_frame=2 accepted_merges[empty_frame=1 left_boundary=0 right_boundary=2 internal_frame=0]
+  models | example set <num> | hypothesis <num> | simulation of results
