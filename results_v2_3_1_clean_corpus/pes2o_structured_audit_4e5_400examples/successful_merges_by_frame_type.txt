@@ -1,0 +1,495 @@
+# SCF v2.3.1 accepted merges by witness frame type (pes2o, structured)
+
+# scale 400000
+
+## empty_frame accepted merges (first 400 in candidate order)
+and <=> <num> . <num> | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> | gravitropism | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> | phototropism | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> national science foundation | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> conflict of interest | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> [ <num> ] | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> histopathology and immunohistochemistry | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> j . clin | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> | introduction | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> | participants | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> | task paradigms | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> visual search task | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> | behavioral data | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> | acquisition | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> | imaging preprocessing | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> | imaging analysis | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> | discussion | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> mouse behavioural analysis | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> protease inhibitors | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> page and immunoblotting | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> quantification microrna panel | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> patients characteristics | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> fig . <num> | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> mechanism signaling pathways | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> description levels * | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> list of products | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> discussion and conclusion | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> grant assumption <num> | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> fix any t | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> if we choose | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> output w m | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> n ` ˆ | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> sample description | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> gene expression measurements | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> gene expression qc | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> go category enrichment | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> materials and methods | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> i . introduction | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> vii | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> acknowledgment | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> table a <num> | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> cluster redshift estimation | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> cluster member selection | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> galaxies association | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> cluster substructures | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> cluster dynamical mass | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> cluster merger orbit | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> red el galaxies | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> summary and conclusions | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> critical success factors | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> defining project success | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> cropping system simulations | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> fire data | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> directly sown rice | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> | methods | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> | patients | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> | laboratory methodology | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> | results | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> | incidental findings | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> | ethical issues | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> | conclusions | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> new stent development | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> preoperative procedure | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> operative procedure | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> arriveguidelineword . docx | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> ethics and dissemination | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> goalsetting and planning | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> mindfulness | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> mediation measures | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> assignment of interventions | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> mediator outcomes | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> generalisability and limitations | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> news ` ` | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> experimental setup | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> sci | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> patient population | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> geographic factors | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> multifrequency dgs analysis | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> active smoker | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> scadding stage iv | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> data collection methods | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> study timeline | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> diatom multiple resources | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> data availability | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> acknowledgments | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> metabolic analyses | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> metabolite patterns | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> data availability statement | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> author contributions | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> luciferase reporter assay | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> chromatin immunoprecipitation assay | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> optional metadata blocks | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> open file formats | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> supplemental files | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> conditions and parameters | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> hydrodynamic model validation | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> cartesian - closed | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> in sects | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> receptor tyrosine kinases | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> chromatin remodeling genes | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> tp <num> dysregulation | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> stem cell pathways | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> aberrant dna methylation | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> material and methods | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> edss was <num> | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> treatment was postponed | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> water quality <num> | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> growth performance <num> | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> bacterial diversity <num> | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> obligation of cognizance | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> obligation of beneficence | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> obligation of accountability | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> acute asthma exacerbations | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> other data | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> optical character recognition | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> convolutional neural network | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> model architecture | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> results and discussions | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> nutrient intake status | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> acknowledgements : | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> conventional microbiological tests | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> bioinformatic analyses | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> illustrative examples | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> conflicts of interest | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> j . mol | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> alveolar epithelial cells | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> predictive horizon | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> recapitulations and conclusions | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> case at b | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> the spectral transformation | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> the spectral multiplicity | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> three fundamental realities | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> concluding thoughts | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> ending and exposure | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> literature screening results | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> year outcome results | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> regional subgroup analysis | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> ahi subgroup analysis | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> the murmansk oblast | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> the arkhangelsk oblast | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> gogolev goes further | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> federation council | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> data accessibility statement | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> author summary | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> discussion and conclusions | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> author contribution statement | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> funding statement | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> experiment <num> a | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> experiment <num> b | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> materials and procedure | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> case presentation | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> key teaching points | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> northern blot hybridization | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> immunofluorescence microscopy | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> increased metastatic potential | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> system description | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> essentials | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> aeskulisa | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> unified chain graphs | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> global markov property | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> experimental evaluation | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> yes b | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> no c | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> sigmoidoscopy b | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+and <=> colonoscopy c | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+- <=> preliminaries | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+- <=> spectral classification | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+- <=> sa deployment | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+- <=> introduction : | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+a <=> statistical methods | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+a <=> patient characteristics | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+a <=> competing interests | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+a <=> supplementary data | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> ) <=> ojphi | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+<num> ) <=> study results | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+r <=> study procedures | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+results <=> let ď | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+results <=> open access | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+analysis <=> footnote | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+experiments <=> submission review | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+background <=> premise | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+background <=> galaxy redshifts | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+background <=> postoperative procedure | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+background <=> numerical models | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+then <=> concluding remarks | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+then <=> adiabatic approach | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+then <=> transactivation assays | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+paper <=> additional file | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+paper <=> data management | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+paper <=> cell culture | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+( <num> <=> med | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+( <num> <=> economic loss | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+differential expression <=> exclusion criteria | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+differential expression <=> causal inference | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+wgcna <=> pregnancy | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+wgcna <=> participant timeline | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+models <=> hypothesis <num> | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+method <=> uva crosslinking | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+experimental <=> case report | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+b ) <=> study group | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+figure <num> <=> formalin test | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+figure <num> <=> electron microscopy | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+figure <num> <=> transactivation capacity | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+significance <=> iv | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+significance <=> study setting | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+fig <=> demographics | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+none <=> current study | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+funding <=> weyl's alternative | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+introduction <=> remark <num> | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+neutrophils <=> inclusion criteria | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+laboratory tests <=> limitation | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+subjects <=> pulmonary function | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+• <=> hydrodynamic characteristics | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+discussion <=> dq | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+control group <=> the decrease | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+therefore , <=> literature review | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+summary <=> vi | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+limitations <=> physiologic parameters | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+chemoradiotherapy <=> case reports | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+ii <=> training setup | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+iii <=> mpc controller | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+eligibility criteria <=> pentacam | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+basket <=> echocardiography | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+attribute <=> corollary <num> | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+description <=> mait cells | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+proof <=> foamy macrophages | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+the algorithm <=> supplemental file | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+theorem <num> <=> validation study | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+lemma <num> <=> general discussion | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+experimental results <=> ivcm | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+outcome measures <=> relative abundance | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+granuloma formation <=> control horizon | L=[] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=empty_frame
+
+## left_boundary accepted merges (first 400 in candidate order)
+( <=> theorem <num> . | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+( <=> proof of theorem | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+( <=> lemma <num> . | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+( <=> assume p ě | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+( <=> corollary <num> . | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+( <=> example <num> . | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+( <=> <num> n ă | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+( <=> definition <num> . | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+( <=> remark <num> . | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+( <=> edss value was | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+( <=> numerical example set | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+( <=> anyang , korea | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+( <=> hypotheses : study | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+( <=> double immunofluorescence figure | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+gene expression <=> biomass and physiologic | L=[] R=[measurements] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+<num> <=> table s <num> | L=[] R=[)] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+<num> <=> assume hypothesis <num> | L=[] R=[. <num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+<num> <=> <num> - ins | L=[] R=[)] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+other <=> | behavioral | L=[] R=[data] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+other <=> x - ray | L=[] R=[data] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+mediation <=> baseline and evaluation | L=[] R=[measures] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+| <=> left panel : | L=[] R=[visual search task] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+| <=> data analysis and | L=[] R=[discussion] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+| <=> | materials and | L=[] R=[methods] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+| <=> summary and | L=[] R=[conclusions] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+| <=> recapitulations and | L=[] R=[conclusions] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+| <=> year outcome | L=[] R=[results] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+| <=> numerical simulation of | L=[] R=[results] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+materials and <=> data collection | L=[] R=[methods] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+materials and <=> operative | L=[] R=[procedure] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+materials and <=> material and | L=[] R=[methods] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+materials and <=> description of surgical | L=[] R=[procedure] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+this study <=> this study also | L=[] R=[has some limitations] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+this study <=> this study still | L=[] R=[has some limitations] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+data <=> | go enrichment | L=[] R=[analysis] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+data <=> voxel - wise | L=[] R=[analysis] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+data <=> roi - based | L=[] R=[analysis] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+data <=> data collection and | L=[] R=[analysis] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+<num> . <=> edss was | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+<num> . <=> growth performance | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+<num> . <=> bacterial diversity | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+the primers <=> the specific primers | L=[] R=[are listed in table s <num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+the primers <=> the probes used | L=[] R=[are listed in table s <num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+table s <=> ( fig . | L=[] R=[<num> )] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+table s <=> ( <num> . | L=[] R=[<num> )] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+table s <=> k <num> mh | L=[] R=[<num> )] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+number <=> figure <num> characterization | L=[] R=[of female - and male - biased genes] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+funding <=> data accessibility | L=[] R=[statement] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+funding <=> author contribution | L=[] R=[statement] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+funding <=> declaration of interest's | L=[] R=[statement] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+conflict of <=> declaration of competing | L=[] R=[interest] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+metabolic <=> nitrogen isotopic composition | L=[] R=[analyses] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+current <=> limitations of the | L=[] R=[study] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+the study was <=> ethics and dissemination | L=[] R=[approved by the swedish ethical review authority on <num> - <num> - <num> ( dnr <num> - <num> )] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+sex <=> age specific sex | L=[] R=[effects on gene expression] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+open <=> discipline standard | L=[] R=[file formats] | induced_unions=1 | pair_witnesses=1 | witness_types=left_boundary
+face - <=> | face - | L=[] R=[emotion labeling task] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+cluster <=> recovery of the | L=[] R=[merger orbit] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+therefore , <=> in this section | L=[] R=[let s be a self - adjoint restriction of t max ( with separated boundary conditions if τ is in the l . c . case at both endpoints )] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+therefore , <=> step two : | L=[] R=[lim nÑ <num> r r <num> k , n ď <num> r <num> k] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+visual <=> | visual | L=[] R=[search task] | induced_unions=1 | pair_witnesses=1 | witness_types=left_boundary
+| imaging <=> mouse behavioural | L=[] R=[analysis] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+| imaging <=> multifrequency dgs | L=[] R=[analysis] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+| imaging <=> ahi subgroup | L=[] R=[analysis] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+average linear <=> average quadratic | L=[] R=[slope activity at the first session was correlated with the associated reliability map ( r = . <num> )] | induced_unions=1 | pair_witnesses=1 | witness_types=left_boundary
+summary <=> recapitulations | L=[] R=[and conclusions] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+sds page and <=> page and | L=[] R=[immunoblotting] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+mechanism signaling <=> rhoa - related | L=[] R=[pathways] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+mechanism signaling <=> stem cell | L=[] R=[pathways] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+the discrete choice <=> description of the | L=[] R=[model] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+product and attribute <=> cluster member | L=[] R=[selection] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+contributions and related <=> conclusion and future | L=[] R=[work] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+grant assumption <=> table a | L=[] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+the algorithm runs <=> the procedure is | L=[] R=[as follows] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+output w <=> bar , <num> | L=[] R=[m] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+then , lim <=> therefore , lim | L=[] R=[nÑ <num> r r <num> k , n ď <num> r <num> k] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+evolution rates <=> genomic location | L=[] R=[of sex - biased genes] | induced_unions=1 | pair_witnesses=1 | witness_types=left_boundary
+evolution rates of <=> tissue specificity of | L=[] R=[sex - biased genes] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+sex effects on <=> mixed models for | L=[] R=[gene expression] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+a ) module <=> b ) module | L=[] R=[# <num> contained <num> genes , <num> % of the correlations computed in males ( y axis ) were larger than those computed in females ( x axis )] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+yes <=> case at | L=[] R=[b] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+electron <=> confocal laser scanning | L=[] R=[microscopy] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+cluster redshift <=> maximum likelihood parameter | L=[] R=[estimation] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+summary of spectroscopic <=> completeness of muse | L=[] R=[catalog] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+we comeback to <=> we further explore | L=[] R=[this in § <num> . <num> . <num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+we comeback to <=> we further discuss | L=[] R=[this in § <num> . <num> . <num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+design thinking <=> designthinking | L=[] R=[complements the learning process both through the collection of knowledge and its application] | induced_unions=1 | pair_witnesses=1 | witness_types=left_boundary
+boundary <=> the capacitated equilibrium | L=[] R=[conditions] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+| laboratory <=> multiple readmission sampling | L=[] R=[methodology] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+| ethical <=> this raises two | L=[] R=[issues] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+no other <=> <num> no other | L=[] R=[main effects or interactions were significant] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+single - resource <=> multiple - resource | L=[] R=[communities] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+up - l <=> am - p | L=[] R=[: experimentation , data curation , review , and editing] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+luciferase reporter <=> chromatin immunoprecipitation | L=[] R=[assay] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+indeed , ( <=> proof ( | L=[] R=[lmqc <num> ) and ( lmqc <num> ) are straightforward] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+training of non <=> performance of non | L=[] R=[- expert examiners] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+cc genotype of <=> gg genotype of | L=[] R=[the rs <num> snp in the tm gene <num>] | induced_unions=0 | pair_witnesses=1 | witness_types=left_boundary
+thrombomodulin snps <=> epcr snps | L=[] R=[and plasma levels] | induced_unions=1 | pair_witnesses=1 | witness_types=left_boundary
+
+## right_boundary accepted merges (first 400 in candidate order)
+availability <=> collection and analysis | L=[data] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+availability <=> analysis and discussion | L=[data] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+availability <=> collection methods | L=[data] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+availability <=> accessibility statement | L=[data] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+) <=> n ă <num> | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+) <=> . high gradients | L=[b] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+) <=> ) proof | L=[( <num> . <num>] R=[] | induced_unions=1 | pair_witnesses=1 | witness_types=right_boundary
+) <=> - ins ) | L=[<num>] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+<num> <=> s <num> ) | L=[table] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+<num> <=> model verification | L=[water quality] R=[] | induced_unions=1 | pair_witnesses=1 | witness_types=right_boundary
+<num> ) <=> <num> c ) | L=[( fig .] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+results <=> go enrichment analysis | L=[|] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+results <=> con clus ions | L=[|] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+results <=> task paradigms | L=[|] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+results <=> imaging preprocessing | L=[|] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+results <=> imaging analysis | L=[|] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+results <=> copy number variants | L=[|] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+results <=> laboratory methodology | L=[|] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+results <=> non - paternity | L=[|] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+results <=> ethical issues | L=[|] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+at a <=> at both endpoints | L=[suppose τ is in the l . c . case] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+phototropism <=> behavioral data | L=[|] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+<num> - <num> <=> ins ) | L=[<num> -] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+performed <=> performed again | L=[that task is finished and should not be] R=[] | induced_unions=1 | pair_witnesses=1 | witness_types=right_boundary
+models <=> example set <num> | L=[numerical] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+models <=> simulation of results | L=[numerical] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+of the study <=> and future directions | L=[limitations] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+characteristics <=> consent for publication | L=[patient] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+. clin <=> clin diagn res | L=[j] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+. clin <=> . mol | L=[j] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+clin <=> mol | L=[j .] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+was <num> <=> value was <num> | L=[edss] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+key findings emerged <=> fundamental realities | L=[three] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+summary <=> contribution statement | L=[author] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+data collection <=> patient selection | L=[study design and] R=[] | induced_unions=1 | pair_witnesses=1 | witness_types=right_boundary
+publication <=> publication not applicable | L=[patient consent for] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+/ cytoplasmic fractionation <=> translocation | L=[nuclear] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+decrease <=> discrete choice model | L=[the] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+decrease <=> strongly convex case | L=[the] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+decrease <=> capacitated equilibrium conditions | L=[the] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+decrease <=> republic of karelia | L=[the] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+decrease <=> study remains blinded | L=[the] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+of competing interest <=> of interest's statement | L=[declaration] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+competing interest <=> interest's statement | L=[declaration of] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+of the model <=> levels * | L=[description] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+of the model <=> of surgical procedure | L=[description] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+and conclusion <=> and conclusions | L=[discussion] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+ď <=> ρ ď d | L=[let] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+runs as follows <=> and numerical examples | L=[the algorithm] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+completes the proof <=> establishes step one | L=[this] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+completes the proof <=> raises two issues | L=[this] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+expression measurements <=> expression qc | L=[gene] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+culture <=> culture and transfections | L=[cell] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+review objective <=> radiation dose monitoring | L=[<num> . a |] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+and methods <=> and procedure | L=[materials] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+bmd <=> t - score | L=[association of osahs with lumbar spine] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+- ray data <=> - ray morphology | L=[x] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+ray data <=> ray morphology | L=[x -] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+pipeline <=> analysis approach | L=[| diagnoses missed by our] R=[] | induced_unions=1 | pair_witnesses=1 | witness_types=right_boundary
+redshift estimation <=> member selection | L=[cluster] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+redshift estimation <=> substructures | L=[cluster] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+of spectroscopic catalog <=> and conclusions | L=[summary] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+accountability <=> non - maleficence | L=[obligation of] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+composed text messages <=> adjoint realizations | L=[self -] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+- resource communities <=> readmission sampling methodology | L=[multiple] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+immunoprecipitation assay <=> remodeling genes | L=[chromatin] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+no pcr confirmation <=> no corneal abrasion | L=[there was] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+pcr confirmation <=> corneal abrasion | L=[there was no] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+contains <num> characters <=> is <num> characters | L=[the arabic alphabet] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+spectral transformation <=> spectral multiplicity | L=[the] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+spectral transformation <=> murmansk oblast | L=[the] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+lumbar spine bmd <=> osteoporosis incidence | L=[association of osahs with] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+ago ) d <=> ago ) e | L=[within the past <num> years ( <num> years but less than <num> years] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+ago ) d <=> ago ) f | L=[within the past <num> years ( <num> years but less than <num> years] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+not sure g <=> not sure d | L=[don't know /] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+sure g <=> sure d | L=[don't know / not] R=[] | induced_unions=0 | pair_witnesses=1 | witness_types=right_boundary
+
+## internal_frame accepted merges (first 400 in candidate order)
+- <=> and weight - | L=[model <num> : fev <num> % predicted] R=[adjusted] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+in <=> highly enrich | L=[sex - biased genes] R=[modules of correlated transcripts] | induced_unions=2 | pair_witnesses=1 | witness_types=internal_frame
+. <=> , <num> , | L=[( <num>] R=[<num> )] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+. <=> - <num> - | L=[<num>] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+<num> and <=> <num> , and | L=[assume hypothesis <num> .] R=[suppose p > <num> a . e . on ( a , b )] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+<num> and <=> <num> and suppose | L=[assume hypothesis <num> .] R=[that p > <num> a . e . on ( a , b )] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+has <=> still has | L=[this study] R=[some limitations] | induced_unions=2 | pair_witnesses=1 | witness_types=internal_frame
+auxin responses <=> photosynthetic responses | L=[| phyb <num> and phyb <num> differentially modulate] R=[in tomato seedlings] | induced_unions=2 | pair_witnesses=1 | witness_types=internal_frame
+this <=> this overdensity | L=[we comeback to] R=[in § <num> . <num> . <num>] | induced_unions=2 | pair_witnesses=1 | witness_types=internal_frame
+study <=> study still | L=[this] R=[has some limitations] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+at <num> <=> , at <num> | L=[in the g <num> group] R=[μm and <num> μm depth , the density of corneal stromal cells increased significantly before and after treatment , and the difference was statistically significant ( <num> μm : p = <num> . <num> ; <num> μm : p = <num> . <num> )] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+rneasy <=> rneasy plant mini | L=[total rna was extracted using an] R=[kit ( qiagen ) according to the manufacturer's instructions] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+plant mini kit <=> kit | L=[total rna was extracted using an rneasy] R=[( qiagen ) according to the manufacturer's instructions] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+rnaseq differential expression <=> go enrichment | L=[|] R=[analysis] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+<num> . <num> <=> in our notation | L=[(] R=[)] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+. <num> <=> . <num> , | L=[assume hypothesis <num>] R=[and suppose p > <num> a . e . on ( a , b )] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+. <num> <=> . <num> c | L=[( fig] R=[)] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+primers <=> specific primers | L=[the] R=[are listed in table s <num>] | induced_unions=1 | pair_witnesses=1 | witness_types=internal_frame
+primers are <=> probes used are | L=[the] R=[listed in table s <num>] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+u <=> capacitated s | L=[alternative variational inequality formulation of the] R=[- o problem] | induced_unions=2 | pair_witnesses=1 | witness_types=internal_frame
+differentially modulate auxin <=> differentially modulate photosynthetic | L=[| phyb <num> and phyb <num>] R=[responses in tomato seedlings] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+modulate auxin <=> modulate photosynthetic | L=[| phyb <num> and phyb <num> differentially] R=[responses in tomato seedlings] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+of photosynthesis <=> of auxin responses | L=[| regulation] R=[by phytochrome b] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+and that <=> and suppose that | L=[assume hypothesis <num> . <num>] R=[p > <num> a . e . on ( a , b )] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+and that <=> , and suppose | L=[assume hypothesis <num> . <num>] R=[p > <num> a . e . on ( a , b )] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+auxin responses by <=> photosynthesis by | L=[| regulation of] R=[phytochrome b] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+results of the <=> results of these | L=[the] R=[experiments are reported in table <num>] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+linear <=> log - transformed | L=[average] R=[slope activity at the first session was correlated with the associated reliability map ( r = . <num> )] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+responses were <=> choices were | L=[a total of <num>] R=[collected] | induced_unions=2 | pair_witnesses=1 | witness_types=internal_frame
+linear slope activity <=> quadratic slope activity | L=[average] R=[at the first session was correlated with the associated reliability map ( r = . <num> )] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+global <=> block - recursive | L=[a gaussian distribution p satisfies equations <num> and <num> - <num> with respect to an ucg g if and only if it satisfies the] R=[markov property with respect to g] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+study also has <=> study has | L=[this] R=[some limitations] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+<num> and that <=> <num> and suppose | L=[assume hypothesis <num> .] R=[p > <num> a . e . on ( a , b )] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+so <=> pm <num> . | L=[pre - fire and post - fire median ( iqr )] R=[<num> ( ug / m <num> ) distributions were <num> . <num> ( <num> . <num> , <num> . <num> ) and <num> . <num> ( <num> . <num> , <num> . <num> ) , respectively ( p = <num> . <num> )] | induced_unions=0 | pair_witnesses=2 | witness_types=internal_frame
+predicted <=> predicted and weight | L=[model <num> : fev <num> %] R=[- adjusted] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+limitations to this <=> strengths of our | L=[there are several] R=[study] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+of <num> choices <=> of <num> responses | L=[a total] R=[were collected] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+<num> choices <=> <num> responses | L=[a total of] R=[were collected] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+" Ω¨r <=> " Ω¨r r | L=[assumption <num> holds and if x <num> " d <num> n , then ef papx <num> qq´f˚] R=[k d¨ <num> ? n ` m in <num>] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+Ω¨r <=> Ω¨r r | L=[assumption <num> holds and if x <num> " d <num> n , then ef papx <num> qq´f˚ "] R=[k d¨ <num> ? n ` m in <num>] | induced_unions=1 | pair_witnesses=1 | witness_types=internal_frame
+algorithm runs <=> procedure is | L=[the] R=[as follows] | induced_unions=1 | pair_witnesses=1 | witness_types=internal_frame
+p ě <=> hypothesis <num> . | L=[assume] R=[<num>] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+q r <=> , q c | L=[then] R=[is an ( l , m ) - fuzzy kent q - convergence structure on x] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+k d¨ <=> r k d¨ | L=[assumption <num> holds and if x <num> " d <num> n , then ef papx <num> qq´f˚ " Ω¨r] R=[<num> ? n ` m in <num>] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+that p <=> suppose that p | L=[assume hypothesis <num> . <num> and] R=[> <num> a . e . on ( a , b )] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+p > <=> that p > | L=[assume hypothesis <num> . <num> and suppose] R=[<num> a . e . on ( a , b )] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+has some <=> also has some | L=[this study] R=[limitations] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+in § <=> overdensity in § | L=[we comeback to this] R=[<num> . <num> . <num>] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+comeback to <=> further explore | L=[we] R=[this in § <num> . <num> . <num>] | induced_unions=1 | pair_witnesses=1 | witness_types=internal_frame
+comeback to this <=> further discuss this | L=[we] R=[in § <num> . <num> . <num>] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+explore this <=> discuss this | L=[we further] R=[in § <num> . <num> . <num>] | induced_unions=1 | pair_witnesses=1 | witness_types=internal_frame
+path <=> multi - group | L=[research test (] R=[analysis ) : study <num>] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+of the experiments <=> of these experiments | L=[the results] R=[are reported in table <num>] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+c ( f <=> r ( f | L=[( lmqc <num> ) take each x λ ∈ j ( l x ) , f ∈ f l m ( x ) and a ∈ l such that x λ ≤ q] R=[) and λ a] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+one flow velocity <=> one tp concentration | L=[each figure uses the same color band , with one color representing] R=[and one figure representing one period] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+flow velocity and <=> tp concentration and | L=[each figure uses the same color band , with one color representing one] R=[one figure representing one period] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+kent <=> pretopological and topological | L=[( l , m ) - fuzzy] R=[q - convergence spaces] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+kent q - <=> q - limit | L=[proof let ( x , q ) be an ( l , m ) - fuzzy] R=[convergence space] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+easy to check <=> easy to verify | L=[( <num> ) define qc * : f l m ( x ) −→ l x as follows : it is] R=[that qc * is an ( l , m ) - fuzzy qconvergence structure on x] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+to check that <=> to verify that | L=[( <num> ) define qc * : f l m ( x ) −→ l x as follows : it is easy] R=[qc * is an ( l , m ) - fuzzy qconvergence structure on x] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+check that <=> verify that | L=[( <num> ) define qc * : f l m ( x ) −→ l x as follows : it is easy to] R=[qc * is an ( l , m ) - fuzzy qconvergence structure on x] | induced_unions=1 | pair_witnesses=1 | witness_types=internal_frame
+≤ q r <=> ≤ q c | L=[( lmqc <num> ) take each x λ ∈ j ( l x ) , f ∈ f l m ( x ) and a ∈ l such that x λ] R=[( f ) and λ a] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+q r ( <=> q c ( | L=[( lmqc <num> ) take each x λ ∈ j ( l x ) , f ∈ f l m ( x ) and a ∈ l such that x λ ≤] R=[f ) and λ a] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+, q l <=> , q p | L=[for this , it suffices to verify ( <num> ) id x : ( x , q ) −→ ( x] R=[) is continuous] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+≤ q l <=> ≤ q p | L=[( lmqc <num> ) take each f ∈ f l m ( x ) , x λ ∈ j ( l x ) and a ∈ l such that x λ] R=[( f ) and λ a] | induced_unions=0 | pair_witnesses=2 | witness_types=internal_frame
+q l ( <=> q p ( | L=[( lmqc <num> ) take each f ∈ f l m ( x ) , x λ ∈ j ( l x ) and a ∈ l such that x λ ≤] R=[f ) and λ a] | induced_unions=0 | pair_witnesses=2 | witness_types=internal_frame
+l ( f <=> p ( f | L=[( lmqc <num> ) take each f ∈ f l m ( x ) , x λ ∈ j ( l x ) and a ∈ l such that x λ ≤ q] R=[) and λ a] | induced_unions=0 | pair_witnesses=2 | witness_types=internal_frame
+q l ) <=> q p ) | L=[for this , it suffices to verify ( <num> ) id x : ( x , q ) −→ ( x ,] R=[is continuous] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+l ) is <=> p ) is | L=[for this , it suffices to verify ( <num> ) id x : ( x , q ) −→ ( x , q] R=[continuous] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+<num> group <=> <num> group , | L=[in the g] R=[at <num> μm and <num> μm depth , the density of corneal stromal cells increased significantly before and after treatment , and the difference was statistically significant ( <num> μm : p = <num> . <num> ; <num> μm : p = <num> . <num> )] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+intravenous injections <=> an intravenous injection | L=[rabbits were anesthetized with] R=[of <num> % pentobarbital] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+group , at <=> group at | L=[in the g <num>] R=[<num> μm and <num> μm depth , the density of corneal stromal cells increased significantly before and after treatment , and the difference was statistically significant ( <num> μm : p = <num> . <num> ; <num> μm : p = <num> . <num> )] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+arabic alphabet contains <=> arabic alphabet is | L=[the] R=[<num> characters] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+alphabet contains <=> alphabet is | L=[the arabic] R=[<num> characters] | induced_unions=1 | pair_witnesses=1 | witness_types=internal_frame
+these experiments are <=> the experiments are | L=[the results of] R=[reported in table <num>] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+anti - microbial <=> antimicrobial | L=[resident mait cells may also get activated upon mtb infection with enhanced glycolytic metabolism and] R=[phenotype] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+that p > <=> suppose p > | L=[assume hypothesis <num> . <num> and] R=[<num> a . e . on ( a , b )] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame
+and that p <=> and suppose p | L=[assume hypothesis <num> . <num>] R=[> <num> a . e . on ( a , b )] | induced_unions=0 | pair_witnesses=1 | witness_types=internal_frame

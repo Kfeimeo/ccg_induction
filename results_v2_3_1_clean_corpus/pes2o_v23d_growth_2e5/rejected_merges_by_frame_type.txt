@@ -1,0 +1,171 @@
+# SCF v2.3.1 rejected merges by witness frame type (pes2o, v23d)
+
+# scale 200000
+
+## empty_frame rejected merges (first 20 in candidate order)
+candidate of a <=> a | witness L=[] R=[] | pair_witnesses=1
+  conflict: Comp(of a, and, of a and) vs Comp(a, and, a and); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of a <=> in | witness L=[] R=[] | pair_witnesses=1
+  conflict: Comp(of a, and, of a and) vs Comp(in, and, in and); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of a <=> <num> | witness L=[] R=[] | pair_witnesses=1
+  conflict: Comp(of a, and, of a and) vs Comp(<num>, and, <num> and); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of a <=> r | witness L=[] R=[] | pair_witnesses=1
+  conflict: Comp(of a, and, of a and) vs Comp(r, and, r and); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of a <=> c | witness L=[] R=[] | pair_witnesses=1
+  conflict: Comp(of a, and, of a and) vs Comp(c, and, c and); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of a <=> d | witness L=[] R=[] | pair_witnesses=1
+  conflict: Comp(of a, and, of a and) vs Comp(d, and, d and); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of a <=> b | witness L=[] R=[] | pair_witnesses=1
+  conflict: Comp(of a, and, of a and) vs Comp(b, and, b and); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of a <=> co | witness L=[] R=[] | pair_witnesses=1
+  conflict: Comp(of a, and, of a and) vs Comp(co, and, co and); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of a <=> <num> <num> | witness L=[] R=[] | pair_witnesses=1
+  conflict: Comp(of a, and, of a and) vs Comp(<num> <num>, and, <num> <num> and); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of a <=> <num> f | witness L=[] R=[] | pair_witnesses=1
+  conflict: Comp(of a, and, of a and) vs Comp(<num> f, and, <num> f and); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of a <=> f | witness L=[] R=[] | pair_witnesses=1
+  conflict: Comp(of a, and, of a and) vs Comp(f, and, f and); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of a <=> using <num> | witness L=[] R=[] | pair_witnesses=1
+  conflict: Comp(of a, and, of a and) vs Comp(using <num>, and, using <num> and); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of a <=> for <num> | witness L=[] R=[] | pair_witnesses=1
+  conflict: Comp(of a, <num>, of a <num>) vs Comp(for <num>, <num>, for <num> <num>); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of a <=> paper | witness L=[] R=[] | pair_witnesses=1
+  conflict: Comp(of a, <num>, of a <num>) vs Comp(paper, <num>, paper <num>); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of a <=> <num> nm | witness L=[] R=[] | pair_witnesses=1
+  conflict: Comp(of a, and, of a and) vs Comp(<num> nm, and, <num> nm and); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of a <=> m | witness L=[] R=[] | pair_witnesses=1
+  conflict: Comp(of a, and, of a and) vs Comp(m, and, m and); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of a <=> s | witness L=[] R=[] | pair_witnesses=1
+  conflict: Comp(of a, and, of a and) vs Comp(s, and, s and); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of a <=> nih | witness L=[] R=[] | pair_witnesses=1
+  conflict: Comp(the, ncbi, the ncbi) vs Comp(the, nih, the nih); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of a <=> org | witness L=[] R=[] | pair_witnesses=1
+  conflict: Comp(of a, <num>, of a <num>) vs Comp(org, <num>, org <num>); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of a <=> of <num> | witness L=[] R=[] | pair_witnesses=1
+  conflict: Comp(of a, and, of a and) vs Comp(of <num>, and, of <num> and); outputs have different observed exact-context profiles and no direct substitution witness
+
+## left_boundary rejected merges (first 20 in candidate order)
+candidate of <=> <num> | witness L=[] R=[<num>] | pair_witnesses=2
+  conflict: Comp(of, one, of one) vs Comp(<num>, one, <num> one); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of <=> for | witness L=[] R=[<num>] | pair_witnesses=1
+  conflict: Comp(of, one, of one) vs Comp(for, one, for one); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of <=> <num> and | witness L=[] R=[<num>] | pair_witnesses=1
+  conflict: Comp(of, the, of the) vs Comp(<num> and, the, <num> and the); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of <=> <num> in | witness L=[] R=[<num>] | pair_witnesses=1
+  conflict: Comp(of, the, of the) vs Comp(<num> in, the, <num> in the); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of <=> co | witness L=[] R=[<num>] | pair_witnesses=1
+  conflict: Comp(of, and, of and) vs Comp(co, and, co and); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of <=> <num> <num> | witness L=[] R=[<num>] | pair_witnesses=1
+  conflict: Comp(of, genes, of genes) vs Comp(<num> <num>, genes, <num> <num> genes); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of <=> using | witness L=[] R=[<num>] | pair_witnesses=1
+  conflict: Comp(of, the, of the) vs Comp(using, the, using the); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of <=> s | witness L=[] R=[<num>] | pair_witnesses=1
+  conflict: Comp(of, one, of one) vs Comp(s, one, s one); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of <=> <num> to | witness L=[] R=[<num>] | pair_witnesses=1
+  conflict: Comp(of, the, of the) vs Comp(<num> to, the, <num> to the); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of <=> <num> b | witness L=[] R=[<num>] | pair_witnesses=1
+  conflict: Comp(of, the, of the) vs Comp(<num> b, the, <num> b the); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of <=> p | witness L=[] R=[<num>] | pair_witnesses=1
+  conflict: Comp(of, the, of the) vs Comp(p, the, p the); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of <=> <num> p | witness L=[] R=[<num>] | pair_witnesses=1
+  conflict: Comp(of, and, of and) vs Comp(<num> p, and, <num> p and); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of <=> in <num> | witness L=[] R=[<num>] | pair_witnesses=1
+  conflict: Comp(of, the, of the) vs Comp(in <num>, the, in <num> the); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of <=> table | witness L=[] R=[<num>] | pair_witnesses=1
+  conflict: Comp(of, a, of a) vs Comp(table, a, table a); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of <=> s <num> | witness L=[] R=[a] | pair_witnesses=1
+  conflict: Comp(of, and, of and) vs Comp(s <num>, and, s <num> and); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of <=> figure | witness L=[] R=[<num>] | pair_witnesses=1
+  conflict: Comp(of, one, of one) vs Comp(figure, one, figure one); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of <=> figure <num> | witness L=[] R=[a] | pair_witnesses=1
+  conflict: Comp(of, one, of one) vs Comp(figure <num>, one, figure <num> one); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of <=> <num> table | witness L=[] R=[<num>] | pair_witnesses=1
+  conflict: Comp(of, s, of s) vs Comp(<num> table, s, <num> table s); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of <=> <num> figure | witness L=[] R=[<num>] | pair_witnesses=1
+  conflict: Comp(of, s, of s) vs Comp(<num> figure, s, <num> figure s); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of <=> thus | witness L=[] R=[<num>] | pair_witnesses=1
+  conflict: Comp(of, the, of the) vs Comp(thus, the, thus the); outputs have different observed exact-context profiles and no direct substitution witness
+
+## right_boundary rejected merges (first 20 in candidate order)
+candidate a <=> <num> | witness L=[<num>] R=[] | pair_witnesses=3
+  conflict: Comp(a, one, a one) vs Comp(<num>, one, <num> one); outputs have different observed exact-context profiles and no direct substitution witness
+candidate a <=> c | witness L=[<num>] R=[] | pair_witnesses=5
+  conflict: Comp(a, of, a of) vs Comp(c, of, c of); outputs have different observed exact-context profiles and no direct substitution witness
+candidate a <=> d | witness L=[<num>] R=[] | pair_witnesses=3
+  conflict: Comp(a, and, a and) vs Comp(d, and, d and); outputs have different observed exact-context profiles and no direct substitution witness
+candidate a <=> b | witness L=[<num>] R=[] | pair_witnesses=5
+  conflict: Comp(a, of, a of) vs Comp(b, of, b of); outputs have different observed exact-context profiles and no direct substitution witness
+candidate a <=> <num> <num> | witness L=[<num>] R=[] | pair_witnesses=2
+  conflict: Comp(a, of, a of) vs Comp(<num> <num>, of, <num> <num> of); outputs have different observed exact-context profiles and no direct substitution witness
+candidate a <=> f | witness L=[<num>] R=[] | pair_witnesses=3
+  conflict: Comp(a, of, a of) vs Comp(f, <num> Ω, f <num> Ω); outputs have different observed exact-context profiles and no direct substitution witness
+candidate a <=> nm | witness L=[<num>] R=[] | pair_witnesses=1
+  conflict: Comp(a, of, a of) vs Comp(nm, of, nm of); outputs have different observed exact-context profiles and no direct substitution witness
+candidate a <=> to <num> | witness L=[<num>] R=[] | pair_witnesses=1
+  conflict: Comp(a, of, a of) vs Comp(to <num>, of, to <num> of); outputs have different observed exact-context profiles and no direct substitution witness
+candidate a <=> − <num> | witness L=[<num>] R=[] | pair_witnesses=1
+  conflict: Comp(a, of, a of) vs Comp(− <num>, of, − <num> of); outputs have different observed exact-context profiles and no direct substitution witness
+candidate a <=> b <num> | witness L=[<num>] R=[] | pair_witnesses=1
+  conflict: Comp(a, and, a and) vs Comp(b <num>, and, b <num> and); outputs have different observed exact-context profiles and no direct substitution witness
+candidate a <=> p | witness L=[<num>] R=[] | pair_witnesses=1
+  conflict: Comp(a, the, a the) vs Comp(p, the, p the); outputs have different observed exact-context profiles and no direct substitution witness
+candidate a <=> and <num> | witness L=[<num>] R=[] | pair_witnesses=1
+  conflict: Comp(a, of, a of) vs Comp(and <num>, of, and <num> of); outputs have different observed exact-context profiles and no direct substitution witness
+candidate a <=> respectively | witness L=[<num>] R=[] | pair_witnesses=1
+  conflict: Comp(a, of, a of) vs Comp(respectively, of, respectively of); outputs have different observed exact-context profiles and no direct substitution witness
+candidate a <=> in <num> | witness L=[<num>] R=[] | pair_witnesses=1
+  conflict: Comp(a, of, a of) vs Comp(in <num>, of, in <num> of); outputs have different observed exact-context profiles and no direct substitution witness
+candidate a <=> c <num> | witness L=[<num>] R=[] | pair_witnesses=1
+  conflict: Comp(a, one, a one) vs Comp(c <num>, one, c <num> one); outputs have different observed exact-context profiles and no direct substitution witness
+candidate a <=> g | witness L=[<num>] R=[] | pair_witnesses=3
+  conflict: Comp(a, of, a of) vs Comp(g, of, g of); outputs have different observed exact-context profiles and no direct substitution witness
+candidate a <=> figure <num> | witness L=[<num>] R=[] | pair_witnesses=3
+  conflict: Comp(a, one, a one) vs Comp(figure <num>, one, figure <num> one); outputs have different observed exact-context profiles and no direct substitution witness
+candidate a <=> e | witness L=[<num>] R=[] | pair_witnesses=2
+  conflict: Comp(a, of, a of) vs Comp(e, of, e of); outputs have different observed exact-context profiles and no direct substitution witness
+candidate a <=> e <num> | witness L=[<num>] R=[] | pair_witnesses=1
+  conflict: Comp(a, the, a the) vs Comp(e <num>, the, e <num> the); outputs have different observed exact-context profiles and no direct substitution witness
+candidate a <=> fig | witness L=[<num>] R=[] | pair_witnesses=2
+  conflict: Comp(a, <num>, a <num>) vs Comp(fig, <num>, fig <num>); outputs have different observed exact-context profiles and no direct substitution witness
+
+## internal_frame rejected merges (first 20 in candidate order)
+candidate of <=> less than | witness L=[p values] R=[<num>] | pair_witnesses=1
+  conflict: Comp(of, one, of one) vs Comp(less than, one, less than one); outputs have different observed exact-context profiles and no direct substitution witness
+candidate of <=> values of | witness L=[the ic <num>] R=[ephedra herb extract and efe were <num>] | pair_witnesses=1
+  conflict: Comp(of, the, of the) vs Comp(values of, the, values of the); outputs have different observed exact-context profiles and no direct substitution witness
+candidate the <=> the double | witness L=[of] R=[soft theorem <num>] | pair_witnesses=1
+  conflict: Comp(and, the, and the) vs Comp(and, the double, and the double); outputs have different observed exact-context profiles and no direct substitution witness
+candidate the <=> the superrotation | witness L=[<num> to] R=[ward identity <num>] | pair_witnesses=1
+  conflict: Comp(the, soft, the soft) vs Comp(the superrotation, soft, the superrotation soft); outputs have different observed exact-context profiles and no direct substitution witness
+candidate and <=> to | witness L=[<num>] R=[<num>] | pair_witnesses=3
+  conflict: Comp(and, one, and one) vs Comp(to, one, to one); outputs have different observed exact-context profiles and no direct substitution witness
+candidate and <=> a | witness L=[<num>] R=[fig] | pair_witnesses=1
+  conflict: Comp(and, one, and one) vs Comp(a, one, a one); outputs have different observed exact-context profiles and no direct substitution witness
+candidate and <=> in | witness L=[<num>] R=[<num>] | pair_witnesses=1
+  conflict: Comp(and, one, and one) vs Comp(in, one, in one); outputs have different observed exact-context profiles and no direct substitution witness
+candidate and <=> <num> | witness L=[<num>] R=[<num>] | pair_witnesses=1
+  conflict: Comp(and, one, and one) vs Comp(<num>, one, <num> one); outputs have different observed exact-context profiles and no direct substitution witness
+candidate and <=> c | witness L=[<num>] R=[<num>] | pair_witnesses=2
+  conflict: Comp(and, of, and of) vs Comp(c, of, c of); outputs have different observed exact-context profiles and no direct substitution witness
+candidate and <=> mathews sharrock | witness L=[<num>] R=[<num>] | pair_witnesses=1
+  conflict: Comp(arabidopsis, and, arabidopsis and) vs Comp(arabidopsis, mathews sharrock, arabidopsis mathews sharrock); outputs have different observed exact-context profiles and no direct substitution witness
+candidate and <=> and the | witness L=[both the soft] R=[hard particles seperated out] | pair_witnesses=1
+  conflict: Comp(and, external, and external) vs Comp(and the, external, and the external); outputs have different observed exact-context profiles and no direct substitution witness
+candidate and <=> b | witness L=[<num>] R=[<num>] | pair_witnesses=1
+  conflict: Comp(and, of, and of) vs Comp(b, of, b of); outputs have different observed exact-context profiles and no direct substitution witness
+candidate and <=> <num> <num> | witness L=[<num>] R=[<num>] | pair_witnesses=1
+  conflict: Comp(and, of, and of) vs Comp(<num> <num>, of, <num> <num> of); outputs have different observed exact-context profiles and no direct substitution witness
+candidate and <=> − | witness L=[<num>] R=[<num>] | pair_witnesses=1
+  conflict: Comp(and, a, and a) vs Comp(−, a, − a); outputs have different observed exact-context profiles and no direct substitution witness
+candidate and <=> p | witness L=[<num>] R=[<num>] | pair_witnesses=1
+  conflict: Comp(and, are, and are) vs Comp(p, are, p are); outputs have different observed exact-context profiles and no direct substitution witness
+candidate and <=> over | witness L=[<num>] R=[<num>] | pair_witnesses=1
+  conflict: Comp(and, the, and the) vs Comp(over, the, over the); outputs have different observed exact-context profiles and no direct substitution witness
+candidate and <=> table | witness L=[<num>] R=[<num>] | pair_witnesses=1
+  conflict: Comp(and, a, and a) vs Comp(table, a, table a); outputs have different observed exact-context profiles and no direct substitution witness
+candidate and <=> figure | witness L=[<num>] R=[<num>] | pair_witnesses=1
+  conflict: Comp(and, one, and one) vs Comp(figure, one, figure one); outputs have different observed exact-context profiles and no direct substitution witness
+candidate and <=> e | witness L=[<num>] R=[<num>] | pair_witnesses=1
+  conflict: Comp(and, of, and of) vs Comp(e, of, e of); outputs have different observed exact-context profiles and no direct substitution witness
+candidate and <=> estimated | witness L=[<num>] R=[<num>] | pair_witnesses=1
+  conflict: Comp(and, the, and the) vs Comp(estimated, the, estimated the); outputs have different observed exact-context profiles and no direct substitution witness

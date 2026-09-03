@@ -416,6 +416,28 @@ profiles and no direct witness; likewise `auxin ⇔ photosynthetic`,
 `linear ⇔ quadratic`, `then ⇔ therefore`. The same one-context rule that
 accepts `<num> ⇔ conclusions` rejects `responses ⇔ choices`.
 
+### 6.6 All 78 internal-frame accepted merges at 4e5 (hand classification)
+
+`results_v2_3_1_clean_corpus/pes2o_structured_audit_4e5_400examples/` is the
+4e5 prefix re-run with `--examples 400`, which lists every accepted merge
+per type (78 internal-frame merges exist at 4e5). Hand classification,
+recorded without correction:
+
+| class | count | share | examples |
+|---|---|---|---|
+| same-category / paraphrase / modifier insertion | 49 | 63 % | `auxin responses ⇔ photosynthetic responses`, `linear ⇔ log - transformed`, `responses were ⇔ choices were`, `easy to check ⇔ easy to verify`, `has ⇔ still has`, `primers ⇔ specific primers`, `limitations to this ⇔ strengths of our`, `anti - microbial ⇔ antimicrobial` |
+| formula symbol variants | 16 | 21 % | `q r ⇔ q c`, `≤ q l ⇔ ≤ q p`, `c ( f ⇔ r ( f`, `Ω¨r ⇔ Ω¨r r`, `u ⇔ capacitated s` |
+| punctuation / number templates and span-boundary pairs | 11 | 14 % | `. ⇔ , <num> ,` (frame `L=[( <num>] R=[<num> )]`), `. ⇔ - <num> -` (`L=[<num>] R=[<num>]`), `rneasy ⇔ rneasy plant mini`, `plant mini kit ⇔ kit`, `<num> group ⇔ <num> group ,` |
+| clearly wrong | 2 | 3 % | `in ⇔ highly enrich`, `so ⇔ pm <num> .` |
+
+The same script over the empty-frame list gives 0 of 20 plausible. So
+internal frames are cleaner by a wide margin, but one in six internal
+merges is a numeric/punctuation template or a span-boundary artifact of
+the same kind that populates the boundary classes, and 20 of the 78 pairs
+have one side that is a prefix or suffix of the other (`rneasy` /
+`rneasy plant mini`), which is a length-1..3 span-inventory effect rather
+than a category identity.
+
 ## 7. Corpus/preprocessing effect vs algorithm/witness-semantics effect
 
 Attributable to **corpus / preprocessing** (they change when the corpus or
