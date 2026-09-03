@@ -18,6 +18,9 @@ import shutil
 import sys
 
 RUNS = ["fineweb_v23d", "fineweb_structured", "pes2o_v23d", "pes2o_structured"]
+# Extra single-scale runs used for the runtime growth curve (their rows carry
+# the same corpus/preprocessing labels and are appended after the main runs).
+GROWTH_PREFIX = "pes2o_structured_growth_"
 MAIN_RUN = "pes2o_structured"
 BASELINE = "results_v2_3_conservative/fineweb_baseline/conservative_scaling.csv"
 AUDIT_FILES = ["largest_classes.txt", "successful_merges_by_frame_type.txt",
@@ -59,7 +62,7 @@ def fmt(value, digits=4):
         number = float(value)
     except ValueError:
         return value
-    if number.is_integer() and abs(number) >= 1:
+    if number.is_integer():
         return f"{int(number):,}"
     return f"{number:.{digits}f}"
 
@@ -67,13 +70,17 @@ def fmt(value, digits=4):
 def main():
     root = sys.argv[1] if len(sys.argv) > 1 else "results_v2_3_1_clean_corpus"
     scaling, frames = [], []
-    for run in RUNS:
+    growth = sorted(d for d in os.listdir(root) if d.startswith(GROWTH_PREFIX)
+                    and os.path.isdir(os.path.join(root, d)))
+    for run in RUNS + growth:
         run_dir = os.path.join(root, run)
         if not os.path.isdir(run_dir):
             print(f"missing run directory {run_dir}")
             continue
         scaling += read_csv(os.path.join(run_dir, "clean_corpus_scaling.csv"))
         frames += read_csv(os.path.join(run_dir, "frame_type_metrics.csv"))
+    scaling.sort(key=lambda r: (r["corpus"], r["preprocessing"], int(r["nominal_tokens"])))
+    frames.sort(key=lambda r: (r["corpus"], r["preprocessing"], int(r["nominal_tokens"])))
     write_csv(os.path.join(root, "clean_corpus_scaling.csv"), scaling)
     write_csv(os.path.join(root, "frame_type_metrics.csv"), frames)
     for name in AUDIT_FILES:
