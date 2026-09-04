@@ -1,7 +1,24 @@
+# build trees and IDE state
 /build/
+/build-*/
 /out/
 /.vs/
+/.idea/
+/.vscode/
+/Debug/
+/Release/
 CMakeUserPresets.json
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+CTestTestfile.cmake
+*.vcxproj
+*.vcxproj.filters
+*.sln
+*.slnx
+
+# generated data and scratch results (checked-in results live under
+# <research line>/results/)
 /data/generated/
-/results/
 /data/real/
+/results/

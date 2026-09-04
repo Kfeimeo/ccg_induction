@@ -1,0 +1,629 @@
+# SCF v2.4 class examples (pes2o)
+
+# scale 100000 universe all_frames -- 20 largest classes
+size=35 lexical_members=3 members_with_empty_frame=35 shared_signature_contexts=1 upos[NUM=1]
+  contexts: L=[] R=[]
+  members: | gravitropism | | phototropism | histopathology and immunohistochemistry | j . clin | | introduction | | participants | | task paradigms | | behavioral data | | acquisition | | imaging preprocessing | | imaging analysis | | discussion | mouse behavioural analysis | quantification microrna panel | patients characteristics | mechanism signaling pathways | literature review | description levels * | discussion and conclusion | fix any t | if we choose | output w m | n ` ˆ | sample description | gene expression measurements | gene expression qc | go category enrichment | i . introduction | vi | vii | acknowledgment | cluster redshift estimation | cluster member selection | spectral classification | galaxies association
+size=5 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[|] R=[]
+  members: con clus ions | task paradigms | imaging preprocessing | imaging analysis | materials and methods
+size=3 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[analysis]
+  members: | go enrichment | mouse behavioural | data collection and
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[| phyb <num> and phyb <num>] R=[responses in tomato seedlings]
+  members: differentially modulate auxin | differentially modulate photosynthetic
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[| phyb <num> and phyb <num> differentially] R=[responses in tomato seedlings]
+  members: modulate auxin | modulate photosynthetic
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[| phyb <num> and phyb <num> differentially] R=[in tomato seedlings]
+  members: modulate auxin responses | modulate photosynthetic responses
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[| phyb <num> and phyb <num> differentially modulate] R=[tomato seedlings]
+  members: auxin responses in | photosynthetic responses in
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[| regulation of] R=[phytochrome b]
+  members: auxin responses by | photosynthesis by
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[slope activity at the first session was correlated with the associated reliability map ( r = . <num> )]
+  members: average linear | average quadratic
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[activity at the first session was correlated with the associated reliability map ( r = . <num> )]
+  members: average linear slope | average quadratic slope
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[average] R=[at the first session was correlated with the associated reliability map ( r = . <num> )]
+  members: linear slope activity | quadratic slope activity
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[a total] R=[were collected]
+  members: of <num> choices | of <num> responses
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[a total of] R=[were collected]
+  members: <num> choices | <num> responses
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[a total of] R=[collected]
+  members: <num> choices were | <num> responses were
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[a total of <num>] R=[]
+  members: choices were collected | responses were collected
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[<num>]
+  members: assume p ě | <num> n ă
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[nÑ <num> r r <num> k , n ď <num> r <num> k]
+  members: then , lim | therefore , lim
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[assumption <num> holds and if x <num> " d <num> n , then ef papx <num> qq´f˚ "] R=[d¨ <num> ? n ` m in <num>]
+  members: Ω¨r r k | Ω¨r k
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[sex - biased genes] R=[of correlated transcripts]
+  members: highly enrich modules | in modules
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[# <num> contained <num> genes , <num> % of the correlations computed in males ( y axis ) were larger than those computed in females ( x axis )]
+  members: a ) module | b ) module
+## classes with >= 2 shared contexts (first 20 by size)
+(none)
+class size histogram (size: classes): 1:107975 2:20 3:1 5:1 35:1 
+
+# scale 100000 universe internal_only -- 20 largest classes
+size=5499 lexical_members=199 members_with_empty_frame=38 shared_signature_contexts=0 upos[ADJ=7 ADV=9 NOUN=31 NUM=4 PRON=1 PROPN=5 VERB=7]
+  contexts: (empty signature: no universe context)
+  members: one important | one important family | are the phytochromes | the phytochromes | plants use | plants use both | or nutrient availability | nutrient availability | phytochromes ( | phytochromes ( phys | the phy apoproteins | ) responsive phys | atphyb - atphye | - atphye | atphye | phylogenetically | phylogenetically , | phylogenetically , gene | the other phys | other phys | subsequently , | subsequently , phya | eventually , | eventually , after | phys in tomato | as in arabidopsis | two plant families | plant families | compared to arabidopsis | in the solanales | phyb <num> plays | analysis of phyb | chlorophyll and | chlorophyll and anthocyanin | subfunctionalization of the | to better understand | - redundant functions | redundant functions | and in photosynthesis | in photosynthesis | ... (5459 more)
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[| phyb <num> and phyb <num>] R=[responses in tomato seedlings]
+  members: differentially modulate auxin | differentially modulate photosynthetic
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[| phyb <num> and phyb <num> differentially] R=[responses in tomato seedlings]
+  members: modulate auxin | modulate photosynthetic
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[| phyb <num> and phyb <num> differentially] R=[in tomato seedlings]
+  members: modulate auxin responses | modulate photosynthetic responses
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[| phyb <num> and phyb <num> differentially modulate] R=[tomato seedlings]
+  members: auxin responses in | photosynthetic responses in
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[| regulation of] R=[phytochrome b]
+  members: auxin responses by | photosynthesis by
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[average] R=[at the first session was correlated with the associated reliability map ( r = . <num> )]
+  members: linear slope activity | quadratic slope activity
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[a total] R=[were collected]
+  members: of <num> choices | of <num> responses
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[a total of] R=[were collected]
+  members: <num> choices | <num> responses
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[a total of] R=[collected]
+  members: <num> choices were | <num> responses were
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[assumption <num> holds and if x <num> " d <num> n , then ef papx <num> qq´f˚ "] R=[d¨ <num> ? n ` m in <num>]
+  members: Ω¨r r k | Ω¨r k
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[sex - biased genes] R=[of correlated transcripts]
+  members: highly enrich modules | in modules
+## classes with >= 2 shared contexts (first 20 by size)
+(none)
+class size histogram (size: classes): 1:102537 2:11 5499:1 
+
+# scale 100000 universe boundary_frames -- 20 largest classes
+size=98129 lexical_members=5609 members_with_empty_frame=0 shared_signature_contexts=0 upos[ADJ=382 ADP=26 ADV=127 AUX=20 CCONJ=4 DET=2 INTJ=5 NOUN=876 NUM=6 PART=1 PRON=12 PROPN=143 PUNCT=12 SCONJ=5 SYM=5 VERB=700 X=6]
+  contexts: (empty signature: no universe context)
+  members: important family | important family of | family | family of | family of plant | of plant | of plant genes | plant | plant genes | plant genes are | genes are | genes are the | are | are the | use both | use both internal | both internal | both internal and | internal | internal and | internal and external | and external | and external cues | external | external cues | external cues as | cues | cues as | cues as signals | as signals | as signals to | signals to | signals to guide | to guide | to guide their | guide their | guide their growth | their growth | their growth and | growth and | ... (98089 more)
+size=45 lexical_members=6 members_with_empty_frame=45 shared_signature_contexts=1 upos[NUM=3 PROPN=1]
+  contexts: L=[] R=[]
+  members: | gravitropism | | phototropism | study group | histopathology and immunohistochemistry | laboratory tests | j . clin | med | | introduction | | participants | | task paradigms | | behavioral data | | acquisition | | imaging preprocessing | | imaging analysis | | discussion | mouse behavioural analysis | ii | iii | quantification microrna panel | data analysis | patients characteristics | mechanism signaling pathways | literature review | description levels * | discussion and conclusion | lower bounds | fix any t | if we choose | output w m | n ` ˆ | sample description | gene expression measurements | gene expression qc | go category enrichment | i . introduction | case report | vi | vii | acknowledgment | optical imaging | ... (5 more)
+size=7 lexical_members=1 members_with_empty_frame=0 shared_signature_contexts=1 upos[NOUN=1]
+  contexts: L=[|] R=[]
+  members: go enrichment analysis | acquisition | con clus ions | task paradigms | imaging preprocessing | imaging analysis | materials and methods
+size=4 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[<num>]
+  members: grant assumption | proof of theorem | assume p ě | <num> n ă
+size=3 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[analysis]
+  members: | go enrichment | mouse behavioural | data collection and
+size=3 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[of sex - biased genes]
+  members: evolution rates | tissue specificity | genomic location
+size=3 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[sex - biased genes]
+  members: evolution rates of | genomic location of | tissue specificity of
+size=2 lexical_members=1 members_with_empty_frame=0 shared_signature_contexts=1 upos[NOUN=1]
+  contexts: L=[] R=[of female - and male - biased genes]
+  members: number | figure <num> characterization
+size=2 lexical_members=1 members_with_empty_frame=0 shared_signature_contexts=1 upos[ADJ=1]
+  contexts: L=[] R=[search task]
+  members: visual | | visual
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[task]
+  members: visual search | | visual search
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[data]
+  members: | behavioral | x - ray
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[slope activity at the first session was correlated with the associated reliability map ( r = . <num> )]
+  members: average linear | average quadratic
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[activity at the first session was correlated with the associated reliability map ( r = . <num> )]
+  members: average linear slope | average quadratic slope
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[model]
+  members: the discrete choice | description of the
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[description] R=[]
+  members: of the model | levels *
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[selection]
+  members: product and attribute | cluster member
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[a total of <num>] R=[]
+  members: choices were collected | responses were collected
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[nÑ <num> r r <num> k , n ď <num> r <num> k]
+  members: then , lim | therefore , lim
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[# <num> contained <num> genes , <num> % of the correlations computed in males ( y axis ) were larger than those computed in females ( x axis )]
+  members: a ) module | b ) module
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[gene] R=[]
+  members: expression measurements | expression qc
+## classes with >= 2 shared contexts (first 20 by size)
+(none)
+class size histogram (size: classes): 1:9832 2:16 3:3 4:1 7:1 45:1 98129:1 
+
+# scale 200000 universe all_frames -- 20 largest classes
+size=77 lexical_members=5 members_with_empty_frame=77 shared_signature_contexts=1 upos[NOUN=1]
+  contexts: L=[] R=[]
+  members: | gravitropism | | phototropism | histopathology and immunohistochemistry | j . clin | | introduction | | participants | | task paradigms | | behavioral data | | acquisition | | imaging preprocessing | | imaging analysis | | discussion | mouse behavioural analysis | quantification microrna panel | patients characteristics | mechanism signaling pathways | description levels * | discussion and conclusion | fix any t | if we choose | output w m | n ` ˆ | sample description | gene expression measurements | gene expression qc | go category enrichment | i . introduction | vii | acknowledgment | cluster redshift estimation | cluster member selection | galaxies association | cluster substructures | cluster dynamical mass | cluster merger orbit | summary and conclusions | defining project success | cropping system simulations | fire data | directly sown rice | ... (37 more)
+size=6 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[|] R=[]
+  members: con clus ions | task paradigms | imaging preprocessing | imaging analysis | laboratory methodology | ethical issues
+size=4 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[data] R=[]
+  members: collection and analysis | analysis and discussion | collection methods | availability statement
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[analysis]
+  members: | go enrichment | mouse behavioural
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[are listed in table s <num>]
+  members: the primers | the probes used
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[| phyb <num> and phyb <num>] R=[responses in tomato seedlings]
+  members: differentially modulate auxin | differentially modulate photosynthetic
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[| phyb <num> and phyb <num> differentially] R=[responses in tomato seedlings]
+  members: modulate auxin | modulate photosynthetic
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[| phyb <num> and phyb <num> differentially] R=[in tomato seedlings]
+  members: modulate auxin responses | modulate photosynthetic responses
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[| phyb <num> and phyb <num> differentially modulate] R=[tomato seedlings]
+  members: auxin responses in | photosynthetic responses in
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[| regulation of] R=[phytochrome b]
+  members: auxin responses by | photosynthesis by
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[slope activity at the first session was correlated with the associated reliability map ( r = . <num> )]
+  members: average linear | average quadratic
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[activity at the first session was correlated with the associated reliability map ( r = . <num> )]
+  members: average linear slope | average quadratic slope
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[average] R=[at the first session was correlated with the associated reliability map ( r = . <num> )]
+  members: linear slope activity | quadratic slope activity
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[description] R=[]
+  members: levels * | of surgical procedure
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[a total] R=[were collected]
+  members: of <num> choices | of <num> responses
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[a total of] R=[were collected]
+  members: <num> choices | <num> responses
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[a total of] R=[collected]
+  members: <num> choices were | <num> responses were
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[a total of <num>] R=[]
+  members: choices were collected | responses were collected
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[<num>]
+  members: assume p ě | <num> n ă
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[nÑ <num> r r <num> k , n ď <num> r <num> k]
+  members: then , lim | therefore , lim
+## classes with >= 2 shared contexts (first 20 by size)
+(none)
+class size histogram (size: classes): 1:213981 2:36 4:1 6:1 77:1 
+
+# scale 200000 universe internal_only -- 20 largest classes
+size=11051 lexical_members=310 members_with_empty_frame=87 shared_signature_contexts=0 upos[ADJ=6 ADV=9 NOUN=39 NUM=4 PRON=1 PROPN=9 VERB=11]
+  contexts: (empty signature: no universe context)
+  members: one important | one important family | are the phytochromes | the phytochromes | plants use | plants use both | or nutrient availability | nutrient availability | phytochromes ( | phytochromes ( phys | the phy apoproteins | ) responsive phys | atphyb - atphye | - atphye | atphye | phylogenetically | phylogenetically , | phylogenetically , gene | the other phys | other phys | subsequently , | subsequently , phya | eventually , | eventually , after | phys in tomato | as in arabidopsis | two plant families | plant families | compared to arabidopsis | in the solanales | phyb <num> plays | analysis of phyb | chlorophyll and anthocyanin | subfunctionalization of the | - redundant functions | redundant functions | and in photosynthesis | in photosynthesis | of photosynthetic assimilation | photosynthetic assimilation | ... (11011 more)
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[| phyb <num> and phyb <num>] R=[responses in tomato seedlings]
+  members: differentially modulate auxin | differentially modulate photosynthetic
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[| phyb <num> and phyb <num> differentially] R=[responses in tomato seedlings]
+  members: modulate auxin | modulate photosynthetic
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[| phyb <num> and phyb <num> differentially] R=[in tomato seedlings]
+  members: modulate auxin responses | modulate photosynthetic responses
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[| phyb <num> and phyb <num> differentially modulate] R=[tomato seedlings]
+  members: auxin responses in | photosynthetic responses in
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[| regulation of] R=[phytochrome b]
+  members: auxin responses by | photosynthesis by
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[average] R=[at the first session was correlated with the associated reliability map ( r = . <num> )]
+  members: linear slope activity | quadratic slope activity
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[a total] R=[were collected]
+  members: of <num> choices | of <num> responses
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[a total of] R=[were collected]
+  members: <num> choices | <num> responses
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[a total of] R=[collected]
+  members: <num> choices were | <num> responses were
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[assumption <num> holds and if x <num> " d <num> n , then ef papx <num> qq´f˚ "] R=[d¨ <num> ? n ` m in <num>]
+  members: Ω¨r r k | Ω¨r k
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[sex - biased genes] R=[of correlated transcripts]
+  members: highly enrich modules | in modules
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[we] R=[in § <num> . <num> . <num>]
+  members: further explore this | further discuss this
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[we further] R=[in § <num> . <num> . <num>]
+  members: explore this | discuss this
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[we further] R=[§ <num> . <num> . <num>]
+  members: explore this in | discuss this in
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[the] R=[listed in table s <num>]
+  members: specific primers are | probes used are
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[each figure uses the same color band , with one color representing] R=[and one figure representing one period]
+  members: one flow velocity | one tp concentration
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[each figure uses the same color band , with one color representing one] R=[one figure representing one period]
+  members: flow velocity and | tp concentration and
+## classes with >= 2 shared contexts (first 20 by size)
+(none)
+class size histogram (size: classes): 1:203055 2:17 11051:1 
+
+# scale 200000 universe boundary_frames -- 20 largest classes
+size=194663 lexical_members=8991 members_with_empty_frame=0 shared_signature_contexts=0 upos[ADJ=512 ADP=19 ADV=162 AUX=17 CCONJ=3 DET=1 INTJ=7 NOUN=1235 NUM=9 PART=1 PRON=18 PROPN=254 PUNCT=11 SCONJ=4 SYM=5 VERB=996 X=7]
+  contexts: (empty signature: no universe context)
+  members: important family | important family of | family | family of | family of plant | of plant | of plant genes | plant genes | plant genes are | genes are | genes are the | are | are the | use both | use both internal | both internal | both internal and | internal | internal and | internal and external | and external | and external cues | external cues | external cues as | cues | cues as | cues as signals | as signals | as signals to | signals to | signals to guide | to guide | to guide their | guide their | guide their growth | their growth | their growth and | growth and | growth and development | and development , | ... (194623 more)
+size=103 lexical_members=13 members_with_empty_frame=103 shared_signature_contexts=1 upos[NOUN=4 NUM=2 PROPN=1]
+  contexts: L=[] R=[]
+  members: | gravitropism | | phototropism | study group | histopathology and immunohistochemistry | laboratory tests | j . clin | med | | introduction | | participants | | task paradigms | | behavioral data | | acquisition | | imaging preprocessing | | imaging analysis | | discussion | mouse behavioural analysis | iii | quantification microrna panel | patients characteristics | mechanism signaling pathways | limitation | description levels * | discussion and conclusion | lower bounds | fix any t | if we choose | output w m | n ` ˆ | sample description | gene expression measurements | gene expression qc | go category enrichment | keywords | i . introduction | case report | objectives | vi | vii | acknowledgment | optical imaging | ... (63 more)
+size=10 lexical_members=1 members_with_empty_frame=0 shared_signature_contexts=1 upos[NOUN=1]
+  contexts: L=[|] R=[]
+  members: go enrichment analysis | acquisition | con clus ions | task paradigms | imaging preprocessing | imaging analysis | copy number variants | incidental findings | laboratory methodology | ethical issues
+size=5 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[<num>]
+  members: grant assumption | proof of theorem | assume p ě | <num> n ă | table a
+size=4 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[analysis]
+  members: | go enrichment | mouse behavioural | data collection and | multifrequency dgs
+size=4 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[data] R=[]
+  members: collection and analysis | analysis and discussion | collection methods | availability statement
+size=4 lexical_members=3 members_with_empty_frame=0 shared_signature_contexts=1 upos[NOUN=1]
+  contexts: L=[] R=[procedure]
+  members: preoperative | operative | postoperative | description of surgical
+size=3 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[of sex - biased genes]
+  members: evolution rates | tissue specificity | genomic location
+size=3 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[sex - biased genes]
+  members: evolution rates of | genomic location of | tissue specificity of
+size=3 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[cluster] R=[]
+  members: redshift estimation | member selection | dynamical mass
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[methods]
+  members: materials and | | materials and
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[are listed in table s <num>]
+  members: the primers | the probes used
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[resource communities]
+  members: single - | multiple -
+size=2 lexical_members=1 members_with_empty_frame=0 shared_signature_contexts=1 upos[ADJ=1]
+  contexts: L=[] R=[search task]
+  members: visual | | visual
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[task]
+  members: visual search | | visual search
+size=2 lexical_members=1 members_with_empty_frame=0 shared_signature_contexts=1 upos[NOUN=1]
+  contexts: L=[] R=[data]
+  members: | behavioral | fire
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[slope activity at the first session was correlated with the associated reliability map ( r = . <num> )]
+  members: average linear | average quadratic
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[activity at the first session was correlated with the associated reliability map ( r = . <num> )]
+  members: average linear slope | average quadratic slope
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[model]
+  members: the discrete choice | description of the
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[selection]
+  members: product and attribute | cluster member
+## classes with >= 2 shared contexts (first 20 by size)
+(none)
+class size histogram (size: classes): 1:19276 2:31 3:3 4:3 5:1 10:1 103:1 194663:1 
+
+# scale 400000 universe all_frames -- 20 largest classes
+size=118 lexical_members=6 members_with_empty_frame=118 shared_signature_contexts=1 upos[NOUN=1]
+  contexts: L=[] R=[]
+  members: | gravitropism | | phototropism | histopathology and immunohistochemistry | j . clin | | introduction | | participants | | task paradigms | | behavioral data | | acquisition | | imaging preprocessing | | imaging analysis | | discussion | mouse behavioural analysis | quantification microrna panel | patients characteristics | mechanism signaling pathways | description levels * | discussion and conclusion | fix any t | if we choose | output w m | n ` ˆ | sample description | gene expression measurements | gene expression qc | go category enrichment | i . introduction | vii | acknowledgment | cluster redshift estimation | cluster member selection | galaxies association | cluster substructures | cluster dynamical mass | cluster merger orbit | summary and conclusions | defining project success | cropping system simulations | fire data | directly sown rice | ... (78 more)
+size=8 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[<num>]
+  members: assume p ě | <num> n ă | remark <num> . | edss value was | growth performance | bacterial diversity | anyang , korea | double immunofluorescence figure
+size=6 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[|] R=[]
+  members: con clus ions | task paradigms | imaging preprocessing | imaging analysis | laboratory methodology | ethical issues
+size=4 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[data] R=[]
+  members: collection and analysis | analysis and discussion | collection methods | accessibility statement
+size=3 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[analysis]
+  members: | go enrichment | mouse behavioural | ahi subgroup
+size=3 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[j] R=[]
+  members: . clin | clin diagn res | . mol
+size=3 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[statement]
+  members: data accessibility | author contribution | declaration of interest's
+size=3 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[within the past <num> years ( <num> years but less than <num> years] R=[]
+  members: ago ) d | ago ) e | ago ) f
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[are listed in table s <num>]
+  members: the primers | the probes used
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[| phyb <num> and phyb <num>] R=[responses in tomato seedlings]
+  members: differentially modulate auxin | differentially modulate photosynthetic
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[| phyb <num> and phyb <num> differentially] R=[responses in tomato seedlings]
+  members: modulate auxin | modulate photosynthetic
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[| phyb <num> and phyb <num> differentially] R=[in tomato seedlings]
+  members: modulate auxin responses | modulate photosynthetic responses
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[| phyb <num> and phyb <num> differentially modulate] R=[tomato seedlings]
+  members: auxin responses in | photosynthetic responses in
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[| regulation of] R=[phytochrome b]
+  members: auxin responses by | photosynthesis by
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[slope activity at the first session was correlated with the associated reliability map ( r = . <num> )]
+  members: average linear | average quadratic
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[activity at the first session was correlated with the associated reliability map ( r = . <num> )]
+  members: average linear slope | average quadratic slope
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[average] R=[at the first session was correlated with the associated reliability map ( r = . <num> )]
+  members: linear slope activity | quadratic slope activity
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[there are several] R=[study]
+  members: limitations to this | strengths of our
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[declaration] R=[]
+  members: of competing interest | of interest's statement
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[declaration of] R=[]
+  members: competing interest | interest's statement
+## classes with >= 2 shared contexts (first 20 by size)
+(none)
+class size histogram (size: classes): 1:381286 2:55 3:4 4:1 6:1 8:1 118:1 
+
+# scale 400000 universe internal_only -- 20 largest classes
+size=19025 lexical_members=481 members_with_empty_frame=137 shared_signature_contexts=0 upos[ADJ=6 ADV=12 DET=1 NOUN=49 NUM=4 PART=1 PRON=1 PROPN=14 VERB=8]
+  contexts: (empty signature: no universe context)
+  members: one important | one important family | are the phytochromes | the phytochromes | plants use | plants use both | or nutrient availability | nutrient availability | phytochromes ( | phytochromes ( phys | the phy apoproteins | ) responsive phys | atphyb - atphye | - atphye | atphye | phylogenetically | phylogenetically , | phylogenetically , gene | the other phys | other phys | subsequently , phya | eventually , | eventually , after | phys in tomato | as in arabidopsis | two plant families | plant families | compared to arabidopsis | in the solanales | phyb <num> plays | analysis of phyb | chlorophyll and anthocyanin | subfunctionalization of the | - redundant functions | redundant functions | and in photosynthesis | in photosynthesis | of photosynthetic assimilation | photosynthetic assimilation | we report here | ... (18985 more)
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[| phyb <num> and phyb <num>] R=[responses in tomato seedlings]
+  members: differentially modulate auxin | differentially modulate photosynthetic
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[| phyb <num> and phyb <num> differentially] R=[responses in tomato seedlings]
+  members: modulate auxin | modulate photosynthetic
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[| phyb <num> and phyb <num> differentially] R=[in tomato seedlings]
+  members: modulate auxin responses | modulate photosynthetic responses
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[| phyb <num> and phyb <num> differentially modulate] R=[tomato seedlings]
+  members: auxin responses in | photosynthetic responses in
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[| regulation of] R=[phytochrome b]
+  members: auxin responses by | photosynthesis by
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[average] R=[at the first session was correlated with the associated reliability map ( r = . <num> )]
+  members: linear slope activity | quadratic slope activity
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[there are several] R=[study]
+  members: limitations to this | strengths of our
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[a total] R=[were collected]
+  members: of <num> choices | of <num> responses
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[a total of] R=[collected]
+  members: <num> choices were | <num> responses were
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[the] R=[follows]
+  members: algorithm runs as | procedure is as
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[assumption <num> holds and if x <num> " d <num> n , then ef papx <num> qq´f˚ "] R=[d¨ <num> ? n ` m in <num>]
+  members: Ω¨r r k | Ω¨r k
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[sex - biased genes] R=[of correlated transcripts]
+  members: highly enrich modules | in modules
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[we] R=[in § <num> . <num> . <num>]
+  members: further explore this | further discuss this
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[we further] R=[§ <num> . <num> . <num>]
+  members: explore this in | discuss this in
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[the] R=[listed in table s <num>]
+  members: specific primers are | probes used are
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[each figure uses the same color band , with one color representing] R=[and one figure representing one period]
+  members: one flow velocity | one tp concentration
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[each figure uses the same color band , with one color representing one] R=[one figure representing one period]
+  members: flow velocity and | tp concentration and
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[( <num> ) define qc * : f l m ( x ) −→ l x as follows : it is easy to] R=[* is an ( l , m ) - fuzzy qconvergence structure on x]
+  members: verify that qc | check that qc
+size=2 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[rabbits were anesthetized with] R=[of <num> % pentobarbital]
+  members: intravenous injections | an intravenous injection
+## classes with >= 2 shared contexts (first 20 by size)
+(none)
+class size histogram (size: classes): 1:362473 2:23 19025:1 
+
+# scale 400000 universe boundary_frames -- 20 largest classes
+size=347224 lexical_members=12796 members_with_empty_frame=0 shared_signature_contexts=0 upos[ADJ=582 ADP=15 ADV=170 AUX=15 CCONJ=3 DET=1 INTJ=8 NOUN=1417 NUM=8 PART=2 PRON=20 PROPN=344 PUNCT=10 SCONJ=3 SYM=5 VERB=1140 X=9]
+  contexts: (empty signature: no universe context)
+  members: important family | important family of | family of | family of plant | of plant | of plant genes | plant genes | plant genes are | genes are | genes are the | are | are the | use both | use both internal | both internal | both internal and | internal | internal and | internal and external | and external | and external cues | external cues | external cues as | cues | cues as | cues as signals | as signals | as signals to | signals to | signals to guide | to guide | to guide their | guide their | guide their growth | their growth | their growth and | growth and | growth and development | and development , | development , | ... (347184 more)
+size=171 lexical_members=16 members_with_empty_frame=171 shared_signature_contexts=1 upos[NOUN=6 NUM=2]
+  contexts: L=[] R=[]
+  members: | gravitropism | | phototropism | reference | study group | histopathology and immunohistochemistry | j . clin | | introduction | statistical methods | | participants | | task paradigms | | behavioral data | | acquisition | | imaging preprocessing | | imaging analysis | | discussion | mouse behavioural analysis | protease inhibitors | the decrease | iii | quantification microrna panel | patients characteristics | patient characteristics | mechanism signaling pathways | limitation | description levels * | discussion and conclusion | lower bounds | fix any t | if we choose | output w m | n ` ˆ | sample description | gene expression measurements | gene expression qc | go category enrichment | premise | keywords | i . introduction | objectives | vi | ... (131 more)
+size=14 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[<num>]
+  members: grant assumption | proof of theorem | assume p ě | <num> n ă | table a | remark <num> . | edss was | edss value was | growth performance | bacterial diversity | numerical example set | anyang , korea | hypotheses : study | double immunofluorescence figure
+size=10 lexical_members=1 members_with_empty_frame=0 shared_signature_contexts=1 upos[NOUN=1]
+  contexts: L=[|] R=[]
+  members: go enrichment analysis | acquisition | con clus ions | task paradigms | imaging preprocessing | imaging analysis | copy number variants | incidental findings | laboratory methodology | ethical issues
+size=6 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[analysis]
+  members: | go enrichment | mouse behavioural | data collection and | multifrequency dgs | regional subgroup | ahi subgroup
+size=5 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[the] R=[]
+  members: discrete choice model | spectral multiplicity | republic of karelia | arkhangelsk oblast | study remains blinded
+size=5 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[data] R=[]
+  members: collection and analysis | analysis and discussion | collection methods | availability statement | accessibility statement
+size=3 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[within the past <num> years ( <num> years but less than <num> years ago] R=[]
+  members: ) f | ) d | ) e
+size=3 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[j] R=[]
+  members: . clin | clin diagn res | . mol
+size=3 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[pathways]
+  members: mechanism signaling | rhoa - related | stem cell
+size=3 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[of sex - biased genes]
+  members: evolution rates | tissue specificity | genomic location
+size=3 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[sex - biased genes]
+  members: evolution rates of | genomic location of | tissue specificity of
+size=3 lexical_members=2 members_with_empty_frame=0 shared_signature_contexts=1 upos[INTJ=1]
+  contexts: L=[] R=[b]
+  members: yes | case at | sigmoidoscopy
+size=3 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[cluster] R=[]
+  members: redshift estimation | member selection | dynamical mass
+size=3 lexical_members=3 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[obligation of] R=[]
+  members: accountability | beneficence | cognizance
+size=3 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[obligation] R=[]
+  members: of accountability | of cognizance | of beneficence
+size=3 lexical_members=2 members_with_empty_frame=0 shared_signature_contexts=1 upos[NOUN=1]
+  contexts: L=[] R=[procedure]
+  members: preoperative | operative | description of surgical
+size=3 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[statement]
+  members: data accessibility | author contribution | declaration of interest's
+size=3 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[within the past <num> years ( <num> years but less than <num> years] R=[]
+  members: ago ) d | ago ) e | ago ) f
+size=2 lexical_members=1 members_with_empty_frame=0 shared_signature_contexts=1 upos[NOUN=1]
+  contexts: L=[] R=[measures]
+  members: mediation | baseline and evaluation
+## classes with >= 2 shared contexts (first 20 by size)
+(none)
+class size histogram (size: classes): 1:33949 2:62 3:12 5:2 6:1 10:1 14:1 171:1 347224:1 
+
+# scale 1000000 universe all_frames -- 20 largest classes
+size=238 lexical_members=8 members_with_empty_frame=238 shared_signature_contexts=1 upos[NOUN=1]
+  contexts: L=[] R=[]
+  members: | gravitropism | | phototropism | histopathology and immunohistochemistry | j . clin | | introduction | | participants | | task paradigms | | behavioral data | | acquisition | | imaging preprocessing | | imaging analysis | | discussion | mouse behavioural analysis | quantification microrna panel | patients characteristics | mechanism signaling pathways | description levels * | discussion and conclusion | fix any t | if we choose | output w m | n ` ˆ | sample description | gene expression measurements | gene expression qc | go category enrichment | i . introduction | acknowledgment | cluster redshift estimation | cluster member selection | galaxies association | cluster substructures | cluster dynamical mass | cluster merger orbit | summary and conclusions | defining project success | cropping system simulations | fire data | directly sown rice | | methods | ... (198 more)
+size=12 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[<num>]
+  members: assume p ě | <num> n ă | remark <num> . | edss value was | growth performance | bacterial diversity | anyang , korea | double immunofluorescence figure | as a table | return to step | pod <num> and | definition d .
+size=7 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[(] R=[)]
+  members: in our notation | ids : contractfailure | id : anyreason | id : consresp | id : againsterms | id : update | id : breach
+size=6 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[a] R=[]
+  members: different consecutive limit | nonchiral isotropic medium | tired sea ) | happy jet rippled | . some definitions | . single tracer
+size=6 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[( ids :] R=[)]
+  members: extent , anyloss | discontinuance , contractfailure | thirdparty , content | discontinuance , amount | justposted , consresp | nonotice , fulldiscretion
+size=5 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[analysis]
+  members: | go enrichment | mouse behavioural | ahi subgroup | prenatal serological | pharmacokinetic and statistical
+size=5 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[( id] R=[]
+  members: : anyreason ) | : consresp ) | : againsterms ) | : update ) | : breach )
+size=4 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[|] R=[]
+  members: con clus ions | task paradigms | imaging preprocessing | laboratory methodology
+size=4 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[the] R=[]
+  members: discrete choice model | study remains blinded | transcriptional activation assays | fact that eqn
+size=4 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[b] R=[]
+  members: . high gradients | . computational method | . electron mobility | . multiple tracer
+size=4 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[b .] R=[]
+  members: high gradients | set scheduling approach | computational method | fisher matrix analysis
+size=4 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[data] R=[]
+  members: analysis and discussion | accessibility statement | collection and administration | sources and limitations
+size=4 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[] R=[results]
+  members: year outcome | numerical simulation of | study strategy and | summary of main
+size=4 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[cell] R=[]
+  members: culture and transfections | and parasite culture | viability assay | culture & transfection
+size=4 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[( id :] R=[]
+  members: anyreason ) | againsterms ) | update ) | breach )
+size=3 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[j] R=[]
+  members: . clin | clin diagn res | . mol
+size=3 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[declaration] R=[]
+  members: of competing interest | of interest's statement | of interests
+size=3 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[the] R=[as follows]
+  members: algorithm runs | paper is structured | paper proceeds
+size=3 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[the] R=[follows]
+  members: algorithm runs as | procedure is as | paper proceeds as
+size=3 lexical_members=0 members_with_empty_frame=0 shared_signature_contexts=1
+  contexts: L=[e .] R=[]
+  members: <num> notation | simulation flowchart | forecasts for gnl
+## classes with >= 2 shared contexts (first 20 by size)
+size=2 shared_signature_contexts=3
+  members: effect on basic | effect on extra
+  contexts: L=[normative goal framing will exert a positive] R=[levels of ethical behavior intention] ; L=[the pursuit of hedonic motives will exert a positive] R=[levels of ethical behavior intention] ; L=[the pursuit of eudaimonic motives will exert a positive] R=[levels of ethical behavior intention]
+size=2 shared_signature_contexts=3
+  members: on basic levels | on extra levels
+  contexts: L=[normative goal framing will exert a positive effect] R=[of ethical behavior intention] ; L=[the pursuit of hedonic motives will exert a positive effect] R=[of ethical behavior intention] ; L=[the pursuit of eudaimonic motives will exert a positive effect] R=[of ethical behavior intention]
+size=2 shared_signature_contexts=3
+  members: hedonic motives will | eudaimonic motives will
+  contexts: L=[the pursuit of] R=[exert a positive effect on tourists ' normative goal framing] ; L=[the pursuit of] R=[exert a positive effect on basic levels of ethical behavior intention] ; L=[the pursuit of] R=[exert a positive effect on extra levels of ethical behavior intention]
+class size histogram (size: classes): 1:867108 2:152 3:15 4:8 5:2 6:2 7:1 12:1 238:1 

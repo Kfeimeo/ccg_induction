@@ -1,0 +1,1225 @@
+# SCF v2.4 distinguishing contexts (pes2o)
+
+# scale 100000 universe all_frames
+## first 20 block splits in refinement order
+u | v | L | R | Accept(LuR) | Accept(LvR) | block_size | in_size | round
+<num> | one |  |  | 1 | 0 | 108058 | 78 | 1
+phototropism | one | | |  | 1 | 0 | 107980 | 11 | 1
+introduction | <num> | | |  | 1 | 0 | 78 | 3 | 1
+table | one |  | <num> | 1 | 0 | 107969 | 9 | 1
+data | one |  | analysis | 1 | 0 | 107960 | 8 | 1
+rnaseq differential expression | one | | | analysis | 1 | 0 | 107952 | 3 | 1
+linear | one | average | slope activity at the first session was correlated with the associated reliability map ( r = . <num> ) | 1 | 0 | 107949 | 3 | 1
+therefore , | one |  | lim nÑ <num> r r <num> k , n ď <num> r <num> k | 1 | 0 | 107946 | 3 | 1
+evolution rates | one |  | of sex - biased genes | 1 | 0 | 107943 | 3 | 1
+evolution rates of | one |  | sex - biased genes | 1 | 0 | 107940 | 3 | 1
+rneasy | one | total rna was extracted using an | kit ( qiagen ) according to the manufacturer's instructions | 1 | 0 | 107937 | 2 | 1
+plant mini kit | one | total rna was extracted using an rneasy | ( qiagen ) according to the manufacturer's instructions | 1 | 0 | 107935 | 2 | 1
+differentially modulate auxin | one | | phyb <num> and phyb <num> | responses in tomato seedlings | 1 | 0 | 107933 | 2 | 1
+modulate auxin | one | | phyb <num> and phyb <num> differentially | responses in tomato seedlings | 1 | 0 | 107931 | 2 | 1
+modulate auxin responses | one | | phyb <num> and phyb <num> differentially | in tomato seedlings | 1 | 0 | 107929 | 2 | 1
+auxin | one | | phyb <num> and phyb <num> differentially modulate | responses in tomato seedlings | 1 | 0 | 107927 | 2 | 1
+auxin responses | one | | phyb <num> and phyb <num> differentially modulate | in tomato seedlings | 1 | 0 | 107925 | 2 | 1
+auxin responses in | one | | phyb <num> and phyb <num> differentially modulate | tomato seedlings | 1 | 0 | 107923 | 2 | 1
+of photosynthesis | one | | regulation | by phytochrome b | 1 | 0 | 107921 | 2 | 1
+photosynthesis | one | | regulation of | by phytochrome b | 1 | 0 | 107919 | 1 | 1
+## probe pairs (previously merged through (eps,eps) or boundary frames in v2.3)
+<num> vs conclusions: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L conclusions R)=0
+<num> vs introduction: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L introduction R)=0
+introduction vs conclusions: DIFFERENT | L=[|] R=[] | Accept(L introduction R)=1 Accept(L conclusions R)=0
+introduction vs discussion: DIFFERENT | L=[following the] R=[in section <num> . <num> , we explore the factorization arising from two supertranslation charges , q f and q g characterized by arbitrary functions f ( z , z ) and g ( z , z ) , on the conformal sphere] | Accept(L introduction R)=0 Accept(L discussion R)=1
+results vs discussion: DIFFERENT | L=[in contrast to arabidopsis , mutation of phyb <num> in tomato] R=[only in temporary red light insensitivity at a young seedling stage while phyb <num> adults look very similar in phenotype to wt tomato ( lazarova et al . , <num> )] | Accept(L results R)=1 Accept(L discussion R)=0
+<num> vs the: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L <num> R)=0 Accept(L the R)=1
+<num> vs and: DIFFERENT | L=[plants use both internal] R=[external cues as signals to guide their growth and development , and to help them respond to their environment , such as to light quality and light quantity , temperature , moisture , or nutrient availability] | Accept(L <num> R)=0 Accept(L and R)=1
+the vs and: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L the R)=1 Accept(L and R)=0
+the vs a: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L the R)=1 Accept(L a R)=0
+<num> vs [ <num> ]: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L [ <num> ] R)=0
+<num> vs <num> . <num>: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L <num> . <num> R)=0
+materials and methods vs conclusions: DIFFERENT | L=[|] R=[] | Accept(L materials and methods R)=1 Accept(L conclusions R)=0
+conflict of interest vs acknowledgments: not both observed at this scale
+is vs was: DIFFERENT | L=[compared to arabidopsis , much less] R=[known about the functions of phys in the solanales] | Accept(L is R)=1 Accept(L was R)=0
+in vs of: DIFFERENT | L=[one important family] R=[plant genes are the phytochromes] | Accept(L in R)=0 Accept(L of R)=1
+## objects observed as complete spans ((eps,eps) = 1)
+terminal objects 78 in 44 classes
+<num> vs results: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | 1 vs 0
+results vs background: DIFFERENT | L=[in contrast to arabidopsis , mutation of phyb <num> in tomato] R=[only in temporary red light insensitivity at a young seedling stage while phyb <num> adults look very similar in phenotype to wt tomato ( lazarova et al . , <num> )] | 1 vs 0
+background vs paper: DIFFERENT | L=[both mutants used in this study were in the moneymaker] R=[( original source : tomato genome resource center , davis , ca , usa )] | 1 vs 0
+paper vs differential expression: DIFFERENT | L=[for rnaseq experiments , seeds were surface sterilized using <num> % bleach for <num> min in ambient laboratory conditions and then sown on water - saturated , sterile filter] R=[in light - excluding plastic boxes] | 1 vs 0
+differential expression vs wgcna: DIFFERENT | L=[| rnaseq] R=[analysis] | 1 vs 0
+wgcna vs | gravitropism: DIFFERENT | L=[| co - expression analysis with] R=[] | 1 vs 0
+| gravitropism vs | phototropism: SAME CLASS
+| phototropism vs statistical analysis: DIFFERENT | L=[] R=[was performed using anova ( r version <num> . <num> . <num> ) on log <num> normalized expression values] | 0 vs 1
+statistical analysis vs figure <num>: DIFFERENT | L=[] R=[was performed using anova ( r version <num> . <num> . <num> ) on log <num> normalized expression values] | 1 vs 0
+figure <num> vs introduction: DIFFERENT | L=[|] R=[] | 0 vs 1
+introduction vs [ <num> ]: DIFFERENT | L=[|] R=[] | 1 vs 0
+[ <num> ] vs study group: DIFFERENT | L=[oral cancer is quite common disease and has an increasing worldwide trend] R=[] | 1 vs 0
+study group vs histopathology and immunohistochemistry: DIFFERENT | L=[the formalin - fixed , paraffin - embedded blocks of <num> tissue samples collected from patients of the] R=[were sectioned ( <num> µm )] | 1 vs 0
+histopathology and immunohistochemistry vs immunohistochemistry: DIFFERENT | L=[histopathology and] R=[] | 0 vs 1
+immunohistochemistry vs table <num>: DIFFERENT | L=[histopathology and] R=[] | 1 vs 0
+table <num> vs laboratory tests: DIFFERENT | L=[depend on the proportion of the positively stained cells and intensity of staining , a semiquantitative immunoreactive score from <num> to <num> was calculated separately for epithelial / cancer cells and stromal cells (] R=[)] | 1 vs 0
+laboratory tests vs subjects: DIFFERENT | L=[whole unstimulated saliva ( wus ) was collected from <num>] R=[of the study group : <num> patients with oscc , <num> with oral epithelial dysplasia ( oed ) , <num> with oral leukoplakia without dysplasia ( ol ) , and <num> with oral lichen planus without dysplasia ( olp )] | 0 vs 1
+subjects vs j . clin: DIFFERENT | L=[whole unstimulated saliva ( wus ) was collected from <num>] R=[of the study group : <num> patients with oscc , <num> with oral epithelial dysplasia ( oed ) , <num> with oral leukoplakia without dysplasia ( ol ) , and <num> with oral lichen planus without dysplasia ( olp )] | 1 vs 0
+j . clin vs med: DIFFERENT | L=[next , <num> ll of kinase detection reagent was added , after which the mixture was incubated j nat] R=[( <num> ) <num> : <num> - <num> <num> for <num> min at room temperature] | 0 vs 1
+med vs discussion: DIFFERENT | L=[|] R=[] | 0 vs 1
+largest classes among terminal objects:
+  size 35: | gravitropism | | phototropism | histopathology and immunohistochemistry | j . clin | | introduction | | participants | | task paradigms | | behavioral data | | acquisition | | imaging preprocessing | | imaging analysis | | discussion | ... (23 more)
+  size 1: introduction
+  size 1: <num>
+  size 1: results
+  size 1: background
+
+# scale 100000 universe internal_only
+## first 20 block splits in refinement order
+u | v | L | R | Accept(LuR) | Accept(LvR) | block_size | in_size | round
+rnaseq differential expression | one | | | analysis | 1 | 0 | 108058 | 3 | 1
+linear | one | average | slope activity at the first session was correlated with the associated reliability map ( r = . <num> ) | 1 | 0 | 108055 | 3 | 1
+rneasy | one | total rna was extracted using an | kit ( qiagen ) according to the manufacturer's instructions | 1 | 0 | 108052 | 2 | 1
+plant mini kit | one | total rna was extracted using an rneasy | ( qiagen ) according to the manufacturer's instructions | 1 | 0 | 108050 | 2 | 1
+differentially modulate auxin | one | | phyb <num> and phyb <num> | responses in tomato seedlings | 1 | 0 | 108048 | 2 | 1
+modulate auxin | one | | phyb <num> and phyb <num> differentially | responses in tomato seedlings | 1 | 0 | 108046 | 2 | 1
+modulate auxin responses | one | | phyb <num> and phyb <num> differentially | in tomato seedlings | 1 | 0 | 108044 | 2 | 1
+auxin | one | | phyb <num> and phyb <num> differentially modulate | responses in tomato seedlings | 1 | 0 | 108042 | 2 | 1
+auxin responses | one | | phyb <num> and phyb <num> differentially modulate | in tomato seedlings | 1 | 0 | 108040 | 2 | 1
+auxin responses in | one | | phyb <num> and phyb <num> differentially modulate | tomato seedlings | 1 | 0 | 108038 | 2 | 1
+of photosynthesis | one | | regulation | by phytochrome b | 1 | 0 | 108036 | 2 | 1
+photosynthesis | one | | regulation of | by phytochrome b | 1 | 0 | 108034 | 1 | 1
+auxin responses | photosynthetic responses | | regulation of | by phytochrome b | 1 | 0 | 2 | 1 | 1
+auxin responses by | one | | regulation of | phytochrome b | 1 | 0 | 108033 | 2 | 1
+linear slope | one | average | activity at the first session was correlated with the associated reliability map ( r = . <num> ) | 1 | 0 | 108031 | 2 | 1
+linear slope activity | one | average | at the first session was correlated with the associated reliability map ( r = . <num> ) | 1 | 0 | 108029 | 2 | 1
+of <num> choices | one | a total | were collected | 1 | 0 | 108027 | 2 | 1
+<num> choices | one | a total of | were collected | 1 | 0 | 108025 | 2 | 1
+<num> choices were | one | a total of | collected | 1 | 0 | 108023 | 2 | 1
+responses | one | a total of <num> | were collected | 1 | 0 | 108021 | 2 | 1
+## probe pairs (previously merged through (eps,eps) or boundary frames in v2.3)
+<num> vs conclusions: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L conclusions R)=0
+<num> vs introduction: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L introduction R)=0
+introduction vs conclusions: SAME CLASS (identical signature, 0 universe contexts)
+introduction vs discussion: DIFFERENT | L=[following the] R=[in section <num> . <num> , we explore the factorization arising from two supertranslation charges , q f and q g characterized by arbitrary functions f ( z , z ) and g ( z , z ) , on the conformal sphere] | Accept(L introduction R)=0 Accept(L discussion R)=1
+results vs discussion: DIFFERENT | L=[in contrast to arabidopsis , mutation of phyb <num> in tomato] R=[only in temporary red light insensitivity at a young seedling stage while phyb <num> adults look very similar in phenotype to wt tomato ( lazarova et al . , <num> )] | Accept(L results R)=1 Accept(L discussion R)=0
+<num> vs the: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L <num> R)=0 Accept(L the R)=1
+<num> vs and: DIFFERENT | L=[plants use both internal] R=[external cues as signals to guide their growth and development , and to help them respond to their environment , such as to light quality and light quantity , temperature , moisture , or nutrient availability] | Accept(L <num> R)=0 Accept(L and R)=1
+the vs and: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L the R)=1 Accept(L and R)=0
+the vs a: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L the R)=1 Accept(L a R)=0
+<num> vs [ <num> ]: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L [ <num> ] R)=0
+<num> vs <num> . <num>: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L <num> . <num> R)=0
+materials and methods vs conclusions: SAME CLASS (identical signature, 0 universe contexts)
+conflict of interest vs acknowledgments: not both observed at this scale
+is vs was: DIFFERENT | L=[compared to arabidopsis , much less] R=[known about the functions of phys in the solanales] | Accept(L is R)=1 Accept(L was R)=0
+in vs of: DIFFERENT | L=[one important family] R=[plant genes are the phytochromes] | Accept(L in R)=0 Accept(L of R)=1
+## objects observed as complete spans ((eps,eps) = 1)
+terminal objects 78 in 41 classes
+<num> vs results: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | 1 vs 0
+results vs background: DIFFERENT | L=[in contrast to arabidopsis , mutation of phyb <num> in tomato] R=[only in temporary red light insensitivity at a young seedling stage while phyb <num> adults look very similar in phenotype to wt tomato ( lazarova et al . , <num> )] | 1 vs 0
+background vs paper: DIFFERENT | L=[both mutants used in this study were in the moneymaker] R=[( original source : tomato genome resource center , davis , ca , usa )] | 1 vs 0
+paper vs differential expression: DIFFERENT | L=[for rnaseq experiments , seeds were surface sterilized using <num> % bleach for <num> min in ambient laboratory conditions and then sown on water - saturated , sterile filter] R=[in light - excluding plastic boxes] | 1 vs 0
+differential expression vs wgcna: DIFFERENT | L=[| rnaseq] R=[analysis] | 1 vs 0
+wgcna vs | gravitropism: DIFFERENT | L=[their expression values were log transformed [ log <num> ( normalized read count + <num> ) ] and used as input for] R=[in r to identify co - expression modules] | 1 vs 0
+| gravitropism vs | phototropism: SAME CLASS
+| phototropism vs statistical analysis: DIFFERENT | L=[when only oscc , oed , and nom cases were included in the] R=[, significant differences in distribution of il - <num> within the epithelium between compared lesions were confirmed] | 0 vs 1
+statistical analysis vs figure <num>: DIFFERENT | L=[in these gene sets , we identified functional enrichment gene ontology ( go ) categories (] R=[; table s <num> )] | 0 vs 1
+figure <num> vs introduction: DIFFERENT | L=[in these gene sets , we identified functional enrichment gene ontology ( go ) categories (] R=[; table s <num> )] | 1 vs 0
+introduction vs [ <num> ]: DIFFERENT | L=[the studies confirmed the crucial role of proinflammatory cytokines in carcinogenesis process , including the development of lung cancer [ <num> , <num> ] , hepatocarcinoma] R=[, colorectal cancer [ <num> ] , as well as oscc [ <num> ]] | 0 vs 1
+[ <num> ] vs study group: DIFFERENT | L=[the studies confirmed the crucial role of proinflammatory cytokines in carcinogenesis process , including the development of lung cancer [ <num> , <num> ] , hepatocarcinoma] R=[, colorectal cancer [ <num> ] , as well as oscc [ <num> ]] | 1 vs 0
+study group vs histopathology and immunohistochemistry: DIFFERENT | L=[the formalin - fixed , paraffin - embedded blocks of <num> tissue samples collected from patients of the] R=[were sectioned ( <num> µm )] | 1 vs 0
+histopathology and immunohistochemistry vs immunohistochemistry: DIFFERENT | L=[for] R=[, the sections were deparaffinized and rehydrated] | 0 vs 1
+immunohistochemistry vs table <num>: DIFFERENT | L=[for] R=[, the sections were deparaffinized and rehydrated] | 1 vs 0
+table <num> vs laboratory tests: DIFFERENT | L=[depend on the proportion of the positively stained cells and intensity of staining , a semiquantitative immunoreactive score from <num> to <num> was calculated separately for epithelial / cancer cells and stromal cells (] R=[)] | 1 vs 0
+laboratory tests vs subjects: DIFFERENT | L=[whole unstimulated saliva ( wus ) was collected from <num>] R=[of the study group : <num> patients with oscc , <num> with oral epithelial dysplasia ( oed ) , <num> with oral leukoplakia without dysplasia ( ol ) , and <num> with oral lichen planus without dysplasia ( olp )] | 0 vs 1
+subjects vs j . clin: DIFFERENT | L=[whole unstimulated saliva ( wus ) was collected from <num>] R=[of the study group : <num> patients with oscc , <num> with oral epithelial dysplasia ( oed ) , <num> with oral leukoplakia without dysplasia ( ol ) , and <num> with oral lichen planus without dysplasia ( olp )] | 1 vs 0
+j . clin vs med: DIFFERENT | L=[next , <num> ll of kinase detection reagent was added , after which the mixture was incubated j nat] R=[( <num> ) <num> : <num> - <num> <num> for <num> min at room temperature] | 0 vs 1
+med vs discussion: DIFFERENT | L=[following the] R=[in section <num> . <num> , we explore the factorization arising from two supertranslation charges , q f and q g characterized by arbitrary functions f ( z , z ) and g ( z , z ) , on the conformal sphere] | 0 vs 1
+largest classes among terminal objects:
+  size 38: | gravitropism | | phototropism | introduction | histopathology and immunohistochemistry | j . clin | conclusions | | introduction | | participants | | task paradigms | | behavioral data | | acquisition | | imaging preprocessing | ... (26 more)
+  size 1: <num>
+  size 1: results
+  size 1: background
+  size 1: paper
+
+# scale 100000 universe boundary_frames
+## first 20 block splits in refinement order
+u | v | L | R | Accept(LuR) | Accept(LvR) | block_size | in_size | round
+<num> | one |  |  | 1 | 0 | 108058 | 78 | 1
+phototropism | one | | |  | 1 | 0 | 107980 | 11 | 1
+introduction | <num> | | |  | 1 | 0 | 78 | 3 | 1
+table | one |  | <num> | 1 | 0 | 107969 | 9 | 1
+data | one |  | analysis | 1 | 0 | 107960 | 8 | 1
+therefore , | one |  | lim nÑ <num> r r <num> k , n ď <num> r <num> k | 1 | 0 | 107952 | 3 | 1
+evolution rates | one |  | of sex - biased genes | 1 | 0 | 107949 | 3 | 1
+evolution rates of | one |  | sex - biased genes | 1 | 0 | 107946 | 3 | 1
+| | one |  | introduction | 1 | 0 | 107943 | 2 | 1
+| | i . |  | visual search task | 1 | 0 | 2 | 1 | 1
+left panel : | one |  | visual search task | 1 | 0 | 107941 | 1 | 1
+visual | one |  | search task | 1 | 0 | 107940 | 2 | 1
+visual search | one |  | task | 1 | 0 | 107938 | 2 | 1
+| behavioral | one |  | data | 1 | 0 | 107936 | 2 | 1
+face | one |  | - emotion labeling task | 1 | 0 | 107934 | 2 | 1
+face - | one |  | emotion labeling task | 1 | 0 | 107932 | 2 | 1
+analysis | one | | imaging |  | 1 | 0 | 107930 | 2 | 1
+voxel - wise | data |  | test - retest assessment | 1 | 0 | 8 | 2 | 1
+average linear | one |  | slope activity at the first session was correlated with the associated reliability map ( r = . <num> ) | 1 | 0 | 107928 | 2 | 1
+average linear slope | one |  | activity at the first session was correlated with the associated reliability map ( r = . <num> ) | 1 | 0 | 107926 | 2 | 1
+## probe pairs (previously merged through (eps,eps) or boundary frames in v2.3)
+<num> vs conclusions: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | Accept(L <num> R)=1 Accept(L conclusions R)=0
+<num> vs introduction: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | Accept(L <num> R)=1 Accept(L introduction R)=0
+introduction vs conclusions: DIFFERENT | L=[|] R=[] | Accept(L introduction R)=1 Accept(L conclusions R)=0
+introduction vs discussion: DIFFERENT | L=[] R=[and conclusion] | Accept(L introduction R)=0 Accept(L discussion R)=1
+results vs discussion: DIFFERENT | L=[|] R=[] | Accept(L results R)=0 Accept(L discussion R)=1
+<num> vs the: DIFFERENT | L=[] R=[phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light ( r ) responsive phys] | Accept(L <num> R)=0 Accept(L the R)=1
+<num> vs and: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | Accept(L <num> R)=1 Accept(L and R)=0
+the vs and: DIFFERENT | L=[] R=[phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light ( r ) responsive phys] | Accept(L the R)=1 Accept(L and R)=0
+the vs a: DIFFERENT | L=[] R=[phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light ( r ) responsive phys] | Accept(L the R)=1 Accept(L a R)=0
+<num> vs [ <num> ]: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | Accept(L <num> R)=1 Accept(L [ <num> ] R)=0
+<num> vs <num> . <num>: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | Accept(L <num> R)=1 Accept(L <num> . <num> R)=0
+materials and methods vs conclusions: DIFFERENT | L=[|] R=[] | Accept(L materials and methods R)=1 Accept(L conclusions R)=0
+conflict of interest vs acknowledgments: not both observed at this scale
+is vs was: DIFFERENT | L=[in going from ( <num> . <num> ) to ( <num> . <num> ) we have made the same assumption for defining q soft v on the shifted vacuum as has been made in the literature for defining it on the fock vacuum , namely : out , f | lim] R=[] | Accept(L is R)=1 Accept(L was R)=0
+in vs of: DIFFERENT | L=[] R=[arabidopsis , the r responsive phys are encoded by four genes : atphyb - atphye] | Accept(L in R)=1 Accept(L of R)=0
+## objects observed as complete spans ((eps,eps) = 1)
+terminal objects 78 in 34 classes
+<num> vs results: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | 1 vs 0
+results vs background: DIFFERENT | L=[the od of an area devoid of bands was subtracted from the values obtained for bands of interest in order to normalize the od against] R=[] | 0 vs 1
+background vs paper: DIFFERENT | L=[the od of an area devoid of bands was subtracted from the values obtained for bands of interest in order to normalize the od against] R=[] | 1 vs 0
+paper vs differential expression: DIFFERENT | L=[] R=[of fig . <num>] | 0 vs 1
+differential expression vs wgcna: DIFFERENT | L=[| co - expression analysis with] R=[] | 0 vs 1
+wgcna vs | gravitropism: DIFFERENT | L=[| co - expression analysis with] R=[] | 1 vs 0
+| gravitropism vs | phototropism: SAME CLASS
+| phototropism vs statistical analysis: DIFFERENT | L=[] R=[was performed using anova ( r version <num> . <num> . <num> ) on log <num> normalized expression values] | 0 vs 1
+statistical analysis vs figure <num>: DIFFERENT | L=[] R=[was performed using anova ( r version <num> . <num> . <num> ) on log <num> normalized expression values] | 1 vs 0
+figure <num> vs introduction: DIFFERENT | L=[|] R=[] | 0 vs 1
+introduction vs [ <num> ]: DIFFERENT | L=[|] R=[] | 1 vs 0
+[ <num> ] vs study group: DIFFERENT | L=[oral cancer is quite common disease and has an increasing worldwide trend] R=[] | 1 vs 0
+study group vs histopathology and immunohistochemistry: SAME CLASS
+histopathology and immunohistochemistry vs immunohistochemistry: DIFFERENT | L=[histopathology and] R=[] | 0 vs 1
+immunohistochemistry vs table <num>: DIFFERENT | L=[histopathology and] R=[] | 1 vs 0
+table <num> vs laboratory tests: DIFFERENT | L=[subjects characteristics are given in] R=[] | 1 vs 0
+laboratory tests vs subjects: DIFFERENT | L=[] R=[characteristics are given in table <num>] | 0 vs 1
+subjects vs j . clin: DIFFERENT | L=[] R=[characteristics are given in table <num>] | 1 vs 0
+j . clin vs med: SAME CLASS
+med vs discussion: DIFFERENT | L=[|] R=[] | 0 vs 1
+largest classes among terminal objects:
+  size 45: | gravitropism | | phototropism | study group | histopathology and immunohistochemistry | laboratory tests | j . clin | med | | introduction | | participants | | task paradigms | | behavioral data | | acquisition | ... (33 more)
+  size 1: introduction
+  size 1: <num>
+  size 1: wgcna
+  size 1: statistical analysis
+
+# scale 200000 universe all_frames
+## first 20 block splits in refinement order
+u | v | L | R | Accept(LuR) | Accept(LvR) | block_size | in_size | round
+- | one |  |  | 1 | 0 | 214140 | 181 | 1
+results | - | | |  | 1 | 0 | 181 | 7 | 1
+phototropism | one | | |  | 1 | 0 | 213959 | 16 | 1
+table | one |  | <num> | 1 | 0 | 213943 | 11 | 1
+data | one |  | analysis | 1 | 0 | 213932 | 9 | 1
+availability | one | data |  | 1 | 0 | 213923 | 7 | 1
+analysis | - | data |  | 1 | 0 | 174 | 1 | 1
+area | one | study |  | 1 | 0 | 213916 | 5 | 1
+redshift estimation | one | cluster |  | 1 | 0 | 213911 | 5 | 1
+| | one |  | methods | 1 | 0 | 213906 | 3 | 1
+data collection | - |  | methods | 1 | 0 | 173 | 1 | 1
+preoperative | one |  | procedure | 1 | 0 | 213903 | 4 | 1
+rnaseq differential expression | one | | | analysis | 1 | 0 | 213899 | 3 | 1
+the primers | one |  | are listed in table s <num> | 1 | 0 | 213896 | 3 | 1
+primers | one | the | are listed in table s <num> | 1 | 0 | 213893 | 3 | 1
+primers are | one | the | listed in table s <num> | 1 | 0 | 213890 | 3 | 1
+| behavioral | one |  | data | 1 | 0 | 213887 | 3 | 1
+linear | one | average | slope activity at the first session was correlated with the associated reliability map ( r = . <num> ) | 1 | 0 | 213884 | 3 | 1
+of the model | one | description |  | 1 | 0 | 213881 | 3 | 1
+) | one | <num> |  | 1 | 0 | 213878 | 3 | 1
+## probe pairs (previously merged through (eps,eps) or boundary frames in v2.3)
+<num> vs conclusions: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L conclusions R)=0
+<num> vs introduction: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L introduction R)=0
+introduction vs conclusions: DIFFERENT | L=[i .] R=[] | Accept(L introduction R)=1 Accept(L conclusions R)=0
+introduction vs discussion: DIFFERENT | L=[following the] R=[in section <num> . <num> , we explore the factorization arising from two supertranslation charges , q f and q g characterized by arbitrary functions f ( z , z ) and g ( z , z ) , on the conformal sphere] | Accept(L introduction R)=0 Accept(L discussion R)=1
+results vs discussion: DIFFERENT | L=[in contrast to arabidopsis , mutation of phyb <num> in tomato] R=[only in temporary red light insensitivity at a young seedling stage while phyb <num> adults look very similar in phenotype to wt tomato ( lazarova et al . , <num> )] | Accept(L results R)=1 Accept(L discussion R)=0
+<num> vs the: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L <num> R)=0 Accept(L the R)=1
+<num> vs and: DIFFERENT | L=[plants use both internal] R=[external cues as signals to guide their growth and development , and to help them respond to their environment , such as to light quality and light quantity , temperature , moisture , or nutrient availability] | Accept(L <num> R)=0 Accept(L and R)=1
+the vs and: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L the R)=1 Accept(L and R)=0
+the vs a: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L the R)=1 Accept(L a R)=0
+<num> vs [ <num> ]: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L [ <num> ] R)=0
+<num> vs <num> . <num>: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L <num> . <num> R)=0
+materials and methods vs conclusions: DIFFERENT | L=[missing potential galaxies from the photometric catalog does not alter the general form of the surface density map , thus not altering our] R=[] | Accept(L materials and methods R)=0 Accept(L conclusions R)=1
+conflict of interest vs acknowledgments: DIFFERENT | L=[] R=[] | Accept(L conflict of interest R)=0 Accept(L acknowledgments R)=1
+is vs was: DIFFERENT | L=[compared to arabidopsis , much less] R=[known about the functions of phys in the solanales] | Accept(L is R)=1 Accept(L was R)=0
+in vs of: DIFFERENT | L=[one important family] R=[plant genes are the phytochromes] | Accept(L in R)=0 Accept(L of R)=1
+## objects observed as complete spans ((eps,eps) = 1)
+terminal objects 181 in 105 classes
+- vs a: DIFFERENT | L=[phytochromes ( phys ) are light] R=[absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+a vs <num>: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of] R=[chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+<num> vs <num> ): DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | 1 vs 0
+<num> ) vs r: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail ,] R=[] | 1 vs 0
+r vs results: DIFFERENT | L=[the phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light (] R=[) responsive phys] | 1 vs 0
+results vs analysis: DIFFERENT | L=[in contrast to arabidopsis , mutation of phyb <num> in tomato] R=[only in temporary red light insensitivity at a young seedling stage while phyb <num> adults look very similar in phenotype to wt tomato ( lazarova et al . , <num> )] | 1 vs 0
+analysis vs background: DIFFERENT | L=[] R=[of phyb <num> ; phyb <num> double mutants in tomato showed that a high level of redundancy exists between the two genes with respect to hypocotyl elongation during de - etiolation in both white light and r ( weller et al . , <num> )] | 1 vs 0
+background vs paper: DIFFERENT | L=[both mutants used in this study were in the moneymaker] R=[( original source : tomato genome resource center , davis , ca , usa )] | 1 vs 0
+paper vs differential expression: DIFFERENT | L=[for rnaseq experiments , seeds were surface sterilized using <num> % bleach for <num> min in ambient laboratory conditions and then sown on water - saturated , sterile filter] R=[in light - excluding plastic boxes] | 1 vs 0
+differential expression vs wgcna: DIFFERENT | L=[| rnaseq] R=[analysis] | 1 vs 0
+wgcna vs models: DIFFERENT | L=[| co - expression analysis with] R=[] | 1 vs 0
+models vs | gravitropism: DIFFERENT | L=[only categories with p - values < <num> . <num> from fisher's exact tests ( weighted] R=[) are reported] | 1 vs 0
+| gravitropism vs | phototropism: SAME CLASS
+| phototropism vs statistical analysis: DIFFERENT | L=[] R=[was performed using anova ( r version <num> . <num> . <num> ) on log <num> normalized expression values] | 0 vs 1
+statistical analysis vs figure <num>: DIFFERENT | L=[] R=[was performed using anova ( r version <num> . <num> . <num> ) on log <num> normalized expression values] | 1 vs 0
+figure <num> vs significance: DIFFERENT | L=[in these gene sets , we identified functional enrichment gene ontology ( go ) categories (] R=[; table s <num> )] | 1 vs 0
+significance vs fig: DIFFERENT | L=[these functions were chosen based on ( a ) frequency of appearance in our data as being differentially regulated by phyb <num> and phyb <num> , ( b ) statistical] R=[of our differential and co - expression analyses data , and ( c ) the number of genes on which individual enrichment analyses were based] | 1 vs 0
+fig vs none: DIFFERENT | L=[testing phot <num> and phot <num> expression with qpcr at <num> and <num> hr of treatment with unilateral white light , we observed a decline in phot <num> and an increase in phot <num> expression over the <num> - hr treatment (] R=[. s <num> ) , but found no significant differences of gene expression between the two phyb mutants , suggesting that regulation of the phot <num> and phot <num> genes does not explain the measured phenotypic differences and instead indicates that the differences are likely due to differential gene regulation downstream of phot <num> and phot <num> ( fig . s <num> )] | 1 vs 0
+none vs introduction: DIFFERENT | L=[|] R=[] | 0 vs 1
+introduction vs [ <num> ]: DIFFERENT | L=[|] R=[] | 1 vs 0
+largest classes among terminal objects:
+  size 77: | gravitropism | | phototropism | histopathology and immunohistochemistry | j . clin | | introduction | | participants | | task paradigms | | behavioral data | | acquisition | | imaging preprocessing | | imaging analysis | | discussion | ... (65 more)
+  size 1: materials and methods
+  size 1: analysis
+  size 1: data collection
+  size 1: <num>
+
+# scale 200000 universe internal_only
+## first 20 block splits in refinement order
+u | v | L | R | Accept(LuR) | Accept(LvR) | block_size | in_size | round
+rnaseq differential expression | one | | | analysis | 1 | 0 | 214140 | 3 | 1
+primers | one | the | are listed in table s <num> | 1 | 0 | 214137 | 3 | 1
+primers are | one | the | listed in table s <num> | 1 | 0 | 214134 | 3 | 1
+linear | one | average | slope activity at the first session was correlated with the associated reliability map ( r = . <num> ) | 1 | 0 | 214131 | 3 | 1
+comeback to | one | we | this in § <num> . <num> . <num> | 1 | 0 | 214128 | 3 | 1
+comeback to this | one | we | in § <num> . <num> . <num> | 1 | 0 | 214125 | 3 | 1
+rneasy | one | total rna was extracted using an | kit ( qiagen ) according to the manufacturer's instructions | 1 | 0 | 214122 | 2 | 1
+plant mini kit | one | total rna was extracted using an rneasy | ( qiagen ) according to the manufacturer's instructions | 1 | 0 | 214120 | 2 | 1
+differentially modulate auxin | one | | phyb <num> and phyb <num> | responses in tomato seedlings | 1 | 0 | 214118 | 2 | 1
+modulate auxin | one | | phyb <num> and phyb <num> differentially | responses in tomato seedlings | 1 | 0 | 214116 | 2 | 1
+modulate auxin responses | one | | phyb <num> and phyb <num> differentially | in tomato seedlings | 1 | 0 | 214114 | 2 | 1
+auxin | one | | phyb <num> and phyb <num> differentially modulate | responses in tomato seedlings | 1 | 0 | 214112 | 2 | 1
+auxin responses | one | | phyb <num> and phyb <num> differentially modulate | in tomato seedlings | 1 | 0 | 214110 | 2 | 1
+auxin responses in | one | | phyb <num> and phyb <num> differentially modulate | tomato seedlings | 1 | 0 | 214108 | 2 | 1
+of photosynthesis | one | | regulation | by phytochrome b | 1 | 0 | 214106 | 2 | 1
+photosynthesis | one | | regulation of | by phytochrome b | 1 | 0 | 214104 | 1 | 1
+auxin responses | photosynthetic responses | | regulation of | by phytochrome b | 1 | 0 | 2 | 1 | 1
+auxin responses by | one | | regulation of | phytochrome b | 1 | 0 | 214103 | 2 | 1
+linear slope | one | average | activity at the first session was correlated with the associated reliability map ( r = . <num> ) | 1 | 0 | 214101 | 2 | 1
+linear slope activity | one | average | at the first session was correlated with the associated reliability map ( r = . <num> ) | 1 | 0 | 214099 | 2 | 1
+## probe pairs (previously merged through (eps,eps) or boundary frames in v2.3)
+<num> vs conclusions: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L conclusions R)=0
+<num> vs introduction: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L introduction R)=0
+introduction vs conclusions: DIFFERENT | L=[abstract] R=[unhealthy lifestyle behaviours continue to be highly prevalent , including alcohol consumption , unhealthy diets , insufficient physical activity and smoking] | Accept(L introduction R)=1 Accept(L conclusions R)=0
+introduction vs discussion: DIFFERENT | L=[following the] R=[in section <num> . <num> , we explore the factorization arising from two supertranslation charges , q f and q g characterized by arbitrary functions f ( z , z ) and g ( z , z ) , on the conformal sphere] | Accept(L introduction R)=0 Accept(L discussion R)=1
+results vs discussion: DIFFERENT | L=[in contrast to arabidopsis , mutation of phyb <num> in tomato] R=[only in temporary red light insensitivity at a young seedling stage while phyb <num> adults look very similar in phenotype to wt tomato ( lazarova et al . , <num> )] | Accept(L results R)=1 Accept(L discussion R)=0
+<num> vs the: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L <num> R)=0 Accept(L the R)=1
+<num> vs and: DIFFERENT | L=[plants use both internal] R=[external cues as signals to guide their growth and development , and to help them respond to their environment , such as to light quality and light quantity , temperature , moisture , or nutrient availability] | Accept(L <num> R)=0 Accept(L and R)=1
+the vs and: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L the R)=1 Accept(L and R)=0
+the vs a: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L the R)=1 Accept(L a R)=0
+<num> vs [ <num> ]: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L [ <num> ] R)=0
+<num> vs <num> . <num>: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L <num> . <num> R)=0
+materials and methods vs conclusions: DIFFERENT | L=[in sect . <num> , some] R=[and perspectives are drawn] | Accept(L materials and methods R)=0 Accept(L conclusions R)=1
+conflict of interest vs acknowledgments: DIFFERENT | L=[the authors declare no] R=[associated with the work described in this manuscript] | Accept(L conflict of interest R)=1 Accept(L acknowledgments R)=0
+is vs was: DIFFERENT | L=[compared to arabidopsis , much less] R=[known about the functions of phys in the solanales] | Accept(L is R)=1 Accept(L was R)=0
+in vs of: DIFFERENT | L=[one important family] R=[plant genes are the phytochromes] | Accept(L in R)=0 Accept(L of R)=1
+## objects observed as complete spans ((eps,eps) = 1)
+terminal objects 181 in 95 classes
+- vs a: DIFFERENT | L=[phytochromes ( phys ) are light] R=[absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+a vs <num>: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of] R=[chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+<num> vs <num> ): DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | 1 vs 0
+<num> ) vs r: DIFFERENT | L=[the phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light (] R=[) responsive phys] | 0 vs 1
+r vs results: DIFFERENT | L=[the phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light (] R=[) responsive phys] | 1 vs 0
+results vs analysis: DIFFERENT | L=[in contrast to arabidopsis , mutation of phyb <num> in tomato] R=[only in temporary red light insensitivity at a young seedling stage while phyb <num> adults look very similar in phenotype to wt tomato ( lazarova et al . , <num> )] | 1 vs 0
+analysis vs background: DIFFERENT | L=[according to our] R=[, two major areas of potential subfunctionalization are the regulation of genes involved in response to auxin and in photosynthesis] | 1 vs 0
+background vs paper: DIFFERENT | L=[both mutants used in this study were in the moneymaker] R=[( original source : tomato genome resource center , davis , ca , usa )] | 1 vs 0
+paper vs differential expression: DIFFERENT | L=[for rnaseq experiments , seeds were surface sterilized using <num> % bleach for <num> min in ambient laboratory conditions and then sown on water - saturated , sterile filter] R=[in light - excluding plastic boxes] | 1 vs 0
+differential expression vs wgcna: DIFFERENT | L=[| rnaseq] R=[analysis] | 1 vs 0
+wgcna vs models: DIFFERENT | L=[their expression values were log transformed [ log <num> ( normalized read count + <num> ) ] and used as input for] R=[in r to identify co - expression modules] | 1 vs 0
+models vs | gravitropism: DIFFERENT | L=[only categories with p - values < <num> . <num> from fisher's exact tests ( weighted] R=[) are reported] | 1 vs 0
+| gravitropism vs | phototropism: SAME CLASS
+| phototropism vs statistical analysis: DIFFERENT | L=[when only oscc , oed , and nom cases were included in the] R=[, significant differences in distribution of il - <num> within the epithelium between compared lesions were confirmed] | 0 vs 1
+statistical analysis vs figure <num>: DIFFERENT | L=[in these gene sets , we identified functional enrichment gene ontology ( go ) categories (] R=[; table s <num> )] | 0 vs 1
+figure <num> vs significance: DIFFERENT | L=[in these gene sets , we identified functional enrichment gene ontology ( go ) categories (] R=[; table s <num> )] | 1 vs 0
+significance vs fig: DIFFERENT | L=[these functions were chosen based on ( a ) frequency of appearance in our data as being differentially regulated by phyb <num> and phyb <num> , ( b ) statistical] R=[of our differential and co - expression analyses data , and ( c ) the number of genes on which individual enrichment analyses were based] | 1 vs 0
+fig vs none: DIFFERENT | L=[testing phot <num> and phot <num> expression with qpcr at <num> and <num> hr of treatment with unilateral white light , we observed a decline in phot <num> and an increase in phot <num> expression over the <num> - hr treatment (] R=[. s <num> ) , but found no significant differences of gene expression between the two phyb mutants , suggesting that regulation of the phot <num> and phot <num> genes does not explain the measured phenotypic differences and instead indicates that the differences are likely due to differential gene regulation downstream of phot <num> and phot <num> ( fig . s <num> )] | 1 vs 0
+none vs introduction: DIFFERENT | L=[with respect to leaf morphology and developmental traits , mutation in arabidopsis phyd resulted in] R=[or only minor consequences on the phenotype while mutation in phyb resulted in statistically significant phenotypic change ( aukerman et al . , <num> )] | 1 vs 0
+introduction vs [ <num> ]: DIFFERENT | L=[the studies confirmed the crucial role of proinflammatory cytokines in carcinogenesis process , including the development of lung cancer [ <num> , <num> ] , hepatocarcinoma] R=[, colorectal cancer [ <num> ] , as well as oscc [ <num> ]] | 0 vs 1
+largest classes among terminal objects:
+  size 87: | gravitropism | | phototropism | histopathology and immunohistochemistry | j . clin | | introduction | | participants | | task paradigms | | behavioral data | | acquisition | | imaging preprocessing | | imaging analysis | | discussion | ... (75 more)
+  size 1: -
+  size 1: a
+  size 1: <num>
+  size 1: r
+
+# scale 200000 universe boundary_frames
+## first 20 block splits in refinement order
+u | v | L | R | Accept(LuR) | Accept(LvR) | block_size | in_size | round
+- | one |  |  | 1 | 0 | 214140 | 181 | 1
+results | - | | |  | 1 | 0 | 181 | 7 | 1
+phototropism | one | | |  | 1 | 0 | 213959 | 16 | 1
+table | one |  | <num> | 1 | 0 | 213943 | 11 | 1
+data | one |  | analysis | 1 | 0 | 213932 | 9 | 1
+availability | one | data |  | 1 | 0 | 213923 | 7 | 1
+analysis | - | data |  | 1 | 0 | 174 | 1 | 1
+area | one | study |  | 1 | 0 | 213916 | 5 | 1
+redshift estimation | one | cluster |  | 1 | 0 | 213911 | 5 | 1
+| | one |  | methods | 1 | 0 | 213906 | 3 | 1
+data collection | - |  | methods | 1 | 0 | 173 | 1 | 1
+preoperative | one |  | procedure | 1 | 0 | 213903 | 4 | 1
+the primers | one |  | are listed in table s <num> | 1 | 0 | 213899 | 3 | 1
+| behavioral | one |  | data | 1 | 0 | 213896 | 3 | 1
+of the model | one | description |  | 1 | 0 | 213893 | 3 | 1
+) | one | <num> |  | 1 | 0 | 213890 | 3 | 1
+therefore , | one |  | lim nÑ <num> r r <num> k , n ď <num> r <num> k | 1 | 0 | 213887 | 3 | 1
+completes the proof | one | this |  | 1 | 0 | 213884 | 3 | 1
+evolution rates | one |  | of sex - biased genes | 1 | 0 | 213881 | 3 | 1
+evolution rates of | one |  | sex - biased genes | 1 | 0 | 213878 | 3 | 1
+## probe pairs (previously merged through (eps,eps) or boundary frames in v2.3)
+<num> vs conclusions: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | Accept(L <num> R)=1 Accept(L conclusions R)=0
+<num> vs introduction: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | Accept(L <num> R)=1 Accept(L introduction R)=0
+introduction vs conclusions: DIFFERENT | L=[i .] R=[] | Accept(L introduction R)=1 Accept(L conclusions R)=0
+introduction vs discussion: DIFFERENT | L=[] R=[and conclusion] | Accept(L introduction R)=0 Accept(L discussion R)=1
+results vs discussion: DIFFERENT | L=[] R=[of the latent class model showed significant differences between the two classes] | Accept(L results R)=1 Accept(L discussion R)=0
+<num> vs the: DIFFERENT | L=[] R=[phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light ( r ) responsive phys] | Accept(L <num> R)=0 Accept(L the R)=1
+<num> vs and: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | Accept(L <num> R)=1 Accept(L and R)=0
+the vs and: DIFFERENT | L=[] R=[phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light ( r ) responsive phys] | Accept(L the R)=1 Accept(L and R)=0
+the vs a: DIFFERENT | L=[] R=[phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light ( r ) responsive phys] | Accept(L the R)=1 Accept(L a R)=0
+<num> vs [ <num> ]: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | Accept(L <num> R)=1 Accept(L [ <num> ] R)=0
+<num> vs <num> . <num>: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | Accept(L <num> R)=1 Accept(L <num> . <num> R)=0
+materials and methods vs conclusions: DIFFERENT | L=[missing potential galaxies from the photometric catalog does not alter the general form of the surface density map , thus not altering our] R=[] | Accept(L materials and methods R)=0 Accept(L conclusions R)=1
+conflict of interest vs acknowledgments: DIFFERENT | L=[] R=[] | Accept(L conflict of interest R)=0 Accept(L acknowledgments R)=1
+is vs was: DIFFERENT | L=[in going from ( <num> . <num> ) to ( <num> . <num> ) we have made the same assumption for defining q soft v on the shifted vacuum as has been made in the literature for defining it on the fock vacuum , namely : out , f | lim] R=[] | Accept(L is R)=1 Accept(L was R)=0
+in vs of: DIFFERENT | L=[] R=[arabidopsis , the r responsive phys are encoded by four genes : atphyb - atphye] | Accept(L in R)=1 Accept(L of R)=0
+## objects observed as complete spans ((eps,eps) = 1)
+terminal objects 181 in 79 classes
+- vs a: DIFFERENT | L=[] R=[three - way anova ( genotype , light condition , time ) was performed in r followed by tukey's post hoc test to determine statistically significant differences between groups] | 0 vs 1
+a vs <num>: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | 0 vs 1
+<num> vs <num> ): DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail ,] R=[] | 0 vs 1
+<num> ) vs r: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail ,] R=[] | 1 vs 0
+r vs results: DIFFERENT | L=[|] R=[] | 0 vs 1
+results vs analysis: DIFFERENT | L=[] R=[of phyb <num> ; phyb <num> double mutants in tomato showed that a high level of redundancy exists between the two genes with respect to hypocotyl elongation during de - etiolation in both white light and r ( weller et al . , <num> )] | 0 vs 1
+analysis vs background: DIFFERENT | L=[] R=[of phyb <num> ; phyb <num> double mutants in tomato showed that a high level of redundancy exists between the two genes with respect to hypocotyl elongation during de - etiolation in both white light and r ( weller et al . , <num> )] | 1 vs 0
+background vs paper: DIFFERENT | L=[the od of an area devoid of bands was subtracted from the values obtained for bands of interest in order to normalize the od against] R=[] | 1 vs 0
+paper vs differential expression: DIFFERENT | L=[] R=[of fig . <num>] | 0 vs 1
+differential expression vs wgcna: DIFFERENT | L=[| co - expression analysis with] R=[] | 0 vs 1
+wgcna vs models: DIFFERENT | L=[| co - expression analysis with] R=[] | 1 vs 0
+models vs | gravitropism: DIFFERENT | L=[additionally , six head motion parameters were included as nuisance regressors in individuallevel] R=[] | 1 vs 0
+| gravitropism vs | phototropism: SAME CLASS
+| phototropism vs statistical analysis: DIFFERENT | L=[] R=[was performed using anova ( r version <num> . <num> . <num> ) on log <num> normalized expression values] | 0 vs 1
+statistical analysis vs figure <num>: DIFFERENT | L=[] R=[was performed using anova ( r version <num> . <num> . <num> ) on log <num> normalized expression values] | 1 vs 0
+figure <num> vs significance: DIFFERENT | L=[we therefore performed a series of control experiments in which we exposed seedlings to unilateral r light and measured their directional growth response over a period of three hours in a similar way to how we had performed the phototropic experiments shown in] R=[] | 1 vs 0
+significance vs fig: DIFFERENT | L=[] R=[tests are conducted independently per voxel ; this massive multiplicity is accounted for by estimating the probability of a number of contiguous voxels all exhibiting significant effects] | 1 vs 0
+fig vs none: DIFFERENT | L=[] R=[of the lesions had been treated in any manner prior to sample collection] | 0 vs 1
+none vs introduction: DIFFERENT | L=[|] R=[] | 0 vs 1
+introduction vs [ <num> ]: DIFFERENT | L=[|] R=[] | 1 vs 0
+largest classes among terminal objects:
+  size 103: | gravitropism | | phototropism | study group | histopathology and immunohistochemistry | laboratory tests | j . clin | med | | introduction | | participants | | task paradigms | | behavioral data | | acquisition | ... (91 more)
+  size 1: materials and methods
+  size 1: analysis
+  size 1: data collection
+  size 1: <num>
+
+# scale 400000 universe all_frames
+## first 20 block splits in refinement order
+u | v | L | R | Accept(LuR) | Accept(LvR) | block_size | in_size | round
+and | one |  |  | 1 | 0 | 381544 | 327 | 1
+( | one |  | <num> | 1 | 0 | 381217 | 32 | 1
+results | and | | |  | 1 | 0 | 327 | 8 | 1
+phototropism | one | | |  | 1 | 0 | 381185 | 15 | 1
+data | one |  | analysis | 1 | 0 | 381170 | 12 | 1
+decrease | one | the |  | 1 | 0 | 381158 | 11 | 1
+availability | one | data |  | 1 | 0 | 381147 | 9 | 1
+analysis | and | data |  | 1 | 0 | 319 | 1 | 1
+<num> | and |  | . <num> | 1 | 0 | 318 | 6 | 1
+example <num> | one |  | . <num> | 1 | 0 | 381138 | 3 | 1
+results | materials and methods | study |  | 1 | 0 | 8 | 1 | 1
+area | one | study |  | 1 | 0 | 381135 | 6 | 1
+example | one |  | <num> . <num> | 1 | 0 | 381129 | 3 | 1
+theorem | ( |  | <num> . <num> | 1 | 0 | 32 | 4 | 1
+| | one |  | methods | 1 | 0 | 381126 | 4 | 1
+statistical | data |  | methods | 1 | 0 | 12 | 1 | 1
+data collection | and |  | methods | 1 | 0 | 312 | 1 | 1
+| | material and |  | results | 1 | 0 | 4 | 1 | 1
+study | and |  | results | 1 | 0 | 311 | 2 | 1
+literature screening | one |  | results | 1 | 0 | 381122 | 3 | 1
+## probe pairs (previously merged through (eps,eps) or boundary frames in v2.3)
+<num> vs conclusions: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L conclusions R)=0
+<num> vs introduction: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L introduction R)=0
+introduction vs conclusions: DIFFERENT | L=[discussion and] R=[] | Accept(L introduction R)=0 Accept(L conclusions R)=1
+introduction vs discussion: DIFFERENT | L=[following the] R=[in section <num> . <num> , we explore the factorization arising from two supertranslation charges , q f and q g characterized by arbitrary functions f ( z , z ) and g ( z , z ) , on the conformal sphere] | Accept(L introduction R)=0 Accept(L discussion R)=1
+results vs discussion: DIFFERENT | L=[in contrast to arabidopsis , mutation of phyb <num> in tomato] R=[only in temporary red light insensitivity at a young seedling stage while phyb <num> adults look very similar in phenotype to wt tomato ( lazarova et al . , <num> )] | Accept(L results R)=1 Accept(L discussion R)=0
+<num> vs the: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L <num> R)=0 Accept(L the R)=1
+<num> vs and: DIFFERENT | L=[plants use both internal] R=[external cues as signals to guide their growth and development , and to help them respond to their environment , such as to light quality and light quantity , temperature , moisture , or nutrient availability] | Accept(L <num> R)=0 Accept(L and R)=1
+the vs and: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L the R)=1 Accept(L and R)=0
+the vs a: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L the R)=1 Accept(L a R)=0
+<num> vs [ <num> ]: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L [ <num> ] R)=0
+<num> vs <num> . <num>: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L <num> . <num> R)=0
+materials and methods vs conclusions: DIFFERENT | L=[discussion and] R=[] | Accept(L materials and methods R)=0 Accept(L conclusions R)=1
+conflict of interest vs acknowledgments: DIFFERENT | L=[the authors declare no] R=[associated with the work described in this manuscript] | Accept(L conflict of interest R)=1 Accept(L acknowledgments R)=0
+is vs was: DIFFERENT | L=[compared to arabidopsis , much less] R=[known about the functions of phys in the solanales] | Accept(L is R)=1 Accept(L was R)=0
+in vs of: DIFFERENT | L=[one important family] R=[plant genes are the phytochromes] | Accept(L in R)=0 Accept(L of R)=1
+## objects observed as complete spans ((eps,eps) = 1)
+terminal objects 327 in 210 classes
+and vs -: DIFFERENT | L=[plants use both internal] R=[external cues as signals to guide their growth and development , and to help them respond to their environment , such as to light quality and light quantity , temperature , moisture , or nutrient availability] | 1 vs 0
+- vs a: DIFFERENT | L=[phytochromes ( phys ) are light] R=[absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+a vs <num>: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of] R=[chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+<num> vs <num> ): DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | 1 vs 0
+<num> ) vs r: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail ,] R=[] | 1 vs 0
+r vs results: DIFFERENT | L=[the phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light (] R=[) responsive phys] | 1 vs 0
+results vs analysis: DIFFERENT | L=[in contrast to arabidopsis , mutation of phyb <num> in tomato] R=[only in temporary red light insensitivity at a young seedling stage while phyb <num> adults look very similar in phenotype to wt tomato ( lazarova et al . , <num> )] | 1 vs 0
+analysis vs b: DIFFERENT | L=[] R=[of phyb <num> ; phyb <num> double mutants in tomato showed that a high level of redundancy exists between the two genes with respect to hypocotyl elongation during de - etiolation in both white light and r ( weller et al . , <num> )] | 1 vs 0
+b vs experiments: DIFFERENT | L=[subfunctionalization of the] R=[- class phytochromes was also shown in maize , where zmphyb <num> was the predominant phy to regulate mesocotyl elongation in r , while zmphyb <num> was mainly responsible for the photoperiod - dependent transition from vegetative to floral development ( sheehan , kennedy , costich , & brutnell , <num> )] | 1 vs 0
+experiments vs study: DIFFERENT | L=[solanum lycopersicum seeds of cultivar moneymaker ( gourmet seed , hollister , ca , united states ) and homozygous phyb <num> mutants ( allele tri <num> ) and phyb <num> mutants ( allele <num> - <num> ( aka <num> f ) , ( kerckhoffs et al . , <num> ; weller et al . , <num> ) were used in all] R=[] | 1 vs 0
+study vs background: DIFFERENT | L=[both mutants used in this] R=[were in the moneymaker background ( original source : tomato genome resource center , davis , ca , usa )] | 1 vs 0
+background vs then: DIFFERENT | L=[both mutants used in this study were in the moneymaker] R=[( original source : tomato genome resource center , davis , ca , usa )] | 1 vs 0
+then vs paper: DIFFERENT | L=[for rnaseq experiments , seeds were surface sterilized using <num> % bleach for <num> min in ambient laboratory conditions and] R=[sown on water - saturated , sterile filter paper in light - excluding plastic boxes] | 1 vs 0
+paper vs ( <num>: DIFFERENT | L=[for rnaseq experiments , seeds were surface sterilized using <num> % bleach for <num> min in ambient laboratory conditions and then sown on water - saturated , sterile filter] R=[in light - excluding plastic boxes] | 1 vs 0
+( <num> vs differential expression: DIFFERENT | L=[plants were grown in a dark growth chamber at <num> °c . five - day - old seedlings of similar height were harvested under green safe light] R=[nm led ) , and flash - frozen in liquid nitrogen] | 1 vs 0
+differential expression vs <num> . <num>: DIFFERENT | L=[| rnaseq] R=[analysis] | 1 vs 0
+<num> . <num> vs wgcna: DIFFERENT | L=[rnaseq reads were mapped with hisat <num> to the sl] R=[version of the tomato genome with itag <num> . <num> genome annotation from solgenomics ( www . solge nomics . org )] | 1 vs 0
+wgcna vs models: DIFFERENT | L=[| co - expression analysis with] R=[] | 1 vs 0
+models vs | gravitropism: DIFFERENT | L=[only categories with p - values < <num> . <num> from fisher's exact tests ( weighted] R=[) are reported] | 1 vs 0
+| gravitropism vs | phototropism: SAME CLASS
+largest classes among terminal objects:
+  size 118: | gravitropism | | phototropism | histopathology and immunohistochemistry | j . clin | | introduction | | participants | | task paradigms | | behavioral data | | acquisition | | imaging preprocessing | | imaging analysis | | discussion | ... (106 more)
+  size 1: materials and methods
+  size 1: analysis
+  size 1: corollary <num>
+  size 1: results
+
+# scale 400000 universe internal_only
+## first 20 block splits in refinement order
+u | v | L | R | Accept(LuR) | Accept(LvR) | block_size | in_size | round
+and that | one | assume hypothesis <num> . <num> | p > <num> a . e . on ( a , b ) | 1 | 0 | 381544 | 4 | 1
+rnaseq differential expression | one | | | analysis | 1 | 0 | 381540 | 3 | 1
+primers | one | the | are listed in table s <num> | 1 | 0 | 381537 | 3 | 1
+primers are | one | the | listed in table s <num> | 1 | 0 | 381534 | 3 | 1
+linear | one | average | slope activity at the first session was correlated with the associated reliability map ( r = . <num> ) | 1 | 0 | 381531 | 3 | 1
+<num> . <num> | one | ( | ) | 1 | 0 | 381528 | 3 | 1
+. | one | <num> | <num> | 1 | 0 | 381525 | 3 | 1
+comeback to | one | we | this in § <num> . <num> . <num> | 1 | 0 | 381522 | 3 | 1
+comeback to this | one | we | in § <num> . <num> . <num> | 1 | 0 | 381519 | 3 | 1
+study | one | this | has some limitations | 1 | 0 | 381516 | 3 | 1
+study also has | one | this | some limitations | 1 | 0 | 381513 | 3 | 1
+has | one | this study | some limitations | 1 | 0 | 381510 | 3 | 1
+has some | one | this study | limitations | 1 | 0 | 381507 | 3 | 1
+that | one | assume hypothesis <num> . <num> and | p > <num> a . e . on ( a , b ) | 1 | 0 | 381504 | 3 | 1
+that p | one | assume hypothesis <num> . <num> and | > <num> a . e . on ( a , b ) | 1 | 0 | 381501 | 3 | 1
+rneasy | one | total rna was extracted using an | kit ( qiagen ) according to the manufacturer's instructions | 1 | 0 | 381498 | 2 | 1
+plant mini kit | one | total rna was extracted using an rneasy | ( qiagen ) according to the manufacturer's instructions | 1 | 0 | 381496 | 2 | 1
+differentially modulate auxin | one | | phyb <num> and phyb <num> | responses in tomato seedlings | 1 | 0 | 381494 | 2 | 1
+modulate auxin | one | | phyb <num> and phyb <num> differentially | responses in tomato seedlings | 1 | 0 | 381492 | 2 | 1
+modulate auxin responses | one | | phyb <num> and phyb <num> differentially | in tomato seedlings | 1 | 0 | 381490 | 2 | 1
+## probe pairs (previously merged through (eps,eps) or boundary frames in v2.3)
+<num> vs conclusions: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L conclusions R)=0
+<num> vs introduction: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L introduction R)=0
+introduction vs conclusions: DIFFERENT | L=[abstract] R=[unhealthy lifestyle behaviours continue to be highly prevalent , including alcohol consumption , unhealthy diets , insufficient physical activity and smoking] | Accept(L introduction R)=1 Accept(L conclusions R)=0
+introduction vs discussion: DIFFERENT | L=[following the] R=[in section <num> . <num> , we explore the factorization arising from two supertranslation charges , q f and q g characterized by arbitrary functions f ( z , z ) and g ( z , z ) , on the conformal sphere] | Accept(L introduction R)=0 Accept(L discussion R)=1
+results vs discussion: DIFFERENT | L=[in contrast to arabidopsis , mutation of phyb <num> in tomato] R=[only in temporary red light insensitivity at a young seedling stage while phyb <num> adults look very similar in phenotype to wt tomato ( lazarova et al . , <num> )] | Accept(L results R)=1 Accept(L discussion R)=0
+<num> vs the: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L <num> R)=0 Accept(L the R)=1
+<num> vs and: DIFFERENT | L=[plants use both internal] R=[external cues as signals to guide their growth and development , and to help them respond to their environment , such as to light quality and light quantity , temperature , moisture , or nutrient availability] | Accept(L <num> R)=0 Accept(L and R)=1
+the vs and: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L the R)=1 Accept(L and R)=0
+the vs a: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L the R)=1 Accept(L a R)=0
+<num> vs [ <num> ]: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L [ <num> ] R)=0
+<num> vs <num> . <num>: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L <num> . <num> R)=0
+materials and methods vs conclusions: DIFFERENT | L=[in sect . <num> , some] R=[and perspectives are drawn] | Accept(L materials and methods R)=0 Accept(L conclusions R)=1
+conflict of interest vs acknowledgments: DIFFERENT | L=[the authors declare no] R=[associated with the work described in this manuscript] | Accept(L conflict of interest R)=1 Accept(L acknowledgments R)=0
+is vs was: DIFFERENT | L=[compared to arabidopsis , much less] R=[known about the functions of phys in the solanales] | Accept(L is R)=1 Accept(L was R)=0
+in vs of: DIFFERENT | L=[one important family] R=[plant genes are the phytochromes] | Accept(L in R)=0 Accept(L of R)=1
+## objects observed as complete spans ((eps,eps) = 1)
+terminal objects 327 in 191 classes
+and vs -: DIFFERENT | L=[plants use both internal] R=[external cues as signals to guide their growth and development , and to help them respond to their environment , such as to light quality and light quantity , temperature , moisture , or nutrient availability] | 1 vs 0
+- vs a: DIFFERENT | L=[phytochromes ( phys ) are light] R=[absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+a vs <num>: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of] R=[chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+<num> vs <num> ): DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | 1 vs 0
+<num> ) vs r: DIFFERENT | L=[the phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light (] R=[) responsive phys] | 0 vs 1
+r vs results: DIFFERENT | L=[the phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light (] R=[) responsive phys] | 1 vs 0
+results vs analysis: DIFFERENT | L=[in contrast to arabidopsis , mutation of phyb <num> in tomato] R=[only in temporary red light insensitivity at a young seedling stage while phyb <num> adults look very similar in phenotype to wt tomato ( lazarova et al . , <num> )] | 1 vs 0
+analysis vs b: DIFFERENT | L=[subfunctionalization of the] R=[- class phytochromes was also shown in maize , where zmphyb <num> was the predominant phy to regulate mesocotyl elongation in r , while zmphyb <num> was mainly responsible for the photoperiod - dependent transition from vegetative to floral development ( sheehan , kennedy , costich , & brutnell , <num> )] | 0 vs 1
+b vs experiments: DIFFERENT | L=[subfunctionalization of the] R=[- class phytochromes was also shown in maize , where zmphyb <num> was the predominant phy to regulate mesocotyl elongation in r , while zmphyb <num> was mainly responsible for the photoperiod - dependent transition from vegetative to floral development ( sheehan , kennedy , costich , & brutnell , <num> )] | 1 vs 0
+experiments vs study: DIFFERENT | L=[both mutants used in this] R=[were in the moneymaker background ( original source : tomato genome resource center , davis , ca , usa )] | 0 vs 1
+study vs background: DIFFERENT | L=[both mutants used in this] R=[were in the moneymaker background ( original source : tomato genome resource center , davis , ca , usa )] | 1 vs 0
+background vs then: DIFFERENT | L=[both mutants used in this study were in the moneymaker] R=[( original source : tomato genome resource center , davis , ca , usa )] | 1 vs 0
+then vs paper: DIFFERENT | L=[for rnaseq experiments , seeds were surface sterilized using <num> % bleach for <num> min in ambient laboratory conditions and] R=[sown on water - saturated , sterile filter paper in light - excluding plastic boxes] | 1 vs 0
+paper vs ( <num>: DIFFERENT | L=[for rnaseq experiments , seeds were surface sterilized using <num> % bleach for <num> min in ambient laboratory conditions and then sown on water - saturated , sterile filter] R=[in light - excluding plastic boxes] | 1 vs 0
+( <num> vs differential expression: DIFFERENT | L=[plants were grown in a dark growth chamber at <num> °c . five - day - old seedlings of similar height were harvested under green safe light] R=[nm led ) , and flash - frozen in liquid nitrogen] | 1 vs 0
+differential expression vs <num> . <num>: DIFFERENT | L=[| rnaseq] R=[analysis] | 1 vs 0
+<num> . <num> vs wgcna: DIFFERENT | L=[rnaseq reads were mapped with hisat <num> to the sl] R=[version of the tomato genome with itag <num> . <num> genome annotation from solgenomics ( www . solge nomics . org )] | 1 vs 0
+wgcna vs models: DIFFERENT | L=[their expression values were log transformed [ log <num> ( normalized read count + <num> ) ] and used as input for] R=[in r to identify co - expression modules] | 1 vs 0
+models vs | gravitropism: DIFFERENT | L=[only categories with p - values < <num> . <num> from fisher's exact tests ( weighted] R=[) are reported] | 1 vs 0
+| gravitropism vs | phototropism: SAME CLASS
+largest classes among terminal objects:
+  size 137: | gravitropism | | phototropism | histopathology and immunohistochemistry | j . clin | | introduction | | participants | | task paradigms | | behavioral data | | acquisition | | imaging preprocessing | | imaging analysis | | discussion | ... (125 more)
+  size 1: l
+  size 1: <num>
+  size 1: fig
+  size 1: and
+
+# scale 400000 universe boundary_frames
+## first 20 block splits in refinement order
+u | v | L | R | Accept(LuR) | Accept(LvR) | block_size | in_size | round
+and | one |  |  | 1 | 0 | 381544 | 327 | 1
+( | one |  | <num> | 1 | 0 | 381217 | 32 | 1
+results | and | | |  | 1 | 0 | 327 | 8 | 1
+phototropism | one | | |  | 1 | 0 | 381185 | 15 | 1
+data | one |  | analysis | 1 | 0 | 381170 | 12 | 1
+decrease | one | the |  | 1 | 0 | 381158 | 11 | 1
+availability | one | data |  | 1 | 0 | 381147 | 9 | 1
+analysis | and | data |  | 1 | 0 | 319 | 1 | 1
+<num> | and |  | . <num> | 1 | 0 | 318 | 6 | 1
+example <num> | one |  | . <num> | 1 | 0 | 381138 | 3 | 1
+results | materials and methods | study |  | 1 | 0 | 8 | 1 | 1
+area | one | study |  | 1 | 0 | 381135 | 6 | 1
+example | one |  | <num> . <num> | 1 | 0 | 381129 | 3 | 1
+theorem | ( |  | <num> . <num> | 1 | 0 | 32 | 4 | 1
+| | one |  | methods | 1 | 0 | 381126 | 4 | 1
+statistical | data |  | methods | 1 | 0 | 12 | 1 | 1
+data collection | and |  | methods | 1 | 0 | 312 | 1 | 1
+| | material and |  | results | 1 | 0 | 4 | 1 | 1
+study | and |  | results | 1 | 0 | 311 | 2 | 1
+literature screening | one |  | results | 1 | 0 | 381122 | 3 | 1
+## probe pairs (previously merged through (eps,eps) or boundary frames in v2.3)
+<num> vs conclusions: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | Accept(L <num> R)=1 Accept(L conclusions R)=0
+<num> vs introduction: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | Accept(L <num> R)=1 Accept(L introduction R)=0
+introduction vs conclusions: DIFFERENT | L=[discussion and] R=[] | Accept(L introduction R)=0 Accept(L conclusions R)=1
+introduction vs discussion: DIFFERENT | L=[] R=[and conclusion] | Accept(L introduction R)=0 Accept(L discussion R)=1
+results vs discussion: DIFFERENT | L=[study] R=[] | Accept(L results R)=1 Accept(L discussion R)=0
+<num> vs the: DIFFERENT | L=[] R=[phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light ( r ) responsive phys] | Accept(L <num> R)=0 Accept(L the R)=1
+<num> vs and: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | Accept(L <num> R)=1 Accept(L and R)=0
+the vs and: DIFFERENT | L=[] R=[phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light ( r ) responsive phys] | Accept(L the R)=1 Accept(L and R)=0
+the vs a: DIFFERENT | L=[] R=[phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light ( r ) responsive phys] | Accept(L the R)=1 Accept(L a R)=0
+<num> vs [ <num> ]: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | Accept(L <num> R)=1 Accept(L [ <num> ] R)=0
+<num> vs <num> . <num>: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | Accept(L <num> R)=1 Accept(L <num> . <num> R)=0
+materials and methods vs conclusions: DIFFERENT | L=[discussion and] R=[] | Accept(L materials and methods R)=0 Accept(L conclusions R)=1
+conflict of interest vs acknowledgments: DIFFERENT | L=[the authors declare no] R=[] | Accept(L conflict of interest R)=1 Accept(L acknowledgments R)=0
+is vs was: DIFFERENT | L=[in going from ( <num> . <num> ) to ( <num> . <num> ) we have made the same assumption for defining q soft v on the shifted vacuum as has been made in the literature for defining it on the fock vacuum , namely : out , f | lim] R=[] | Accept(L is R)=1 Accept(L was R)=0
+in vs of: DIFFERENT | L=[] R=[arabidopsis , the r responsive phys are encoded by four genes : atphyb - atphye] | Accept(L in R)=1 Accept(L of R)=0
+## objects observed as complete spans ((eps,eps) = 1)
+terminal objects 327 in 157 classes
+and vs -: DIFFERENT | L=[having discussed the dependence on β , let us focus on understanding how the bound in theorem <num> scales with n , d] R=[] | 1 vs 0
+- vs a: DIFFERENT | L=[] R=[three - way anova ( genotype , light condition , time ) was performed in r followed by tukey's post hoc test to determine statistically significant differences between groups] | 0 vs 1
+a vs <num>: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | 0 vs 1
+<num> vs <num> ): DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail ,] R=[] | 0 vs 1
+<num> ) vs r: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail ,] R=[] | 1 vs 0
+r vs results: DIFFERENT | L=[|] R=[] | 0 vs 1
+results vs analysis: DIFFERENT | L=[] R=[of phyb <num> ; phyb <num> double mutants in tomato showed that a high level of redundancy exists between the two genes with respect to hypocotyl elongation during de - etiolation in both white light and r ( weller et al . , <num> )] | 0 vs 1
+analysis vs b: DIFFERENT | L=[] R=[of phyb <num> ; phyb <num> double mutants in tomato showed that a high level of redundancy exists between the two genes with respect to hypocotyl elongation during de - etiolation in both white light and r ( weller et al . , <num> )] | 1 vs 0
+b vs experiments: DIFFERENT | L=[solanum lycopersicum seeds of cultivar moneymaker ( gourmet seed , hollister , ca , united states ) and homozygous phyb <num> mutants ( allele tri <num> ) and phyb <num> mutants ( allele <num> - <num> ( aka <num> f ) , ( kerckhoffs et al . , <num> ; weller et al . , <num> ) were used in all] R=[] | 0 vs 1
+experiments vs study: DIFFERENT | L=[solanum lycopersicum seeds of cultivar moneymaker ( gourmet seed , hollister , ca , united states ) and homozygous phyb <num> mutants ( allele tri <num> ) and phyb <num> mutants ( allele <num> - <num> ( aka <num> f ) , ( kerckhoffs et al . , <num> ; weller et al . , <num> ) were used in all] R=[] | 1 vs 0
+study vs background: DIFFERENT | L=[we want to caution that in the absence of multiple alleles of phyb <num> and phyb <num> in our analysis , it is formally possible that unknown , secondary background mutations in the material could contribute to some of the observations we made in this] R=[] | 1 vs 0
+background vs then: DIFFERENT | L=[the od of an area devoid of bands was subtracted from the values obtained for bands of interest in order to normalize the od against] R=[] | 1 vs 0
+then vs paper: DIFFERENT | L=[] R=[, it was translated and back - translated to farsi [ <num> ]] | 1 vs 0
+paper vs ( <num>: DIFFERENT | L=[the starting point for the derivation is ( <num> ) in [ <num> ] , which in the present context can be written as with our prescription that the soft charges annihilate the " in " vacuum , the l . h . s . of ( a . <num> ) reduces to on the other hand , using ( a . <num> ) , it is easy to see that the r . h . s . of ( a . <num> ) is given by this is one of the ward identities used in the main text of the] R=[] | 1 vs 0
+( <num> vs differential expression: DIFFERENT | L=[] R=[of fig . <num>] | 0 vs 1
+differential expression vs <num> . <num>: DIFFERENT | L=[] R=[. <num> | face - emotion labeling task this task was adapted for fmri from a previously used behavioral paradigm ( stoddard et al . , <num> )] | 0 vs 1
+<num> . <num> vs wgcna: DIFFERENT | L=[| co - expression analysis with] R=[] | 0 vs 1
+wgcna vs models: DIFFERENT | L=[| co - expression analysis with] R=[] | 1 vs 0
+models vs | gravitropism: DIFFERENT | L=[additionally , six head motion parameters were included as nuisance regressors in individuallevel] R=[] | 1 vs 0
+| gravitropism vs | phototropism: SAME CLASS
+largest classes among terminal objects:
+  size 171: | gravitropism | | phototropism | reference | study group | histopathology and immunohistochemistry | j . clin | | introduction | statistical methods | | participants | | task paradigms | | behavioral data | | acquisition | ... (159 more)
+  size 1: materials and methods
+  size 1: analysis
+  size 1: corollary <num>
+  size 1: results
+
+# scale 1000000 universe all_frames
+## first 20 block splits in refinement order
+u | v | L | R | Accept(LuR) | Accept(LvR) | block_size | in_size | round
+the | one |  |  | 1 | 0 | 867768 | 694 | 1
+( | one |  | <num> | 1 | 0 | 867074 | 54 | 1
+abell | the |  | <num> | 1 | 0 | 694 | 1 | 1
+phylogenetic | one |  | analysis | 1 | 0 | 867020 | 28 | 1
+data | the |  | analysis | 1 | 0 | 693 | 2 | 1
+results | the | | |  | 1 | 0 | 691 | 12 | 1
+phototropism | one | | |  | 1 | 0 | 866992 | 14 | 1
+decrease | one | the |  | 1 | 0 | 866978 | 24 | 1
+algorithm | data | the |  | 1 | 0 | 2 | 1 | 1
+natnael | the | the |  | 1 | 0 | 679 | 1 | 1
+<num> | the |  | . <num> | 1 | 0 | 678 | 9 | 1
+assumption <num> | one |  | . <num> | 1 | 0 | 866954 | 8 | 1
+availability | one | data |  | 1 | 0 | 866946 | 15 | 1
+analysis | the | data |  | 1 | 0 | 669 | 1 | 1
+<num> . <num> | <num> | ( | ) | 1 | 0 | 9 | 1 | 1
+c <num> | one | ( | ) | 1 | 0 | 866931 | 10 | 1
+table s <num> | the | ( | ) | 1 | 0 | 668 | 3 | 1
+results | general discussion | study |  | 1 | 0 | 12 | 1 | 1
+area | one | study |  | 1 | 0 | 866921 | 9 | 1
+procedures | the | study |  | 1 | 0 | 665 | 3 | 1
+## probe pairs (previously merged through (eps,eps) or boundary frames in v2.3)
+<num> vs conclusions: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L conclusions R)=0
+<num> vs introduction: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L introduction R)=0
+introduction vs conclusions: DIFFERENT | L=[discussion and] R=[] | Accept(L introduction R)=0 Accept(L conclusions R)=1
+introduction vs discussion: DIFFERENT | L=[following the] R=[in section <num> . <num> , we explore the factorization arising from two supertranslation charges , q f and q g characterized by arbitrary functions f ( z , z ) and g ( z , z ) , on the conformal sphere] | Accept(L introduction R)=0 Accept(L discussion R)=1
+results vs discussion: DIFFERENT | L=[in contrast to arabidopsis , mutation of phyb <num> in tomato] R=[only in temporary red light insensitivity at a young seedling stage while phyb <num> adults look very similar in phenotype to wt tomato ( lazarova et al . , <num> )] | Accept(L results R)=1 Accept(L discussion R)=0
+<num> vs the: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L <num> R)=0 Accept(L the R)=1
+<num> vs and: DIFFERENT | L=[plants use both internal] R=[external cues as signals to guide their growth and development , and to help them respond to their environment , such as to light quality and light quantity , temperature , moisture , or nutrient availability] | Accept(L <num> R)=0 Accept(L and R)=1
+the vs and: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L the R)=1 Accept(L and R)=0
+the vs a: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L the R)=1 Accept(L a R)=0
+<num> vs [ <num> ]: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L [ <num> ] R)=0
+<num> vs <num> . <num>: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L <num> . <num> R)=0
+materials and methods vs conclusions: DIFFERENT | L=[discussion and] R=[] | Accept(L materials and methods R)=0 Accept(L conclusions R)=1
+conflict of interest vs acknowledgments: DIFFERENT | L=[the authors declare no] R=[associated with the work described in this manuscript] | Accept(L conflict of interest R)=1 Accept(L acknowledgments R)=0
+is vs was: DIFFERENT | L=[compared to arabidopsis , much less] R=[known about the functions of phys in the solanales] | Accept(L is R)=1 Accept(L was R)=0
+in vs of: DIFFERENT | L=[one important family] R=[plant genes are the phytochromes] | Accept(L in R)=0 Accept(L of R)=1
+## objects observed as complete spans ((eps,eps) = 1)
+terminal objects 694 in 457 classes
+the vs and: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | 1 vs 0
+and vs -: DIFFERENT | L=[plants use both internal] R=[external cues as signals to guide their growth and development , and to help them respond to their environment , such as to light quality and light quantity , temperature , moisture , or nutrient availability] | 1 vs 0
+- vs a: DIFFERENT | L=[phytochromes ( phys ) are light] R=[absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+a vs <num>: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of] R=[chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+<num> vs <num> ): DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | 1 vs 0
+<num> ) vs r: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail ,] R=[] | 1 vs 0
+r vs evolution: DIFFERENT | L=[the phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light (] R=[) responsive phys] | 1 vs 0
+evolution vs separately: DIFFERENT | L=[phys in tomato have not undergone the same phylogenetic] R=[as in arabidopsis] | 1 vs 0
+separately vs results: DIFFERENT | L=[for instance , slphyb <num> and slphyb <num> ( hereafter simply called phyb <num> and phyb <num> ) are similar to atphyb and atphyd but these genes arose] R=[by a gene duplication event after the separation of the solanales from the brassicales about <num> mya ( alba , kelmenson , cordonnier - pratt , & pratt , <num> ; pratt , cordonnier - pratt , hauser , & caboche , <num> ) , suggesting that any functional divergence of the duplicated genes would be unlikely to be the same in the two plant families] | 1 vs 0
+results vs during: DIFFERENT | L=[in contrast to arabidopsis , mutation of phyb <num> in tomato] R=[only in temporary red light insensitivity at a young seedling stage while phyb <num> adults look very similar in phenotype to wt tomato ( lazarova et al . , <num> )] | 1 vs 0
+during vs analysis: DIFFERENT | L=[in arabidopsis and pea , phyb plays a role] R=[de - etiolation ( neff & chory , <num> ) , chlorophyll production ( foo , ross , davies , reid , & weller , <num> ) , photo - reversible seed germination ( shinomura et al . , <num> ) , timing of flowering ( khanna , kikis , & quail , <num> ) , the shade avoidance response ( keller et al . , <num> ) , and the mediation of hormone responses ( borevitz et al . , <num> ) , including lateral root initiation via auxin transport signaling ( salisbury , hall , grierson , & halliday , <num> ) , polar auxin transport ( liu , cohen , & gardner , <num> ) , and seed germination via the regulation of abscisic acid ( aba ) ( seo et al . , <num> )] | 1 vs 0
+analysis vs pigments: DIFFERENT | L=[] R=[of phyb <num> ; phyb <num> double mutants in tomato showed that a high level of redundancy exists between the two genes with respect to hypocotyl elongation during de - etiolation in both white light and r ( weller et al . , <num> )] | 1 vs 0
+pigments vs b: DIFFERENT | L=[chlorophyll and anthocyanin production , on the other hand , was only reduced in the phyb <num> mutant and not in phyb <num> , but the phyb <num> ; phyb <num> double mutant displayed a synergistic phenotype with less of both] R=[than found in the phyb <num> mutant alone , suggesting that phyb <num> contributes to pigment production in a significant manner ( weller et al . , <num> )] | 1 vs 0
+b vs experiments: DIFFERENT | L=[subfunctionalization of the] R=[- class phytochromes was also shown in maize , where zmphyb <num> was the predominant phy to regulate mesocotyl elongation in r , while zmphyb <num> was mainly responsible for the photoperiod - dependent transition from vegetative to floral development ( sheehan , kennedy , costich , & brutnell , <num> )] | 1 vs 0
+experiments vs study: DIFFERENT | L=[solanum lycopersicum seeds of cultivar moneymaker ( gourmet seed , hollister , ca , united states ) and homozygous phyb <num> mutants ( allele tri <num> ) and phyb <num> mutants ( allele <num> - <num> ( aka <num> f ) , ( kerckhoffs et al . , <num> ; weller et al . , <num> ) were used in all] R=[] | 1 vs 0
+study vs background: DIFFERENT | L=[both mutants used in this] R=[were in the moneymaker background ( original source : tomato genome resource center , davis , ca , usa )] | 1 vs 0
+background vs then: DIFFERENT | L=[both mutants used in this study were in the moneymaker] R=[( original source : tomato genome resource center , davis , ca , usa )] | 1 vs 0
+then vs paper: DIFFERENT | L=[for rnaseq experiments , seeds were surface sterilized using <num> % bleach for <num> min in ambient laboratory conditions and] R=[sown on water - saturated , sterile filter paper in light - excluding plastic boxes] | 1 vs 0
+paper vs ( <num>: DIFFERENT | L=[for rnaseq experiments , seeds were surface sterilized using <num> % bleach for <num> min in ambient laboratory conditions and then sown on water - saturated , sterile filter] R=[in light - excluding plastic boxes] | 1 vs 0
+( <num> vs s: DIFFERENT | L=[plants were grown in a dark growth chamber at <num> °c . five - day - old seedlings of similar height were harvested under green safe light] R=[nm led ) , and flash - frozen in liquid nitrogen] | 1 vs 0
+largest classes among terminal objects:
+  size 238: | gravitropism | | phototropism | histopathology and immunohistochemistry | j . clin | | introduction | | participants | | task paradigms | | behavioral data | | acquisition | | imaging preprocessing | | imaging analysis | | discussion | ... (226 more)
+  size 1: abell
+  size 1: data
+  size 1: materials and methods
+  size 1: algorithm
+
+# scale 1000000 universe internal_only
+## first 20 block splits in refinement order
+u | v | L | R | Accept(LuR) | Accept(LvR) | block_size | in_size | round
+<num> . <num> | one | ( | ) | 1 | 0 | 867768 | 14 | 1
+amount | one | ( ids : | ) | 1 | 0 | 867754 | 10 | 1
+update | one | ( id : | ) | 1 | 0 | 867744 | 8 | 1
+has several | one | this study | limitations | 1 | 0 | 867736 | 6 | 1
+algorithm runs | one | the | as follows | 1 | 0 | 867730 | 5 | 1
+, | one | <num> | <num> | 1 | 0 | 867725 | 5 | 1
+: anyreason | one | ( id | ) | 1 | 0 | 867720 | 5 | 1
+study has several | one | this | limitations | 1 | 0 | 867715 | 4 | 1
+some | one | this study has | limitations | 1 | 0 | 867711 | 4 | 1
+c | one | ( | <num> ) | 1 | 0 | 867707 | 4 | 1
+and that | one | assume hypothesis <num> . <num> | p > <num> a . e . on ( a , b ) | 1 | 0 | 867703 | 4 | 1
+rnaseq differential expression | one | | | analysis | 1 | 0 | 867699 | 3 | 1
+primers | one | the | are listed in table s <num> | 1 | 0 | 867696 | 3 | 1
+primers are | one | the | listed in table s <num> | 1 | 0 | 867693 | 3 | 1
+linear | one | average | slope activity at the first session was correlated with the associated reliability map ( r = . <num> ) | 1 | 0 | 867690 | 3 | 1
+collection and | one | data | analysis | 1 | 0 | 867687 | 3 | 1
+algorithm runs as | one | the | follows | 1 | 0 | 867684 | 3 | 1
+no conflict | one | the authors declare | of interest | 1 | 0 | 867681 | 3 | 1
+conflict | one | the authors declare no | of interest | 1 | 0 | 867678 | 3 | 1
+conflict of | one | the authors declare no | interest | 1 | 0 | 867675 | 3 | 1
+## probe pairs (previously merged through (eps,eps) or boundary frames in v2.3)
+<num> vs conclusions: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L conclusions R)=0
+<num> vs introduction: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L introduction R)=0
+introduction vs conclusions: DIFFERENT | L=[abstract] R=[unhealthy lifestyle behaviours continue to be highly prevalent , including alcohol consumption , unhealthy diets , insufficient physical activity and smoking] | Accept(L introduction R)=1 Accept(L conclusions R)=0
+introduction vs discussion: DIFFERENT | L=[following the] R=[in section <num> . <num> , we explore the factorization arising from two supertranslation charges , q f and q g characterized by arbitrary functions f ( z , z ) and g ( z , z ) , on the conformal sphere] | Accept(L introduction R)=0 Accept(L discussion R)=1
+results vs discussion: DIFFERENT | L=[in contrast to arabidopsis , mutation of phyb <num> in tomato] R=[only in temporary red light insensitivity at a young seedling stage while phyb <num> adults look very similar in phenotype to wt tomato ( lazarova et al . , <num> )] | Accept(L results R)=1 Accept(L discussion R)=0
+<num> vs the: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L <num> R)=0 Accept(L the R)=1
+<num> vs and: DIFFERENT | L=[plants use both internal] R=[external cues as signals to guide their growth and development , and to help them respond to their environment , such as to light quality and light quantity , temperature , moisture , or nutrient availability] | Accept(L <num> R)=0 Accept(L and R)=1
+the vs and: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L the R)=1 Accept(L and R)=0
+the vs a: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L the R)=1 Accept(L a R)=0
+<num> vs [ <num> ]: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L [ <num> ] R)=0
+<num> vs <num> . <num>: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L <num> . <num> R)=0
+materials and methods vs conclusions: DIFFERENT | L=[in sect . <num> , some] R=[and perspectives are drawn] | Accept(L materials and methods R)=0 Accept(L conclusions R)=1
+conflict of interest vs acknowledgments: DIFFERENT | L=[the authors declare no] R=[associated with the work described in this manuscript] | Accept(L conflict of interest R)=1 Accept(L acknowledgments R)=0
+is vs was: DIFFERENT | L=[compared to arabidopsis , much less] R=[known about the functions of phys in the solanales] | Accept(L is R)=1 Accept(L was R)=0
+in vs of: DIFFERENT | L=[one important family] R=[plant genes are the phytochromes] | Accept(L in R)=0 Accept(L of R)=1
+## objects observed as complete spans ((eps,eps) = 1)
+terminal objects 694 in 424 classes
+the vs and: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | 1 vs 0
+and vs -: DIFFERENT | L=[plants use both internal] R=[external cues as signals to guide their growth and development , and to help them respond to their environment , such as to light quality and light quantity , temperature , moisture , or nutrient availability] | 1 vs 0
+- vs a: DIFFERENT | L=[phytochromes ( phys ) are light] R=[absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+a vs <num>: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of] R=[chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+<num> vs <num> ): DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | 1 vs 0
+<num> ) vs r: DIFFERENT | L=[the phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light (] R=[) responsive phys] | 0 vs 1
+r vs evolution: DIFFERENT | L=[the phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light (] R=[) responsive phys] | 1 vs 0
+evolution vs separately: DIFFERENT | L=[phys in tomato have not undergone the same phylogenetic] R=[as in arabidopsis] | 1 vs 0
+separately vs results: DIFFERENT | L=[for instance , slphyb <num> and slphyb <num> ( hereafter simply called phyb <num> and phyb <num> ) are similar to atphyb and atphyd but these genes arose] R=[by a gene duplication event after the separation of the solanales from the brassicales about <num> mya ( alba , kelmenson , cordonnier - pratt , & pratt , <num> ; pratt , cordonnier - pratt , hauser , & caboche , <num> ) , suggesting that any functional divergence of the duplicated genes would be unlikely to be the same in the two plant families] | 1 vs 0
+results vs during: DIFFERENT | L=[in contrast to arabidopsis , mutation of phyb <num> in tomato] R=[only in temporary red light insensitivity at a young seedling stage while phyb <num> adults look very similar in phenotype to wt tomato ( lazarova et al . , <num> )] | 1 vs 0
+during vs analysis: DIFFERENT | L=[in arabidopsis and pea , phyb plays a role] R=[de - etiolation ( neff & chory , <num> ) , chlorophyll production ( foo , ross , davies , reid , & weller , <num> ) , photo - reversible seed germination ( shinomura et al . , <num> ) , timing of flowering ( khanna , kikis , & quail , <num> ) , the shade avoidance response ( keller et al . , <num> ) , and the mediation of hormone responses ( borevitz et al . , <num> ) , including lateral root initiation via auxin transport signaling ( salisbury , hall , grierson , & halliday , <num> ) , polar auxin transport ( liu , cohen , & gardner , <num> ) , and seed germination via the regulation of abscisic acid ( aba ) ( seo et al . , <num> )] | 1 vs 0
+analysis vs pigments: DIFFERENT | L=[chlorophyll and anthocyanin production , on the other hand , was only reduced in the phyb <num> mutant and not in phyb <num> , but the phyb <num> ; phyb <num> double mutant displayed a synergistic phenotype with less of both] R=[than found in the phyb <num> mutant alone , suggesting that phyb <num> contributes to pigment production in a significant manner ( weller et al . , <num> )] | 0 vs 1
+pigments vs b: DIFFERENT | L=[chlorophyll and anthocyanin production , on the other hand , was only reduced in the phyb <num> mutant and not in phyb <num> , but the phyb <num> ; phyb <num> double mutant displayed a synergistic phenotype with less of both] R=[than found in the phyb <num> mutant alone , suggesting that phyb <num> contributes to pigment production in a significant manner ( weller et al . , <num> )] | 1 vs 0
+b vs experiments: DIFFERENT | L=[subfunctionalization of the] R=[- class phytochromes was also shown in maize , where zmphyb <num> was the predominant phy to regulate mesocotyl elongation in r , while zmphyb <num> was mainly responsible for the photoperiod - dependent transition from vegetative to floral development ( sheehan , kennedy , costich , & brutnell , <num> )] | 1 vs 0
+experiments vs study: DIFFERENT | L=[both mutants used in this] R=[were in the moneymaker background ( original source : tomato genome resource center , davis , ca , usa )] | 0 vs 1
+study vs background: DIFFERENT | L=[both mutants used in this] R=[were in the moneymaker background ( original source : tomato genome resource center , davis , ca , usa )] | 1 vs 0
+background vs then: DIFFERENT | L=[both mutants used in this study were in the moneymaker] R=[( original source : tomato genome resource center , davis , ca , usa )] | 1 vs 0
+then vs paper: DIFFERENT | L=[for rnaseq experiments , seeds were surface sterilized using <num> % bleach for <num> min in ambient laboratory conditions and] R=[sown on water - saturated , sterile filter paper in light - excluding plastic boxes] | 1 vs 0
+paper vs ( <num>: DIFFERENT | L=[for rnaseq experiments , seeds were surface sterilized using <num> % bleach for <num> min in ambient laboratory conditions and then sown on water - saturated , sterile filter] R=[in light - excluding plastic boxes] | 1 vs 0
+( <num> vs s: DIFFERENT | L=[plants were grown in a dark growth chamber at <num> °c . five - day - old seedlings of similar height were harvested under green safe light] R=[nm led ) , and flash - frozen in liquid nitrogen] | 1 vs 0
+largest classes among terminal objects:
+  size 271: | gravitropism | | phototropism | histopathology and immunohistochemistry | biochemical analysis | j . clin | | introduction | | participants | | task paradigms | | behavioral data | | acquisition | | imaging preprocessing | | imaging analysis | ... (259 more)
+  size 1: <num>
+  size 1: b
+  size 1: outline
+  size 1: <num> , <num>
+
+# scale 1000000 universe boundary_frames
+## first 20 block splits in refinement order
+u | v | L | R | Accept(LuR) | Accept(LvR) | block_size | in_size | round
+the | one |  |  | 1 | 0 | 867768 | 694 | 1
+( | one |  | <num> | 1 | 0 | 867074 | 54 | 1
+abell | the |  | <num> | 1 | 0 | 694 | 1 | 1
+phylogenetic | one |  | analysis | 1 | 0 | 867020 | 28 | 1
+data | the |  | analysis | 1 | 0 | 693 | 2 | 1
+results | the | | |  | 1 | 0 | 691 | 12 | 1
+phototropism | one | | |  | 1 | 0 | 866992 | 14 | 1
+decrease | one | the |  | 1 | 0 | 866978 | 24 | 1
+algorithm | data | the |  | 1 | 0 | 2 | 1 | 1
+natnael | the | the |  | 1 | 0 | 679 | 1 | 1
+<num> | the |  | . <num> | 1 | 0 | 678 | 9 | 1
+assumption <num> | one |  | . <num> | 1 | 0 | 866954 | 8 | 1
+availability | one | data |  | 1 | 0 | 866946 | 15 | 1
+analysis | the | data |  | 1 | 0 | 669 | 1 | 1
+results | general discussion | study |  | 1 | 0 | 12 | 1 | 1
+area | one | study |  | 1 | 0 | 866931 | 9 | 1
+procedures | the | study |  | 1 | 0 | 668 | 3 | 1
+other | one |  | results | 1 | 0 | 866922 | 11 | 1
+study | the |  | results | 1 | 0 | 665 | 2 | 1
+wt | one |  | model | 1 | 0 | 866911 | 11 | 1
+## probe pairs (previously merged through (eps,eps) or boundary frames in v2.3)
+<num> vs conclusions: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | Accept(L <num> R)=1 Accept(L conclusions R)=0
+<num> vs introduction: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | Accept(L <num> R)=1 Accept(L introduction R)=0
+introduction vs conclusions: DIFFERENT | L=[discussion and] R=[] | Accept(L introduction R)=0 Accept(L conclusions R)=1
+introduction vs discussion: DIFFERENT | L=[] R=[and conclusion] | Accept(L introduction R)=0 Accept(L discussion R)=1
+results vs discussion: DIFFERENT | L=[study] R=[] | Accept(L results R)=1 Accept(L discussion R)=0
+<num> vs the: DIFFERENT | L=[] R=[phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light ( r ) responsive phys] | Accept(L <num> R)=0 Accept(L the R)=1
+<num> vs and: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | Accept(L <num> R)=1 Accept(L and R)=0
+the vs and: DIFFERENT | L=[] R=[phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light ( r ) responsive phys] | Accept(L the R)=1 Accept(L and R)=0
+the vs a: DIFFERENT | L=[] R=[phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light ( r ) responsive phys] | Accept(L the R)=1 Accept(L a R)=0
+<num> vs [ <num> ]: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | Accept(L <num> R)=1 Accept(L [ <num> ] R)=0
+<num> vs <num> . <num>: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | Accept(L <num> R)=1 Accept(L <num> . <num> R)=0
+materials and methods vs conclusions: DIFFERENT | L=[discussion and] R=[] | Accept(L materials and methods R)=0 Accept(L conclusions R)=1
+conflict of interest vs acknowledgments: DIFFERENT | L=[the authors declare no] R=[] | Accept(L conflict of interest R)=1 Accept(L acknowledgments R)=0
+is vs was: DIFFERENT | L=[in going from ( <num> . <num> ) to ( <num> . <num> ) we have made the same assumption for defining q soft v on the shifted vacuum as has been made in the literature for defining it on the fock vacuum , namely : out , f | lim] R=[] | Accept(L is R)=1 Accept(L was R)=0
+in vs of: DIFFERENT | L=[] R=[arabidopsis , the r responsive phys are encoded by four genes : atphyb - atphye] | Accept(L in R)=1 Accept(L of R)=0
+## objects observed as complete spans ((eps,eps) = 1)
+terminal objects 694 in 326 classes
+the vs and: DIFFERENT | L=[] R=[phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light ( r ) responsive phys] | 1 vs 0
+and vs -: DIFFERENT | L=[having discussed the dependence on β , let us focus on understanding how the bound in theorem <num> scales with n , d] R=[] | 1 vs 0
+- vs a: DIFFERENT | L=[] R=[three - way anova ( genotype , light condition , time ) was performed in r followed by tukey's post hoc test to determine statistically significant differences between groups] | 0 vs 1
+a vs <num>: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | 0 vs 1
+<num> vs <num> ): DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail ,] R=[] | 0 vs 1
+<num> ) vs r: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail ,] R=[] | 1 vs 0
+r vs evolution: DIFFERENT | L=[data were analyzed by a two - way anova ( genotype , time ) using the software] R=[] | 1 vs 0
+evolution vs separately: DIFFERENT | L=[taking into account that epithelium and stroma contain completely different cells , we analyzed them] R=[] | 0 vs 1
+separately vs results: DIFFERENT | L=[|] R=[] | 0 vs 1
+results vs during: DIFFERENT | L=[|] R=[] | 1 vs 0
+during vs analysis: DIFFERENT | L=[] R=[of phyb <num> ; phyb <num> double mutants in tomato showed that a high level of redundancy exists between the two genes with respect to hypocotyl elongation during de - etiolation in both white light and r ( weller et al . , <num> )] | 0 vs 1
+analysis vs pigments: DIFFERENT | L=[] R=[of phyb <num> ; phyb <num> double mutants in tomato showed that a high level of redundancy exists between the two genes with respect to hypocotyl elongation during de - etiolation in both white light and r ( weller et al . , <num> )] | 1 vs 0
+pigments vs b: DIFFERENT | L=[| regulation of auxin responses by phytochrome] R=[] | 0 vs 1
+b vs experiments: DIFFERENT | L=[solanum lycopersicum seeds of cultivar moneymaker ( gourmet seed , hollister , ca , united states ) and homozygous phyb <num> mutants ( allele tri <num> ) and phyb <num> mutants ( allele <num> - <num> ( aka <num> f ) , ( kerckhoffs et al . , <num> ; weller et al . , <num> ) were used in all] R=[] | 0 vs 1
+experiments vs study: DIFFERENT | L=[solanum lycopersicum seeds of cultivar moneymaker ( gourmet seed , hollister , ca , united states ) and homozygous phyb <num> mutants ( allele tri <num> ) and phyb <num> mutants ( allele <num> - <num> ( aka <num> f ) , ( kerckhoffs et al . , <num> ; weller et al . , <num> ) were used in all] R=[] | 1 vs 0
+study vs background: DIFFERENT | L=[we want to caution that in the absence of multiple alleles of phyb <num> and phyb <num> in our analysis , it is formally possible that unknown , secondary background mutations in the material could contribute to some of the observations we made in this] R=[] | 1 vs 0
+background vs then: DIFFERENT | L=[the od of an area devoid of bands was subtracted from the values obtained for bands of interest in order to normalize the od against] R=[] | 1 vs 0
+then vs paper: DIFFERENT | L=[] R=[, it was translated and back - translated to farsi [ <num> ]] | 1 vs 0
+paper vs ( <num>: DIFFERENT | L=[the starting point for the derivation is ( <num> ) in [ <num> ] , which in the present context can be written as with our prescription that the soft charges annihilate the " in " vacuum , the l . h . s . of ( a . <num> ) reduces to on the other hand , using ( a . <num> ) , it is easy to see that the r . h . s . of ( a . <num> ) is given by this is one of the ward identities used in the main text of the] R=[] | 1 vs 0
+( <num> vs s: DIFFERENT | L=[universal sybr green supermix ( bio - rad ) with an incubation at <num> °c for <num> min , followed by <num> cycles at <num> °c for <num> s , and <num> °c for <num>] R=[] | 0 vs 1
+largest classes among terminal objects:
+  size 369: pigments | | gravitropism | | phototropism | differential gene expression | study group | histopathology and immunohistochemistry | j . clin | | introduction | statistical methods | | participants | | task paradigms | | behavioral data | ... (357 more)
+  size 1: abell
+  size 1: data
+  size 1: materials and methods
+  size 1: algorithm
+
+# scale 10000000 universe all_frames
+## first 20 block splits in refinement order
+u | v | L | R | Accept(LuR) | Accept(LvR) | block_size | in_size | round
+plant | one |  |  | 1 | 0 | 6321550 | 5929 | 1
+of | one |  | <num> | 1 | 0 | 6315621 | 219 | 1
+a | plant |  | <num> | 1 | 0 | 5929 | 43 | 1
+phylogenetic | one |  | analysis | 1 | 0 | 6315402 | 210 | 1
+network | plant |  | analysis | 1 | 0 | 5886 | 21 | 1
+result | a |  | analysis | 1 | 0 | 43 | 2 | 1
+other | one | the |  | 1 | 0 | 6315192 | 171 | 1
+results | plant | the |  | 1 | 0 | 5865 | 15 | 1
+study | a | the |  | 1 | 0 | 41 | 1 | 1
+data | network | the |  | 1 | 0 | 21 | 1 | 1
+algorithm | result | the |  | 1 | 0 | 2 | 1 | 1
+<num> | a | | |  | 1 | 0 | 40 | 5 | 1
+results | scheme <num> | | |  | 1 | 0 | 15 | 2 | 1
+analyses | plant | | |  | 1 | 0 | 5850 | 31 | 1
+phototropism | one | | |  | 1 | 0 | 6315021 | 91 | 1
+<num> - | of | | |  | 1 | 0 | 219 | 1 | 1
+questionnaire | other | | |  | 1 | 0 | 171 | 2 | 1
+( | of |  | ) | 1 | 0 | 218 | 2 | 1
+a | remark |  | ) | 1 | 0 | 35 | 6 | 1
+<num> | case report |  | ) | 1 | 0 | 5 | 1 | 1
+## probe pairs (previously merged through (eps,eps) or boundary frames in v2.3)
+<num> vs conclusions: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L conclusions R)=0
+<num> vs introduction: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L introduction R)=0
+introduction vs conclusions: DIFFERENT | L=[] R=[<num> )] | Accept(L introduction R)=1 Accept(L conclusions R)=0
+introduction vs discussion: DIFFERENT | L=[] R=[<num>] | Accept(L introduction R)=1 Accept(L discussion R)=0
+results vs discussion: DIFFERENT | L=[in contrast to arabidopsis , mutation of phyb <num> in tomato] R=[only in temporary red light insensitivity at a young seedling stage while phyb <num> adults look very similar in phenotype to wt tomato ( lazarova et al . , <num> )] | Accept(L results R)=1 Accept(L discussion R)=0
+<num> vs the: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L <num> R)=0 Accept(L the R)=1
+<num> vs and: DIFFERENT | L=[plants use both internal] R=[external cues as signals to guide their growth and development , and to help them respond to their environment , such as to light quality and light quantity , temperature , moisture , or nutrient availability] | Accept(L <num> R)=0 Accept(L and R)=1
+the vs and: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L the R)=1 Accept(L and R)=0
+the vs a: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L the R)=1 Accept(L a R)=0
+<num> vs [ <num> ]: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L [ <num> ] R)=0
+<num> vs <num> . <num>: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L <num> . <num> R)=0
+materials and methods vs conclusions: DIFFERENT | L=[] R=[<num>] | Accept(L materials and methods R)=0 Accept(L conclusions R)=1
+conflict of interest vs acknowledgments: DIFFERENT | L=[the authors declare no] R=[associated with the work described in this manuscript] | Accept(L conflict of interest R)=1 Accept(L acknowledgments R)=0
+is vs was: DIFFERENT | L=[compared to arabidopsis , much less] R=[known about the functions of phys in the solanales] | Accept(L is R)=1 Accept(L was R)=0
+in vs of: DIFFERENT | L=[one important family] R=[plant genes are the phytochromes] | Accept(L in R)=0 Accept(L of R)=1
+## objects observed as complete spans ((eps,eps) = 1)
+terminal objects 5929 in 4097 classes
+plant vs the: DIFFERENT | L=[one important family of] R=[genes are the phytochromes] | 1 vs 0
+the vs and: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | 1 vs 0
+and vs as: DIFFERENT | L=[plants use both internal] R=[external cues as signals to guide their growth and development , and to help them respond to their environment , such as to light quality and light quantity , temperature , moisture , or nutrient availability] | 1 vs 0
+as vs ,: DIFFERENT | L=[plants use both internal and external cues] R=[signals to guide their growth and development , and to help them respond to their environment , such as to light quality and light quantity , temperature , moisture , or nutrient availability] | 1 vs 0
+, vs environment: DIFFERENT | L=[plants use both internal and external cues as signals to guide their growth and development] R=[and to help them respond to their environment , such as to light quality and light quantity , temperature , moisture , or nutrient availability] | 1 vs 0
+environment vs temperature: DIFFERENT | L=[plants use both internal and external cues as signals to guide their growth and development , and to help them respond to their] R=[, such as to light quality and light quantity , temperature , moisture , or nutrient availability] | 1 vs 0
+temperature vs phys: DIFFERENT | L=[plants use both internal and external cues as signals to guide their growth and development , and to help them respond to their environment , such as to light quality and light quantity ,] R=[, moisture , or nutrient availability] | 1 vs 0
+phys vs ): DIFFERENT | L=[phytochromes (] R=[) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+) vs -: DIFFERENT | L=[phytochromes ( phys] R=[are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+- vs a: DIFFERENT | L=[phytochromes ( phys ) are light] R=[absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+a vs gene: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of] R=[chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+gene vs gene expression: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate] R=[expression in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+gene expression vs in: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate] R=[in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+in vs <num>: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression] R=[response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+<num> vs <num> ): DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | 1 vs 0
+<num> ) vs by: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail ,] R=[] | 1 vs 0
+by vs r: DIFFERENT | L=[the phy apoproteins are encoded] R=[a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light ( r ) responsive phys] | 1 vs 0
+r vs r ): DIFFERENT | L=[the phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light (] R=[) responsive phys] | 1 vs 0
+r ) vs c: DIFFERENT | L=[the phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light (] R=[responsive phys] | 1 vs 0
+c vs from: DIFFERENT | L=[phylogenetically , gene duplication of an ancestral phytochrome gene first separated phya /] R=[from the other phys] | 1 vs 0
+largest classes among terminal objects:
+  size 1832: | gravitropism | | phototropism | histopathology and immunohistochemistry | j . clin | | introduction | | task paradigms | | behavioral data | | acquisition | | imaging preprocessing | | imaging analysis | | discussion | mouse behavioural analysis | ... (1820 more)
+  size 2: design and setting | population and setting
+  size 1: carbon monoxide
+  size 1: inconsistency
+  size 1: result
+
+# scale 10000000 universe internal_only
+## first 20 block splits in refinement order
+u | v | L | R | Accept(LuR) | Accept(LvR) | block_size | in_size | round
+a | one | ( | ) | 1 | 0 | 6321550 | 72 | 1
+a | robust string stability | ( | <num> ) | 1 | 0 | 72 | 1 | 1
+c | one | ( | <num> ) | 1 | 0 | 6321478 | 37 | 1
+and | one | <num> | <num> | 1 | 0 | 6321441 | 22 | 1
+figure | c | <num> | <num> | 1 | 0 | 37 | 1 | 1
+) | one | <num> | ) | 1 | 0 | 6321419 | 19 | 1
+c | garmin - participant | <num> | ) | 1 | 0 | 36 | 1 | 1
+. | and | <num> | ) | 1 | 0 | 22 | 2 | 1
+figure <num> | robust string stability | <num> | ) | 1 | 0 | 71 | 1 | 1
+algorithm runs | one | the | as follows | 1 | 0 | 6321400 | 18 | 1
+results | one | the | are shown in table <num> | 1 | 0 | 6321382 | 16 | 1
+table | garmin - participant | the | <num> | 1 | 0 | 35 | 1 | 1
+protein | one | the | <num> | 1 | 0 | 6321366 | 14 | 1
+results are | one | the | shown in figure <num> | 1 | 0 | 6321352 | 13 | 1
+details are | algorithm runs | the | shown in figure <num> | 1 | 0 | 18 | 1 | 1
+cohen | one | ( | , <num> ) | 1 | 0 | 6321339 | 13 | 1
+fig . <num> | robust string stability | ( | , <num> ) | 1 | 0 | 70 | 1 | 1
+and | ibid . , | <num> | <num> ) | 1 | 0 | 20 | 3 | 1
+. | . <num> | <num> | <num> ) | 1 | 0 | 2 | 1 | 1
+( table | one | <num> | <num> ) | 1 | 0 | 6321326 | 8 | 1
+## probe pairs (previously merged through (eps,eps) or boundary frames in v2.3)
+<num> vs conclusions: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L conclusions R)=0
+<num> vs introduction: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L introduction R)=0
+introduction vs conclusions: DIFFERENT | L=[abstract] R=[unhealthy lifestyle behaviours continue to be highly prevalent , including alcohol consumption , unhealthy diets , insufficient physical activity and smoking] | Accept(L introduction R)=1 Accept(L conclusions R)=0
+introduction vs discussion: DIFFERENT | L=[following the] R=[in section <num> . <num> , we explore the factorization arising from two supertranslation charges , q f and q g characterized by arbitrary functions f ( z , z ) and g ( z , z ) , on the conformal sphere] | Accept(L introduction R)=0 Accept(L discussion R)=1
+results vs discussion: DIFFERENT | L=[in contrast to arabidopsis , mutation of phyb <num> in tomato] R=[only in temporary red light insensitivity at a young seedling stage while phyb <num> adults look very similar in phenotype to wt tomato ( lazarova et al . , <num> )] | Accept(L results R)=1 Accept(L discussion R)=0
+<num> vs the: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L <num> R)=0 Accept(L the R)=1
+<num> vs and: DIFFERENT | L=[plants use both internal] R=[external cues as signals to guide their growth and development , and to help them respond to their environment , such as to light quality and light quantity , temperature , moisture , or nutrient availability] | Accept(L <num> R)=0 Accept(L and R)=1
+the vs and: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L the R)=1 Accept(L and R)=0
+the vs a: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L the R)=1 Accept(L a R)=0
+<num> vs [ <num> ]: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L [ <num> ] R)=0
+<num> vs <num> . <num>: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L <num> . <num> R)=0
+materials and methods vs conclusions: DIFFERENT | L=[in sect . <num> , some] R=[and perspectives are drawn] | Accept(L materials and methods R)=0 Accept(L conclusions R)=1
+conflict of interest vs acknowledgments: DIFFERENT | L=[the authors declare no] R=[associated with the work described in this manuscript] | Accept(L conflict of interest R)=1 Accept(L acknowledgments R)=0
+is vs was: DIFFERENT | L=[compared to arabidopsis , much less] R=[known about the functions of phys in the solanales] | Accept(L is R)=1 Accept(L was R)=0
+in vs of: DIFFERENT | L=[one important family] R=[plant genes are the phytochromes] | Accept(L in R)=0 Accept(L of R)=1
+## objects observed as complete spans ((eps,eps) = 1)
+terminal objects 5929 in 3841 classes
+plant vs the: DIFFERENT | L=[one important family of] R=[genes are the phytochromes] | 1 vs 0
+the vs and: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | 1 vs 0
+and vs as: DIFFERENT | L=[plants use both internal] R=[external cues as signals to guide their growth and development , and to help them respond to their environment , such as to light quality and light quantity , temperature , moisture , or nutrient availability] | 1 vs 0
+as vs ,: DIFFERENT | L=[plants use both internal and external cues] R=[signals to guide their growth and development , and to help them respond to their environment , such as to light quality and light quantity , temperature , moisture , or nutrient availability] | 1 vs 0
+, vs environment: DIFFERENT | L=[plants use both internal and external cues as signals to guide their growth and development] R=[and to help them respond to their environment , such as to light quality and light quantity , temperature , moisture , or nutrient availability] | 1 vs 0
+environment vs temperature: DIFFERENT | L=[plants use both internal and external cues as signals to guide their growth and development , and to help them respond to their] R=[, such as to light quality and light quantity , temperature , moisture , or nutrient availability] | 1 vs 0
+temperature vs phys: DIFFERENT | L=[plants use both internal and external cues as signals to guide their growth and development , and to help them respond to their environment , such as to light quality and light quantity ,] R=[, moisture , or nutrient availability] | 1 vs 0
+phys vs ): DIFFERENT | L=[phytochromes (] R=[) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+) vs -: DIFFERENT | L=[phytochromes ( phys] R=[are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+- vs a: DIFFERENT | L=[phytochromes ( phys ) are light] R=[absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+a vs gene: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of] R=[chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+gene vs gene expression: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate] R=[expression in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+gene expression vs in: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate] R=[in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+in vs <num>: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression] R=[response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+<num> vs <num> ): DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | 1 vs 0
+<num> ) vs by: DIFFERENT | L=[the phy apoproteins are encoded] R=[a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light ( r ) responsive phys] | 0 vs 1
+by vs r: DIFFERENT | L=[the phy apoproteins are encoded] R=[a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light ( r ) responsive phys] | 1 vs 0
+r vs r ): DIFFERENT | L=[the phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light (] R=[) responsive phys] | 1 vs 0
+r ) vs c: DIFFERENT | L=[the phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light (] R=[responsive phys] | 1 vs 0
+c vs from: DIFFERENT | L=[phylogenetically , gene duplication of an ancestral phytochrome gene first separated phya /] R=[from the other phys] | 1 vs 0
+largest classes among terminal objects:
+  size 2089: | gravitropism | | phototropism | histopathology and immunohistochemistry | j . clin | | introduction | | participants | | task paradigms | | behavioral data | | acquisition | | imaging preprocessing | | imaging analysis | | discussion | ... (2077 more)
+  size 1: a
+  size 1: figure
+  size 1: c
+  size 1: . <num>
+
+# scale 10000000 universe boundary_frames
+## first 20 block splits in refinement order
+u | v | L | R | Accept(LuR) | Accept(LvR) | block_size | in_size | round
+plant | one |  |  | 1 | 0 | 6321550 | 5929 | 1
+of | one |  | <num> | 1 | 0 | 6315621 | 219 | 1
+a | plant |  | <num> | 1 | 0 | 5929 | 43 | 1
+phylogenetic | one |  | analysis | 1 | 0 | 6315402 | 210 | 1
+network | plant |  | analysis | 1 | 0 | 5886 | 21 | 1
+result | a |  | analysis | 1 | 0 | 43 | 2 | 1
+other | one | the |  | 1 | 0 | 6315192 | 171 | 1
+results | plant | the |  | 1 | 0 | 5865 | 15 | 1
+study | a | the |  | 1 | 0 | 41 | 1 | 1
+data | network | the |  | 1 | 0 | 21 | 1 | 1
+algorithm | result | the |  | 1 | 0 | 2 | 1 | 1
+<num> | a | | |  | 1 | 0 | 40 | 5 | 1
+results | scheme <num> | | |  | 1 | 0 | 15 | 2 | 1
+analyses | plant | | |  | 1 | 0 | 5850 | 31 | 1
+phototropism | one | | |  | 1 | 0 | 6315021 | 91 | 1
+<num> - | of | | |  | 1 | 0 | 219 | 1 | 1
+questionnaire | other | | |  | 1 | 0 | 171 | 2 | 1
+( | of |  | ) | 1 | 0 | 218 | 2 | 1
+a | remark |  | ) | 1 | 0 | 35 | 6 | 1
+<num> | case report |  | ) | 1 | 0 | 5 | 1 | 1
+## probe pairs (previously merged through (eps,eps) or boundary frames in v2.3)
+<num> vs conclusions: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | Accept(L <num> R)=1 Accept(L conclusions R)=0
+<num> vs introduction: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | Accept(L <num> R)=1 Accept(L introduction R)=0
+introduction vs conclusions: DIFFERENT | L=[] R=[<num> )] | Accept(L introduction R)=1 Accept(L conclusions R)=0
+introduction vs discussion: DIFFERENT | L=[] R=[<num>] | Accept(L introduction R)=1 Accept(L discussion R)=0
+results vs discussion: DIFFERENT | L=[study] R=[] | Accept(L results R)=1 Accept(L discussion R)=0
+<num> vs the: DIFFERENT | L=[] R=[phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light ( r ) responsive phys] | Accept(L <num> R)=0 Accept(L the R)=1
+<num> vs and: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | Accept(L <num> R)=1 Accept(L and R)=0
+the vs and: DIFFERENT | L=[] R=[phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light ( r ) responsive phys] | Accept(L the R)=1 Accept(L and R)=0
+the vs a: DIFFERENT | L=[] R=[phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light ( r ) responsive phys] | Accept(L the R)=1 Accept(L a R)=0
+<num> vs [ <num> ]: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | Accept(L <num> R)=1 Accept(L [ <num> ] R)=0
+<num> vs <num> . <num>: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | Accept(L <num> R)=1 Accept(L <num> . <num> R)=0
+materials and methods vs conclusions: DIFFERENT | L=[] R=[<num>] | Accept(L materials and methods R)=0 Accept(L conclusions R)=1
+conflict of interest vs acknowledgments: DIFFERENT | L=[] R=[:] | Accept(L conflict of interest R)=0 Accept(L acknowledgments R)=1
+is vs was: DIFFERENT | L=[in going from ( <num> . <num> ) to ( <num> . <num> ) we have made the same assumption for defining q soft v on the shifted vacuum as has been made in the literature for defining it on the fock vacuum , namely : out , f | lim] R=[] | Accept(L is R)=1 Accept(L was R)=0
+in vs of: DIFFERENT | L=[] R=[arabidopsis , the r responsive phys are encoded by four genes : atphyb - atphye] | Accept(L in R)=1 Accept(L of R)=0
+## objects observed as complete spans ((eps,eps) = 1)
+terminal objects 5929 in 2944 classes
+plant vs the: DIFFERENT | L=[] R=[phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light ( r ) responsive phys] | 0 vs 1
+the vs and: DIFFERENT | L=[] R=[phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light ( r ) responsive phys] | 1 vs 0
+and vs as: DIFFERENT | L=[] R=[in prior work ( stoddard et al . , <num> ) , a four - parameter logistic curve was fit to each participant's choice - response data ( parameters f i g u r e <num> schematics of inscanner tasks] | 0 vs 1
+as vs ,: DIFFERENT | L=[] R=[in prior work ( stoddard et al . , <num> ) , a four - parameter logistic curve was fit to each participant's choice - response data ( parameters f i g u r e <num> schematics of inscanner tasks] | 1 vs 0
+, vs environment: DIFFERENT | L=[this latest round of duplication therefore lends itself well to analysis of variation in subfunctionalization of this important gene between species , and also provides a recent gene duplication event that plants have exploited for further specialization of their responses to light and the] R=[] | 0 vs 1
+environment vs temperature: DIFFERENT | L=[this latest round of duplication therefore lends itself well to analysis of variation in subfunctionalization of this important gene between species , and also provides a recent gene duplication event that plants have exploited for further specialization of their responses to light and the] R=[] | 1 vs 0
+temperature vs phys: DIFFERENT | L=[the phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light ( r ) responsive] R=[] | 0 vs 1
+phys vs ): DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail , <num>] R=[] | 0 vs 1
+) vs -: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail , <num>] R=[] | 1 vs 0
+- vs a: DIFFERENT | L=[] R=[three - way anova ( genotype , light condition , time ) was performed in r followed by tukey's post hoc test to determine statistically significant differences between groups] | 0 vs 1
+a vs gene: DIFFERENT | L=[] R=[three - way anova ( genotype , light condition , time ) was performed in r followed by tukey's post hoc test to determine statistically significant differences between groups] | 1 vs 0
+gene vs gene expression: DIFFERENT | L=[] R=[ontology functional enrichment analysis of these gene groups identified biological processes specifically regulated by phyb <num> and phyb <num>] | 1 vs 0
+gene expression vs in: DIFFERENT | L=[] R=[arabidopsis , the r responsive phys are encoded by four genes : atphyb - atphye] | 0 vs 1
+in vs <num>: DIFFERENT | L=[] R=[arabidopsis , the r responsive phys are encoded by four genes : atphyb - atphye] | 1 vs 0
+<num> vs <num> ): DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail ,] R=[] | 0 vs 1
+<num> ) vs by: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail ,] R=[] | 1 vs 0
+by vs r: DIFFERENT | L=[data were analyzed by a two - way anova ( genotype , time ) using the software] R=[] | 0 vs 1
+r vs r ): DIFFERENT | L=[data were analyzed by a two - way anova ( genotype , time ) using the software] R=[] | 1 vs 0
+r ) vs c: DIFFERENT | L=[] R=[<num>] | 0 vs 1
+c vs from: DIFFERENT | L=[] R=[the data in which phyb <num> and phyb <num> experiment reads were mapped together , normalized read counts were obtained from deseq] | 0 vs 1
+largest classes among terminal objects:
+  size 2979: | gravitropism | | phototropism | transformation and | histopathology and immunohistochemistry | j . clin | | introduction | | task paradigms | | behavioral data | | acquisition | | imaging preprocessing | | imaging analysis | | discussion | ... (2967 more)
+  size 3: paper organization | research setting | scientific background
+  size 3: acknowledgment | summary and conclusions | conclusions and outlook
+  size 2: design and setting | population and setting
+  size 2: theoretical background | biomed research international
+
+# scale 20000000 universe all_frames
+## first 20 block splits in refinement order
+u | v | L | R | Accept(LuR) | Accept(LvR) | block_size | in_size | round
+plant | one |  |  | 1 | 0 | 11212285 | 11414 | 1
+of | one |  | <num> | 1 | 0 | 11200871 | 407 | 1
+and | plant |  | <num> | 1 | 0 | 11414 | 78 | 1
+other | plant | the |  | 1 | 0 | 11336 | 46 | 1
+rate | one | the |  | 1 | 0 | 11200464 | 394 | 1
+study | and | the |  | 1 | 0 | 78 | 6 | 1
+internal | one |  | analysis | 1 | 0 | 11200070 | 360 | 1
+mutation | plant |  | analysis | 1 | 0 | 11290 | 67 | 1
+data | other |  | analysis | 1 | 0 | 46 | 2 | 1
+result | study |  | analysis | 1 | 0 | 6 | 2 | 1
+video | and |  | analysis | 1 | 0 | 72 | 1 | 1
+<num> | and | | |  | 1 | 0 | 71 | 9 | 1
+results | other | | |  | 1 | 0 | 44 | 3 | 1
+analyses | plant | | |  | 1 | 0 | 11223 | 56 | 1
+phototropism | one | | |  | 1 | 0 | 11199710 | 130 | 1
+result | algorithm | | |  | 1 | 0 | 2 | 1 | 1
+immunohistochemistry | mutation | | |  | 1 | 0 | 67 | 4 | 1
+pharmacokinetics | internal | | |  | 1 | 0 | 360 | 1 | 1
+empirical model | rate | | |  | 1 | 0 | 394 | 1 | 1
+) | plant | a |  | 1 | 0 | 11167 | 11 | 1
+## probe pairs (previously merged through (eps,eps) or boundary frames in v2.3)
+<num> vs conclusions: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L conclusions R)=0
+<num> vs introduction: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L introduction R)=0
+introduction vs conclusions: DIFFERENT | L=[] R=[<num> )] | Accept(L introduction R)=1 Accept(L conclusions R)=0
+introduction vs discussion: DIFFERENT | L=[] R=[<num>] | Accept(L introduction R)=1 Accept(L discussion R)=0
+results vs discussion: DIFFERENT | L=[in contrast to arabidopsis , mutation of phyb <num> in tomato] R=[only in temporary red light insensitivity at a young seedling stage while phyb <num> adults look very similar in phenotype to wt tomato ( lazarova et al . , <num> )] | Accept(L results R)=1 Accept(L discussion R)=0
+<num> vs the: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L <num> R)=0 Accept(L the R)=1
+<num> vs and: DIFFERENT | L=[plants use both internal] R=[external cues as signals to guide their growth and development , and to help them respond to their environment , such as to light quality and light quantity , temperature , moisture , or nutrient availability] | Accept(L <num> R)=0 Accept(L and R)=1
+the vs and: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L the R)=1 Accept(L and R)=0
+the vs a: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L the R)=1 Accept(L a R)=0
+<num> vs [ <num> ]: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L [ <num> ] R)=0
+<num> vs <num> . <num>: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L <num> . <num> R)=0
+materials and methods vs conclusions: DIFFERENT | L=[] R=[<num>] | Accept(L materials and methods R)=0 Accept(L conclusions R)=1
+conflict of interest vs acknowledgments: DIFFERENT | L=[the authors declare no] R=[associated with the work described in this manuscript] | Accept(L conflict of interest R)=1 Accept(L acknowledgments R)=0
+is vs was: DIFFERENT | L=[compared to arabidopsis , much less] R=[known about the functions of phys in the solanales] | Accept(L is R)=1 Accept(L was R)=0
+in vs of: DIFFERENT | L=[one important family] R=[plant genes are the phytochromes] | Accept(L in R)=0 Accept(L of R)=1
+## objects observed as complete spans ((eps,eps) = 1)
+terminal objects 11414 in 7985 classes
+plant vs genes: DIFFERENT | L=[one important family of] R=[genes are the phytochromes] | 1 vs 0
+genes vs the: DIFFERENT | L=[one important family of plant] R=[are the phytochromes] | 1 vs 0
+the vs and: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | 1 vs 0
+and vs as: DIFFERENT | L=[plants use both internal] R=[external cues as signals to guide their growth and development , and to help them respond to their environment , such as to light quality and light quantity , temperature , moisture , or nutrient availability] | 1 vs 0
+as vs growth: DIFFERENT | L=[plants use both internal and external cues] R=[signals to guide their growth and development , and to help them respond to their environment , such as to light quality and light quantity , temperature , moisture , or nutrient availability] | 1 vs 0
+growth vs development: DIFFERENT | L=[plants use both internal and external cues as signals to guide their] R=[and development , and to help them respond to their environment , such as to light quality and light quantity , temperature , moisture , or nutrient availability] | 1 vs 0
+development vs ,: DIFFERENT | L=[plants use both internal and external cues as signals to guide their growth and] R=[, and to help them respond to their environment , such as to light quality and light quantity , temperature , moisture , or nutrient availability] | 1 vs 0
+, vs environment: DIFFERENT | L=[plants use both internal and external cues as signals to guide their growth and development] R=[and to help them respond to their environment , such as to light quality and light quantity , temperature , moisture , or nutrient availability] | 1 vs 0
+environment vs quality: DIFFERENT | L=[plants use both internal and external cues as signals to guide their growth and development , and to help them respond to their] R=[, such as to light quality and light quantity , temperature , moisture , or nutrient availability] | 1 vs 0
+quality vs temperature: DIFFERENT | L=[plants use both internal and external cues as signals to guide their growth and development , and to help them respond to their environment , such as to light] R=[and light quantity , temperature , moisture , or nutrient availability] | 1 vs 0
+temperature vs phys: DIFFERENT | L=[plants use both internal and external cues as signals to guide their growth and development , and to help them respond to their environment , such as to light quality and light quantity ,] R=[, moisture , or nutrient availability] | 1 vs 0
+phys vs ): DIFFERENT | L=[phytochromes (] R=[) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+) vs -: DIFFERENT | L=[phytochromes ( phys] R=[are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+- vs a: DIFFERENT | L=[phytochromes ( phys ) are light] R=[absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+a vs gene: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of] R=[chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+gene vs gene expression: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate] R=[expression in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+gene expression vs in: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate] R=[in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+in vs response: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression] R=[response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+response vs <num>: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in] R=[to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+<num> vs <num> ): DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | 1 vs 0
+largest classes among terminal objects:
+  size 3428: | gravitropism | | phototropism | histopathology and immunohistochemistry | j . clin | | introduction | | task paradigms | | behavioral data | | acquisition | | imaging preprocessing | | imaging analysis | | discussion | mouse behavioural analysis | ... (3416 more)
+  size 2: model and methodology | result and analysis
+  size 2: construction of plasmids | protocol and registration
+  size 1: reviewer : <num>
+  size 1: problem
+
+# scale 20000000 universe internal_only
+## first 20 block splits in refinement order
+u | v | L | R | Accept(LuR) | Accept(LvR) | block_size | in_size | round
+a | one | ( | ) | 1 | 0 | 11212285 | 108 | 1
+a | shahidi <num> | ( | <num> ) | 1 | 0 | 108 | 2 | 1
+c | one | ( | <num> ) | 1 | 0 | 11212177 | 63 | 1
+and | one | <num> | <num> | 1 | 0 | 11212114 | 34 | 1
+<num> | shahidi <num> | <num> | <num> | 1 | 0 | 106 | 2 | 1
+. | c | <num> | <num> | 1 | 0 | 63 | 4 | 1
+) | and | <num> | ) | 1 | 0 | 34 | 3 | 1
+c | biradar , | <num> | ) | 1 | 0 | 59 | 1 | 1
+d | shahidi <num> | <num> | ) | 1 | 0 | 104 | 4 | 1
+. | see table | <num> | ) | 1 | 0 | 4 | 1 | 1
+b | a | <num> | ) | 1 | 0 | 2 | 1 | 1
+- <num> | one | <num> | ) | 1 | 0 | 11212080 | 26 | 1
+definition is | one | the | as follows | 1 | 0 | 11212054 | 33 | 1
+table | see table | the | <num> | 1 | 0 | 3 | 2 | 1
+protein | one | the | <num> | 1 | 0 | 11212021 | 30 | 1
+cohen | one | ( | , <num> ) | 1 | 0 | 11211991 | 31 | 1
+fig . <num> | d | ( | , <num> ) | 1 | 0 | 4 | 1 | 1
+comparison | one | the | is shown in figure <num> | 1 | 0 | 11211960 | 30 | 1
+results are | one | the | shown in figure <num> | 1 | 0 | 11211930 | 27 | 1
+details are | definition is | the | shown in figure <num> | 1 | 0 | 33 | 1 | 1
+## probe pairs (previously merged through (eps,eps) or boundary frames in v2.3)
+<num> vs conclusions: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L conclusions R)=0
+<num> vs introduction: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L introduction R)=0
+introduction vs conclusions: DIFFERENT | L=[abstract] R=[unhealthy lifestyle behaviours continue to be highly prevalent , including alcohol consumption , unhealthy diets , insufficient physical activity and smoking] | Accept(L introduction R)=1 Accept(L conclusions R)=0
+introduction vs discussion: DIFFERENT | L=[following the] R=[in section <num> . <num> , we explore the factorization arising from two supertranslation charges , q f and q g characterized by arbitrary functions f ( z , z ) and g ( z , z ) , on the conformal sphere] | Accept(L introduction R)=0 Accept(L discussion R)=1
+results vs discussion: DIFFERENT | L=[in contrast to arabidopsis , mutation of phyb <num> in tomato] R=[only in temporary red light insensitivity at a young seedling stage while phyb <num> adults look very similar in phenotype to wt tomato ( lazarova et al . , <num> )] | Accept(L results R)=1 Accept(L discussion R)=0
+<num> vs the: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L <num> R)=0 Accept(L the R)=1
+<num> vs and: DIFFERENT | L=[plants use both internal] R=[external cues as signals to guide their growth and development , and to help them respond to their environment , such as to light quality and light quantity , temperature , moisture , or nutrient availability] | Accept(L <num> R)=0 Accept(L and R)=1
+the vs and: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L the R)=1 Accept(L and R)=0
+the vs a: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | Accept(L the R)=1 Accept(L a R)=0
+<num> vs [ <num> ]: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L [ <num> ] R)=0
+<num> vs <num> . <num>: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | Accept(L <num> R)=1 Accept(L <num> . <num> R)=0
+materials and methods vs conclusions: DIFFERENT | L=[in sect . <num> , some] R=[and perspectives are drawn] | Accept(L materials and methods R)=0 Accept(L conclusions R)=1
+conflict of interest vs acknowledgments: DIFFERENT | L=[the authors declare no] R=[associated with the work described in this manuscript] | Accept(L conflict of interest R)=1 Accept(L acknowledgments R)=0
+is vs was: DIFFERENT | L=[compared to arabidopsis , much less] R=[known about the functions of phys in the solanales] | Accept(L is R)=1 Accept(L was R)=0
+in vs of: DIFFERENT | L=[one important family] R=[plant genes are the phytochromes] | Accept(L in R)=0 Accept(L of R)=1
+## objects observed as complete spans ((eps,eps) = 1)
+terminal objects 11414 in 7516 classes
+plant vs genes: DIFFERENT | L=[one important family of] R=[genes are the phytochromes] | 1 vs 0
+genes vs the: DIFFERENT | L=[one important family of plant] R=[are the phytochromes] | 1 vs 0
+the vs and: DIFFERENT | L=[one important family of plant genes are] R=[phytochromes] | 1 vs 0
+and vs as: DIFFERENT | L=[plants use both internal] R=[external cues as signals to guide their growth and development , and to help them respond to their environment , such as to light quality and light quantity , temperature , moisture , or nutrient availability] | 1 vs 0
+as vs growth: DIFFERENT | L=[plants use both internal and external cues] R=[signals to guide their growth and development , and to help them respond to their environment , such as to light quality and light quantity , temperature , moisture , or nutrient availability] | 1 vs 0
+growth vs development: DIFFERENT | L=[plants use both internal and external cues as signals to guide their] R=[and development , and to help them respond to their environment , such as to light quality and light quantity , temperature , moisture , or nutrient availability] | 1 vs 0
+development vs ,: DIFFERENT | L=[plants use both internal and external cues as signals to guide their growth and] R=[, and to help them respond to their environment , such as to light quality and light quantity , temperature , moisture , or nutrient availability] | 1 vs 0
+, vs environment: DIFFERENT | L=[plants use both internal and external cues as signals to guide their growth and development] R=[and to help them respond to their environment , such as to light quality and light quantity , temperature , moisture , or nutrient availability] | 1 vs 0
+environment vs quality: DIFFERENT | L=[plants use both internal and external cues as signals to guide their growth and development , and to help them respond to their] R=[, such as to light quality and light quantity , temperature , moisture , or nutrient availability] | 1 vs 0
+quality vs temperature: DIFFERENT | L=[plants use both internal and external cues as signals to guide their growth and development , and to help them respond to their environment , such as to light] R=[and light quantity , temperature , moisture , or nutrient availability] | 1 vs 0
+temperature vs phys: DIFFERENT | L=[plants use both internal and external cues as signals to guide their growth and development , and to help them respond to their environment , such as to light quality and light quantity ,] R=[, moisture , or nutrient availability] | 1 vs 0
+phys vs ): DIFFERENT | L=[phytochromes (] R=[) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+) vs -: DIFFERENT | L=[phytochromes ( phys] R=[are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+- vs a: DIFFERENT | L=[phytochromes ( phys ) are light] R=[absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+a vs gene: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of] R=[chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+gene vs gene expression: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate] R=[expression in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+gene expression vs in: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate] R=[in response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+in vs response: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression] R=[response to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+response vs <num>: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in] R=[to light ( chen & chory , <num> ; franklin & quail , <num> )] | 1 vs 0
+<num> vs <num> ): DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory ,] R=[; franklin & quail , <num> )] | 1 vs 0
+largest classes among terminal objects:
+  size 3899: | gravitropism | | phototropism | histopathology and immunohistochemistry | j . clin | | introduction | | participants | | task paradigms | | behavioral data | | acquisition | | imaging preprocessing | | imaging analysis | | discussion | ... (3887 more)
+  size 1: a
+  size 1: . <num>
+  size 1: c
+  size 1: table i
+
+# scale 20000000 universe boundary_frames
+## first 20 block splits in refinement order
+u | v | L | R | Accept(LuR) | Accept(LvR) | block_size | in_size | round
+plant | one |  |  | 1 | 0 | 11212285 | 11414 | 1
+of | one |  | <num> | 1 | 0 | 11200871 | 407 | 1
+and | plant |  | <num> | 1 | 0 | 11414 | 78 | 1
+other | plant | the |  | 1 | 0 | 11336 | 46 | 1
+rate | one | the |  | 1 | 0 | 11200464 | 394 | 1
+study | and | the |  | 1 | 0 | 78 | 6 | 1
+internal | one |  | analysis | 1 | 0 | 11200070 | 360 | 1
+mutation | plant |  | analysis | 1 | 0 | 11290 | 67 | 1
+data | other |  | analysis | 1 | 0 | 46 | 2 | 1
+result | study |  | analysis | 1 | 0 | 6 | 2 | 1
+video | and |  | analysis | 1 | 0 | 72 | 1 | 1
+<num> | and | | |  | 1 | 0 | 71 | 9 | 1
+results | other | | |  | 1 | 0 | 44 | 3 | 1
+analyses | plant | | |  | 1 | 0 | 11223 | 56 | 1
+phototropism | one | | |  | 1 | 0 | 11199710 | 130 | 1
+result | algorithm | | |  | 1 | 0 | 2 | 1 | 1
+immunohistochemistry | mutation | | |  | 1 | 0 | 67 | 4 | 1
+pharmacokinetics | internal | | |  | 1 | 0 | 360 | 1 | 1
+empirical model | rate | | |  | 1 | 0 | 394 | 1 | 1
+) | plant | a |  | 1 | 0 | 11167 | 11 | 1
+## probe pairs (previously merged through (eps,eps) or boundary frames in v2.3)
+<num> vs conclusions: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | Accept(L <num> R)=1 Accept(L conclusions R)=0
+<num> vs introduction: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | Accept(L <num> R)=1 Accept(L introduction R)=0
+introduction vs conclusions: DIFFERENT | L=[] R=[<num> )] | Accept(L introduction R)=1 Accept(L conclusions R)=0
+introduction vs discussion: DIFFERENT | L=[] R=[<num>] | Accept(L introduction R)=1 Accept(L discussion R)=0
+results vs discussion: DIFFERENT | L=[study] R=[] | Accept(L results R)=1 Accept(L discussion R)=0
+<num> vs the: DIFFERENT | L=[] R=[phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light ( r ) responsive phys] | Accept(L <num> R)=0 Accept(L the R)=1
+<num> vs and: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | Accept(L <num> R)=1 Accept(L and R)=0
+the vs and: DIFFERENT | L=[] R=[phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light ( r ) responsive phys] | Accept(L the R)=1 Accept(L and R)=0
+the vs a: DIFFERENT | L=[] R=[phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light ( r ) responsive phys] | Accept(L the R)=1 Accept(L a R)=0
+<num> vs [ <num> ]: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | Accept(L <num> R)=1 Accept(L [ <num> ] R)=0
+<num> vs <num> . <num>: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | Accept(L <num> R)=1 Accept(L <num> . <num> R)=0
+materials and methods vs conclusions: DIFFERENT | L=[] R=[<num>] | Accept(L materials and methods R)=0 Accept(L conclusions R)=1
+conflict of interest vs acknowledgments: DIFFERENT | L=[the authors declare no] R=[] | Accept(L conflict of interest R)=1 Accept(L acknowledgments R)=0
+is vs was: DIFFERENT | L=[in going from ( <num> . <num> ) to ( <num> . <num> ) we have made the same assumption for defining q soft v on the shifted vacuum as has been made in the literature for defining it on the fock vacuum , namely : out , f | lim] R=[] | Accept(L is R)=1 Accept(L was R)=0
+in vs of: DIFFERENT | L=[] R=[arabidopsis , the r responsive phys are encoded by four genes : atphyb - atphye] | Accept(L in R)=1 Accept(L of R)=0
+## objects observed as complete spans ((eps,eps) = 1)
+terminal objects 11414 in 5815 classes
+plant vs genes: DIFFERENT | L=[] R=[materials and growth conditions] | 1 vs 0
+genes vs the: DIFFERENT | L=[] R=[phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light ( r ) responsive phys] | 0 vs 1
+the vs and: DIFFERENT | L=[] R=[phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light ( r ) responsive phys] | 1 vs 0
+and vs as: DIFFERENT | L=[] R=[<num>] | 1 vs 0
+as vs growth: DIFFERENT | L=[] R=[in prior work ( stoddard et al . , <num> ) , a four - parameter logistic curve was fit to each participant's choice - response data ( parameters f i g u r e <num> schematics of inscanner tasks] | 1 vs 0
+growth vs development: DIFFERENT | L=[] R=[hormones are regulated by estrogen [ <num> , <num> ] , hence the effect of estrogen on sex - specific gene expression in peripheral blood may also be mediated by growth hormone secretion] | 1 vs 0
+development vs ,: DIFFERENT | L=[<num>] R=[] | 0 vs 1
+, vs environment: DIFFERENT | L=[this latest round of duplication therefore lends itself well to analysis of variation in subfunctionalization of this important gene between species , and also provides a recent gene duplication event that plants have exploited for further specialization of their responses to light and the] R=[] | 0 vs 1
+environment vs quality: DIFFERENT | L=[this latest round of duplication therefore lends itself well to analysis of variation in subfunctionalization of this important gene between species , and also provides a recent gene duplication event that plants have exploited for further specialization of their responses to light and the] R=[] | 1 vs 0
+quality vs temperature: DIFFERENT | L=[data] R=[] | 1 vs 0
+temperature vs phys: DIFFERENT | L=[the phy apoproteins are encoded by a multi - gene family that generally consists of a predominantly far - red ( fr ) responsive phy , phya , and one or more predominantly red light ( r ) responsive] R=[] | 0 vs 1
+phys vs ): DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail , <num>] R=[] | 0 vs 1
+) vs -: DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail , <num>] R=[] | 1 vs 0
+- vs a: DIFFERENT | L=[] R=[three - way anova ( genotype , light condition , time ) was performed in r followed by tukey's post hoc test to determine statistically significant differences between groups] | 0 vs 1
+a vs gene: DIFFERENT | L=[] R=[three - way anova ( genotype , light condition , time ) was performed in r followed by tukey's post hoc test to determine statistically significant differences between groups] | 1 vs 0
+gene vs gene expression: DIFFERENT | L=[] R=[ontology functional enrichment analysis of these gene groups identified biological processes specifically regulated by phyb <num> and phyb <num>] | 1 vs 0
+gene expression vs in: DIFFERENT | L=[] R=[arabidopsis , the r responsive phys are encoded by four genes : atphyb - atphye] | 0 vs 1
+in vs response: DIFFERENT | L=[] R=[arabidopsis , the r responsive phys are encoded by four genes : atphyb - atphye] | 1 vs 0
+response vs <num>: DIFFERENT | L=[all data were uploaded for public use to ncbi's short read archive http : / / www . ncbi . nlm . nih . gov / sra / srp <num>] R=[] | 0 vs 1
+<num> vs <num> ): DIFFERENT | L=[phytochromes ( phys ) are light - absorbing chromoproteins that consist of a chromophore and an apoprotein , which together transmit light signals and regulate gene expression in response to light ( chen & chory , <num> ; franklin & quail ,] R=[] | 0 vs 1
+largest classes among terminal objects:
+  size 5580: | gravitropism | | phototropism | <num> included | <num> °c ( | histopathology and immunohistochemistry | j . clin | | introduction | | task paradigms | | behavioral data | | acquisition | | imaging preprocessing | | imaging analysis | ... (5568 more)
+  size 4: method of analysis | construction of plasmids | transwell migration assay | protocol and registration
+  size 4: paper organization | scientific background | patients and samples | hypothesis two
+  size 3: model and methodology | result and analysis | overall framework
+  size 3: <num> definition <num> | convention <num> | notation <num>
