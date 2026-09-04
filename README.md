@@ -77,7 +77,7 @@ build/05_closed_world_refinement/scf_closed_world --oracle-only
 # real-corpus ladder (three context universes per scale)
 build/05_closed_world_refinement/scf_closed_world \
   --input data/real/pes2o_body.scs --corpus pes2o \
-  --scales 100000,200000,400000,1000000,10000000 \
+  --scales 100000,200000,400000,1000000,10000000,20000000 \
   --ud data/real/en_ewt-ud-train.conllu \
   --output-dir 05_closed_world_refinement/results/pes2o_structured
 ```

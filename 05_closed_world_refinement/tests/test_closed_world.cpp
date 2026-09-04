@@ -411,7 +411,9 @@ void test_v23_comparison_separates_terminal_merges() {
     const auto table = build_observation_table(sentences, text, sentences.size(), 3);
     Refiner refiner(table, ContextUniverse::all_frames);
     refiner.run();
-    const auto comparison = compare_with_v23(sentences, text, sentences.size(), 3, table, refiner);
+    const auto partition = run_v23_merger(sentences, text, sentences.size(), 3, table);
+    CHECK(partition.labels.size() == table.object_count());
+    const auto comparison = compare_with_v23(partition, refiner);
     CHECK(comparison.ran);
     CHECK(comparison.accepted_merges >= 1);
     CHECK(comparison.accepted_by_frame[0] >= 1);

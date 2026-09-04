@@ -311,12 +311,29 @@ struct V23Comparison {
     double v23_runtime_seconds{};
 };
 
-V23Comparison compare_with_v23(const std::vector<std::vector<std::uint32_t>>& sentences,
-                               const std::vector<std::string>& token_text,
-                               std::size_t sentence_limit,
-                               std::size_t max_substring_length,
-                               const ObservationTable& table,
-                               const Refiner& refiner);
+// The v2.3 partition of one prefix.  It is computed once per scale
+// (run_v23_merger) and compared against the refinement of every universe
+// (compare_with_v23); labels are indexed by v2.4 object id.
+struct V23Partition {
+    struct AcceptedMerge {
+        ObjectId first{};
+        ObjectId second{};
+        std::uint8_t frame{};  // v231::FrameType of the recorded witness
+    };
+    std::vector<ObjectId> labels;
+    std::vector<AcceptedMerge> accepted;
+    std::uint64_t classes{};
+    std::uint64_t largest_class{};
+    double runtime_seconds{};
+};
+
+V23Partition run_v23_merger(const std::vector<std::vector<std::uint32_t>>& sentences,
+                            const std::vector<std::string>& token_text,
+                            std::size_t sentence_limit,
+                            std::size_t max_substring_length,
+                            const ObservationTable& table);
+
+V23Comparison compare_with_v23(const V23Partition& partition, const Refiner& refiner);
 
 // ---------------------------------------------------------------------------
 // Synthetic oracle cases (deterministic)

@@ -877,21 +877,19 @@ PosDiagnostics evaluate_pos(const ObservationTable& table,
     return result;
 }
 
-V23Comparison compare_with_v23(const std::vector<std::vector<std::uint32_t>>& sentences,
-                               const std::vector<std::string>& token_text,
-                               const std::size_t sentence_limit,
-                               const std::size_t max_substring_length,
-                               const ObservationTable& table,
-                               const Refiner& refiner) {
-    V23Comparison result;
+V23Partition run_v23_merger(const std::vector<std::vector<std::uint32_t>>& sentences,
+                            const std::vector<std::string>& token_text,
+                            const std::size_t sentence_limit,
+                            const std::size_t max_substring_length,
+                            const ObservationTable& table) {
+    V23Partition result;
     const auto start = std::chrono::steady_clock::now();
     const v23::ObservedDataset data =
         v23::observe_sentences(sentences, token_text, sentence_limit, max_substring_length);
     v23::ConservativeMerger merger(data);
     merger.run();
-    result.ran = true;
-    result.v23_classes = merger.metrics().resulting_classes;
-    result.v23_largest_class = merger.metrics().largest_class;
+    result.classes = merger.metrics().resulting_classes;
+    result.largest_class = merger.metrics().largest_class;
 
     // v23 object -> v24 object (same substrings of the same sentences).
     std::vector<ObjectId> translate(data.object_tokens.size());
@@ -903,12 +901,35 @@ V23Comparison compare_with_v23(const std::vector<std::vector<std::uint32_t>>& se
         }
         translate[object] = *found;
     }
+    if (data.object_tokens.size() != table.object_count()) {
+        throw std::runtime_error("v2.3 and v2.4 object inventories differ");
+    }
+    result.labels.resize(table.object_count());
+    for (v23::ObjectId object = 0; object < data.object_tokens.size(); ++object) {
+        result.labels[translate[object]] = translate[merger.class_of(object)];
+    }
+    for (const auto& record : merger.accepted()) {
+        result.accepted.push_back(
+            {translate[record.first], translate[record.second],
+             static_cast<std::uint8_t>(v231::classify_context(data, record.context))});
+    }
+    result.runtime_seconds =
+        std::chrono::duration<double>(std::chrono::steady_clock::now() - start).count();
+    return result;
+}
+
+V23Comparison compare_with_v23(const V23Partition& partition, const Refiner& refiner) {
+    V23Comparison result;
+    result.ran = true;
+    result.v23_classes = partition.classes;
+    result.v23_largest_class = partition.largest_class;
+    result.v23_runtime_seconds = partition.runtime_seconds;
     std::unordered_map<ObjectId, std::uint64_t> v23_counts;
     std::unordered_map<ObjectId, std::uint64_t> v24_counts;
     std::map<std::pair<ObjectId, ObjectId>, std::uint64_t> joint;
-    for (v23::ObjectId object = 0; object < data.object_tokens.size(); ++object) {
-        const ObjectId a = merger.class_of(object);
-        const ObjectId b = refiner.class_of(translate[object]);
+    for (ObjectId object = 0; object < partition.labels.size(); ++object) {
+        const ObjectId a = partition.labels[object];
+        const ObjectId b = refiner.class_of(object);
         ++v23_counts[a];
         ++v24_counts[b];
         ++joint[{a, b}];
@@ -928,17 +949,14 @@ V23Comparison compare_with_v23(const std::vector<std::vector<std::uint32_t>>& se
     }
     result.v23_pairs_separated_by_v24 = result.v23_same_class_pairs - same_both;
     result.v24_pairs_separated_by_v23 = result.v24_same_class_pairs - same_both;
-    for (const auto& record : merger.accepted()) {
-        const auto frame = static_cast<std::size_t>(v231::classify_context(data, record.context));
+    for (const auto& merge : partition.accepted) {
         ++result.accepted_merges;
-        ++result.accepted_by_frame[frame];
-        if (!refiner.same_class(translate[record.first], translate[record.second])) {
+        ++result.accepted_by_frame[merge.frame];
+        if (!refiner.same_class(merge.first, merge.second)) {
             ++result.accepted_merges_separated;
-            ++result.accepted_separated_by_frame[frame];
+            ++result.accepted_separated_by_frame[merge.frame];
         }
     }
-    result.v23_runtime_seconds =
-        std::chrono::duration<double>(std::chrono::steady_clock::now() - start).count();
     return result;
 }
 
@@ -1493,6 +1511,13 @@ ClosedWorldResult run_closed_world_scaling(const ClosedWorldConfig& config) {
             corpus.sentences, corpus.token_text, sentence_limit, config.max_substring_length));
         const double build_seconds =
             std::chrono::duration<double>(std::chrono::steady_clock::now() - build_start).count();
+        // The v2.3 merger (comparison baseline) is run once per scale and
+        // compared against every universe's refinement.
+        std::optional<V23Partition> v23_partition;
+        if (config.compare_v23_max_scale != 0 && scale <= config.compare_v23_max_scale) {
+            v23_partition = run_v23_merger(corpus.sentences, corpus.token_text, sentence_limit,
+                                           config.max_substring_length, *table);
+        }
 
         for (const ContextUniverse universe : config.universes) {
             Refiner refiner(*table, universe);
@@ -1525,9 +1550,8 @@ ClosedWorldResult run_closed_world_scaling(const ClosedWorldConfig& config) {
                             << ", signature classes " << row.oracle_classes << ", identical: "
                             << (row.oracle_identical == 1 ? "yes" : "NO") << '\n';
             }
-            if (config.compare_v23_max_scale != 0 && scale <= config.compare_v23_max_scale) {
-                row.v23 = compare_with_v23(corpus.sentences, corpus.token_text, sentence_limit,
-                                           config.max_substring_length, *table, refiner);
+            if (v23_partition) {
+                row.v23 = compare_with_v23(*v23_partition, refiner);
             }
             row.peak_rss_mb = scf::platform::peak_rss_mb();
             result.rows.push_back(row);

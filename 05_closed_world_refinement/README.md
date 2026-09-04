@@ -56,8 +56,9 @@ only the blocks of its positive objects, so the cost per pass is
 `O(Σ_c |objects_of(c)|)`; members that are negative for `c` are never
 enumerated and no negative example is ever materialised. There is no
 `O(|objects|²)` pair generation and no witness table: the quadratic
-empty-frame clique of v2.3/v2.3.1 is gone (1e6 tokens: 0.6 s refinement
-versus 43 min for the v2.3 merger on the same prefix).
+empty-frame clique of v2.3/v2.3.1 is gone (1e6 tokens: 0.9 s refinement
+versus the 43 min the v2.3.1 report measured for the v2.3 merger on the
+same prefix).
 
 ## Layout
 
@@ -66,7 +67,7 @@ versus 43 min for the v2.3 merger on the same prefix).
 | module | `include/scf/closed_world.hpp`, `src/closed_world.cpp` (namespace `scf::v24`, library `scf_closed_world_v24`) |
 | tool | `tools/scf_closed_world.cpp` (binary `scf_closed_world`) |
 | tests | `tests/test_closed_world.cpp` (`scf_closed_world_v24_tests`, 13 tests incl. the six required synthetic oracle cases) |
-| results | `results/pes2o_structured/` (main ladder 1e5–1e7, three universes), `results/pes2o_structured_v23_comparison/` (1e5–1e6 with the v2.3 merger run on the same prefixes) |
+| results | `results/pes2o_structured/` (main ladder 1e5–2e7, three universes), `results/pes2o_structured_v23_comparison/` (1e5–1e6 with the v2.3 merger run on the same prefixes; at 1e6 only the `all_frames` row, see the report §5) |
 | report | `reports/SCF_V2_4_CLOSED_WORLD_REFINEMENT_REPORT.md` |
 
 Dependencies: `scf_clean_corpus_v231` (line 04) for the structured corpus
@@ -82,7 +83,7 @@ build/05_closed_world_refinement/scf_closed_world --oracle-only            # six
 
 build/05_closed_world_refinement/scf_closed_world \
   --input data/real/pes2o_body.scs --corpus pes2o \
-  --scales 100000,200000,400000,1000000,10000000 \
+  --scales 100000,200000,400000,1000000,10000000,20000000 \
   --universes all,internal,boundary \
   --ud data/real/en_ewt-ud-train.conllu \
   --output-dir 05_closed_world_refinement/results/pes2o_structured

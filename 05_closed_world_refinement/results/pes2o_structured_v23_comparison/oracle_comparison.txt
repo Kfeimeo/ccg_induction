@@ -1,0 +1,77 @@
+# SCF v2.4 synthetic oracle cases (closed-world refinement)
+
+case 1: dog/cat identical in every context
+  all_frames dog == cat: PASS
+  internal_only dog == cat: PASS
+  boundary_frames dog == cat: PASS
+  all_frames 'the dog' == 'the cat': PASS
+  all_frames dog != sleeps: PASS
+
+case 2: mary/swimming share (eps, is fun) but differ on (eps, runs)
+  mary and john are indistinguishable: PASS
+  shared positive context exists: PASS
+  all_frames mary != swimming: PASS
+  a (1,0) distinguishing context is reported: PASS
+    mary vs swimming: L=[] R=[runs]  Accept(L mary R)=1  Accept(L swimming R)=0
+  all_frames mary == john: PASS
+
+case 3: complete spans share (eps,eps) only -> not merged by the terminal test
+  all_frames introduction != <num>: PASS
+  all_frames conclusions != <num>: PASS
+  all_frames conclusions != introduction: PASS
+    introduction vs <num>: L=[the] R=[is long]  Accept(L introduction R)=1  Accept(L <num> R)=0
+    conclusions vs <num>: L=[] R=[mice ran]  Accept(L conclusions R)=0  Accept(L <num> R)=1
+    conclusions vs introduction: L=[the] R=[is long]  Accept(L conclusions R)=0  Accept(L introduction R)=1
+  all three accept (eps,eps): PASS
+  boundary_frames introduction != <num>: PASS
+  boundary_frames conclusions == introduction (no other boundary frame): PASS
+
+case 4: observationally indistinguishable pair must merge
+  all_frames alpha == beta: PASS
+  all_frames 'x alpha' == 'x beta': PASS
+  internal_only alpha == beta: PASS
+  internal_only 'x alpha' == 'x beta': PASS
+  boundary_frames alpha == beta: PASS
+  boundary_frames 'x alpha' == 'x beta': PASS
+
+case 5: D_small splits dog/cat by a missing positive; D_large repairs it
+  small: dog != cat (closed-world negative): PASS
+    dog vs cat: L=[a] R=[runs]  Accept(L dog R)=1  Accept(L cat R)=0
+  large: dog == cat: PASS
+    common objects 15, pairs merged at the larger scale 1, pairs split 0
+  partition change reports the repaired pair: PASS
+  no previously equal pair became unequal: PASS
+
+case 6: refinement vs brute-force full signature enumeration
+  seed 1 all_frames (objects 81, universe contexts 107, classes 51, dense classes 51) dense identical: PASS
+  seed 1 all_frames (objects 81, universe contexts 107, classes 51, dense classes 51) sparse identical: PASS
+  seed 1 internal_only (objects 81, universe contexts 41, classes 15, dense classes 15) dense identical: PASS
+  seed 1 internal_only (objects 81, universe contexts 41, classes 15, dense classes 15) sparse identical: PASS
+  seed 1 boundary_frames (objects 81, universe contexts 66, classes 40, dense classes 40) dense identical: PASS
+  seed 1 boundary_frames (objects 81, universe contexts 66, classes 40, dense classes 40) sparse identical: PASS
+  seed 7 all_frames (objects 85, universe contexts 118, classes 55, dense classes 55) dense identical: PASS
+  seed 7 all_frames (objects 85, universe contexts 118, classes 55, dense classes 55) sparse identical: PASS
+  seed 7 internal_only (objects 85, universe contexts 44, classes 18, dense classes 18) dense identical: PASS
+  seed 7 internal_only (objects 85, universe contexts 44, classes 18, dense classes 18) sparse identical: PASS
+  seed 7 boundary_frames (objects 85, universe contexts 74, classes 41, dense classes 41) dense identical: PASS
+  seed 7 boundary_frames (objects 85, universe contexts 74, classes 41, dense classes 41) sparse identical: PASS
+  seed 42 all_frames (objects 85, universe contexts 119, classes 55, dense classes 55) dense identical: PASS
+  seed 42 all_frames (objects 85, universe contexts 119, classes 55, dense classes 55) sparse identical: PASS
+  seed 42 internal_only (objects 85, universe contexts 44, classes 18, dense classes 18) dense identical: PASS
+  seed 42 internal_only (objects 85, universe contexts 44, classes 18, dense classes 18) sparse identical: PASS
+  seed 42 boundary_frames (objects 85, universe contexts 75, classes 41, dense classes 41) dense identical: PASS
+  seed 42 boundary_frames (objects 85, universe contexts 75, classes 41, dense classes 41) sparse identical: PASS
+
+summary: all checks passed (failures=0)
+
+# real corpus: optimized refinement vs sparse full-signature partition (pes2o)
+scale 100000 all_frames: refinement classes 107998, signature classes 107998, identical: yes
+scale 100000 internal_only: refinement classes 102549, signature classes 102549, identical: yes
+scale 100000 boundary_frames: refinement classes 9855, signature classes 9855, identical: yes
+scale 200000 all_frames: refinement classes 214020, signature classes 214020, identical: yes
+scale 200000 internal_only: refinement classes 203073, signature classes 203073, identical: yes
+scale 200000 boundary_frames: refinement classes 19317, signature classes 19317, identical: yes
+scale 400000 all_frames: refinement classes 381349, signature classes 381349, identical: yes
+scale 400000 internal_only: refinement classes 362497, signature classes 362497, identical: yes
+scale 400000 boundary_frames: refinement classes 34030, signature classes 34030, identical: yes
+scale 1000000 all_frames: refinement classes 867290, signature classes 867290, identical: yes

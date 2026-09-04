@@ -296,23 +296,29 @@ produced by any universe.
 
 `--compare-v23-max-scale 1000000` runs `v23::observe_sentences` and
 `ConservativeMerger` on each prefix and maps its objects onto the v2.4
-table (identical substrings).
+table (identical substrings). The v2.3 numbers (classes, largest class,
+accepted merges) reproduce the v2.3.1 CSV exactly at every scale. The
+v2.3 merger at 1e6 took 5,432 s on this machine (v2.3.1 measured 2,579 s
+on its hardware); the driver at the time re-ran it once per universe, so
+the comparison run was stopped after the `all_frames` 1e6 row (the
+`internal_only` / `boundary_frames` 1e6 rows are absent from that CSV; the
+driver now runs the v2.3 merger once per scale).
 
 | nominal | v2.3 classes / largest | v2.3 accepted merges | separated by v2.4 (`all`) | empty-frame merges separated | internal-frame merges separated | v2.3 same-class pairs → separated by v2.4 | v2.4 (`all`) same-class pairs → separated by v2.3 | v2.3 runtime s |
 |---|---|---|---|---|---|---|---|---|
 | 1e5 | 107,932 / 42 | 116 | 104 | 59 / 59 | 11 / 17 | 986 → 360 | 628 → 2 | 3.1 |
 | 2e5 | 213,888 / 95 | 232 | 212 | 128 / 128 | 18 / 27 | 4,727 → 1,895 | 2,983 → 151 | 14.9 |
 | 4e5 | 381,030 / 168 | 484 | 449 | 232 / 232 | 67 / 78 | 14,679 → 7,674 | 7,019 → 14 | 233.5 |
-| 1e6 | PENDING_V23_1E6 |
+| 1e6 | 866,322 / 368 | 1,318 | 1,205 | 489 / 489 | 265 / 312 | 69,870 → 41,326 | 28,585 → 41 | 5,432 |
 
 Every empty-frame merge accepted by v2.3 (`<num> ⇔ conclusions`,
 `<num> ⇔ | introduction`, `<num> ⇔ j . clin`, …) is separated: `<num>`
 has thousands of other frames, and the headers have none or others. The
-12 / 20 / 35 v2.3 merges that survive at 1e5 / 2e5 / 4e5 are pairs with
-identical signatures (single-frame parallel phrases such as
+12 / 20 / 35 / 113 v2.3 merges that survive at 1e5 / 2e5 / 4e5 / 1e6 are
+pairs with identical signatures (single-frame parallel phrases such as
 `differentially modulate auxin` / `differentially modulate photosynthetic`).
 Conversely, almost every v2.4 class is inside a v2.3 class (628 → 2,
-2,983 → 151, 7,019 → 14): the closed-world partition is a refinement of
+2,983 → 151, 7,019 → 14, 28,585 → 41): the closed-world partition is a refinement of
 the v2.3 partition up to a few pairs — the exceptions are terminal-only
 objects that v2.3's transactional check had rejected on a compositional
 conflict — but it removes the v2.3 hub — v2.3's largest class (42 → 95 → 168 → 368) is
@@ -401,9 +407,11 @@ cache.
 1. **Does closed-world contextual equivalence eliminate the v2.3 false-merge
    mechanism?** Yes. A shared context is no longer evidence for anything;
    only agreement on *every* universe context merges. On the same prefixes
-   v2.4 separates 104 of the 116 v2.3 accepted merges at 1e5 (all 59
-   empty-frame merges, 11 of 17 internal-frame merges) — see §5 for 2e5 –
-   1e6 — and the v2.4 partition is, up to 2 pairs, a refinement of v2.3's.
+   v2.4 separates 104 / 212 / 449 / 1,205 of the 116 / 232 / 484 / 1,318
+   v2.3 accepted merges at 1e5 / 2e5 / 4e5 / 1e6 (every empty-frame merge:
+   59 / 128 / 232 / 489; 11 / 18 / 67 / 265 of the 17 / 27 / 78 / 312
+   internal-frame merges), and the v2.4 partition is, up to
+   2 / 151 / 14 / 41 pairs, a refinement of v2.3's (§5).
    The prompt's named cases (`<num>` / `conclusions` / `introduction` /
    short complete spans) are separated at every scale by an explicit
    `(1,0)` context (§6).
